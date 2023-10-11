@@ -270,7 +270,10 @@
             </div>
         </div>
     </div>
+
+    @include('projects.modalProject')
 @endsection
+
 
 
 @section('pageScript')
@@ -324,8 +327,7 @@
             $('#customers').on('change', function() {
                 var customer_id = $(this).val();
                 if (customer_id === 'createNewCustomer') {
-                    // Redirect ke halaman pembuatan customer
-                    window.location.href = "{{ route('customer.create') }}";
+                    $("#add-customer-modal").modal("show");
                 } else {
                     $customerContact.prop('disabled', false);
                     $.ajax({
@@ -356,7 +358,7 @@
                 var customer_id = $("#customers").val();
                 var contact = $(this).val();
                 if (contact === "createContact") {
-                    window.location.href = `{{ route('customer.create', ['id' => '${customer_id}']) }}`;
+                    $("#add-customerContact-modal").modal("show");
                 }
             });
         });

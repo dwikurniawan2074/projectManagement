@@ -40,13 +40,22 @@ class CustomerController extends Controller
             'companyName' => 'required',
         ]);
 
-        Customer::create([
+        $newCustomer = Customer::create([
             'companyName' => $request->input('companyName'),
         ]);
 
-        $indexRoute = route('customer.index');
-        return redirect($indexRoute)->with('success', 'Data customer berhasil ditambahkan.');
+        if ($request->has('fromProject')) {
+            // Jika ini adalah permintaan AJAX, Anda dapat mengirimkan respons JSON
+            return response()->json([
+                'id' => $newCustomer->id,
+                'companyName' => $newCustomer->companyName,
+            ]);
+        } else {
+            $indexRoute = route('customer.index');
+            return redirect($indexRoute)->with('success', 'Data customer berhasil ditambahkan.');
+        }
     }
+
 
     public function show($id)
     {
