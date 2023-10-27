@@ -480,7 +480,7 @@
                         $('#label').text(projectLabel);
                         $('#type').text(operationalData.type);
                         if (operationalData.approver == null) {
-                            $('#file').text('Belum ada diapprove');
+                            $('#file').text('Belum diapprove');
                             $('#file').addClass('btn btn-danger disabled')
                         } else {
                             $('#file').text('Download File');
