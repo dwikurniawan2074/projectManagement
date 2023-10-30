@@ -366,71 +366,71 @@
                                     <div class="row">
                                         <label for="sub pelayanan">Sub Layanan</label>
                                     </div>
-                                    <div class="ml-auto mb-2">
-                                        <button type="button" class="btn btn-danger rounded mt-2 ">
-                                            <i class="mdi mdi-plus" title="Untuk sub layanan"></i>Add
-                                        </button>
-                                    </div>
+                            <div class="ml-auto mb-2">
+    <button type="button" class="btn btn-danger rounded mt-2" id="addButton">
+        <i class="mdi mdi-plus" title="Untuk sub layanan"></i>Add
+    </button>
+</div>
+                                    <div id="inputFieldsContainer">
+                                        <div class="row " >
+                                            <div class="col-sm-6 col-xl-4">
+                                                <form action="">
+                                                    <div class="mb-3">
+                                                        <label for="deskripsi">Deskripsi</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
+                                                                id="deskripsi">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
 
-                                    <div class="row">
-                                        <div class="col-sm-6 col-xl-4">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Deskripsi</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
+                                            <div class="col-sm-6 col-xl-1">
+                                                <form action="">
+                                                    <div class="mb-3">
+                                                        <label for="qty">Qty</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
+                                                                id="qty">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="col-sm-6 col-xl-1">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Qty</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-6 col-xl-3">
+                                                <form action="">
+                                                    <div class="mb-3">
+                                                        <label for="satuan">Satuan</label>
+                                                        <select id="satuan" class="form-select">
+                                                            <option selected>Choose...</option>
+                                                            <option>#####</option>
+                                                            <option>XXXXX</option>
+                                                            <option>AAAAA</option>
+                                                            <option>BBBBB</option>
+                                                        </select>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-3">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="inputStateLeft">Satuan</label>
-                                                    <select id="inputStateLeft" class="form-select">
-                                                        <option selected>Choose...</option>
-                                                        <option>#####</option>
-                                                        <option>XXXXX</option>
-                                                        <option>AAAAA</option>
-                                                        <option>BBBBB</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-4 d-flex">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Harga</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-6 col-xl-4 d-flex">
+                                                <form action="">
+                                                    <div class="mb-3">
+                                                        <label for="harga">Harga</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
+                                                                id="harga">
+                                                        </div>
                                                     </div>
+                                                </form>
+                                                <div class="ms-2 mt-3">
+                                                    <button type="button"
+                                                        class="btn btn-blue btn-xs waves-effect waves-light"
+                                                        style="height: 35px"><i class="fa-solid fa-trash"></i>
+                                                    </button>
                                                 </div>
-                                            </form>
-                                            <div class="ms-2 mt-3">
-                                                <button type="button"
-                                                    class="btn btn-blue btn-xs waves-effect waves-light"
-                                                    style="height: 35px"><i class="fa-solid fa-trash"></i>
-                                                </button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="modal-footer gap-1">
@@ -523,6 +523,57 @@
         </div>
     </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addButton = document.getElementById("addButton");
+            const inputFieldsContainer = document.getElementById("inputFieldsContainer");
+
+            addButton.addEventListener("click", function() {
+                const newInputField = createInputField();
+                inputFieldsContainer.appendChild(newInputField);
+            });
+
+            // Function to create a new input field
+            function createInputField() {
+                const inputFieldDiv = document.createElement("div");
+                inputFieldDiv.className = "col-sm-6 col-xl-4";
+
+                const form = document.createElement("form");
+
+                const descriptionLabel = document.createElement("label");
+                descriptionLabel.setAttribute("for", "deskripsi");
+                descriptionLabel.textContent = "Deskripsi";
+
+                const inputGroup = document.createElement("div");
+                inputGroup.className = "input-group";
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.className = "form-control";
+                input.setAttribute("placeholder", "Masukan Jenis Trafo");
+                input.setAttribute("aria-label", "Username");
+                input.setAttribute("id", "customerNameLeft");
+
+                const deleteButton = document.createElement("button");
+                deleteButton.type = "button";
+                deleteButton.className = "btn btn-blue btn-xs waves-effect waves-light";
+                deleteButton.style.height = "35px";
+                deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+
+                deleteButton.addEventListener("click", function() {
+                    inputFieldsContainer.removeChild(inputFieldDiv);
+                });
+
+                inputGroup.appendChild(input);
+                form.appendChild(descriptionLabel);
+                form.appendChild(inputGroup);
+                inputFieldDiv.appendChild(form);
+                inputFieldDiv.appendChild(deleteButton);
+
+                return inputFieldDiv;
+            }
+        });
+    </script>
 @endsection
 @section('pageScript')
 @endsection
