@@ -3,20 +3,20 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="{{ url('/') }}" class="logo logo-light text-center">
+        <a href="{{ url('sistemPenawaran/') }}" class="logo logo-light text-center">
             <span class="logo-sm">
-                <img src="{{ asset('images/logo_trafindo_only.png') }}" alt="" height="30">
+                <img src="{{ asset('images/trafindo_care_logo_only.png') }}" alt="" height="35">
             </span>
             <span class="logo-lg">
-                <img src="{{ asset('images/logo_trafindo_full.png') }}" alt="" height="40">
+                <img src="{{ asset('images/trafindo_care_logo.png') }}" alt="" height="50">
             </span>
         </a>
-        <a href="{{ url('/') }}" class="logo logo-dark text-center">
+        <a href="{{ url('sistemPenawaran/') }}" class="logo logo-dark text-center">
             <span class="logo-sm">
-                <img src="{{ asset('images/logo_trafindo_only.png') }}" alt="" height="30">
+                <img src="{{ asset('images/trafindo_care_logo_only.png') }}" alt="" height="35">
             </span>
-            <span class="logo-lg">
-                <img src="{{ asset('images/logo_trafindo_full.png') }}" alt="" height="40">
+            <span class="logo-lg text-start px-3">
+                <img src="{{ asset('images/trafindo_care_logo.png') }}" alt="" height="50">
             </span>
         </a>
     </div>
@@ -29,7 +29,7 @@
         </li>
 
         <li>
-            <h4 class="page-title-main">Dashboard</h4>
+            <h4 class="page-title-main"><b>Welcome, User Name</b></h4>
         </li>
     </ul>
 
@@ -127,21 +127,21 @@
                 <li
                     class="{{ Request::is('sistemPenawaran/penawaran/*') ? 'menuitem-active' : ''}}">
                     <a href="{{ url('sistemPenawaran/penawaran') }}">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <i class="mdi mdi-file-document-multiple-outline"></i>
                         <span> Penawaran </span>
                     </a>
                 </li>
 
                 <li class="{{ Request::is('sistemPenawaran/approval/*') ? 'menuitem-active' : ''}}">
                     <a href="{{ url('sistemPenawaran/approval') }}">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <i class="mdi mdi-clipboard-check-multiple-outline"></i>
                         <span> Approval </span>
                     </a>
                 </li>
 
                 <li class="{{ Request::is('sistemPenawaran/mapping/*') ? 'menuitem-active' : ''}}">
                     <a href="{{ url('sistemPenawaran/mapping') }}">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <i class="mdi mdi-map-search-outline"></i>
                         <span> Mapping </span>
                     </a>
                 </li>
