@@ -467,18 +467,28 @@
                         $('#date').text(operationalData.date);
                         $('#label').text(projectLabel);
                         $('#type').text(operationalData.type);
-                        $('#file').text(operationalData.file);
+                        if (operationalData.approver == null) {
+                            $('#file').text('Belum ada diapprove');
+                            $('#file').addClass('btn btn-danger disabled')
+                        } else {
+                            $('#file').text('Download File');
+                            $('#file').removeClass('btn btn-danger disabled')
+                            $('#file').addClass('btn btn-info')
+                            $('#file').attr('href', "{{ route('operational.download', '') }}" + "/" + operational);
+
+
+                        }
                         $('#description').text(operationalData.description);
                         $('#transport').text(operationalData.transportation_mode);
                         $('#vehicle').text(operationalData.vehicle_number);
-                        $('#created').text(operationalData.created_by);
-                        if (operationalData.approved == null) {
+                        $('#created').text(operationalData.creator.first_name + ' ' + operationalData.creator.last_name);
+                        if (operationalData.approver == null) {
                             $('#approved').text('Belum di Approve');
                             //text become red button
                             // $('#approved').addClass('btn btn-danger disabled');
                             
                         } else {
-                            $('#approved').text(operationalData.approved);
+                            $('#approved').text(operationalData.approver.first_name + ' ' + operationalData.approver.last_name);
                             $('#bg-approved').removeClass('bg-danger');
                             $('#bg-approved').addClass('bg-success');
                         }
@@ -725,8 +735,8 @@
                     searchable: false,
                 },
                     {
-                        data:'memo',
-                        name:'memo',
+                        data: 'memo',
+                        name: 'memo',
                     },
                     {
                         data: 'do',
@@ -1189,9 +1199,10 @@
         }
 </script>
 
-<script type="text/javascript">
-    function showMaterialForm() {
-        const modal = $('#add-material-modal');
+    <script type="text/javascript">
+
+        function showMaterialForm() {
+            const modal = $('#add-material-modal');
             const button = modal.find('#materialButton');
 
             $('.materialsForm').parsley().reset();
@@ -1251,13 +1262,13 @@
                             do: doValue,
                             memo: memoValue,
                         });
-                            Swal.fire(
-                                'Updated!',
-                                'Material has been updated.',
-                                'success'
-                            )
-                            $('#table-material').DataTable().ajax.reload();
-                            modal.modal('hide');
+                        Swal.fire(
+                            'Updated!',
+                            'Material has been updated.',
+                            'success'
+                        )
+                        $('#table-material').DataTable().ajax.reload();
+                        modal.modal('hide');
                         console.log(response)
                     } catch (error) {
                         console.error(error);
