@@ -1,394 +1,382 @@
 @extends('template.index')
 
 @section('content')
-    <style>
-        .nav-link {
-            color: black;
-        }
+<style>
+    .nav-link {
+        color: black;
+    }
 
-        .nav-link:hover {
-            color: red;
-        }
+    .nav-link:hover {
+        color: red;
+    }
 
-        .nav-link.active {
-            color: red !important;
-            font-weight: 800;
-        }
+    .nav-link.active {
+        color: red !important;
+        font-weight: 800;
+    }
 
-        .tables-card {
-            margin-bottom: 0 !important;
-        }
+    .tables-card {
+        margin-bottom: 0 !important;
+    }
 
-        .details-text {
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
+    .details-text {
+        margin-bottom: 10px;
+        font-weight: 800;
+    }
 
-        .title-text {
-            margin-bottom: unset;
-        }
+    .title-text {
+        margin-bottom: unset;
+    }
 
-        .card-nbm {
-            margin-bottom: 0 !important;
-        }
+    .card-nbm {
+        margin-bottom: 0 !important;
+    }
 
-        .btn-addMaterial {
-            border-radius: 10px;
-            background-color: #FF3E3E;
-            border: #FF3E3E;
-            color: white;
-        }
+    .btn-addMaterial {
+        border-radius: 10px;
+        background-color: #FF3E3E;
+        border: #FF3E3E;
+        color: white;
+    }
 
-        #operational-data .row {
-            --ct-gutter-x: 0rem !important;
-        }
-    </style>
+    #operational-data .row {
+        --ct-gutter-x: 0rem !important;
+    }
+</style>
 
-    <div class="content-page">
-        <div class="content">
-            <!-- Start Content-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
+<div class="content-page">
+    <div class="content">
+        <!-- Start Content-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="header-title mb-2">Sales Order Number</h4>
+
+                                    <select class="form-select" id="sales-order" onchange="getOperationals(this.value)">
+                                        <option selected value="">Pilih Sales Order Number</option>
+                                        @foreach ($salesOrder as $item)
+                                        <option value="{{ $item->id }}" @isset($soNumber) @if ($soNumber==$item->so)
+                                            selected
+                                            @endif
+                                            @endisset>
+                                            {{ $item->so }}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+            </div>
+
+            <div id="operational-data" class="row">
+                <div class="col-12">
+                    <div class="card card-nbm">
+                        <div class="card-body card-nbm">
+                            <div id="operational-section" class="row">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <h4 class="header-title mb-2">Operational</h4>
+                                        <select id="select-operational" class="form-select mb-2"
+                                            onchange="detailOperational(this.value, false)">
+                                            @isset($spkNumber)
+                                            <option value="{{ $spkNumber_id }}" selected>{{ $spkNumber }}</option>
+                                            @else
+                                            <option selected value="">Silahkan Pilih SO</option>
+                                            @endisset
+
+                                        </select>
+                                    </div> <!-- end col -->
+                                </div>
+
+                                <div class="row px-3">
+                                    <div class="col-md-6">
+                                        <th scope="row">
+                                            <p class="title-text">SPK Number :</p>
+                                            <p class="details-text" id="spk_number">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Service Date :</p>
+                                            <p class="details-text" id="date">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Project Label :</p>
+                                            <p class="details-text" id="label">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Service Type :</p>
+                                            <p class="details-text" id="type">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">File</p>
+                                            <p class="details-text" id="file">-</p>
+                                        </th>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <th scope="row">
+                                            <p class="title-text">Description</p>
+                                            <p class="" id="description">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Approved by</p>
+                                            <span id="bg-approved" class="details-text badge bg-danger">
+                                                <p class="mb-0 p-1" id="approved">-</p>
+                                            </span>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Transportation Mode</p>
+                                            <p class="details-text" id="transport">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Vehicle Number</p>
+                                            <p class="details-text" id="vehicle">-</p>
+                                        </th>
+                                        <th scope="row">
+                                            <p class="title-text">Created by</p>
+                                            <p class="details-text" id="created">-</p>
+                                        </th>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h4 class="header-title mb-2">Sales Order Number</h4>
+                                        <div class="card card-nbm text-center">
+                                            <div class="card-header bg-transparent border-bottom">
+                                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link active show" href="#work"
+                                                            role="tab" data-toggle="tab">Work Plan
+                                                        </button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab"
+                                                            href="#expenses" data-toggle="tab">Operational
+                                                            Expenses
+                                                        </button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab"
+                                                            href="#material" data-toggle="tab">Material
+                                                            Utilized
+                                                        </button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab"
+                                                            href="#technician" data-toggle="tab"
+                                                            id="technician_list">Technician
+                                                            List
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
 
-                                        <select class="form-select" id="sales-order"
-                                                onchange="getOperationals(this.value)">
-                                            <option selected value="">Pilih Sales Order Number</option>
-                                            @foreach ($salesOrder as $item)
-                                                <option value="{{ $item->id }}"
-                                                        @isset($soNumber)
-                                                            @if ($soNumber == $item->so)
-                                                                selected
-                                                    @endif
-                                                    @endisset>
-                                                    {{ $item->so }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div> <!-- end col -->
-                                </div> <!-- end row -->
-
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card -->
-                    </div> <!-- end col -->
-                </div>
-
-                <div id="operational-data" class="row">
-                    <div class="col-12">
-                        <div class="card card-nbm">
-                            <div class="card-body card-nbm">
-                                <div id="operational-section" class="row">
-                                    <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <h4 class="header-title mb-2">Operational</h4>
-                                            <select id="select-operational" class="form-select mb-2"
-                                                    onchange="detailOperational(this.value, false)">
-                                                @isset($spkNumber)
-                                                    <option value="{{ $spkNumber_id }}"
-                                                            selected>{{ $spkNumber }}</option>
-                                                @else
-                                                    <option selected value="">Silahkan Pilih SO</option>
-                                                @endisset
-
-                                            </select>
-                                        </div> <!-- end col -->
-                                    </div>
-
-                                    <div class="row px-3">
-                                        <div class="col-md-6">
-                                            <th scope="row">
-                                                <p class="title-text">SPK Number :</p>
-                                                <p class="details-text" id="spk_number">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Service Date :</p>
-                                                <p class="details-text" id="date">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Project Label :</p>
-                                                <p class="details-text" id="label">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Service Type :</p>
-                                                <p class="details-text" id="type">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">File</p>
-                                                <p class="details-text" id="file">-</p>
-                                            </th>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <th scope="row">
-                                                <p class="title-text">Description</p>
-                                                <p class="details-text" id="description">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Approved by</p>
-                                                <p class="details-text" id="approved">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Transportation Mode</p>
-                                                <p class="details-text" id="transport">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Vehicle Number</p>
-                                                <p class="details-text" id="vehicle">-</p>
-                                            </th>
-                                            <th scope="row">
-                                                <p class="title-text">Created by</p>
-                                                <p class="details-text" id="created">-</p>
-                                            </th>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card card-nbm text-center">
-                                                <div class="card-header bg-transparent border-bottom">
-                                                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link active show"
-                                                                    href="#work" role="tab" data-toggle="tab">Work Plan
-                                                            </button>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link" role="tab"
-                                                                    href="#expenses" data-toggle="tab">Operational
-                                                                Expenses
-                                                            </button>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link" role="tab"
-                                                                    href="#material" data-toggle="tab">Material
-                                                                Utilized
-                                                            </button>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link" role="tab"
-                                                                    href="#technician" data-toggle="tab"
-                                                                    id="technician_list">Technician
-                                                                List
-                                                            </button>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-
-                                                <div class="card-body tab-content">
-                                                    {{-- isi tab work plan --}}
-                                                    <div role="tabpanel" class="tab-pane fade active show"
-                                                         id="work">
-                                                        <div class="row text-start">
-                                                            <div class="col-lg-12">
-                                                                <div class="card">
-                                                                    <div class="card-body pt-0">
-                                                                        <div class="row table-title mb-1">
-                                                                            <div class="col-sm-8">
-                                                                                <h4 class="mt-0 header-title"></h4>
-                                                                            </div>
-                                                                            <div class="col-sm-4 text-end">
-                                                                                <button type="button"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#add-work-modal"
-                                                                                        onclick="showAgendaForm()"
-                                                                                        class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
-                                                                                    <i class="mdi mdi-plus"></i>Add
-                                                                                    Work Plan
-                                                                                </button>
-                                                                            </div>
+                                            <div class="card-body tab-content">
+                                                {{-- isi tab work plan --}}
+                                                <div role="tabpanel" class="tab-pane fade active show" id="work">
+                                                    <div class="row text-start">
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class="card-body pt-0">
+                                                                    <div class="row table-title mb-1">
+                                                                        <div class="col-sm-8">
+                                                                            <h4 class="mt-0 header-title"></h4>
                                                                         </div>
-                                                                        <div class="">
-                                                                            <table
-                                                                                class="table table-striped table-hover mb-0"
-                                                                                id="table-agendas">
-                                                                                <thead>
+                                                                        <div class="col-sm-4 text-end">
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#add-work-modal"
+                                                                                onclick="showAgendaForm()"
+                                                                                class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
+                                                                                <i class="mdi mdi-plus"></i>Add
+                                                                                Work Plan
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <table
+                                                                            class="table table-striped table-hover mb-0"
+                                                                            id="table-agendas">
+                                                                            <thead>
                                                                                 <tr>
                                                                                     <th>#</th>
                                                                                     <th>Description</th>
                                                                                     <th>Due Date</th>
                                                                                     <th>Status</th>
-                                                                                    <th class="text-center"
-                                                                                        width="140">
+                                                                                    <th class="text-center" width="140">
                                                                                         Actions
                                                                                     </th>
                                                                                 </tr>
-                                                                                </thead>
+                                                                            </thead>
 
-                                                                                <tbody>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                            <tbody>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    {{-- isi tab expenses --}}
-                                                    <div role="tabpanel" class="tab-pane fade" id="expenses">
-                                                        <div class="row text-start">
-                                                            <div class="col-lg-12">
-                                                                <div class="card">
-                                                                    <div class="card-body pt-0">
-                                                                        <div class="row table-title mb-1">
-                                                                            <div class="col-sm-8">
-                                                                                <h4 class="mt-0 header-title"></h4>
-                                                                            </div>
-                                                                            <div class="col-sm-4 text-end">
-                                                                                <button type="button"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#add-expenses-modal"
-                                                                                        onclick="showExpenseForm()"
-                                                                                        class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
-                                                                                    <i class="mdi mdi-plus"></i>Add
-                                                                                    Expenses
-                                                                                </button>
-                                                                            </div>
-
+                                                {{-- isi tab expenses --}}
+                                                <div role="tabpanel" class="tab-pane fade" id="expenses">
+                                                    <div class="row text-start">
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class="card-body pt-0">
+                                                                    <div class="row table-title mb-1">
+                                                                        <div class="col-sm-8">
+                                                                            <h4 class="mt-0 header-title"></h4>
                                                                         </div>
-                                                                        <div id="datatable_wrapper"
-                                                                             class="dataTables_wrapper dt-bootstrap5">
-                                                                            <table
-                                                                                class="table table-striped table-hover dt-responsive table-hover table-responsive nowrap dataTable no-footer dtr-inline"
-                                                                                id="table-expenses">
-                                                                                <thead>
+                                                                        <div class="col-sm-4 text-end">
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#add-expenses-modal"
+                                                                                onclick="showExpenseForm()"
+                                                                                class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
+                                                                                <i class="mdi mdi-plus"></i>Add
+                                                                                Expenses
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div id="datatable_wrapper"
+                                                                        class="dataTables_wrapper dt-bootstrap5">
+                                                                        <table
+                                                                            class="table table-striped table-hover dt-responsive table-hover table-responsive nowrap dataTable no-footer dtr-inline"
+                                                                            id="table-expenses">
+                                                                            <thead>
                                                                                 <tr>
                                                                                     <th>#</th>
                                                                                     <th>Expense Date</th>
                                                                                     <th>Expense Item</th>
                                                                                     <th>Amount</th>
-                                                                                    <th class="text-center"
-                                                                                        width="140">
+                                                                                    <th class="text-center" width="140">
                                                                                         Actions
                                                                                     </th>
                                                                                 </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    {{-- isi tab material utilized --}}
-                                                    <div role="tabpanel" class="tab-pane fade" id="material">
-                                                        <div class="row text-start">
-                                                            <div class="col-lg-12">
-                                                                <div class="card">
-                                                                    <div class="card-body pt-0">
-                                                                        <div class="row table-title mb-1">
-                                                                            <div class="col-sm-8">
-                                                                                <h4 class="mt-0 header-title"></h4>
-                                                                            </div>
-                                                                            <div class="col-sm-4 text-end">
-                                                                                <button type="button"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#add-material-modal"
-                                                                                        onclick="showMaterialForm()"
-                                                                                        class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
-                                                                                    <i class="mdi mdi-plus"></i>Add
-                                                                                    Material
-                                                                                </button>
-                                                                            </div>
+                                                {{-- isi tab material utilized --}}
+                                                <div role="tabpanel" class="tab-pane fade" id="material">
+                                                    <div class="row text-start">
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class="card-body pt-0">
+                                                                    <div class="row table-title mb-1">
+                                                                        <div class="col-sm-8">
+                                                                            <h4 class="mt-0 header-title"></h4>
                                                                         </div>
-                                                                        <div class="table-responsive">
-                                                                            <table
-                                                                                id="table-material"
-                                                                                class="table table table-striped table-hover mb-0">
-                                                                                <thead>
+                                                                        <div class="col-sm-4 text-end">
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#add-material-modal"
+                                                                                onclick="showMaterialForm()"
+                                                                                class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
+                                                                                <i class="mdi mdi-plus"></i>Add
+                                                                                Material
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="table-responsive">
+                                                                        <table id="table-material"
+                                                                            class="table table table-striped table-hover mb-0">
+                                                                            <thead>
                                                                                 <tr>
                                                                                     <th>#</th>
                                                                                     <th>Memo Number</th>
                                                                                     <th>Delivery Order Number</th>
-                                                                                    <th class="text-center"
-                                                                                        width="140">
+                                                                                    <th class="text-center" width="140">
                                                                                         Actions
                                                                                     </th>
                                                                                 </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                    {{-- isi tab technician --}}
-                                                    <div role="tabpanel" class="tab-pane fade" id="technician">
-                                                        <div class="row text-start">
-                                                            <div class="col-lg-12">
-                                                                <div class="card">
-                                                                    <div class="card-body pt-0">
-                                                                        <div class="row table-title mb-1">
-                                                                            <div class="col-sm-8">
-                                                                                <h4 class="mt-0 header-title"></h4>
-                                                                            </div>
-                                                                            <div class="col-sm-4 text-end">
-                                                                                <button type="button"
-                                                                                        data-bs-toggle="modal"
-                                                                                        data-bs-target="#add-technician-modal"
-                                                                                        onclick="attachTeamForm()"
-                                                                                        class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
-                                                                                    <i class="mdi mdi-plus"></i>Add
-                                                                                    Technician
-                                                                                </button>
-                                                                            </div>
+                                                {{-- isi tab technician --}}
+                                                <div role="tabpanel" class="tab-pane fade" id="technician">
+                                                    <div class="row text-start">
+                                                        <div class="col-lg-12">
+                                                            <div class="card">
+                                                                <div class="card-body pt-0">
+                                                                    <div class="row table-title mb-1">
+                                                                        <div class="col-sm-8">
+                                                                            <h4 class="mt-0 header-title"></h4>
                                                                         </div>
-                                                                        <div class="table-responsive">
-                                                                            <table
-                                                                                class="table table table-striped table-hover mb-0"
-                                                                                id="table-technician">
-                                                                                <thead>
+                                                                        <div class="col-sm-4 text-end">
+                                                                            <button type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#add-technician-modal"
+                                                                                onclick="attachTeamForm()"
+                                                                                class="btn btn-save w-md waves-effect waves-light px-4 btn-addMaterial">
+                                                                                <i class="mdi mdi-plus"></i>Add
+                                                                                Technician
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="table-responsive">
+                                                                        <table
+                                                                            class="table table table-striped table-hover mb-0"
+                                                                            id="table-technician">
+                                                                            <thead>
                                                                                 <tr>
                                                                                     <th>#</th>
                                                                                     <th>Name</th>
                                                                                     <th>Division</th>
-                                                                                    <th class="text-center"
-                                                                                        width="140">
+                                                                                    <th class="text-center" width="140">
                                                                                         Actions
                                                                                     </th>
                                                                                 </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    @include('operational.listModals')
                                                 </div>
+
+                                                @include('operational.listModals')
                                             </div>
                                         </div>
                                     </div>
-                                </div> <!-- end row -->
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card -->
-                    </div> <!-- end col -->
-                </div>
-            </div> <!-- content -->
-        </div>
+                                </div>
+                            </div> <!-- end row -->
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card -->
+                </div> <!-- end col -->
+            </div>
+        </div> <!-- content -->
     </div>
-    {{-- <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script> --}}
+</div>
+{{-- <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script> --}}
 @endsection
 @section('pageScript')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
             $('.agendasForm').parsley();
             $('.expensesForm').parsley();
             //if form id is addAgenda and form is valid
@@ -431,9 +419,9 @@
             });
 
         })
-    </script>
-    <script type="text/javascript">
-        function getOperationals(salesOrder, operational) {
+</script>
+<script type="text/javascript">
+    function getOperationals(salesOrder, operational) {
             if (salesOrder && salesOrder !== "") {
                 $.ajax({
                     url: `{{ route('operational.get-operational', '') }}/${salesOrder}`,
@@ -456,9 +444,9 @@
                 });
             }
         }
-    </script>
-    <script type="text/javascript">
-        function detailOperational(operational) {
+</script>
+<script type="text/javascript">
+    function detailOperational(operational) {
             if (operational !== "" && operational != null) {
                 console.log(operational);
                 $.ajax({
@@ -487,9 +475,12 @@
                         if (operationalData.approved == null) {
                             $('#approved').text('Belum di Approve');
                             //text become red button
-                            $('#approved').addClass('btn btn-danger disabled');
+                            // $('#approved').addClass('btn btn-danger disabled');
+                            
                         } else {
                             $('#approved').text(operationalData.approved);
+                            $('#bg-approved').removeClass('bg-danger');
+                            $('#bg-approved').addClass('bg-success');
                         }
                         var i = 1;
                         //check if team is empty
@@ -534,12 +525,12 @@
                 event.preventDefault();
             }
         }
-    </script>
+</script>
 
-    </script>
+</script>
 
-    <script type="text/javascript">
-        function deleteTeam(operational, user_id) {
+<script type="text/javascript">
+    function deleteTeam(operational, user_id) {
             // console.log(operational, user_id)
             Swal.fire({
                 title: 'Are you sure?',
@@ -571,10 +562,10 @@
                 }
             });
         }
-    </script>
+</script>
 
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
             $('#select-operational').select2({
                 // placeholder: 'role',
                 // dropdownParent: $('#con-close-modal'),
@@ -583,9 +574,9 @@
                 width: '100%',
             });
         });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
             $('#sales-order').select2({
                 // placeholder: 'role',
                 // dropdownParent: $('#con-close-modal'),
@@ -594,9 +585,9 @@
                 width: '100%',
             });
         });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
             $('#select-technician').select2({
                 // placeholder: 'role',
                 // dropdownParent: $('#con-close-modal'),
@@ -610,9 +601,9 @@
                 },
             });
         });
-    </script>
-    <script type="text/javascript">
-        function getExpenses(expense) {
+</script>
+<script type="text/javascript">
+    function getExpenses(expense) {
             console.log(expense);
             // let operational = $('#select-operational').val();
             let table = $('#table-expenses').DataTable({
@@ -680,12 +671,12 @@
                 ]
             })
         }
-    </script>
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Repopulate Expense Modal -->
-    <script type="text/javascript">
-        function editExpense(expense) {
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Repopulate Expense Modal -->
+<script type="text/javascript">
+    function editExpense(expense) {
 
             console.log(expense);
 
@@ -717,9 +708,9 @@
                     console.log(error);
                 })
         }
-    </script>
-    <script type="text/javascript">
-        function getMaterials(operational) {
+</script>
+<script type="text/javascript">
+    function getMaterials(operational) {
             let table = $('#table-material').DataTable({
                 "autoWidth": false,
                 processing: true,
@@ -780,10 +771,10 @@
                 ]
             })
         }
-    </script>
-    <!-- Update Expense -->
-    <script type="text/javascript">
-        function updateExpense(expense) {
+</script>
+<!-- Update Expense -->
+<script type="text/javascript">
+    function updateExpense(expense) {
             console.log(expense)
             let modal = $('#add-expenses-modal');
             Swal.fire({
@@ -823,9 +814,9 @@
                 }
             })
         }
-    </script>
-    <script type="text/javascript">
-        function deleteExpense(expense) {
+</script>
+<script type="text/javascript">
+    function deleteExpense(expense) {
             swal.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this action!',
@@ -857,9 +848,9 @@
                 }
             })
         }
-    </script>
-    <script type="text/javascript">
-        function showExpenseForm() {
+</script>
+<script type="text/javascript">
+    function showExpenseForm() {
             const modal = $('#add-expenses-modal');
             const button = modal.find('#expenseButton');
 
@@ -874,10 +865,10 @@
             modal.find('#expense-item').val('');
             modal.find('#expense-amount').val('');
         }
-    </script>
+</script>
 
-    <script type="text/javascript">
-        function addExpense() {
+<script type="text/javascript">
+    function addExpense() {
             let modal = $('#add-expenses-modal');
             let operational = $('#select-operational').val();
             let date = modal.find('#expense-date').val()
@@ -911,9 +902,9 @@
                 swal.fire("Error!", "Please try again", "error");
             })
         }
-    </script>
-    <script type="text/javascript">
-        function attachTeamForm() {
+</script>
+<script type="text/javascript">
+    function attachTeamForm() {
             let operational = $('#select-operational').val();
             if (operational == null || operational == "") {
                 swal.fire("Error!", "Please select operational", "error");
@@ -948,9 +939,9 @@
                 }
             });
         }
-    </script>
-    <script type="text/javascript">
-        function attachTeam() {
+</script>
+<script type="text/javascript">
+    function attachTeam() {
             let selected = $('#select-technician option:selected').val();
             if (selected == null || selected == "") {
                 swal.fire("Error!", "Please select technician", "error");
@@ -979,9 +970,9 @@
                 swal.fire("Error!", "Please try again", "error");
             });
         }
-    </script>
-    <script type="text/javascript">
-        function getAgendas(operational) {
+</script>
+<script type="text/javascript">
+    function getAgendas(operational) {
             let table = $('#table-agendas').DataTable({
                 processing: true,
                 serverSide: true,
@@ -1045,9 +1036,9 @@
                 ]
             })
         }
-    </script>
-    <script type="text/javascript">
-        function deleteAgenda(agenda) {
+</script>
+<script type="text/javascript">
+    function deleteAgenda(agenda) {
             swal.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this action!',
@@ -1080,11 +1071,11 @@
             })
 
         }
-    </script>
+</script>
 
 
-    <script type="text/javascript">
-        function showAgendaForm() {
+<script type="text/javascript">
+    function showAgendaForm() {
             const modal = $('#add-work-modal');
 
             const description = modal.find('#description');
@@ -1132,10 +1123,10 @@
                     swal.fire("Error!", "Please try again", "error");
                 });
         }
-    </script>
+</script>
 
-    <script type="text/javascript">
-        const modal = $('#add-work-modal');
+<script type="text/javascript">
+    const modal = $('#add-work-modal');
 
         function editAgenda(agenda) {
             const button = modal.find('#agendaButton');
@@ -1196,11 +1187,10 @@
                 }
             })
         }
-    </script>
+</script>
 
-    <script type="text/javascript">
-
-        function showMaterialForm() {
+<script type="text/javascript">
+    function showMaterialForm() {
         const modal = $('#add-material-modal');
             const button = modal.find('#materialButton');
 
@@ -1332,5 +1322,5 @@
             });
         }
 
-    </script>
+</script>
 @endsection
