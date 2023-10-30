@@ -254,8 +254,10 @@
                                             <td class="text-center">
                                                 <div class="btn-group btn-group-sm" style="float: none;">
                                                     <a href="{{ asset('images/milestone_files/' . $milestone->file) }}"
-                                                        title="Download Gambar Milestone" type="button"
-                                                        class="tabledit-edit-button btn btn-success waves-effect waves-light"
+                                                        title="Download File Milestone" type="button"
+                                                        {{-- pengecekan kondisi jika tidak ada file button disabled --}}
+                                                        class="tabledit-edit-button btn btn-success waves-effect waves-light
+                                                        {{ !$milestone->file ? 'disabled' : '' }}"
                                                         download>
                                                         <span class="mdi mdi-file-download-outline"></span>
                                                     </a>

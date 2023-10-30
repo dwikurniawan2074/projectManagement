@@ -19,8 +19,8 @@
                                     <div class="mb-3">
                                         <label for="projectId" class="form-label">Project Label<span
                                                 class="text-danger">*</span></label>
-                                        <select name="project_id" id="projectId" parsley-trigger="change" required=""
-                                                class="form-control">
+                                        <select name="project_id" id="" parsley-trigger="change" required=""
+                                            class="form-control">
                                             @isset($projectId)
                                                 <option value="{{ $projectId }}" selected>{{ $label }}</option>
                                             @else
