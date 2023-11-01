@@ -363,75 +363,49 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <label for="sub pelayanan">Sub Layanan</label>
                                     </div>
-                            <div class="ml-auto mb-2">
-    <button type="button" class="btn btn-danger rounded mt-2" id="addButton">
-        <i class="mdi mdi-plus" title="Untuk sub layanan"></i>Add
-    </button>
-</div>
-                                    <div id="inputFieldsContainer">
-                                        <div class="row " >
-                                            <div class="col-sm-6 col-xl-4">
-                                                <form action="">
-                                                    <div class="mb-3">
-                                                        <label for="deskripsi">Deskripsi</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                                id="deskripsi">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                    <div class="row">
+                                        <form method="post">
+                                            <div id="inputFormRow" class="row mb-3">
+                                                <div class="col-lg-3">
+                                                    <label for="description">Description:</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter description"
+                                                        autocomplete="off">
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <label for="qty">Qty:</label>
+                                                    <input type="text" id="qty" name="qty[]"
+                                                        class="form-control" placeholder=" qty" autocomplete="off">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label for="dropdown">Dropdown:</label>
+                                                    <select id="dropdown" name="dropdown[]" class="form-select">
+                                                        <option value="Option 1">Option 1</option>
+                                                        <option value="Option 2">Option 2</option>
+                                                        <option value="Option 3">Option 3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label for="harga">Harga</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter Price"
+                                                        autocomplete="off">
 
-                                            <div class="col-sm-6 col-xl-1">
-                                                <form action="">
-                                                    <div class="mb-3">
-                                                        <label for="qty">Qty</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                                id="qty">
-                                                        </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    - <div class="input-group-append  align-items-end">
+                                                        <button class="btn  btn-danger removeRow"
+                                                            type="button"><i class="fa-solid fa-trash"></i></button>
                                                     </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-sm-6 col-xl-3">
-                                                <form action="">
-                                                    <div class="mb-3">
-                                                        <label for="satuan">Satuan</label>
-                                                        <select id="satuan" class="form-select">
-                                                            <option selected>Choose...</option>
-                                                            <option>#####</option>
-                                                            <option>XXXXX</option>
-                                                            <option>AAAAA</option>
-                                                            <option>BBBBB</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-sm-6 col-xl-4 d-flex">
-                                                <form action="">
-                                                    <div class="mb-3">
-                                                        <label for="harga">Harga</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                                id="harga">
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <div class="ms-2 mt-3">
-                                                    <button type="button"
-                                                        class="btn btn-blue btn-xs waves-effect waves-light"
-                                                        style="height: 35px"><i class="fa-solid fa-trash"></i>
-                                                    </button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
+                                    <div id="newRow"></div>
+                                    <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                 </div>
                                 <div class="modal-footer gap-1">
                                     <button type="button" class="btn btn-secondary"
@@ -523,57 +497,54 @@
         </div>
     </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const addButton = document.getElementById("addButton");
-            const inputFieldsContainer = document.getElementById("inputFieldsContainer");
+    <script type="text/javascript">
+        // add row
+        $("#addRow").click(function () {
+            var html = '<div id="inputFormRow" class="row mb-3">';
+            html += '<div class="col-lg-3">';
+            html += '<label for="description">Description:</label>';
+            html += '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-1">';
+            html += '<label for="qty">Qty:</label>';
+            html += '<input type="text" name="qty[]" class="form-control" placeholder="qty" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="dropdown">Dropdown:</label>';
+            html += '<select name="dropdown[]" class="form-select">';
+            html += '<option value="Option 1">Option 1</option>';
+            html += '<option value="Option 2">Option 2</option>';
+            html += '<option value="Option 3">Option 3</option>';
+            html += '</select>';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="price">Harga:</label>';
+            html += '<input type="text" name="price[]" class="form-control" placeholder="Enter harga" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col d-flex align-items-end">';
+            html += '<button class="btn btn-danger removeRow" type="button"><i class="fa-solid fa-trash"></i></button>';
+            html += '</div>';
+            html += '</div>';
 
-            addButton.addEventListener("click", function() {
-                const newInputField = createInputField();
-                inputFieldsContainer.appendChild(newInputField);
-            });
+            $('#newRow').append(html);
+        });
 
-            // Function to create a new input field
-            function createInputField() {
-                const inputFieldDiv = document.createElement("div");
-                inputFieldDiv.className = "col-sm-6 col-xl-4";
-
-                const form = document.createElement("form");
-
-                const descriptionLabel = document.createElement("label");
-                descriptionLabel.setAttribute("for", "deskripsi");
-                descriptionLabel.textContent = "Deskripsi";
-
-                const inputGroup = document.createElement("div");
-                inputGroup.className = "input-group";
-
-                const input = document.createElement("input");
-                input.type = "text";
-                input.className = "form-control";
-                input.setAttribute("placeholder", "Masukan Jenis Trafo");
-                input.setAttribute("aria-label", "Username");
-                input.setAttribute("id", "customerNameLeft");
-
-                const deleteButton = document.createElement("button");
-                deleteButton.type = "button";
-                deleteButton.className = "btn btn-blue btn-xs waves-effect waves-light";
-                deleteButton.style.height = "35px";
-                deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-
-                deleteButton.addEventListener("click", function() {
-                    inputFieldsContainer.removeChild(inputFieldDiv);
-                });
-
-                inputGroup.appendChild(input);
-                form.appendChild(descriptionLabel);
-                form.appendChild(inputGroup);
-                inputFieldDiv.appendChild(form);
-                inputFieldDiv.appendChild(deleteButton);
-
-                return inputFieldDiv;
-            }
+        // remove row
+        $(document).on('click', '.removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
         });
     </script>
+
 @endsection
 @section('pageScript')
 @endsection
+
+    {{-- <div class="col-lg-4 d-flex ">
+                                                    <label for="harga">harga</label>
+                                                    <input type="text" id="price" name="price[]"
+                                                        class="form-control" placeholder="Enter price"
+                                                        autocomplete="off">
+                                                    {{-- <div class="input-group-append  align-items-end">
+                                                        <button class="btn  btn-danger removeRow"
+                                                            type="button">Remove</button>
+                                                    </div> --}}
