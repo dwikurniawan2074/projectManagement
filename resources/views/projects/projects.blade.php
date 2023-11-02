@@ -1,5 +1,10 @@
 @extends('template.index')
 
+{{-- header section --}}
+@section('headerScript')
+@endsection
+
+{{-- content section --}}
 @section('content')
     <style>
         .btn-createProjects {
@@ -131,4 +136,8 @@
 
         </div> <!-- content -->
     </div>
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection
