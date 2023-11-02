@@ -16,6 +16,9 @@
     <!-- Sweet Alert-->
     <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet"
         type="text/css" />
+    
+    {{-- templating headscript per file --}}
+    @yield('headerScript')
 
 
     {{-- data table script --}}
@@ -93,10 +96,6 @@
     integrity="sha512-oQJB9y5mlxC4Qp62hdJi/J1NzqiGlpprSfkxVNeosn23mVn5JA4Yn+6f26wWOWCDbV9CxgJzFfVv9DNLPmhxQg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-
-    {{-- templating headscript per file --}}
-    @yield('headerScript')
 
     <style>
         /* navbar styling */
