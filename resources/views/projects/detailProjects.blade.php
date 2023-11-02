@@ -16,14 +16,8 @@
             vertical-align: middle;
         }
 
-        .btn-createItems {
-            border-radius: 10px;
-            background-color: #FF3E3E;
-            border: #FF3E3E;
-            color: white;
-            margin-right: 0;
-            float: right;
-            margin-left: auto;
+        .btn-red {
+            border-radius: 5px !important;
             width: 150px;
         }
 
@@ -83,9 +77,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Term Of Payment</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('top.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Payment</a>
                                     </div>
                                 </div>
@@ -159,9 +153,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Production Cost</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ url('projects/createProductionCost', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Cost</a>
                                     </div>
                                 </div>
@@ -222,9 +216,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Milestone</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('milestone.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan milestone"></i>Add Milestone</a>
                                     </div>
                                 </div>
@@ -309,9 +303,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Record Document</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ url('projects/createRecord') }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan milestone"></i>Add Record</a>
                                     </div>
                                 </div>
@@ -389,9 +383,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Field Service Log</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('operational.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Operational</a>
                                     </div>
                                 </div>
