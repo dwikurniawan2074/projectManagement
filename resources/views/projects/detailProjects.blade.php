@@ -2,6 +2,15 @@
 
 {{-- headerscript section --}}
 @section('headerScript')
+    <!-- dropzone file upload css -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
+        type="text/css" />
+
+    {{-- flatepckr date time css --}}
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
+
     <style>
         tr {
             vertical-align: middle;
@@ -629,14 +638,22 @@
 
 {{-- pagescript section --}}
 @section('pageScript')
-{{-- donut chart --}}
+
+{{-- chart js script cdn --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.js"></script>
 
-{{-- js flot chart --}}
+{{-- Plugins js for file upload-dropify dan dropzone --}}
+<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+<script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
+{{-- flatpckr date time js --}}
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+{{-- donut chart milestone progress --}}
 <script>
     // Sample data
             var percentageDone = {{ $percentageDone }};
@@ -699,6 +716,7 @@
             }
 </script>
 
+{{-- donut chart term of payment --}}
 <script>
     // Sample data
             var progress = {{ $topProgress }};
@@ -816,6 +834,7 @@
                 });
             });
 </script>
+
 {{-- Hapus Milestone Pop Up --}}
 <script type="text/javascript">
     $(document).ready(function() {
