@@ -2,7 +2,7 @@
 
 {{-- headerscript section --}}
 @section('headerScript')
-    <!-- dropzone file upload css -->
+    {{-- dropzone file upload css --}}
     <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
     type="text/css" />
     <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
