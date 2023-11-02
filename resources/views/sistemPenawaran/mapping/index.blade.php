@@ -1,3 +1,7 @@
+@extends('sistemPenawaran.template.index')
+
+
+{{-- headerscript section --}}
 @section('headerScript')
 <!-- third party css -->
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
@@ -35,7 +39,7 @@
     #map {
         border-radius: 10px;
     }
-    
+
     .details-text {
         margin-bottom: unset;
     }
@@ -46,7 +50,7 @@
     }
 
     @media screen and (max-width: 768px) {
-        .container-fluid>.row{
+        .container-fluid>.row {
             display: flex;
             flex-direction: column;
         }
@@ -65,10 +69,9 @@
 <!-- page styling -->
 @endsection
 
-@extends('sistemPenawaran.template.index')
 
+{{-- content section --}}
 @section('content')
-
 <div class="content-page">
     <div class="content">
         <div class="container-fluid">
@@ -188,6 +191,8 @@
 </div>
 @endsection
 
+
+{{-- pagescript section --}}
 @section('pageScript')
 <!-- third party js -->
 <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}">

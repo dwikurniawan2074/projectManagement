@@ -1,10 +1,11 @@
+@extends('sistemPenawaran.template.index')
+
+{{-- headerscript section --}}
 @section('headerScript')
 @endsection
 
-@extends('sistemPenawaran.template.index')
-
+{{-- content section --}}
 @section('content')
-
 <div class="content-page">
     <div class="content">
         <div class="container-fluid">
@@ -108,5 +109,6 @@
 </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
 @endsection
