@@ -57,8 +57,6 @@
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/fullcalendar/main.min.css') }}" rel="stylesheet"
     type="text/css" />
 
-{{-- templating headscript per file --}}
-@yield('headerScript')
 
 {{--
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
@@ -86,6 +84,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flot.tooltip/0.9.0/jquery.flot.tooltip.min.js"
     integrity="sha512-oQJB9y5mlxC4Qp62hdJi/J1NzqiGlpprSfkxVNeosn23mVn5JA4Yn+6f26wWOWCDbV9CxgJzFfVv9DNLPmhxQg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+{{-- templating headscript per file --}}
+@yield('headerScript')
 
 <style>
     /* navbar styling */
