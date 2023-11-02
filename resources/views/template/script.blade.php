@@ -78,6 +78,10 @@
 https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js
 "></script>
 
+{{-- templating page script tiap page --}}
+@yield('pageScript')
+
+
 {{-- Script buat tanggal --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -206,4 +210,3 @@ https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js
     });
 </script>
 
-@yield('pageScript')
