@@ -639,585 +639,585 @@
 {{-- pagescript section --}}
 @section('pageScript')
 
-{{-- chart js script cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.js"></script>
+    {{-- chart js script cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.js"></script>
 
-{{-- Plugins js for file upload-dropify dan dropzone --}}
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
-{{-- flatpckr date time js --}}
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{-- flatpckr date time js --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-{{-- donut chart milestone progress --}}
-<script>
-    // Sample data
-            var percentageDone = {{ $percentageDone }};
-            var percentageNotDone = 100 - percentageDone;
-            var labels = ["Done", "Not Done"]; // Label untuk setiap segmen
+    {{-- donut chart milestone progress --}}
+    <script>
+        // Sample data
+                var percentageDone = {{ $percentageDone }};
+                var percentageNotDone = 100 - percentageDone;
+                var labels = ["Done", "Not Done"]; // Label untuk setiap segmen
 
-            var ctx = document.getElementById("donut-chart").getContext("2d");
+                var ctx = document.getElementById("donut-chart").getContext("2d");
 
-            var donutChart = new Chart(ctx, {
-                type: "doughnut",
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: [percentageDone, percentageNotDone],
-                        backgroundColor: ["#17D72A", "#F3F2F2"],
+                var donutChart = new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: [percentageDone, percentageNotDone],
+                            backgroundColor: ["#17D72A", "#F3F2F2"],
+                        }],
+                    },
+                    options: {
+                        cutout: "70%",
+                        elements: {
+                            arc: {
+                                borderWidth: 0,
+                                borderRadius: 30,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, // Hide legend
+                            },
+                        },
+                    },
+                    plugins: [{
+                        id: 'text',
+                        beforeDraw: function(chart, a, b) {
+                            var width = chart.width,
+                                height = chart.height,
+                                ctx = chart.ctx;
+
+                            ctx.restore();
+                            var fontSize = (height / 100).toFixed(2);
+                            ctx.font = fontSize + "em sans-serif";
+                            ctx.textBaseline = "middle";
+
+                            var percentageDone = {{ $percentageDone }};
+                            var text = Math.round(percentageDone) + "%";
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 2;
+
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
                     }],
-                },
-                options: {
-                    cutout: "70%",
-                    elements: {
-                        arc: {
-                            borderWidth: 0,
-                            borderRadius: 30,
+                });
+
+
+                // Function to format the labels
+                function labelFormatter(label, series) {
+                    const formattedPercent = Math.round(series.percent).toFixed(0);
+                    return `<div style="font-size:8pt; text-align:center; padding:2px; color:white;">${label}<br/>${formattedPercent}%</div>`;
+                }
+    </script>
+
+    {{-- donut chart term of payment --}}
+    <script>
+        // Sample data
+                var progress = {{ $topProgress }};
+                var notProgress = 100 - progress;
+
+
+                var ctx = document.getElementById("donut-chart2").getContext("2d");
+
+                var donutChart = new Chart(ctx, {
+                    type: "doughnut", // Specifies the chart type as a donut chart
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: [progress, notProgress],
+                            backgroundColor: ["#FE3E3E", "#F3F2F2"], // Customize segment colors
+                        }, ],
+                    },
+                    options: {
+                        cutout: "70%", // Control the size of the hole in the middle (percentage)
+                        elements: {
+                            arc: {
+                                borderWidth: 0, // Remove border
+                                borderRadius: 30, // Set border radius to round the edges
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, // Hide legend
+                            },
                         },
                     },
-                    plugins: {
-                        legend: {
-                            display: false, // Hide legend
-                        },
-                    },
-                },
-                plugins: [{
-                    id: 'text',
-                    beforeDraw: function(chart, a, b) {
-                        var width = chart.width,
-                            height = chart.height,
-                            ctx = chart.ctx;
+                    plugins: [{
+                        id: 'text',
+                        beforeDraw: function(chart, a, b) {
+                            var width = chart.width,
+                                height = chart.height,
+                                ctx = chart.ctx;
 
-                        ctx.restore();
-                        var fontSize = (height / 100).toFixed(2);
-                        ctx.font = fontSize + "em sans-serif";
-                        ctx.textBaseline = "middle";
+                            ctx.restore();
+                            var fontSize = (height / 100).toFixed(2);
+                            ctx.font = fontSize + "em sans-serif";
+                            ctx.textBaseline = "middle";
 
-                        var percentageDone = {{ $percentageDone }};
-                        var text = Math.round(percentageDone) + "%";
-                        textX = Math.round((width - ctx.measureText(text).width) / 2),
-                            textY = height / 2;
+                            var text = Math.round(progress) + "%";
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 2;
 
-                        ctx.fillText(text, textX, textY);
-                        ctx.save();
-                    }
-                }],
-            });
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
+                    }],
+                });
+    </script>
 
+    {{-- Hapus Project Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $(document).on('click', '.hapusProject', function() {
+                        var id = $(this).val();
 
-            // Function to format the labels
-            function labelFormatter(label, series) {
-                const formattedPercent = Math.round(series.percent).toFixed(0);
-                return `<div style="font-size:8pt; text-align:center; padding:2px; color:white;">${label}<br/>${formattedPercent}%</div>`;
-            }
-</script>
-
-{{-- donut chart term of payment --}}
-<script>
-    // Sample data
-            var progress = {{ $topProgress }};
-            var notProgress = 100 - progress;
-
-
-            var ctx = document.getElementById("donut-chart2").getContext("2d");
-
-            var donutChart = new Chart(ctx, {
-                type: "doughnut", // Specifies the chart type as a donut chart
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: [progress, notProgress],
-                        backgroundColor: ["#FE3E3E", "#F3F2F2"], // Customize segment colors
-                    }, ],
-                },
-                options: {
-                    cutout: "70%", // Control the size of the hole in the middle (percentage)
-                    elements: {
-                        arc: {
-                            borderWidth: 0, // Remove border
-                            borderRadius: 30, // Set border radius to round the edges
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false, // Hide legend
-                        },
-                    },
-                },
-                plugins: [{
-                    id: 'text',
-                    beforeDraw: function(chart, a, b) {
-                        var width = chart.width,
-                            height = chart.height,
-                            ctx = chart.ctx;
-
-                        ctx.restore();
-                        var fontSize = (height / 100).toFixed(2);
-                        ctx.font = fontSize + "em sans-serif";
-                        ctx.textBaseline = "middle";
-
-                        var text = Math.round(progress) + "%";
-                        textX = Math.round((width - ctx.measureText(text).width) / 2),
-                            textY = height / 2;
-
-                        ctx.fillText(text, textX, textY);
-                        ctx.save();
-                    }
-                }],
-            });
-</script>
-
-{{-- Hapus Project Pop Up --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-                $(document).on('click', '.hapusProject', function() {
-                    var id = $(this).val();
-
-                    // Display a confirmation dialog
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Beberapa data mungkin akan ikut terhapus",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#f34e4e',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
-                        backrop: 'static',
-                        allowOutsideClick: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Silahkan isi logika nya sendiri xixixi
-                            $.ajax({
-                                url: "{{ route('projects.destroy', '') }}" + '/' + id,
-                                type: 'DELETE',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                },
-                                success: function(response) {
-                                    try {
-                                        if (response.message) {
-                                            Swal.fire({
-                                                title: "Sukses!",
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            }).then((hasil) => {
-                                                if (hasil.isConfirmed) {
-                                                    window.location.href =
-                                                        "{{ route('projects.index') }}";
-                                                }
-                                            });
-                                        } else {
-                                            console.error('Terjadi kesalahan: ' + response
-                                                .error
-                                            ); // Tampilkan pesan kesalahan jika ada
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Beberapa data mungkin akan ikut terhapus",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('projects.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.href =
+                                                            "{{ route('projects.index') }}";
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
                                         }
-                                    } catch (error) {
+                                    },
+                                    error: function(xhr, status, error) {
                                         console.error(
-                                            'Terjadi kesalahan saat mengolah respons: ' +
+                                            'Terjadi kesalahan saat menghapus data: ' +
                                             error);
                                     }
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat menghapus data: ' +
-                                        error);
-                                }
-                            });
+                                });
 
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Hapus Milestone Pop Up --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-                $(document).on('click', '.hapusMilestone', function() {
-                    var id = $(this).val();
-
-                    // Display a confirmation dialog
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data tidak bisa dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#f34e4e',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
-                        backrop: 'static',
-                        allowOutsideClick: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Silahkan isi logika nya sendiri xixixi
-                            $.ajax({
-                                url: "{{ route('milestone.destroy', '') }}" + '/' + id,
-                                type: 'DELETE',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                },
-                                success: function(response) {
-                                    try {
-                                        if (response.message) {
-                                            Swal.fire({
-                                                title: "Sukses!",
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            }).then((hasil) => {
-                                                if (hasil.isConfirmed) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        } else {
-                                            console.error('Terjadi kesalahan: ' + response
-                                                .error
-                                            ); // Tampilkan pesan kesalahan jika ada
-                                        }
-                                    } catch (error) {
-                                        console.error(
-                                            'Terjadi kesalahan saat mengolah respons: ' +
-                                            error);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat menghapus data: ' +
-                                        error);
-                                }
-                            });
-
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Hapus Production Cost Pop Up --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-                $(document).on('click', '.hapusPCost', function() {
-                    var id = $(this).val();
-
-                    // Display a confirmation dialog
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data tidak bisa dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#f34e4e',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
-                        backrop: 'static',
-                        allowOutsideClick: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Silahkan isi logika nya sendiri xixixi
-                            $.ajax({
-                                url: "{{ route('production-cost.destroy', '') }}" + '/' + id,
-                                type: 'DELETE',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                },
-                                success: function(response) {
-                                    try {
-                                        if (response.message) {
-                                            Swal.fire({
-                                                title: "Sukses!",
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            }).then((hasil) => {
-                                                if (hasil.isConfirmed) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        } else {
-                                            console.error('Terjadi kesalahan: ' + response
-                                                .error
-                                            ); // Tampilkan pesan kesalahan jika ada
-                                        }
-                                    } catch (error) {
-                                        console.error(
-                                            'Terjadi kesalahan saat mengolah respons: ' +
-                                            error);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat menghapus data: ' +
-                                        error);
-                                }
-                            });
-
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Hapus Payment Pop Up --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-                $(document).on('click', '.hapusPayment', function() {
-                    var id = $(this).val();
-
-                    // Display a confirmation dialog
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data tidak bisa dikembalikan!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#f34e4e',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
-                        backrop: 'static',
-                        allowOutsideClick: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Silahkan isi logika nya sendiri xixixi
-                            $.ajax({
-                                url: "{{ route('top.destroy', '') }}" + '/' + id,
-                                type: 'DELETE',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                },
-                                success: function(response) {
-                                    try {
-                                        if (response.message) {
-                                            Swal.fire({
-                                                title: "Sukses!",
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            }).then((hasil) => {
-                                                if (hasil.isConfirmed) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        } else {
-                                            console.error('Terjadi kesalahan: ' + response
-                                                .error
-                                            ); // Tampilkan pesan kesalahan jika ada
-                                        }
-                                    } catch (error) {
-                                        console.error(
-                                            'Terjadi kesalahan saat mengolah respons: ' +
-                                            error);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat menghapus data: ' +
-                                        error);
-                                }
-                            });
-
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Hapus Operational Pop Up --}}
-<script type="text/javascript">
-    $(document).ready(function() {
-                $(document).on('click', '.hapusOperational', function() {
-                    var id = $(this).val();
-
-                    // Display a confirmation dialog
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Beberapa data yang terkait mungkin akan terhapus",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#f34e4e',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
-                        backrop: 'static',
-                        allowOutsideClick: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Silahkan isi logika nya sendiri xixixi
-                            $.ajax({
-                                url: "{{ route('operational.destroy', '') }}" + '/' + id,
-                                type: 'DELETE',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                },
-                                success: function(response) {
-                                    try {
-                                        if (response.message) {
-                                            Swal.fire({
-                                                title: "Sukses!",
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            }).then((hasil) => {
-                                                if (hasil.isConfirmed) {
-                                                    window.location.reload();
-                                                }
-                                            });
-                                        } else {
-                                            console.error('Terjadi kesalahan: ' + response
-                                                .error
-                                            ); // Tampilkan pesan kesalahan jika ada
-                                        }
-                                    } catch (error) {
-                                        console.error(
-                                            'Terjadi kesalahan saat mengolah respons: ' +
-                                            error);
-                                    }
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat menghapus data: ' +
-                                        error);
-                                }
-                            });
-
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Milestone edit --}}
-<script>
-    $(document).ready(function() {
-                $(document).on('click', '.milestoneEdit', function() {
-                    var id = $(this).val(); // Menggunakan data-id yang baru
-                    $.ajax({
-                        type: "GET",
-                        url: "/get-milestone-data/" + id,
-                        dataType: "json",
-                        success: function(response) {
-                            $("#milestone_id").val(response.id);
-                            $("#submitted_date").val(response.submitted_date);
-                            $("#description").val(response.description);
-                            $("#due_date").val(response.due_date);
-                            $("#progress").val(response.progress);
-                        },
-                        error: function(response) {
-                            alert("Error: " + response.statusText);
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Production Cost edit --}}
-<script>
-    $(document).ready(function() {
-                $(document).on('click', '.costEdit', function() {
-                    var id = $(this).val(); // Menggunakan data-id yang baru
-                    $.ajax({
-                        type: "GET",
-                        url: "/get-cost-data/" + id,
-                        dataType: "json",
-                        success: function(response) {
-                            $("#cost_id").val(response.id);
-                            $("#description_cost").val(response.description);
-                            $("#amount_cost").val(parseInt(response
-                                .amount)); // Menggunakan parseInt() untuk menghapus angka desimal
-                        },
-                        error: function(response) {
-                            alert("Error: " + response.statusText);
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Payment edit --}}
-<script>
-    $(document).ready(function() {
-                $(document).on('click', '.paymentEdit', function() {
-                    var id = $(this).val(); // Menggunakan data-id yang baru
-                    $.ajax({
-                        type: "GET",
-                        url: "/top/get-payment-data/" + id,
-                        dataType: "json",
-                        success: function(response) {
-                            $("#id_payment").val(response.id);
-                            $("#type_payment").val(response.type);
-                            $("#progress_payment").val(response.progress);
-                            $("#description_payment").val(response.description);
-                            $("#status_payment").val(response.status);
-                        },
-                        error: function(response) {
-                            alert("Error: " + response.statusText);
-                        }
-                    });
-                });
-            });
-</script>
-
-{{-- Operational edit --}}
-<script>
-    $(document).ready(function() {
-                $(document).on('click', '.editOperational', function() {
-                    var id = $(this).val(); // Menggunakan data-id yang baru
-                    $.ajax({
-                        type: "GET",
-                        url: "/operational/get-operational-data/" + id,
-                        dataType: "json",
-                        success: function(response) {
-                            $("#type_operational option[value='" + response.type + "']").prop(
-                                'selected', true);
-                            $("#transportation_mode_operational option[value='" + response
-                                .transportation_mode + "']").prop('selected', true);
-                            $("#spk_code_operational option[value='" + response.spk_code + "']")
-                                .prop('selected', true);
-                            $("#id_operational").val(response.id);
-                            $("#vehicle_number_operational").val(response.vehicle_number);
-                            $("#description_operational").val(response.description);
-                            $("#created_by_operational").val(response.created_by);
-                            $("#spk_number_operational").val(response.spk_number.split('-')[1]);
-                            $("#date_operational").val(response.date);
-                            $("#code-Spk").text(
-                                response.spk_code + " - ");
-                            var initialMode = $("#transportation_mode_operational")
-                                .val(); // Mendapatkan nilai awal
-                            if (initialMode === 'mobil') {
-                                $("#vehicle_number_container").show();
-                            } else {
-                                $("#vehicle_number_container").hide();
                             }
-                        },
-                        error: function(response) {
-                            alert("Error: " + response.statusText);
-                        }
+                        });
                     });
                 });
+    </script>
 
-                // etting Modal edit operational
-                $("#spk_code_operational").on("change", function() {
-                    var selectedCode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
-                    $("#code-Spk").text(
-                        selectedCode + " - "
-                    ); // Mengubah teks pada elemen #code-Spk sesuai dengan nilai yang dipilih
+    {{-- Hapus Milestone Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $(document).on('click', '.hapusMilestone', function() {
+                        var id = $(this).val();
+
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('milestone.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
+                                    }
+                                });
+
+                            }
+                        });
+                    });
                 });
+    </script>
 
-                $("#transportation_mode_operational").on("change", function() {
-                    var selectedMode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
+    {{-- Hapus Production Cost Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $(document).on('click', '.hapusPCost', function() {
+                        var id = $(this).val();
 
-                    // Cek apakah mode yang dipilih adalah 'mobil'
-                    if (selectedMode === 'mobil') {
-                        // Jika 'mobil' dipilih, tampilkan elemen #vehicle_number_container
-                        $("#vehicle_number_container").show();
-                    } else {
-                        // Jika bukan 'mobil', sembunyikan elemen #vehicle_number_container
-                        $("#vehicle_number_container").hide();
-                    }
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('production-cost.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
+                                    }
+                                });
+
+                            }
+                        });
+                    });
                 });
+    </script>
+
+    {{-- Hapus Payment Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $(document).on('click', '.hapusPayment', function() {
+                        var id = $(this).val();
+
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('top.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
+                                    }
+                                });
+
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Hapus Operational Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+                    $(document).on('click', '.hapusOperational', function() {
+                        var id = $(this).val();
+
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Beberapa data yang terkait mungkin akan terhapus",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('operational.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
+                                    }
+                                });
+
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Milestone edit --}}
+    <script>
+        $(document).ready(function() {
+                    $(document).on('click', '.milestoneEdit', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/get-milestone-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#milestone_id").val(response.id);
+                                $("#submitted_date").val(response.submitted_date);
+                                $("#description").val(response.description);
+                                $("#due_date").val(response.due_date);
+                                $("#progress").val(response.progress);
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Production Cost edit --}}
+    <script>
+        $(document).ready(function() {
+                    $(document).on('click', '.costEdit', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/get-cost-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#cost_id").val(response.id);
+                                $("#description_cost").val(response.description);
+                                $("#amount_cost").val(parseInt(response
+                                    .amount)); // Menggunakan parseInt() untuk menghapus angka desimal
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Payment edit --}}
+    <script>
+        $(document).ready(function() {
+                    $(document).on('click', '.paymentEdit', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/top/get-payment-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#id_payment").val(response.id);
+                                $("#type_payment").val(response.type);
+                                $("#progress_payment").val(response.progress);
+                                $("#description_payment").val(response.description);
+                                $("#status_payment").val(response.status);
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Operational edit --}}
+    <script>
+        $(document).ready(function() {
+                    $(document).on('click', '.editOperational', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/operational/get-operational-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#type_operational option[value='" + response.type + "']").prop(
+                                    'selected', true);
+                                $("#transportation_mode_operational option[value='" + response
+                                    .transportation_mode + "']").prop('selected', true);
+                                $("#spk_code_operational option[value='" + response.spk_code + "']")
+                                    .prop('selected', true);
+                                $("#id_operational").val(response.id);
+                                $("#vehicle_number_operational").val(response.vehicle_number);
+                                $("#description_operational").val(response.description);
+                                $("#created_by_operational").val(response.created_by);
+                                $("#spk_number_operational").val(response.spk_number.split('-')[1]);
+                                $("#date_operational").val(response.date);
+                                $("#code-Spk").text(
+                                    response.spk_code + " - ");
+                                var initialMode = $("#transportation_mode_operational")
+                                    .val(); // Mendapatkan nilai awal
+                                if (initialMode === 'mobil') {
+                                    $("#vehicle_number_container").show();
+                                } else {
+                                    $("#vehicle_number_container").hide();
+                                }
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
+
+                    // etting Modal edit operational
+                    $("#spk_code_operational").on("change", function() {
+                        var selectedCode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
+                        $("#code-Spk").text(
+                            selectedCode + " - "
+                        ); // Mengubah teks pada elemen #code-Spk sesuai dengan nilai yang dipilih
+                    });
+
+                    $("#transportation_mode_operational").on("change", function() {
+                        var selectedMode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
+
+                        // Cek apakah mode yang dipilih adalah 'mobil'
+                        if (selectedMode === 'mobil') {
+                            // Jika 'mobil' dipilih, tampilkan elemen #vehicle_number_container
+                            $("#vehicle_number_container").show();
+                        } else {
+                            // Jika bukan 'mobil', sembunyikan elemen #vehicle_number_container
+                            $("#vehicle_number_container").hide();
+                        }
+                    });
 
 
-            });
-</script>
+                });
+    </script>
 @endsection
