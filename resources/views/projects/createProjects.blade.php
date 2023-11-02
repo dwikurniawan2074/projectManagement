@@ -4,14 +4,9 @@
 @section('headerScript')
     <!-- Include Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    
+
     {{-- flatepckr date time css --}}
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
-
-@endsection
-
-{{-- content section --}}
-@section('content')
 
     <style>
         .input-code {
@@ -27,6 +22,10 @@
             outline: none;
         }
     </style>
+@endsection
+
+{{-- content section --}}
+@section('content')
 
     <div class="content-page">
         <div class="content">

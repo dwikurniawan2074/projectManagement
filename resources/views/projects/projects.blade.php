@@ -2,10 +2,6 @@
 
 {{-- header section --}}
 @section('headerScript')
-@endsection
-
-{{-- content section --}}
-@section('content')
     <style>
         .btn-createProjects {
             border-radius: 10px;
@@ -54,7 +50,10 @@
             /* Warna warning, misalnya kuning */
         }
     </style>
+@endsection
 
+{{-- content section --}}
+@section('content')
     <div class="content-page">
         <div class="content">
 
