@@ -1,8 +1,10 @@
+@extends('sistemPenawaran.template.index')
+
+{{-- headerscript section --}}
 @section('headerScript')
 @endsection
 
-@extends('sistemPenawaran.template.index')
-
+{{-- content section --}}
 @section('content')
     <style>
         .btn-danger {
@@ -384,5 +386,6 @@
     </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
 @endsection
