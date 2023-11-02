@@ -103,7 +103,6 @@
         });
     </script>
 
-
     {{-- script untuk manggil alert jika berhasil create/edit --}}
     <script>
         var alertSuccess = document.getElementById('success-alert');
@@ -177,6 +176,19 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#loading-indicator').hide();
+            $(document).on('ajaxStart', function() {
+                $('#loading-indicator').show();
+            });
+    
+            $(document).on('ajaxStop', function() {
+                $('#loading-indicator').hide();
+            });
+        });
+    </script>
+    
     {{-- <script>
         var sidebar = document.getElementsByClassName('sidebar-enable')
 
@@ -195,16 +207,3 @@
 
 
     </script> --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#loading-indicator').hide();
-            $(document).on('ajaxStart', function() {
-                $('#loading-indicator').show();
-            });
-
-            $(document).on('ajaxStop', function() {
-                $('#loading-indicator').hide();
-            });
-        });
-    </script>
-
