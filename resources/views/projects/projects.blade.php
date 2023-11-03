@@ -1,17 +1,18 @@
 @extends('template.index')
 
-@section('content')
+{{-- header section --}}
+@section('headerScript')
     <style>
         .btn-createProjects {
-            border-radius: 10px;
-            background-color: #FF3E3E;
-            border: #FF3E3E;
-            color: white;
+            border-radius: 10px !important;
+            background-color: #FF3E3E !important;
+            border: #FF3E3E !important;
+            color: white !important;
 
         }
 
         .btn-createProjects:focus {
-            color: white;
+            color: white !important;
         }
 
         .project-detail {
@@ -49,7 +50,10 @@
             /* Warna warning, misalnya kuning */
         }
     </style>
+@endsection
 
+{{-- content section --}}
+@section('content')
     <div class="content-page">
         <div class="content">
 
@@ -131,4 +135,8 @@
 
         </div> <!-- content -->
     </div>
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection

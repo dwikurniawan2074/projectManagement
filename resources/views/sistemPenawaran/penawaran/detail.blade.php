@@ -1,5 +1,10 @@
 @extends('sistemPenawaran.template.index')
 
+{{-- header script section --}}
+@section('headerScript')
+@endsection
+
+{{-- contenct section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -363,75 +368,49 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <label for="sub pelayanan">Sub Layanan</label>
                                     </div>
-                                    <div class="ml-auto mb-2">
-                                        <button type="button" class="btn btn-danger rounded mt-2 ">
-                                            <i class="mdi mdi-plus" title="Untuk sub layanan"></i>Add
-                                        </button>
-                                    </div>
-
                                     <div class="row">
-                                        <div class="col-sm-6 col-xl-4">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Deskripsi</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
-                                                    </div>
+                                        <form method="post">
+                                            <div id="inputFormRow" class="row mb-3">
+                                                <div class="col-lg-3">
+                                                    <label for="description">Description:</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter description"
+                                                        autocomplete="off">
                                                 </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="col-sm-6 col-xl-1">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Qty</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
-                                                    </div>
+                                                <div class="col-lg-1">
+                                                    <label for="qty">Qty:</label>
+                                                    <input type="text" id="qty" name="qty[]"
+                                                        class="form-control" placeholder=" qty" autocomplete="off">
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-3">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="inputStateLeft">Satuan</label>
-                                                    <select id="inputStateLeft" class="form-select">
-                                                        <option selected>Choose...</option>
-                                                        <option>#####</option>
-                                                        <option>XXXXX</option>
-                                                        <option>AAAAA</option>
-                                                        <option>BBBBB</option>
+                                                <div class="col-lg-3">
+                                                    <label for="dropdown">Dropdown:</label>
+                                                    <select id="dropdown" name="dropdown[]" class="form-select">
+                                                        <option value="Option 1">Option 1</option>
+                                                        <option value="Option 2">Option 2</option>
+                                                        <option value="Option 3">Option 3</option>
                                                     </select>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-4 d-flex">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Harga</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
+                                                <div class="col-lg-3">
+                                                    <label for="harga">Harga</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter Price"
+                                                        autocomplete="off">
+
+                                                </div>
+                                                <div class="col-1">
+                                                    - <div class="input-group-append  align-items-end">
+                                                        <button class="btn  btn-danger removeRow"
+                                                            type="button"><i class="fa-solid fa-trash"></i></button>
                                                     </div>
                                                 </div>
-                                            </form>
-                                            <div class="ms-2 mt-3">
-                                                <button type="button"
-                                                    class="btn btn-blue btn-xs waves-effect waves-light"
-                                                    style="height: 35px"><i class="fa-solid fa-trash"></i>
-                                                </button>
                                             </div>
-                                        </div>
-
+                                        </form>
                                     </div>
+                                    <div id="newRow"></div>
+                                    <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                 </div>
                                 <div class="modal-footer gap-1">
                                     <button type="button" class="btn btn-secondary"
@@ -523,6 +502,46 @@
         </div>
     </div>
     </div>
+    <script type="text/javascript">
+        // add row
+        $("#addRow").click(function () {
+            var html = '<div id="inputFormRow" class="row mb-3">';
+            html += '<div class="col-lg-3">';
+            html += '<label for="description">Description:</label>';
+            html += '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-1">';
+            html += '<label for="qty">Qty:</label>';
+            html += '<input type="text" name="qty[]" class="form-control" placeholder="qty" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="dropdown">Dropdown:</label>';
+            html += '<select name="dropdown[]" class="form-select">';
+            html += '<option value="Option 1">Option 1</option>';
+            html += '<option value="Option 2">Option 2</option>';
+            html += '<option value="Option 3">Option 3</option>';
+            html += '</select>';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="price">Harga:</label>';
+            html += '<input type="text" name="price[]" class="form-control" placeholder="Enter harga" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col d-flex align-items-end">';
+            html += '<button class="btn btn-danger removeRow" type="button"><i class="fa-solid fa-trash"></i></button>';
+            html += '</div>';
+            html += '</div>';
+
+            $('#newRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '.removeRow', function () {
+            $(this).closest('#inputFormRow').remove();
+        });
+    </script>
+
 @endsection
+
+{{-- page script section --}}
 @section('pageScript')
 @endsection

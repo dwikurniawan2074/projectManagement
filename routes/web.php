@@ -207,6 +207,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
+        Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
     });
     Route::prefix('mapping')->group(function () {
         Route::get('/', [MappingController::class, 'index'])->name('sistemPenawaran.mapping.index');

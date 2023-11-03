@@ -1,5 +1,18 @@
 @extends('template.index')
 
+{{-- headerscript section --}}
+@section('headerScript')
+    {{-- dropzone file upload css --}}
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
+    type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
+    type="text/css" />
+
+    {{-- flatepckr date time css --}}
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -95,6 +108,13 @@
     </div>
 @endsection
 
-{{-- script js halaman create milestone --}}
+{{-- pagescript section --}}
 @section('pageScript')
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
+
+    {{-- flatpckr date time js --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
 @endsection

@@ -10,4 +10,7 @@ class ApprovalController extends Controller
     public function index(){
         return view('sistemPenawaran.approval.index');
     }
+    public function preview(){
+        return view('sistemPenawaran.approval.preview');
+    }
 }

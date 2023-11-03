@@ -172,7 +172,7 @@ class ProjectController extends Controller
             ->first();
 
         // Ambil semua Milestone yang terkait dengan proyek ini dan urutkan berdasarkan created_at terbaru
-        $milestones = $project->milestones()->orderBy('created_at', 'asc')->paginate(3);
+        $milestones = $project->milestones()->orderBy('created_at', 'asc')->paginate(5);
         $doneMilestones = $project->milestones()->where('progress', 'Done')->count();
         $totalMilestones = $project->milestones()->count();
         $realCost = $project->productionCost->sum('amount');
