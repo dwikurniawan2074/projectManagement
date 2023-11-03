@@ -20192,8 +20192,8 @@ body[data-layout-color="dark"] .autocomplete-group strong {
 .flatpickr-day.startRange.prevMonthDay,
 .flatpickr-day.startRange:focus,
 .flatpickr-day.startRange:hover {
-    background: #71b6f9;
-    border-color: #71b6f9;
+    background: #FF0000;
+    border-color: #FF0000;
 }
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
@@ -20250,8 +20250,9 @@ span.flatpickr-weekday {
 .flatpickr-day.today.inRange,
 .flatpickr-day:focus,
 .flatpickr-day:hover {
-    background: var(--ct-dropdown-link-hover-bg);
-    border-color: var(--ct-dropdown-link-hover-bg);
+    background: #FF0000;
+    border-color: #FF0000;
+    color: white;
 }
 .flatpickr-calendar.showTimeInput.hasTime .flatpickr-time {
     border-top: 1px solid #fff;
