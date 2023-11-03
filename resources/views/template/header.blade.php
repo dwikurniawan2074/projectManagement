@@ -63,11 +63,13 @@
 
         .card {
             border-radius: 10px !important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15) !important;
         }
 
         .btn-red {
             background-color: #FF3E3E !important;
             color: white !important;
+            border-radius: 10px !important;
         }
 
         .btn-save {
