@@ -196,7 +196,7 @@
                                                     <div role="tabpanel" class="tab-pane fade active show" id="work">
                                                         <div class="row text-start">
                                                             <div class="col-lg-12">
-                                                                <div class="card">
+                                                                <div class="cards">
                                                                     <div class="card-body pt-0">
                                                                         <div class="row table-title mb-1">
                                                                             <div class="col-sm-8">
@@ -242,7 +242,7 @@
                                                     <div role="tabpanel" class="tab-pane fade" id="expenses">
                                                         <div class="row text-start">
                                                             <div class="col-lg-12">
-                                                                <div class="card">
+                                                                <div class="cards">
                                                                     <div class="card-body pt-0">
                                                                         <div class="row table-title mb-1">
                                                                             <div class="col-sm-8">
@@ -289,7 +289,7 @@
                                                     <div role="tabpanel" class="tab-pane fade" id="material">
                                                         <div class="row text-start">
                                                             <div class="col-lg-12">
-                                                                <div class="card">
+                                                                <div class="cards">
                                                                     <div class="card-body pt-0">
                                                                         <div class="row table-title mb-1">
                                                                             <div class="col-sm-8">
@@ -332,7 +332,7 @@
                                                     <div role="tabpanel" class="tab-pane fade" id="technician">
                                                         <div class="row text-start">
                                                             <div class="col-lg-12">
-                                                                <div class="card">
+                                                                <div class="cards">
                                                                     <div class="card-body pt-0">
                                                                         <div class="row table-title mb-1">
                                                                             <div class="col-sm-8">
