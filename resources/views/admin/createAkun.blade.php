@@ -1,5 +1,16 @@
 @extends('template.index')
 
+{{-- headerscript section --}}
+@section('headerScript')
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <!-- dropzone file upload css -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <!-- Start Content-->
@@ -87,7 +98,7 @@
                                 <label for="pass1" class="form-label">Password Confirmation<span
                                         class="text-danger">*</span></label>
                                 <div class="input-group input-group-merge">
-                                    <input id="pass1" type="password_confirmation"
+                                    <input id="pass1" type="password"
                                         placeholder="Type your password again" required="" class="form-control"
                                         name="password_confirmation">
                                     <div class="input-group-text" data-password="false">
@@ -110,15 +121,17 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
     <!-- Include jQuery (Select2 requires it) -->
-{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
+    {{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
 
-    <!-- Include Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
     <!-- Include Select2 JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

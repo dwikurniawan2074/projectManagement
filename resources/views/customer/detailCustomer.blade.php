@@ -1,5 +1,11 @@
 @extends('template.index')
 
+{{-- headerscript section --}}
+@section('headerScript')
+    
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -18,7 +24,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <a href="{{ url('customerContact/create') }}"
-                                            class="btn btn-addItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan Customer Contact"></i>Add Customer
                                             Contact</a>
                                     </div>
@@ -122,6 +128,7 @@
     </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
     <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.css"
         rel="stylesheet">
