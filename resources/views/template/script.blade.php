@@ -1,14 +1,15 @@
-    <!-- Script Bawaan Template App js-->
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
 
+    <!-- Script Bawaan Template App js-->
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}" defer></script>
+    
     <!-- Sweet alert init js-->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/sweet-alerts.init.js') }}"></script>
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
-
+    
     <!-- Vendor -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+    
     <!-- Form Validation js-->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/parsleyjs/parsley.min.js') }}"></script>
 
