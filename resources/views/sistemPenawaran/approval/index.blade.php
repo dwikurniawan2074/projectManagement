@@ -1,3 +1,6 @@
+@extends('sistemPenawaran.template.index')
+
+{{-- headerscript section --}}
 @section('headerScript')
     <!-- third party css -->
     <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
@@ -13,8 +16,8 @@
     <!-- third party css end -->
 @endsection
 
-@extends('sistemPenawaran.template.index')
 
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -159,6 +162,7 @@
 @endsection
 
 
+{{-- pagescript section --}}
 @section('pageScript')
     <!-- third party js -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>

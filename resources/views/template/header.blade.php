@@ -44,18 +44,19 @@
     type="text/css" />
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/select2/css/select2.min.css') }}" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/css/selectize.bootstrap3.css') }}"
-    rel="stylesheet" type="text/css" />
+<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet"
+    type="text/css" />
 <!-- Plugins css -->
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/mohithg-switchery/switchery.min.css') }}" rel="stylesheet"
     type="text/css" />
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}"
-    --}} rel="stylesheet" type="text/css" />
+    rel="stylesheet" type="text/css" />
 <link href="{{ asset('templateAdmin/Admin/dist/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
 {{-- calendar styling --}}
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/fullcalendar/main.min.css') }}" rel="stylesheet"
     type="text/css" />
+
 
 {{--
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
@@ -84,6 +85,10 @@
     integrity="sha512-oQJB9y5mlxC4Qp62hdJi/J1NzqiGlpprSfkxVNeosn23mVn5JA4Yn+6f26wWOWCDbV9CxgJzFfVv9DNLPmhxQg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+{{-- templating headscript per file --}}
+@yield('headerScript')
+
 <style>
     /* navbar styling */
     li.menuitem-active {
@@ -111,6 +116,7 @@
         color: white;
         border-radius: 15px !important;
     }
+
     #sidebar-menu>ul>li>a:hover {
         background-color: red;
         color: white;
@@ -155,8 +161,8 @@
         color: white;
     }
 
-    .btn-logout{
-        border: unset; 
+    .btn-logout {
+        border: unset;
         background-color: unset;
     }
 

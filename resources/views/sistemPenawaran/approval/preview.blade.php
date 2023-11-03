@@ -1,12 +1,13 @@
 @extends('sistemPenawaran.template.index')
 
+{{-- headerscript section --}}
+{{-- content section --}}
 @section('content')
 <style>
     .custom-button {
   width: 110px; /* Atur lebar sesuai keinginan Anda */
 }
-</style>
-    <div class="content-page">
+</style>    <div class="content-page">
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -121,4 +122,9 @@
             </div>
         </div>
     </div>
+</div>
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection

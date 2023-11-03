@@ -1,5 +1,10 @@
 @extends('sistemPenawaran.template.index')
 
+{{-- header script section --}}
+@section('headerScript')
+@endsection
+
+{{-- contenct section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -536,15 +541,7 @@
     </script>
 
 @endsection
+
+{{-- page script section --}}
 @section('pageScript')
 @endsection
-
-    {{-- <div class="col-lg-4 d-flex ">
-                                                    <label for="harga">harga</label>
-                                                    <input type="text" id="price" name="price[]"
-                                                        class="form-control" placeholder="Enter price"
-                                                        autocomplete="off">
-                                                    {{-- <div class="input-group-append  align-items-end">
-                                                        <button class="btn  btn-danger removeRow"
-                                                            type="button">Remove</button>
-                                                    </div> --}}
