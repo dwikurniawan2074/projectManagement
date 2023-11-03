@@ -236,6 +236,9 @@ Route::get('approval/index', function () {
     return view('approval.index');
 });
 
+Route::get('gantt', function () {
+    return view('Gantt.gantt');
+});
 
 Route::get('approval/preview', function () {
     return view('operational.operationalDocument');

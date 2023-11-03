@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FabricationScheduleController;
+use App\Http\Controllers\GanttController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Route::get('gantt/{fabricationSchedule}', [FabricationScheduleController::class, 'show'])->name('get.gantt');
+Route::get('/data', [GanttController::class, 'get'])->name('get.gantt');
