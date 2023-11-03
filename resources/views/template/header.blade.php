@@ -61,6 +61,10 @@
             color: red !important;
         }
 
+        .card {
+            border-radius: 10px !important;
+        }
+
         .btn-red {
             background-color: #FF3E3E !important;
             color: white !important;
