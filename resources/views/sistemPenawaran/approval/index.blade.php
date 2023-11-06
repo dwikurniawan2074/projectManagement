@@ -51,8 +51,9 @@
                                                 <td>2011/04/25</td>
                                                 <td>
                                                     <div class="d-flex gap-1 justify-content-center">
+                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
                                                         <button type="button"
-                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button>
+                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
                                                         <button type="button"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
                                                         <button type="button"
@@ -71,7 +72,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Approved</h4>
+                                <h4 class="mt-0 mb-3 header-title">Approve</h4>
                                 <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                                     <thead>
                                         <tr class="text-center">
@@ -95,8 +96,9 @@
                                                 <td>2011/04/25</td>
                                                 <td>
                                                     <div class="d-flex gap-1 justify-content-center">
+                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
                                                         <button type="button"
-                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button>
+                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
                                                         <button type="button"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
                                                         <button type="button"
@@ -115,7 +117,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Rejected</h4>
+                                <h4 class="mt-0 mb-3 header-title">Reject</h4>
                                 <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                                     <thead>
                                         <tr class="text-center">
@@ -139,8 +141,9 @@
                                                 <td>2011/04/25</td>
                                                 <td>
                                                     <div class="d-flex gap-1 justify-content-center">
+                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
                                                         <button type="button"
-                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button>
+                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
                                                         <button type="button"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
                                                         <button type="button"
@@ -155,6 +158,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
