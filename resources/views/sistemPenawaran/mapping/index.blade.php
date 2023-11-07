@@ -3,70 +3,70 @@
 
 {{-- headerscript section --}}
 @section('headerScript')
-<!-- third party css -->
-<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<!-- third party css end -->
+    <!-- third party css -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
 
-<!-- leaflet css -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<!-- leaflet css -->
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- leaflet css -->
 
-<!-- page styling -->
-<style>
-    #map {
-        height: 410px;
-    }
-
-    #leaflet-container {
-        padding: 0.8rem 0.8rem;
-    }
-
-    .card,
-    #map {
-        border-radius: 10px;
-    }
-
-    .details-text {
-        margin-bottom: unset;
-    }
-
-    .title-text {
-        margin-bottom: unset;
-        font-weight: 100;
-    }
-
-    @media screen and (max-width: 768px) {
-        .container-fluid>.row {
-            display: flex;
-            flex-direction: column;
+    <!-- page styling -->
+    <style>
+        #map {
+            height: 410px;
         }
 
-        .right-column {
-            width: 100%;
-            order: 1;
+        #leaflet-container {
+            padding: 0.8rem 0.8rem;
         }
 
-        .left-column {
-            width: 100%;
-            order: 2;
+        .card,
+        #map {
+            border-radius: 10px;
         }
-    }
-</style>
-<!-- page styling -->
+
+        .details-text {
+            margin-bottom: unset;
+        }
+
+        .title-text {
+            margin-bottom: unset;
+            font-weight: 100;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container-fluid>.row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .right-column {
+                width: 100%;
+                order: 1;
+            }
+
+            .left-column {
+                width: 100%;
+                order: 2;
+            }
+        }
+    </style>
+    <!-- page styling -->
 @endsection
 
 
@@ -90,7 +90,7 @@
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <thead>
-                                        <h4 class="mt-0" style="padding-left: 10px;">Project Name</h4>
+                                        <h4 class="mt-0" style="padding-left: 10px;">Data Persebaran Penawaran</h4>
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -194,59 +194,59 @@
 
 {{-- pagescript section --}}
 @section('pageScript')
-<!-- third party js -->
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}">
-</script>
-<script
-    src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}">
-</script>
-<script
-    src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}">
-</script>
-<script
-    src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.flash.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select/js/dataTables.select.min.js') }}">
-</script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
-<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
-<!-- third party js ends -->
+    <!-- third party js -->
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.flash.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select/js/dataTables.select.min.js') }}">
+    </script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
+    <!-- third party js ends -->
 
-<!-- leaflet.js script -->
-<script>
-    var map = L.map('map').setView([-1.2547961090826119, 121.03191075374599], 4);
-    
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+    <!-- leaflet.js script -->
+    <script>
+        var map = L.map('map').setView([-1.2547961090826119, 121.03191075374599], 4);
+        
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-</script>
-<!-- leaflet.js script -->
+    </script>
+    <!-- leaflet.js script -->
 
-<!-- table script -->
-<script>
-    $(document).ready(function () {
-        $("#datatable").DataTable({
-            // responsive: true;
-            autoWidth: false,
-            processing: true,
-            responsive: false,
+    <!-- table script -->
+    <script>
+        $(document).ready(function () {
+            $("#datatable").DataTable({
+                // responsive: true;
+                autoWidth: false,
+                processing: true,
+                responsive: false,
 
+            });
         });
-    });
-</script>
-<!-- table script -->
+    </script>
+    <!-- table script -->
 @endsection
