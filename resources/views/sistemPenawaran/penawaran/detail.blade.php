@@ -402,8 +402,8 @@
                                                 </div>
                                                 <div class="col-1">
                                                     - <div class="input-group-append  align-items-end">
-                                                        <button class="btn  btn-danger removeRow"
-                                                            type="button"><i class="fa-solid fa-trash"></i></button>
+                                                        <button class="btn  btn-danger removeRow" type="button"><i
+                                                                class="fe-trash-2"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -488,12 +488,25 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input mt-1" type="checkbox" value="" id="flexCheckChecked" checked>
                                             <div class="row">
-                                                <div class="col-sm-9 col-md-10">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Masukan Syarat dan Ketentuan" aria-label="Masukan Penawaran" id="customerNameLeft">
+                                                <div class="col-lg-12">
+                                                    <div id="inputFormsyarat">
+                                                        <div class="input-group mb-2">
+                                                            <input class="form-check-input " type="checkbox"
+                                                                value="" id="flexCheckChecked" checked>
+                                                            <input type="text" name="title[]"
+                                                                class="form-control m-input  ms-1"
+                                                                placeholder="Enter title" autocomplete="off">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-danger removeRow" type="button"><i
+                                                                        class="fe-trash"></i></button>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
+                                                    <div id="newsyarat"></div>
+                                                    <button id="addsyarat" type="button" class="btn btn-info">Add
+                                                        Row</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -514,11 +527,12 @@
     </div>
     <script type="text/javascript">
         // add row
-        $("#addRow").click(function () {
+        $("#addRow").click(function() {
             var html = '<div id="inputFormRow" class="row mb-3">';
             html += '<div class="col-lg-3">';
             html += '<label for="description">Description:</label>';
-            html += '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
+            html +=
+                '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
             html += '</div>';
             html += '<div class="col-lg-1">';
             html += '<label for="qty">Qty:</label>';
@@ -534,10 +548,11 @@
             html += '</div>';
             html += '<div class="col-lg-3">';
             html += '<label for="price">Harga:</label>';
-            html += '<input type="text" name="price[]" class="form-control" placeholder="Enter harga" autocomplete="off">';
+            html +=
+                '<input type="text" name="price[]" class="form-control" placeholder="Enter harga" autocomplete="off">';
             html += '</div>';
             html += '<div class="col d-flex align-items-end">';
-            html += '<button class="btn btn-danger removeRow" type="button"><i class="fa-solid fa-trash"></i></button>';
+            html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash-2"></button>';
             html += '</div>';
             html += '</div>';
 
@@ -545,12 +560,30 @@
         });
 
         // remove row
-        $(document).on('click', '.removeRow', function () {
+        $(document).on('click', '.removeRow', function() {
             $(this).closest('#inputFormRow').remove();
         });
-    </scrip
-t>
+    </script>
 
+<script type="text/javascript">
+    // add row
+    $("#addsyarat").click(function() {
+        var html = '<div class="input-group mb-2">';
+        html += '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>';
+        html += '<input type="text" name="title[]" class="form-control m-input ms-1" placeholder="Enter title" autocomplete="off">';
+        html += '<div class="input-group-append">';
+        html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash"></i></button>';
+        html += '</div>';
+        html += '</div>';
+
+        $('#newsyarat').append(html);
+    });
+
+    // remove row
+    $(document).on('click', '.removeRow', function() {
+        $(this).closest('.input-group').remove();
+    });
+</script>
 @endsection
 
 {{-- page script section --}}
