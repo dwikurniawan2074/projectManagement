@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MilestoneController;
+use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\OperationalAgendaController;
 use App\Http\Controllers\OperationalController;
 use App\Http\Controllers\OperationalExpensesController;
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'projects'], function () {
 });
 // Milestone
 Route::get('/get-milestone-data/{id}', [MilestoneController::class, 'getMilestoneData'])->name("milestone.get");
+Route::get('/get-record-data/{id}', [RecordDocumentController::class, 'getRecordDocument'])->name("recordDocument.get");
 // Pcost json
 Route::get('/get-cost-data/{id}', [ProductionCostController::class, 'getPCostData'])->name("cost.get");
 Route::put('production/update/', [ProductionCostController::class, 'update'])->name('cost.update');
@@ -92,6 +94,15 @@ Route::prefix('milestone')->group(function () {
     Route::put('/', [MilestoneController::class, 'update'])->name('milestone.update');
     Route::delete('/{id}', [MilestoneController::class, 'destroy'])->name('milestone.destroy');
     Route::get('file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
+});
+
+Route::prefix('recordDocument')->group(function () {
+    Route::get('/create/{id}', [RecordDocumentController::class, 'create'])->name('recordDocument.create');
+    Route::post('/store', [RecordDocumentController::class, 'store'])->name('recordDocument.store');
+    Route::put('/', [RecordDocumentController::class, 'update'])->name('recordDocument.update');
+    Route::get('/show/{id}', [RecordDocumentController::class, 'show'])->name('recordDocument.show');
+    Route::delete('/{id}', [RecordDocumentController::class, 'destroy'])->name('recordDocument.destroy');
+    Route::get('file/{file}', [RecordDocumentController::class, 'downloadfile'])->name('recordDocument.file');
 });
 
 Route::prefix('top')->group(function () {
