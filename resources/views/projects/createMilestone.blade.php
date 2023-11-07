@@ -26,7 +26,9 @@
                                 <form action="{{ route('milestone.store') }}" method="post" enctype="multipart/form-data"
                                     class="parsley-examples" novalidate="">
                                     @csrf
+
                                     <input type="hidden" name="project_id" value="{{ $project }}">
+                                    
                                     <div class="mb-3">
                                         <label for="submitted_date" class="form-label">Submitted Date<span
                                                 class="text-danger">*</span></label>
