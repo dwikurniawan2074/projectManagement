@@ -487,6 +487,16 @@
                                                 Harga belum termasuk alat bantu, alat berat dan helper jika diperlukan
                                             </label>
                                         </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input mt-1" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <div class="row">
+                                                <div class="col-sm-9 col-md-10">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Masukan Syarat dan Ketentuan" aria-label="Masukan Penawaran" id="customerNameLeft">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -538,7 +548,8 @@
         $(document).on('click', '.removeRow', function () {
             $(this).closest('#inputFormRow').remove();
         });
-    </script>
+    </scrip
+t>
 
 @endsection
 
