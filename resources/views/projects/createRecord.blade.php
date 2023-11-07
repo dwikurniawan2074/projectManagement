@@ -23,12 +23,12 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="" method="post" enctype="multipart/form-data"
+                                <form action="{{ route('recordDocument.store') }}" method="post" enctype="multipart/form-data"
                                     class="parsley-examples" novalidate="">
                                     @csrf
 
                                     {{-- hidden input project id --}}
-                                    <input type="hidden" name="project_id" value="">
+                                    <input type="hidden" name="project_id" value="{{ $project }}">
 
                                     {{-- form input submitted date --}}
                                     <div class="mb-3">
@@ -90,7 +90,7 @@
 
                                     {{-- button cancel dan save --}}
                                     <div class="text-end">
-                                        <a href=""
+                                        <a href="{{ route('projects.show', ['id' => $project]) }}"
                                             class="btn btn-secondary waves-effect">
                                             Cancel
                                         </a>

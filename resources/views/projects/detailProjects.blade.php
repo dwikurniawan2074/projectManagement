@@ -33,7 +33,7 @@
         /* .pagination-nav .pagination .active  {
         } */
         .page-item.active .page-link {
-            background-color: #FF3E3E;
+            background-color: #FF3E3E !important;
             border: #FF3E3E;
         }
 
@@ -304,7 +304,7 @@
                                         <h4 class="mt-0 header-title">Record Document</h4>
                                     </div>
                                     <div class="col-sm-4 text-end">
-                                        <a href="{{ url('projects/createRecord') }}"
+                                        <a href="{{  route('recordDocument.create', ['id' => $projectData->id]) }}"
                                             class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan milestone"></i>Add Record</a>
                                     </div>
@@ -323,26 +323,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @if ($milestones->isEmpty())
+                                            @if ($recordDocument->isEmpty())
                                             <tr>
-                                                <td colspan="6" align="center">Belum ada milestone</td>
+                                                <td colspan="6" align="center">Belum ada Record Document</td>
                                             </tr>
                                             @else
                                             @php($index = 1)
-                                            @foreach ($milestones as $milestone) --}}
+                                            @foreach ($recordDocument as $record)
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td class="formatTanggal"></td>
-                                                <td>dummy desc</td>
-                                                <td class="formatTanggal"></td>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td class="formatTanggal">{{ $record['submitted_date'] }}</td>
+                                                <td>{{ $record['description'] }}</td>
+                                                <td class="formatTanggal">{{ $record['due_date'] }}</td>
                                                 <td class="text-center">
                                                     <span class="badge bg-success
-                                                                        {{-- @if ($milestone['progress'] == 'Done') bg-success
-                                                                        @elseif($milestone['progress'] == 'Planned')
+                                                                        @if ($record['progress'] == 'Done') bg-success
+                                                                        @elseif($record['progress'] == 'Planned')
                                                                         bg-primary
-                                                                        @elseif($milestone['progress'] == 'On Progress')
-                                                                        bg-warning @endif --}}
-                                                                    ">done</span>
+                                                                        @elseif($record['progress'] == 'On Progress')
+                                                                        bg-warning @endif
+                                                                    ">{{ $record['progress'] }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
@@ -355,21 +355,22 @@
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button title="Edit Record" type="button" data-bs-toggle="modal"
                                                             data-bs-target="#edit-record-modal"
-                                                            class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                            style="background-color: #3E8BFF;">
+                                                            value="{{ $record['id'] }}"
+                                                            class="tabledit-edit-button recordEdit btn btn-primary waves-effect waves-light "
+                                                            style="background-color: #3E8BFF;" >
                                                             <span class="mdi mdi-pencil"></span>
                                                         </button>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button id="deleteButton" title="Hapus Record" type="button"
-                                                            value="" class="tabledit-edit-button btn btn-danger">
+                                                            value="{{ $record['id'] }}" class="tabledit-edit-button hapusRecord btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
                                                         </button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {{-- @endforeach
-                                            @endif --}}
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -892,6 +893,69 @@
                 });
     </script>
 
+    {{-- Hapus Document Record Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.hapusRecord', function() {
+                var id = $(this).val();
+
+                // Display a confirmation dialog
+                Swal.fire({
+                    title: "Anda yakin?",
+                    text: "Data tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f34e4e',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                    backrop: 'static',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('recordDocument.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function(response) {
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
+                });
+            });
+        });
+    </script>
+
     {{-- Hapus Production Cost Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
@@ -1081,51 +1145,75 @@
                 });
     </script>
 
-    {{-- Milestone edit --}}
+    {{-- Document Record edit --}}
     <script>
         $(document).ready(function() {
-                    $(document).on('click', '.milestoneEdit', function() {
-                        var id = $(this).val(); // Menggunakan data-id yang baru
-                        $.ajax({
-                            type: "GET",
-                            url: "/get-milestone-data/" + id,
-                            dataType: "json",
-                            success: function(response) {
-                                $("#milestone_id").val(response.id);
-                                $("#submitted_date").val(response.submitted_date);
-                                $("#description").val(response.description);
-                                $("#due_date").val(response.due_date);
-                                $("#progress").val(response.progress);
-                            },
-                            error: function(response) {
-                                alert("Error: " + response.statusText);
-                            }
-                        });
-                    });
+            $(document).on('click', '.recordEdit', function() {
+                var id = $(this).val(); // Menggunakan data-id yang baru
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('recordDocument.show', '') }}" + "/" + id,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#recordDocument_id").val(response.id);
+                        $("#record_submitted_date").val(response.submitted_date);
+                        $("#record_description").val(response.description);
+                        $("#record_due_date").val(response.due_date);
+                        $("#record_progress").val(response.progress);
+                    },
+                    error: function(response) {
+                        alert("Error: " + response.statusText);
+                    }
                 });
+            });
+        });
+    </script>
+
+     {{-- Milestone edit --}}
+     <script>
+        $(document).ready(function() {
+            $(document).on('click', '.milestoneEdit', function() {
+                var id = $(this).val(); // Menggunakan data-id yang baru
+                $.ajax({
+                    type: "GET",
+                    url: "/get-milestone-data/" + id,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#milestone_id").val(response.id);
+                        $("#submitted_date").val(response.submitted_date);
+                        $("#description").val(response.description);
+                        $("#due_date").val(response.due_date);
+                        $("#progress").val(response.progress);
+                    },
+                    error: function(response) {
+                        alert("Error: " + response.statusText);
+                    }
+                });
+            });
+        });
     </script>
 
     {{-- Production Cost edit --}}
     <script>
         $(document).ready(function() {
-                    $(document).on('click', '.costEdit', function() {
-                        var id = $(this).val(); // Menggunakan data-id yang baru
-                        $.ajax({
-                            type: "GET",
-                            url: "/get-cost-data/" + id,
-                            dataType: "json",
-                            success: function(response) {
-                                $("#cost_id").val(response.id);
-                                $("#description_cost").val(response.description);
-                                $("#amount_cost").val(parseInt(response
-                                    .amount)); // Menggunakan parseInt() untuk menghapus angka desimal
-                            },
-                            error: function(response) {
-                                alert("Error: " + response.statusText);
-                            }
-                        });
-                    });
+            $(document).on('click', '.costEdit', function() {
+                var id = $(this).val(); // Menggunakan data-id yang baru
+                $.ajax({
+                    type: "GET",
+                    url: "/get-cost-data/" + id,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#cost_id").val(response.id);
+                        $("#description_cost").val(response.description);
+                        $("#amount_cost").val(parseInt(response
+                            .amount)); // Menggunakan parseInt() untuk menghapus angka desimal
+                    },
+                    error: function(response) {
+                        alert("Error: " + response.statusText);
+                    }
                 });
+            });
+        });
     </script>
 
     {{-- Payment edit --}}
