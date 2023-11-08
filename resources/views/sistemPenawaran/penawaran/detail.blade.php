@@ -224,8 +224,8 @@
                                             </tr>
                                             <tr>
                                                 <th colspan="2">
-                                                    <p class="title-text">Status</p>
-                                                    <p class="details-text rupiah">Waiting To Approve
+                                                    <p class="title-text mb-1">Status</p>
+                                                    <p class="details-text font-20 "><span class="badge bg-warning" >Waiting</span></td>
                                                     </p>
                                                 </th>
                                             </tr>
