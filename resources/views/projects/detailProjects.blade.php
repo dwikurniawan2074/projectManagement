@@ -32,10 +32,6 @@
 
         /* .pagination-nav .pagination .active  {
         } */
-        .page-item.active .page-link {
-            background-color: #FF3E3E !important;
-            border: #FF3E3E;
-        }
 
         .pagination ul li {
             height: 100%;
@@ -192,7 +188,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <button title="Hapus Operational Cost" type="button"
+                                                        <button title="Delete Production Cost" type="button"
                                                             value="{{ $cost->id }}"
                                                             class="tabledit-edit-button hapusPCost btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
@@ -260,14 +256,15 @@
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <a href="{{ asset('images/milestone_files/' . $milestone->file) }}"
-                                                            title="Download File Milestone" type="button" {{-- pengecekan
-                                                            kondisi jika tidak ada file button disabled --}} class="tabledit-edit-button btn btn-success waves-effect waves-light
+                                                            title="Download File Milestone" type="button" 
+                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}} 
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light
                                                                 {{ !$milestone->file ? 'disabled' : '' }}" download>
                                                             <span class="mdi mdi-file-download-outline"></span>
                                                         </a>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <button title="Untuk mengedit milestone" type="button"
+                                                        <button title="Edit Milestone" type="button"
                                                             data-bs-toggle="modal" data-bs-target="#edit-milestone-modal"
                                                             value="{{ $milestone['id'] }}"
                                                             class="tabledit-edit-button milestoneEdit btn btn-primary waves-effect waves-light"
@@ -276,7 +273,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <button id="deleteButton" title="Untuk menghapus milestone"
+                                                        <button id="deleteButton" title="Delete Milestone"
                                                             type="button" value="{{ $milestone['id'] }}"
                                                             class="tabledit-edit-button hapusMilestone btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
@@ -346,9 +343,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <a href="" title="Download File Record" type="button"
-                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light"
-                                                            download>
+                                                        <a href="{{ asset('recordDocument_files/'. $record->file) }}" title="Download File Record" type="button"
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light 
+                                                            {{ !$record->file ? 'disabled' : '' }}" download>
                                                             <span class="mdi mdi-file-download-outline"></span>
                                                         </a>
                                                     </div>
@@ -469,7 +466,7 @@
                                     <div class="col-4 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <a href="{{ route('projects.editProjects', ['id' => $project->id]) }}">
-                                                <button title="edit data" type="button"
+                                                <button title="Edit Project" type="button"
                                                     class="tabledit-edit-button btn btn-primary waves-effect waves-light"
                                                     style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
@@ -477,7 +474,7 @@
                                             </a>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="hapus data" type="button"
+                                            <button title="Delete Project" type="button"
                                                 class="tabledit-edit-button hapusProject btn btn-danger"
                                                 value="{{ $projectData->id }}">
                                                 <span class="mdi mdi-trash-can-outline"></span>
@@ -646,7 +643,7 @@
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
     {{-- flatpckr date time js --}}
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
 
     {{-- donut chart milestone progress --}}
     <script>
@@ -1160,6 +1157,7 @@
                         $("#record_description").val(response.description);
                         $("#record_due_date").val(response.due_date);
                         $("#record_progress").val(response.progress);
+                        console.log("success");
                     },
                     error: function(response) {
                         alert("Error: " + response.statusText);
