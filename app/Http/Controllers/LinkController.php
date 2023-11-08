@@ -14,13 +14,18 @@ class LinkController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'type' => ['required'],
-            'source' => ['required', 'integer'],
-            'target' => ['required', 'integer'],
-        ]);
+        $link = new Link();
 
-        return Link::create($request->validated());
+        $link->type = $request->type;
+        $link->source = $request->source;
+        $link->target = $request->target;
+
+        $link->save();
+
+        return response()->json([
+            "action" => "inserted",
+            "tid" => $link->id
+        ]);
     }
 
     public function show(Link $link)
@@ -28,23 +33,25 @@ class LinkController extends Controller
         return $link;
     }
 
-    public function update(Request $request, Link $link)
+    public function update(Link $link, Request $request)
     {
-        $request->validate([
-            'type' => ['required'],
-            'source' => ['required', 'integer'],
-            'target' => ['required', 'integer'],
+        $link->type = $request->type;
+        $link->source = $request->source;
+        $link->target = $request->target;
+
+        $link->save();
+
+        return response()->json([
+            "action" => "updated"
         ]);
-
-        $link->update($request->validated());
-
-        return $link;
     }
 
     public function destroy(Link $link)
     {
         $link->delete();
 
-        return response()->json();
+        return response()->json([
+            "action" => "deleted"
+        ]);
     }
 }
