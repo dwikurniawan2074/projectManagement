@@ -110,7 +110,7 @@
                                 @enderror
                             </div>
                             <div class="text-end">
-                                <a href="{{ url('admin/olahAkun') }}">
+                                <a href="{{ route('users.index') }}">
                                     <button type="button" class="btn btn-secondary waves-effect">Cancel</button>
                                 </a>
                                 <button class="btn btn-save waves-effect waves-light" type="submit">Submit</button>

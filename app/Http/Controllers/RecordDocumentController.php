@@ -56,8 +56,9 @@ class RecordDocumentController extends Controller
     // fungsi untuk mengupdate document record
     public function update(Request $request){
         // Validasi data input dari form
+
         $validatedData = $request->validate([
-            'project_id' => 'required|exists:projects,id',
+            'recordDocument_id' => 'required',
             'submitted_date' => 'required|date',
             'description' => 'required|string',
             'due_date' => 'required|date',
@@ -65,9 +66,8 @@ class RecordDocumentController extends Controller
             'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048', // Validasi file gambar
         ]);
 
-        $recordDocument = RecordDocument::findOrFail($id);
 
-        dd($recordDocument);
+        $recordDocument = RecordDocument::findOrFail($request->recordDocument_id);
 
         // Mengupdate data milestone dengan data yang validasi
         $recordDocument->update($validatedData);

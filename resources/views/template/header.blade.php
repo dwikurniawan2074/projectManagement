@@ -130,6 +130,11 @@
             width: 100% !important
         }
 
+        .page-item.active .page-link {
+            background-color: #FF3E3E !important;
+            border: #FF3E3E;
+        }
+
         /* Style for the loader container */
         .loader {
             position: fixed;

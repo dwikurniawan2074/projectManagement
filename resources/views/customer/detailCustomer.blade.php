@@ -10,12 +10,12 @@
     <div class="content-page">
         <div class="content">
 
-            <!-- Start Content-->
+           
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8">
 
-                        {{-- card table milestones --}}
+                        {{-- card table Customer Contacts --}}
                         <div class="card">
                             <div class="card-body">
                                 <div class="row table-title">
@@ -23,10 +23,11 @@
                                         <h4 class="mt-0 header-title">Customer Contacts</h4>
                                     </div>
                                     <div class="col-sm-4 text-end">
-                                        <a href="{{ url('customerContact/create') }}"
+                                        <button type="button" data-bs-toggle="modal"
+                                        data-bs-target="#add-customer-contact-modal"
                                             class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan Customer Contact"></i>Add Customer
-                                            Contact</a>
+                                            Contact</button>
                                     </div>
                                 </div>
 
@@ -36,7 +37,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Name</th>
-                                                <th>Number</th>
+                                                <th>Phone Number</th>
                                                 <th class="text-center" width="100">Action</th>
                                             </tr>
                                         </thead>
@@ -50,7 +51,7 @@
                             </div>
                         </div>
 
-                        {{-- card table production cost --}}
+                        {{-- card table Related Projects --}}
                         <div class="card">
                             <div class="card-body">
                                 <div class="row table-title">
@@ -80,8 +81,9 @@
                             </div>
                         </div>
 
-                    </div><!-- end col-->
+                    </div>
 
+                    {{-- card table customer data detail --}}
                     <div class="col-xl-4">
                         <div class="card">
                             <div class="card-body">
@@ -118,13 +120,59 @@
                             </div>
 
                         </div>
-                    </div><!-- end col-->
+                    </div>
+
+                    {{-- modals operational expenses --}}
+                    <form class="expensesForm" data-parsley-validate>
+                        <div id="add-customer-contact-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                            style="overflow:hidden;">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Customer Contacts Data</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="row">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3 text-start">
+                                                    <label for="field-1" class="form-label">Name<span class="text-danger">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control" id="expense-item" placeholder="Name"
+                                                        name="expense-item" parsley-trigger="change" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mb-3 text-start">
+                                                    <label for="field-2 " class="form-label">Phone Number<span
+                                                            class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="expense-amount"
+                                                        placeholder="Phone Number" name="expense-amount" parsley-trigger="change" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-save waves-effect waves-light" id="expenseButton">
+                                                Save
+                                                changes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal -->
+                        </div>
+                    </form>
                 </div>
-                <!-- end row -->
+            </div>
 
-            </div> <!-- container-fluid -->
-
-        </div> <!-- content -->
+        </div>
     </div>
 @endsection
 
