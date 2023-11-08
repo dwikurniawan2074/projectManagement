@@ -1,3 +1,5 @@
+<!-- App js-->
+<script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
 {{-- backup --}}
 <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script>
 
@@ -9,8 +11,6 @@
 <!-- Dashboar init js-->
 <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/dashboard.init.js') }}"></script>
 
-<!-- App js-->
-<script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js"></script>
