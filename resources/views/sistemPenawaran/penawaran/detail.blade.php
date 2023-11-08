@@ -169,8 +169,9 @@
                             <div class="card-body">
                                 <div class="project-box d-flex justify-content-between">
                                     <div>
-                                        <h4 class="mt-0"><a href="" class="text-dark">Project1</a></h4>
-                                        <p class="text-muted font-13 mt-1">Customers</p>
+                                        <h4 class="mt-0"><a href="" class="text-dark ">PT.Apapun</a></h4>
+                                        <p class="text-muted font-13 mb-1 mt-2">Penawaran1</p>
+                                        <p class="text-muted font-13 mt-1">Jalan-Jalan ketangerang </p>
                                     </div>
                                     <div class="ml-auto">
                                         <button type="button" class="btn btn-blue btn-xs waves-effect waves-light">Edit
@@ -186,37 +187,9 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">
-                                                    <p class="title-text">Nomor RFQ</p>
-                                                    <p class="details-text">256-001</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
                                                     <p class="title-text">Nomor MSG</p>
                                                     <p class="details-text">0000/CS-TPP/x/2023</p>
                                                 </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Customer Contact Name</p>
-                                                    <p class="details-text">Andre Taulany</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Email</p>
-                                                    <p class="details-text">Andre123@gmail.com
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Nomor Handphone</p>
-                                                    <p class="details-text">153252532
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr>
                                                 <th scope="row">
                                                     <p class="title-text">Tanggal Penawaran</p>
                                                     <p class="details-text formatTanggal">00/00/00
@@ -224,22 +197,35 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Lokasi</p>
-                                                    <p class="details-text formatTanggal">Provinsi-Kota
+                                                <th colspan="2">
+                                                    <p class="title-text">Customer Contaact Name</p>
+                                                    <p class="details-text">Partogi P Simatupang</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">
+                                                    <p class="title-text">Email</p>
+                                                    <p class="details-text">Ogi@gmail.com</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">
+                                                    <p class="title-text">No.Hp</p>
+                                                    <p class="details-text">1234556
                                                     </p>
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Price</p>
-                                                    <p class="details-text rupiah">10.000.000 Rp</p>
+                                                <th colspan="2">
+                                                    <p class="title-text">Rupiah</p>
+                                                    <p class="details-text">Rp.14.000.000
+                                                    </p>
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Status</p>
-                                                    <p class="details-text rupiah">Waiting To Approve
+                                                <th colspan="2">
+                                                    <p class="title-text mb-1">Status</p>
+                                                    <p class="details-text font-20 "><span class="badge bg-warning" >Waiting</span></td>
                                                     </p>
                                                 </th>
                                             </tr>
@@ -380,7 +366,7 @@
                                                         class="form-control" placeholder="Enter description"
                                                         autocomplete="off">
                                                 </div>
-                                                <div class="col-lg-1">
+                                                <div class="col-lg-2">
                                                     <label for="qty">Qty:</label>
                                                     <input type="text" id="qty" name="qty[]"
                                                         class="form-control" placeholder=" qty" autocomplete="off">
@@ -394,7 +380,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <label for="harga">Harga</label>
+                                                    <label for="harga">Harga:</label>
                                                     <input type="text" id="description" name="description[]"
                                                         class="form-control" placeholder="Enter Price"
                                                         autocomplete="off">
@@ -496,7 +482,7 @@
                                                                 value="" id="flexCheckChecked" checked>
                                                             <input type="text" name="title[]"
                                                                 class="form-control m-input  ms-1"
-                                                                placeholder="Enter title" autocomplete="off">
+                                                                placeholder="Masukan Syarat" autocomplete="off">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-danger removeRow" type="button"><i
                                                                         class="fe-trash"></i></button>
@@ -531,12 +517,11 @@
             var html = '<div id="inputFormRow" class="row mb-3">';
             html += '<div class="col-lg-3">';
             html += '<label for="description">Description:</label>';
-            html +=
-                '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
+            html += '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
             html += '</div>';
-            html += '<div class="col-lg-1">';
+            html += '<div class="col-lg-2">';
             html += '<label for="qty">Qty:</label>';
-            html += '<input type="text" name="qty[]" class="form-control" placeholder="qty" autocomplete="off">';
+            html += '<input type="text" name="qty[]" class="form-control" placeholder="Qty" autocomplete="off">';
             html += '</div>';
             html += '<div class="col-lg-3">';
             html += '<label for="dropdown">Dropdown:</label>';
@@ -548,11 +533,10 @@
             html += '</div>';
             html += '<div class="col-lg-3">';
             html += '<label for="price">Harga:</label>';
-            html +=
-                '<input type="text" name="price[]" class="form-control" placeholder="Enter harga" autocomplete="off">';
+            html += '<input type="text" name="price[]" class="form-control" placeholder="Enter Price" autocomplete="off">';
             html += '</div>';
-            html += '<div class="col d-flex align-items-end">';
-            html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash-2"></button>';
+            html += '<div class="col-1 d-flex align-items-end">';
+            html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash-2"></i></button>';
             html += '</div>';
             html += '</div>';
 
