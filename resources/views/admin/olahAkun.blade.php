@@ -18,6 +18,7 @@
         .select2-container--classic .select2-results__option--highlighted[aria-selected] {
             background-color: #FF5B5B;
         }
+        
     </style>
 @endsection
 
@@ -530,32 +531,41 @@
         }
     </script>
 
-    {{-- <script>
-    $(document).ready(function() {
-            // Initialize Magnific Popup for image links
-            $('.image-popup').magnificPopup({
-                type: 'image', // Type of content (image)
-                gallery: {
-                    enabled: true // Enable gallery mode for multiple images
-                }
-            });
-        });
-</script> --}}
     <script>
-        $(document).ready(function() {
-
-            $('#view').magnificPopup({
-                type: 'image',
+    $(document).ready(function() {
+        
+        $('#view').magnificPopup({
+            type: 'image',
                 closeOnContentClick: true,
                 mainClass: 'mfp-img-mobile',
                 image: {
                     verticalFit: true
                 }
-
+                
             });
         });
     </script>
 
+    {{-- script untuk menambahkan margin atas pada table --}}
+    <script>
+        $(document).ready(function(){
+            const rows = document.querySelectorAll('.row');
+            const footerTable = rows[11];
+            footerTable.classList.add("mt-2");
+        });
+    </script>
+
+{{-- <script>
+$(document).ready(function() {
+        // Initialize Magnific Popup for image links
+        $('.image-popup').magnificPopup({
+            type: 'image', // Type of content (image)
+            gallery: {
+                enabled: true // Enable gallery mode for multiple images
+            }
+        });
+    });
+</script> --}}
 {{--    <!-- isotope filter plugin -->--}}
 {{--    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/isotope-layout/isotope.pkgd.min.js') }}"></script>--}}
 
