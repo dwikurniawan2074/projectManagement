@@ -100,6 +100,10 @@
             bottom: 50px;
         }
 
+        .left-side-menu .user-box .img-thumbnail {
+            border-radius: 30% !important;
+        }
+
         .btn-addItems {
             border-radius: 10px;
             background-color: #FF3E3E;
