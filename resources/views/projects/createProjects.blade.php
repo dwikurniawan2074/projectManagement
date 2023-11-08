@@ -5,6 +5,8 @@
     <!-- Include Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
+
     {{-- flatepckr date time css --}}
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
 
@@ -198,7 +200,7 @@
                                     <div class="mb-3">
                                         <label for="project_manager" class="form-label">Project Manager<span
                                                 class="text-danger">*</span></label>
-                                        <select class="form-control" id="project_manager" name="project_manager">
+                                        <select class="form-control" id="selectize-select" name="project_manager">
                                             @if (isset($usersByRole['Project Manager']))
                                                 <option>--Pilih Project Manager--</option>
                                                 @foreach ($usersByRole['Project Manager'] as $pm)
@@ -286,6 +288,9 @@
 @section('pageScript')
     <!-- Include Select2 JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-advanced.init.js') }}"></script>
+    <!-- Init js-->
 
     {{-- flatpckr date time js --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -302,7 +307,7 @@
     <script>
         $(document).ready(function() {
             $('#customers-name').select2({
-                placeholder: 'Cari customer',
+                placeholder: 'Cari Customer',
                 multiple: false,
                 dropdownAutoWidth: true,
                 width: '100%',
