@@ -131,6 +131,11 @@
         background-color: unset;
     }
 
+    .page-item.active .page-link {
+        background-color: #FF3E3E !important;
+        border: #FF3E3E;
+    }
+
 
 
     /* styling profile secrtion */

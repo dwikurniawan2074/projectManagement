@@ -151,11 +151,11 @@
                         <div class="row px-3">
                             <div class="col-3 profile-photo-column">
                                 <img
-                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    src="{{ asset('images/profile_photo.png') }}"
                                     alt="user-img" title="Mat Helme" class="rounded img-thumbnail avatar-md">
                             </div>
                             <div class="col-7">
-                                <h5 class="mb-1">Garcia Patel</h5>
+                                <h5 class="mb-1">Pak Ipung</h5>
                                 <p class="text-muted left-user-info mb-0">Admin</p>
                             </div>
                             <div class="col-2 my-auto">
