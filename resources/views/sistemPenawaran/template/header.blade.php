@@ -103,6 +103,34 @@
         margin-bottom: unset;
     }
 
+    .profile-photo-column {
+        padding: unset !important;
+    }
+
+    .left-side-menu .user-box .img-thumbnail {
+        border-radius: 30% !important;
+    }
+
+    .logout-font {
+        font-size: 18px;
+        font-weight: 100;
+        color: red;
+    }
+
+    .logout-font:hover {
+        font-weight: 900;
+    }
+
+    .profile-section {
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .btn-logout {
+        border: unset;
+        background-color: unset;
+    }
+
 
 
     /* styling profile secrtion */

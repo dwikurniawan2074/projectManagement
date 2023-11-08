@@ -146,7 +146,7 @@
                     </a>
                 </li>
 
-                {{-- <li class="profile-section">
+                <li class="profile-section">
                     <div class=" user-box text-start">
                         <div class="row px-3">
                             <div class="col-3 profile-photo-column">
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                </li> --}}
+                </li>
             </ul>
         </div>
 

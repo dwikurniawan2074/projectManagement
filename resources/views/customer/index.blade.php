@@ -264,4 +264,13 @@
             });
         });
     </script>
+
+    {{-- script untuk menambahkan margin atas pada table --}}
+    <script>
+        $(document).ready(function(){
+            const rows = document.querySelectorAll('.row');
+            const footerTable = rows[5];
+            footerTable.classList.add("mt-2");
+        });
+    </script>
 @endsection
