@@ -23,12 +23,13 @@
         <div class="content">
             <div class="container-fluid">
 
+                {{-- waiting list data --}}
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Waiting List</h4>
-                                <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
+                                <h4 class="mt-0 mb-3"><b>Waiting List</b></h4>
+                                <table id="waiting-table" class="table table-striped table-hover dt-responsive table-responsive nowrap">
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>
@@ -36,107 +37,17 @@
                                             <th>Nama Customer</th>
                                             <th>Project</th>
                                             <th>Tanggal Penawaran</th>
-                                            <th>Action</th>
+                                            <th width="200">Action</th>
                                         </tr>
                                     </thead>
 
 
                                     <tbody>
-                                        @for ($i = 0; $i <= 5; $i++)
+                                        @for ($i = 1; $i <= 5; $i++)
                                             <tr class="text-center">
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
-                                                        <button type="button"
-                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
-                                                        <button type="button"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endfor
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Approve</h4>
-                                <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>#</th>
-                                            <th>No.Penawaran</th>
-                                            <th>Nama Customer</th>
-                                            <th>Project</th>
-                                            <th>Tanggal Penawaran</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-
-
-                                    <tbody>
-                                        @for ($i = 0; $i <= 5; $i++)
-                                            <tr class="text-center">
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
-                                                        <button type="button"
-                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
-                                                        <button type="button"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endfor
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="mt-0 mb-3 header-title">Reject</h4>
-                                <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>#</th>
-                                            <th>No.Penawaran</th>
-                                            <th>Nama Customer</th>
-                                            <th>Project</th>
-                                            <th>Tanggal Penawaran</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-
-
-                                    <tbody>
-                                        @for ($i = 0; $i <= 5; $i++)
-                                            <tr class="text-center">
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
+                                                <td>{{ $i }}</td>
+                                                <td>0000/CS-TPP/X/2023</td>
+                                                <td>PT ABC Tangerang </td>
                                                 <td>61</td>
                                                 <td>2011/04/25</td>
                                                 <td>
@@ -159,7 +70,99 @@
                     </div>
                 </div>
 
+                {{-- Approved Data --}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 mb-3"><b>Approved List</b></h4>
+                                <table id="approved-table" class="table table-striped table-hover dt-responsive table-responsive nowrap">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>#</th>
+                                            <th>No.Penawaran</th>
+                                            <th>Nama Customer</th>
+                                            <th>Project</th>
+                                            <th>Tanggal Penawaran</th>
+                                            <th width="200">Action</th>
+                                        </tr>
+                                    </thead>
 
+
+                                    <tbody>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <tr class="text-center">
+                                                <td>{{ $i }}</td>
+                                                <td>0000/CS-TPP/X/2023</td>
+                                                <td>PT ABC Tangerang </td>
+                                                <td>Project 1</td>
+                                                <td>2011/04/25</td>
+                                                <td>
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
+                                                        <button type="button"
+                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Rejected Data --}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="mt-0 mb-3"><b>Rejected List</b></h4>
+                                <table id="rejected-table" class="table table-striped table-hover dt-responsive table-responsive nowrap">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>#</th>
+                                            <th>No.Penawaran</th>
+                                            <th>Nama Customer</th>
+                                            <th>Project</th>
+                                            <th>Tanggal Penawaran</th>
+                                            <th width="200">Action</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <tr class="text-center">
+                                                <td>{{ $i }}</td>
+                                                <td>0000/CS-TPP/X/2023</td>
+                                                <td>PT ABC Tangerang</td>
+                                                <td>Project 1</td>
+                                                <td>2011/04/25</td>
+                                                <td>
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <a href="{{route('sistemPenawaran.approval.preview')}}">
+                                                        <button type="button"
+                                                            class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button></a>
+                                                        <button type="button"
+                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -200,7 +203,31 @@
 
     <script>
         $(document).ready(function() {
-            $("#datatable").DataTable({
+            $("#waiting-table").DataTable({
+                // responsive: true;
+                autoWidth: false,
+                processing: true,
+                responsive: false,
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#approved-table").DataTable({
+                // responsive: true;
+                autoWidth: false,
+                processing: true,
+                responsive: false,
+
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#rejected-table").DataTable({
                 // responsive: true;
                 autoWidth: false,
                 processing: true,
