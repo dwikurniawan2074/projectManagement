@@ -13,7 +13,9 @@
 <html lang="en">
 
 <head>
+
     @include('template.header')
+
 </head>
 
 <body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid" data-topbar-color="light"
@@ -31,14 +33,19 @@
 
     <!-- Begin page -->
     <div id="wrapper">
+
         @include(' template.navbar')
+
         @if (session('success'))
             <div id="success-alert"></div>
         @elseif(session('error'))
             <div id="error-alert"></div>
         @endif
+
         @yield('content')
+
         @include('template.footer')
+        
         {{-- tutup div wrapper ada di file
     footer.blade.php --}}
     </div>

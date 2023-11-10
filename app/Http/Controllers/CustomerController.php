@@ -108,6 +108,6 @@ class CustomerController extends Controller
         $customerContacts = $customer->contacts;
         $relatedProjects = $customer->projects;
 
-        return view('customer.detailCustomer', compact('customer', 'customerContacts', 'relatedProjects'));
+        return view('customer.detailCustomer', compact('customer', 'customerContacts', 'relatedProjects', 'id'));
     }
 }

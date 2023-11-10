@@ -44,30 +44,34 @@
 </head>
 
 <body>
+{{--@dd($operational)--}}
+<div id="page-content">
 
     {{-- first header --}}
     <div id="first-header" align="center" style="margin-top: 80px;">
         <div style="width:900px">
             <table style="width: 750px">
                 <tbody>
-                    <tr>
-                        <td align="left">
-                            <img src="{{ asset('images/logo_trafindo_full.png') }}" height="50" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                            <h2>
-                                <b><u>WORK ORDER</u></b>
-                            </h2>
-                            <p>
-                                JNo: SPDL/N-23009/7/2023
-                            </p>
-                            <p style="text-align: left;">
-                                Based on Work Order No. N-23009, the following information is provided for review:
-                            </p>
-                        </td>
-                    </tr>
+                <tr>
+                    <td align="left">
+                        <img
+                            src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('images/logo_trafindo_full.png')))}}"
+                            height="50" alt="logo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h2>
+                            <b><u>WORK ORDER</u></b>
+                        </h2>
+                        <p>
+                            JNo: SPDL/N-23009/7/2023
+                        </p>
+                        <p style="text-align: left;">
+                            Based on Work Order No. N-23009, the following information is provided for review:
+                        </p>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -79,75 +83,75 @@
             <table style="width: 750px">
                 <tbody>
 
-                    {{-- row work date --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Work Date</b>
-                        </td>
-                        <td align="">
-                            12/07/2023
-                        </td>
-                    </tr>
+                {{-- row work date --}}
+                <tr>
+                    <td width="30%">
+                        <b>Work Date</b>
+                    </td>
+                    <td align="">
+                        {{$operational->date}}
+                    </td>
+                </tr>
 
-                    {{-- row project --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Project</b>
-                        </td>
-                        <td align="">
-                            Project Dummy
-                        </td>
-                    </tr>
+                {{-- row project --}}
+                <tr>
+                    <td width="30%">
+                        <b>Project</b>
+                    </td>
+                    <td align="">
+                        {{$operational->project->label}}
+                    </td>
+                </tr>
 
-                    {{-- row customer --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Customer</b>
-                        </td>
-                        <td>
-                            PT. Taiyo Sinar Raya Teknik
-                        </td>
-                    </tr>
+                {{-- row customer --}}
+                <tr>
+                    <td width="30%">
+                        <b>Customer</b>
+                    </td>
+                    <td>
+                        {{$customerId->companyName}}
+                    </td>
+                </tr>
 
-                    {{-- row type of work --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Type Of Work</b>
-                        </td>
-                        <td align="">
-                            Maintenance
-                        </td>
-                    </tr>
+                {{-- row type of work --}}
+                <tr>
+                    <td width="30%">
+                        <b>Type Of Work</b>
+                    </td>
+                    <td align="">
+                        {{$operational->type}}
+                    </td>
+                </tr>
 
-                    {{-- row transportation --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Transportation</b>
-                        </td>
-                        <td align="">
-                            Mobil
-                        </td>
-                    </tr>
+                {{-- row transportation --}}
+                <tr>
+                    <td width="30%">
+                        <b>Transportation</b>
+                    </td>
+                    <td align="">
+                        {{$operational->transportation_mode}}
+                    </td>
+                </tr>
 
-                    {{-- row vehicle identity number --}}
-                    <tr>
-                        <td width="30%">
-                            <b>VIN</b>
-                        </td>
-                        <td>
-                            B-2349-BZK
-                        </td>
-                    </tr>
+                {{-- row vehicle identity number --}}
+                <tr>
+                    <td width="30%">
+                        <b>VIN</b>
+                    </td>
+                    <td>
+                        {{$operational->vehicle_number ?? 'Tidak Ada'}}
+                    </td>
+                </tr>
 
-                    {{-- row description --}}
-                    <tr>
-                        <td width="30%">
-                            <b>Description</b>
-                        </td>
-                        <td>
-                            3 Unit
-                        </td>
-                    </tr>
+                {{-- row description --}}
+                <tr>
+                    <td width="30%">
+                        <b>Description</b>
+                    </td>
+                    <td>
+                        {{$operational->description}}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -158,13 +162,13 @@
         <div style="width:900px">
             <table style="width: 750px">
                 <tbody>
-                    <tr>
-                        <td align="left">
-                            <h3>
-                                <b>Assigned To:</b>
-                            </h3>
-                        </td>
-                    </tr>
+                <tr>
+                    <td align="left">
+                        <h3>
+                            <b>Assigned To:</b>
+                        </h3>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -174,53 +178,25 @@
     <div id="table-assigned-to" class="tables" align="center">
         <div style="width:900px">
             <table style="width: 750px">
+                <thead>
+                <tr>
+                    <th width="50%">
+                        <b>Name</b>
+                    </th>
+                    <th>
+                        <b>Division</b>
+                    </th>
+
+                </tr>
+                </thead>
                 <tbody>
 
-                    {{-- assigned to table header --}}
+                @foreach($operational->team as $team)
                     <tr>
-                        <th width="50%">
-                            <b>Name</b>
-                        </th>
-                        <th>
-                            <b>Division<b>
-                        </th>
+                        <td>{{$team->first_name}}</td>
+                        <td>{{$team->division}}</td>
                     </tr>
-
-                    {{-- row technician 1 --}}
-                    <tr>
-                        {{-- column technician name --}}
-                        <td>
-                            James Clark
-                        </td>
-                        {{-- column technician division --}}
-                        <td>
-                            Painting
-                        </td>
-                    </tr>
-
-                    {{-- row technician 2 --}}
-                    <tr>
-                        {{-- column technician name --}}
-                        <td>
-                            Michael Owen
-                        </td>
-                        {{-- column technician division --}}
-                        <td>
-                            Maintenance
-                        </td>
-                    </tr>
-
-                    {{-- row technician 3 --}}
-                    <tr>
-                        {{-- column technician name --}}
-                        <td>
-                            Kevin Sanjaya
-                        </td>
-                        {{-- column technician division --}}
-                        <td>
-                            Electrical
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -231,13 +207,13 @@
         <div style="width:900px">
             <table style="width: 750px">
                 <tbody>
-                    <tr>
-                        <td align="left">
-                            <h3>
-                                <b>To Do List:</b>
-                            </h3>
-                        </td>
-                    </tr>
+                <tr>
+                    <td align="left">
+                        <h3>
+                            <b>To Do List:</b>
+                        </h3>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -247,17 +223,23 @@
     <div id="table-todo" class="tables" align="center">
         <div style="width:900px">
             <table style="width: 750px">
+                <thead>
+                <tr>
+                    <th width="30%">
+                        <b>Due Date</b>
+                    </th>
+                    <th>
+                        <b>Description</b>
+                    </th>
+                </tr>
+                </thead>
                 <tbody>
-
-                    {{-- row due date dan description --}}
+                @foreach($operational->agendas as $agenda)
                     <tr>
-                        <th width="30%">
-                            <b>Due Date</b>
-                        </th>
-                        <th>
-                            <b>Description<b>
-                        </th>
+                        <td>{{$agenda->due_date}}</td>
+                        <td>{{$agenda->description}}</td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -269,64 +251,66 @@
             <table style="width: 750px">
                 <tbody>
 
-                    {{-- row tanggal --}}
-                    <tr>
-                        <td width="50%">
-                            Tangerang, 12/07/2023
-                        </td>
-                        <td width="50%">
+                {{-- row tanggal --}}
+                <tr>
+                    <td width="50%">
+                        Tangerang, {{$currentDate}}
+                    </td>
+                    <td width="50%">
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
 
-                    {{-- row created by dan acknowledged by --}}
-                    <tr>
-                        <td>
-                            Created By
-                        </td>
-                        <td>
-                            Acknowledged by
-                        </td>
-                    </tr>
+                {{-- row created by dan acknowledged by --}}
+                <tr>
+                    <td>
+                        Created By
+                    </td>
+                    <td>
+                        Acknowledged by
+                    </td>
+                </tr>
 
-                    {{-- row signature --}}
-                    <tr>
-                        <td>
+                {{-- row signature --}}
+                <tr>
+                    <td>
+                        <img
+                            src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('storage/'. $operational->creator->signature)))}}"
+                            width="60%" alt="">
+                    </td>
+                    <td>
+                        <img
+                            src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('storage/'. $currentUser->signature)))}}"
+                            width="60%" alt="">
+                    </td>
+                </tr>
 
-                        </td>
-                        <td>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tanda_Tangan_Mick_Schumacher.png"
-                                width="60%" alt="">
-                        </td>
-                    </tr>
+                {{-- row nama supervisor dan manager --}}
+                <tr>
+                    <td>
+                        {{$operational->creator->first_name . ' ' . $operational->creator->last_name}}
+                    </td>
+                    <td>
+                        {{$currentUser->first_name . ' ' . $currentUser->last_name}}
+                    </td>
+                </tr>
 
-                    {{-- row nama supervisor dan manager --}}
-                    <tr>
-                        <td>
-                            Aditia Mahardika
-                        </td>
-                        <td>
-                            Agus Taryan
-                        </td>
-                    </tr>
-
-                    {{-- row role sistem --}}
-                    <tr>
-                        <td>
-                            Technical Service Supervisor
-                        </td>
-                        <td>
-                            On Site Service Manager
-                        </td>
-                    </tr>
+                {{-- row role sistem --}}
+                <tr>
+                    <td>
+                        {{$operational->creator->division}}
+                    </td>
+                    <td>
+                        {{$currentUser->division}}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <script>
-        window.print()
-    </script>
+</div>
+
 </body>
 
 </html>

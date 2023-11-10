@@ -1,5 +1,10 @@
 @extends('template.index')
 
+{{-- headscript section --}}
+@section('headerScript')
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -8,6 +13,8 @@
             <div class="container-fluid">
 
                 <div class="row ">
+
+                    {{-- row total projects --}}
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
@@ -24,13 +31,9 @@
                         </div>
                     </div>
 
-                    //ini buat hak akses
+                    {{-- //ini buat hak akses --}}
                     @Allowed("Admin")
-                    <p>Allowed</p>
-                    @else
-                    <p>sdasd</p>
-                    @endAllowed
-
+                    {{-- <p>Allowed</p> --}}
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
@@ -46,6 +49,12 @@
                             </div>
                         </div>
                     </div>
+                    
+                    @else
+                    {{-- <p>sdasd</p> --}}
+                    @endAllowed
+
+                    
 
                     <!-- Tambahkan lebih banyak kolom sesuai kebutuhan -->
                 </div>
@@ -110,4 +119,8 @@
         });
     </script>
     {{-- <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script> --}}
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection

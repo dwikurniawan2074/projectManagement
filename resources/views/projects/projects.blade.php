@@ -1,17 +1,18 @@
 @extends('template.index')
 
-@section('content')
+{{-- header section --}}
+@section('headerScript')
     <style>
         .btn-createProjects {
-            border-radius: 10px;
-            background-color: #FF3E3E;
-            border: #FF3E3E;
-            color: white;
+            border-radius: 10px !important;
+            background-color: #FF3E3E !important;
+            border: #FF3E3E !important;
+            color: white !important;
 
         }
 
         .btn-createProjects:focus {
-            color: white;
+            color: white !important;
         }
 
         .project-detail {
@@ -48,8 +49,18 @@
             background-color: #ffc107;
             /* Warna warning, misalnya kuning */
         }
-    </style>
 
+        .project-box>p, .project-title{
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+@endsection
+
+{{-- content section --}}
+@section('content')
     <div class="content-page">
         <div class="content">
 
@@ -86,6 +97,7 @@
                         <div class="col-xl-4">
                             <div class="card">
                                 <div class="card-body project-box">
+                                    
                                     <div
                                         class="badge {{ $project['so'] == '' || $project['so'] == 'Nomor SO Belum diisi' ? 'bg-warning' : 'bg-danger' }} float-end font-14">
                                         {{ $project['so'] }}
@@ -99,23 +111,28 @@
                                         {{ $project->salesExecutive->first_name }} {{ $project->salesExecutive->last_name }}
                                     </p>
 
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item me-4">
-                                            <h4 class="mb-0 rupiah">{{ $project['preliminary_cost'] }}</h4>
-                                            <p class="text-muted">Preliminary Cost</p>
-                                        </li>
-                                        <li class="list-inline-item operational-cost">
-                                            <h4 class="mb-0 rupiah">{{ $project['expense_budget'] }}</h4>
-                                            <p class="text-muted">Service Budget</p>
-                                        </li>
-                                    </ul>
+                                    <div class="row">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item me-4">
+                                                <h4 class="mb-0 rupiah">{{ $project['preliminary_cost'] }}</h4>
+                                                <p class="text-muted">Preliminary Cost</p>
+                                            </li>
+                                            <li class="list-inline-item operational-cost">
+                                                <h4 class="mb-0 rupiah">{{ $project['expense_budget'] }}</h4>
+                                                <p class="text-muted">Service Budget</p>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                    <div class="project-detail">
-                                        <a href="{{ route('projects.show', ['id' => $project->id]) }}">
-                                            <button type="button"
+
+                                    <div class="row mt-0 text-end">
+                                        <div class="project-detail">
+                                            <a href="{{ route('projects.show', ['id' => $project->id]) }}">
+                                                <button type="button"
                                                 class="btn btn-danger btn-detail rounded-pill px-3 waves-effect waves-light"
                                                 title="Melihat detail project">Details</button>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -131,4 +148,8 @@
 
         </div> <!-- content -->
     </div>
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection
