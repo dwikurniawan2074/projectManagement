@@ -7,6 +7,20 @@
     .custom-button {
   width: 110px; /* Atur lebar sesuai keinginan Anda */
 }
+    /* Gaya default tombol */
+    .btn {
+        margin-right: 10px; /* Jarak default antara tombol */
+    }
+
+    /* Gaya tambahan saat mode responsif */
+    @media (max-width: 767px) {
+        .btn {
+            margin-bottom: 10px; /* Tambahkan jarak pada mode responsif */
+            margin-right: 0; /* Hapus jarak di samping */
+            display: block; /* Set tombol sebagai blok untuk tata letak vertikal */
+        }
+    }
+
 </style>    <div class="content-page">
         <div class="content">
             <div class="container-fluid">
@@ -16,7 +30,7 @@
                             <div class="card-body">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="{{ asset('contoh.pdf') }}"
-                                        style="width: 100%; height:869px;"></iframe>
+                                        style="width:100%; height:700px;"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -87,12 +101,11 @@
                                                     </p>
                                                 </th>
                                             </tr>
-                                            <th colspan="2" class="text-center">
+                                            <th colspan="3" class="text-center">
                                                 <button type="button" class="btn btn-success width-lg waves-effect waves-light rounded-pill"><i class="mdi mdi-check-all"></i>Approve</button>
                                                 <button type="button" class="btn btn-danger width-lg waves-effect waves-light rounded-pill"><i class="mdi mdi-close-circle-outline"></i>Approve</button>
                                             </th>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
