@@ -120,11 +120,11 @@ Route::prefix('customerContact')->group(function () {
     Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
     Route::get('/create', [CustomerContactController::class, 'create'])->name('customerContact.create');
     Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
-    Route::get('/show/', [CustomerContactController::class, 'show'])->name('customerContact.show');
-    Route::get('/edit', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
-    Route::get('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
+    Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
+    Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
+    Route::get('/update/{id}', [CustomerContactController::class, 'update'])->name('customerContact.update');
     Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
-    Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.getCustomerContact');;
+    Route::get('/get-customer-contact/{id}', [CustomerContactController::class, 'getCustomerContact'])->name('customerContact.get');;
 });
 
 //contoh route (post(/admin/roles)
