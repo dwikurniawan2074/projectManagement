@@ -48,7 +48,7 @@
                                                 <td>{{ $i }}</td>
                                                 <td>0000/CS-TPP/X/2023</td>
                                                 <td>PT ABC Tangerang </td>
-                                                <td>61</td>
+                                                <td>Project 1</td>
                                                 <td>2011/04/25</td>
                                                 <td>
                                                     <div class="d-flex gap-1 justify-content-center">

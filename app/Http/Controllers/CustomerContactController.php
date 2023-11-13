@@ -43,12 +43,16 @@ class CustomerContactController extends Controller
         return redirect()->route('customerContact.index')->with('success', 'Customer contact created successfully.');
     }
 
-    public function show(CustomerContact $customerContacts, $id)
+    public function show($id)
     {
         $customerContact = CustomerContact::find($id);
-        $relatedProjects = $customerContact->projects;
-        //return view('customerContact.show', compact('customerContact'));
-        return view('customer.show', compact('customerContact', 'relatedProjects'));
+
+        if (!$customerContact) {
+            return response()->json(['error' => 'Customer Contact not found'], 404);
+        }
+
+        // Mengembalikan data record document sebagai respons JSON
+        return response()->json($customerContact);
     }
 
     public function edit($id)
