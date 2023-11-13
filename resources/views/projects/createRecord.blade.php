@@ -1,5 +1,18 @@
 @extends('template.index')
 
+{{-- headerscript section --}}
+@section('headerScript')
+    {{-- dropzone file upload css --}}
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
+    type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
+    type="text/css" />
+
+    {{-- flatepckr date time css --}}
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -10,12 +23,12 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="" method="post" enctype="multipart/form-data"
+                                <form action="{{ route('recordDocument.store') }}" method="post" enctype="multipart/form-data"
                                     class="parsley-examples" novalidate="">
                                     @csrf
 
                                     {{-- hidden input project id --}}
-                                    <input type="hidden" name="project_id" value="">
+                                    <input type="hidden" name="project_id" value="{{ $project }}">
 
                                     {{-- form input submitted date --}}
                                     <div class="mb-3">
@@ -77,7 +90,7 @@
 
                                     {{-- button cancel dan save --}}
                                     <div class="text-end">
-                                        <a href=""
+                                        <a href="{{ route('projects.show', ['id' => $project]) }}"
                                             class="btn btn-secondary waves-effect">
                                             Cancel
                                         </a>
@@ -95,6 +108,13 @@
     </div>
 @endsection
 
-{{-- script js halaman create milestone --}}
+{{-- pagescript section --}}
 @section('pageScript')
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
+
+    {{-- flatpckr date time js --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> 
 @endsection

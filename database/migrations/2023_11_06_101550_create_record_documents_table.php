@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('operationals', function (Blueprint $table) {
+        Schema::create('record_documents', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->date('date');
-            $table->string('spk_code');
-            $table->string('spk_number');
-            $table->string('type');
+            $table->date('submitted_date');
+            $table->date('due_date');
             $table->text('description');
-            $table->string('transportation_mode');
-            $table->string('vehicle_number');
+            $table->string('progress');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('operationals');
+        Schema::dropIfExists('record_documents');
     }
 };

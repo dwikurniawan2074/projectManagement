@@ -1,24 +1,40 @@
 @extends('template.index')
 
-@section('content')
+{{-- headerscript section --}}
+@section('headerScript')
+    <!-- dropzone file upload css -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
+        type="text/css" />
+
+    {{-- flatepckr date time css --}}
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
+
     <style>
         tr {
             vertical-align: middle;
         }
 
-        .btn-createItems {
-            border-radius: 10px;
-            background-color: #FF3E3E;
-            border: #FF3E3E;
-            color: white;
-            margin-right: 0;
-            float: right;
-            margin-left: auto;
+        .btn-red {
+            border-radius: 5px !important;
             width: 150px;
         }
 
         .btn-createItems:focus {
             color: white;
+        }
+
+        .pagination-nav nav {
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        /* .pagination-nav .pagination .active  {
+        } */
+
+        .pagination ul li {
+            height: 100%;
         }
 
         @media screen and (max-width: 768px) {
@@ -37,8 +53,10 @@
             }
         }
     </style>
+@endsection
 
-
+{{-- content section --}}
+@section('content')
     <div class="content-page">
         <div class="content">
 
@@ -55,9 +73,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Term Of Payment</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('top.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Payment</a>
                                     </div>
                                 </div>
@@ -75,50 +93,48 @@
                                         </thead>
                                         <tbody>
                                             @if ($tops->isEmpty())
-                                                <tr>
-                                                    <td colspan="6" align="center">Belum ada payment</td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="6" align="center">Belum ada payment</td>
+                                            </tr>
                                             @else
-                                                @php($index = 1)
-                                                @foreach ($tops as $top)
-                                                    <tr>
-                                                        <th scope="row">{{ $index++ }}</th>
-                                                        <td>{{ $top['type'] }}</td>
-                                                        <td class="persentasiAngka">{{ $top['progress'] }}%</td>
-                                                        <td>{{ $top['description'] }}</td>
-                                                        <td class="text-center">
-                                                            <span
-                                                                class="badge {{ $top['status'] === 'Done' ? 'bg-success' : 'bg-warning' }}">
-                                                                {{ $top['status'] }}
-                                                            </span>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="unduh file" type="button"
-                                                                    class="tabledit-edit-button btn btn-success waves-effect waves-light">
-                                                                    <span class="mdi mdi-file-download-outline"></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="edit data" type="button"
-                                                                    data-bs-toggle="modal" value="{{ $top['id'] }}"
-                                                                    data-bs-target="#edit-payment-modal"
-                                                                    title="Edit Payment"
-                                                                    class="tabledit-edit-button paymentEdit btn btn-primary waves-effect waves-light"
-                                                                    style="background-color: #3E8BFF;">
-                                                                    <span class="mdi mdi-pencil"></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="hapus data" type="button"
-                                                                    value="{{ $top['id'] }}"
-                                                                    class="tabledit-edit-button hapusPayment btn btn-danger">
-                                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                            @php($index = 1)
+                                            @foreach ($tops as $top)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td>{{ $top['type'] }}</td>
+                                                <td class="persentasiAngka">{{ $top['progress'] }}%</td>
+                                                <td>{{ $top['description'] }}</td>
+                                                <td class="text-center">
+                                                    <span
+                                                        class="badge {{ $top['status'] === 'Done' ? 'bg-success' : 'bg-warning' }}">
+                                                        {{ $top['status'] }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="unduh file" type="button"
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light">
+                                                            <span class="mdi mdi-file-download-outline"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="edit data" type="button" data-bs-toggle="modal"
+                                                            value="{{ $top['id'] }}" data-bs-target="#edit-payment-modal"
+                                                            title="Edit Payment"
+                                                            class="tabledit-edit-button paymentEdit btn btn-primary waves-effect waves-light"
+                                                            style="background-color: #3E8BFF;">
+                                                            <span class="mdi mdi-pencil"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="hapus data" type="button" value="{{ $top['id'] }}"
+                                                            class="tabledit-edit-button hapusPayment btn btn-danger">
+                                                            <span class="mdi mdi-trash-can-outline"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             @endif
                                         </tbody>
                                     </table>
@@ -133,9 +149,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Production Cost</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ url('projects/createProductionCost', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Cost</a>
                                     </div>
                                 </div>
@@ -152,36 +168,35 @@
                                         </thead>
                                         <tbody>
                                             @if ($productionCost->isEmpty())
-                                                <tr>
-                                                    <td colspan="4" align="center">Belum ada production cost</td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="4" align="center">Belum ada production cost</td>
+                                            </tr>
                                             @else
-                                                @php($index = 1)
-                                                @foreach ($productionCost as $cost)
-                                                    <tr>
-                                                        <th scope="row">{{ $index++ }}</th>
-                                                        <td>{{ $cost['description'] }}</td>
-                                                        <td class="rupiah">{{ $cost['amount'] }}</td>
-                                                        <td class="text-center">
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="Edit Production Cost" type="button"
-                                                                    data-bs-toggle="modal" data-bs-target="#edit-cost-modal"
-                                                                    class="tabledit-edit-button costEdit btn btn-primary waves-effect waves-light"
-                                                                    value="{{ $cost['id'] }}"
-                                                                    style="background-color: #3E8BFF;">
-                                                                    <span class="mdi mdi-pencil"></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="Hapus Operational Cost" type="button"
-                                                                    value="{{ $cost->id }}"
-                                                                    class="tabledit-edit-button hapusPCost btn btn-danger">
-                                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                            @php($index = 1)
+                                            @foreach ($productionCost as $cost)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td>{{ $cost['description'] }}</td>
+                                                <td class="rupiah">{{ $cost['amount'] }}</td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="Edit Production Cost" type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#edit-cost-modal"
+                                                            class="tabledit-edit-button costEdit btn btn-primary waves-effect waves-light"
+                                                            value="{{ $cost['id'] }}" style="background-color: #3E8BFF;">
+                                                            <span class="mdi mdi-pencil"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="Delete Production Cost" type="button"
+                                                            value="{{ $cost->id }}"
+                                                            class="tabledit-edit-button hapusPCost btn btn-danger">
+                                                            <span class="mdi mdi-trash-can-outline"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             @endif
 
                                         </tbody>
@@ -197,9 +212,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Milestone</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('milestone.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan milestone"></i>Add Milestone</a>
                                     </div>
                                 </div>
@@ -218,60 +233,62 @@
                                         </thead>
                                         <tbody>
                                             @if ($milestones->isEmpty())
-                                                <tr>
-                                                    <td colspan="6" align="center">Belum ada milestone</td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="6" align="center">Belum ada milestone</td>
+                                            </tr>
                                             @else
-                                                @php($index = 1)
-                                                @foreach ($milestones as $milestone)
-                                                    <tr>
-                                                        <th scope="row">{{ $index++ }}</th>
-                                                        <td class="formatTanggal">{{ $milestone['submitted_date'] }}</td>
-                                                        <td>{{ $milestone['description'] }}</td>
-                                                        <td class="formatTanggal">{{ $milestone['due_date'] }}</td>
-                                                        <td class="text-center">
-                                                            <span
-                                                                class="badge
-                                                                @if ($milestone['progress'] == 'Done') bg-success
-                                                                @elseif($milestone['progress'] == 'Planned')
-                                                                bg-primary
-                                                                @elseif($milestone['progress'] == 'On Progress')
-                                                                bg-warning @endif
-                                                            ">{{ $milestone['progress'] }}</span>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <a href="{{ asset('images/milestone_files/' . $milestone->file) }}"
-                                                                    title="Download Gambar Milestone" type="button"
-                                                                    class="tabledit-edit-button btn btn-success waves-effect waves-light"
-                                                                    download>
-                                                                    <span class="mdi mdi-file-download-outline"></span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="Untuk mengedit milestone" type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#edit-milestone-modal"
-                                                                    value="{{ $milestone['id'] }}"
-                                                                    class="tabledit-edit-button milestoneEdit btn btn-primary waves-effect waves-light"
-                                                                    style="background-color: #3E8BFF;">
-                                                                    <span class="mdi mdi-pencil"></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button id="deleteButton"
-                                                                    title="Untuk menghapus milestone" type="button"
-                                                                    value="{{ $milestone['id'] }}"
-                                                                    class="tabledit-edit-button hapusMilestone btn btn-danger">
-                                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                            @php($index = 1)
+                                            @foreach ($milestones as $key => $milestone)
+                                            <tr>
+                                                <th scope="row">{{ $key + $milestones->firstItem() }}</th>
+                                                <td class="formatTanggal">{{ $milestone['submitted_date'] }}</td>
+                                                <td>{{ $milestone['description'] }}</td>
+                                                <td class="formatTanggal">{{ $milestone['due_date'] }}</td>
+                                                <td class="text-center">
+                                                    <span class="badge
+                                                                        @if ($milestone['progress'] == 'Done') bg-success
+                                                                        @elseif($milestone['progress'] == 'Planned')
+                                                                        bg-primary
+                                                                        @elseif($milestone['progress'] == 'On Progress')
+                                                                        bg-warning @endif
+                                                                    ">{{ $milestone['progress'] }}</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <a href="{{ asset('images/milestone_files/' . $milestone->file) }}"
+                                                            title="Download File Milestone" type="button" 
+                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}} 
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light
+                                                                {{ !$milestone->file ? 'disabled' : '' }}" download>
+                                                            <span class="mdi mdi-file-download-outline"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="Edit Milestone" type="button"
+                                                            data-bs-toggle="modal" data-bs-target="#edit-milestone-modal"
+                                                            value="{{ $milestone['id'] }}"
+                                                            class="tabledit-edit-button milestoneEdit btn btn-primary waves-effect waves-light"
+                                                            style="background-color: #3E8BFF;">
+                                                            <span class="mdi mdi-pencil"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button id="deleteButton" title="Delete Milestone"
+                                                            type="button" value="{{ $milestone['id'] }}"
+                                                            class="tabledit-edit-button hapusMilestone btn btn-danger">
+                                                            <span class="mdi mdi-trash-can-outline"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            @endforeach
                                             @endif
                                         </tbody>
                                     </table>
+                                    <div class="pagination-nav mt-2 d-flex justify-content-around">
+                                        {{ $milestones->links('pagination::bootstrap-5') }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -283,9 +300,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Record Document</h4>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <a href="{{ url('projects/createRecord') }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                    <div class="col-sm-4 text-end">
+                                        <a href="{{  route('recordDocument.create', ['id' => $projectData->id]) }}"
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan milestone"></i>Add Record</a>
                                     </div>
                                 </div>
@@ -303,54 +320,54 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @if ($milestones->isEmpty())
-                                                <tr>
-                                                    <td colspan="6" align="center">Belum ada milestone</td>
-                                                </tr>
-                                            @else
-                                                @php($index = 1)
-                                                @foreach ($milestones as $milestone) --}}
+                                            @if ($recordDocument->isEmpty())
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td class="formatTanggal"></td>
-                                                <td>dummy desc</td>
-                                                <td class="formatTanggal"></td>
+                                                <td colspan="6" align="center">Belum ada Record Document</td>
+                                            </tr>
+                                            @else
+                                            @php($index = 1)
+                                            @foreach ($recordDocument as $record)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td class="formatTanggal">{{ $record['submitted_date'] }}</td>
+                                                <td>{{ $record['description'] }}</td>
+                                                <td class="formatTanggal">{{ $record['due_date'] }}</td>
                                                 <td class="text-center">
-                                                    <span
-                                                        class="badge bg-success
-                                                                {{-- @if ($milestone['progress'] == 'Done') bg-success
-                                                                @elseif($milestone['progress'] == 'Planned')
-                                                                bg-primary
-                                                                @elseif($milestone['progress'] == 'On Progress')
-                                                                bg-warning @endif --}}
-                                                            ">done</span>
+                                                    <span class="badge bg-success
+                                                                        @if ($record['progress'] == 'Done') bg-success
+                                                                        @elseif($record['progress'] == 'Planned')
+                                                                        bg-primary
+                                                                        @elseif($record['progress'] == 'On Progress')
+                                                                        bg-warning @endif
+                                                                    ">{{ $record['progress'] }}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <a href="" title="Download File Record" type="button"
-                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light"
-                                                            download>
+                                                        <a href="{{ asset('recordDocument_files/'. $record->file) }}" title="Download File Record" type="button"
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light 
+                                                            {{ !$record->file ? 'disabled' : '' }}" download>
                                                             <span class="mdi mdi-file-download-outline"></span>
                                                         </a>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button title="Edit Record" type="button" data-bs-toggle="modal"
                                                             data-bs-target="#edit-record-modal"
-                                                            class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                            style="background-color: #3E8BFF;">
+                                                            value="{{ $record['id'] }}"
+                                                            class="tabledit-edit-button recordEdit btn btn-primary waves-effect waves-light "
+                                                            style="background-color: #3E8BFF;" >
                                                             <span class="mdi mdi-pencil"></span>
                                                         </button>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button id="deleteButton" title="Hapus Record" type="button"
-                                                            value="" class="tabledit-edit-button btn btn-danger">
+                                                            value="{{ $record['id'] }}" class="tabledit-edit-button hapusRecord btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
                                                         </button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {{-- @endforeach
-                                            @endif --}}
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -364,9 +381,9 @@
                                     <div class="col-sm-8">
                                         <h4 class="mt-0 header-title">Field Service Log</h4>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 text-end">
                                         <a href="{{ route('operational.create', ['id' => $projectData->id]) }}"
-                                            class="btn btn-createItems w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Operational</a>
                                     </div>
                                 </div>
@@ -385,48 +402,46 @@
                                         </thead>
                                         <tbody>
                                             @if ($operationals->isEmpty())
-                                                <tr>
-                                                    <td colspan="7" align="center">Belum ada operational service</td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="7" align="center">Belum ada operational service</td>
+                                            </tr>
                                             @else
-                                                @php($index = 1)
-                                                @foreach ($operationals as $operational)
-                                                    <tr>
-                                                        <th scope="row">{{ $index++ }}</th>
-                                                        <td>{{ $operational['spk_code'] }}
-                                                        </td>
-                                                        <td class="formatTanggal">{{ $operational['date'] }}</td>
-                                                        <td>{{ $operational['type'] }}</td>
-                                                        <td>{{ $operational['spk_number'] }}</td>
-                                                        <td class="text-center rupiah">{{ $operational['amount'] }}</td>
-                                                        <td class="text-center truncate-text">
-                                                            <a href="{{ route('operational.showById', ['id' => $operational->id]) }}"
-                                                                class="tabledit-edit-button btn btn-info waves-effect waves-light"
-                                                                title="Detail operational"
-                                                                style="padding: 0.25rem 0.8rem;">
-                                                                <span class="mdi mdi-eye"></span>
-                                                                </button>
-                                                            </a>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button type="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#edit-service-modal"
-                                                                    title="Edit Field Service Log"
-                                                                    value="{{ $operational->id }}"
-                                                                    class="tabledit-edit-button editOperational btn btn-primary waves-effect waves-light"
-                                                                    style="background-color: #3E8BFF;">
-                                                                    <span class="mdi mdi-pencil"></span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <button title="hapus data operational" type="button"
-                                                                    value="{{ $operational->id }}"
-                                                                    class="tabledit-edit-button hapusOperational btn btn-danger">
-                                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                            @php($index = 1)
+                                            @foreach ($operationals as $operational)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td>{{ $operational['spk_code'] }}
+                                                </td>
+                                                <td class="formatTanggal">{{ $operational['date'] }}</td>
+                                                <td>{{ $operational['type'] }}</td>
+                                                <td>{{ $operational['spk_number'] }}</td>
+                                                <td class="text-center rupiah">{{ $operational['amount'] }}</td>
+                                                <td class="text-center truncate-text">
+                                                    <a href="{{ route('operational.showById', ['id' => $operational->id]) }}"
+                                                        class="tabledit-edit-button btn btn-info waves-effect waves-light"
+                                                        title="Detail operational" style="padding: 0.25rem 0.8rem;">
+                                                        <span class="mdi mdi-eye"></span>
+                                                        </button>
+                                                    </a>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#edit-service-modal"
+                                                            title="Edit Field Service Log" value="{{ $operational->id }}"
+                                                            class="tabledit-edit-button editOperational btn btn-primary waves-effect waves-light"
+                                                            style="background-color: #3E8BFF;">
+                                                            <span class="mdi mdi-pencil"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="hapus data operational" type="button"
+                                                            value="{{ $operational->id }}"
+                                                            class="tabledit-edit-button hapusOperational btn btn-danger">
+                                                            <span class="mdi mdi-trash-can-outline"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             @endif
                                         </tbody>
                                     </table>
@@ -451,7 +466,7 @@
                                     <div class="col-4 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <a href="{{ route('projects.editProjects', ['id' => $project->id]) }}">
-                                                <button title="edit data" type="button"
+                                                <button title="Edit Project" type="button"
                                                     class="tabledit-edit-button btn btn-primary waves-effect waves-light"
                                                     style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
@@ -459,7 +474,7 @@
                                             </a>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="hapus data" type="button"
+                                            <button title="Delete Project" type="button"
                                                 class="tabledit-edit-button hapusProject btn btn-danger"
                                                 value="{{ $projectData->id }}">
                                                 <span class="mdi mdi-trash-can-outline"></span>
@@ -477,19 +492,17 @@
                                                     <div class="row text-center">
                                                         <div class="col-md-6 px-4">
                                                             {{-- <div style="width: fit-content; height: fit-content;"> --}}
-                                                            <p class="title-text">Progress Milestone</p>
-                                                            <canvas id="donut-chart" class="py-1"
-                                                                width="200"></canvas>
-                                                            {{--
-                                                        </div> --}}
+                                                                <p class="title-text">Progress Milestone</p>
+                                                                <canvas id="donut-chart" class="py-1" width="200"></canvas>
+                                                                {{--
+                                                            </div> --}}
                                                         </div>
                                                         <div class="col-md-6 px-4">
                                                             {{-- <div style="width: fit-content; height: fit-content;"> --}}
-                                                            <p class="title-text">Progress Payment</p>
-                                                            <canvas id="donut-chart2" class="py-1"
-                                                                width="200"></canvas>
-                                                            {{--
-                                                        </div> --}}
+                                                                <p class="title-text">Progress Payment</p>
+                                                                <canvas id="donut-chart2" class="py-1" width="200"></canvas>
+                                                                {{--
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                     </p>
@@ -506,8 +519,9 @@
                                                         <p class="text-light"
                                                             style="font-size: 15px; border-radius: 10px; margin-left: 5px; padding: 2px 4px; background-color: {{ $realCost <= $projectData->preliminary_cost ? 'green' : 'red' }}">
                                                             {{ $realCost <= $projectData->preliminary_cost ? '+' : '-' }}
-                                                            <span class="rupiah">
-                                                                {{ abs($realCost - $projectData->preliminary_cost) }}</span>
+                                                                <span class="rupiah">
+                                                                    {{ abs($realCost - $projectData->preliminary_cost)
+                                                                    }}</span>
                                                         </p>
 
                                                     </div>
@@ -524,8 +538,9 @@
                                                         <p class="text-light"
                                                             style="font-size: 15px; border-radius: 10px; margin-left: 5px; padding: 2px 4px; background-color: {{ $realService <= $projectData->expense_budget ? 'green' : 'red' }}">
                                                             {{ $realService <= $projectData->expense_budget ? '+' : '-' }}
-                                                            <span class="rupiah">
-                                                                {{ abs($realService - $projectData->expense_budget) }}</span>
+                                                                <span class="rupiah">
+                                                                    {{ abs($realService - $projectData->expense_budget)
+                                                                    }}</span>
                                                         </p>
 
                                                     </div>
@@ -613,199 +628,272 @@
     </div>
 @endsection
 
-{{-- script js halaman detail project --}}
+{{-- pagescript section --}}
 @section('pageScript')
-    {{-- donut chart --}}
+
+    {{-- chart js script cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.pie.js"></script>
 
-    {{-- js flot chart --}}
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
+    {{-- flatpckr date time js --}}
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
 
+    {{-- donut chart milestone progress --}}
     <script>
         // Sample data
-        var percentageDone = {{ $percentageDone }};
-        var percentageNotDone = 100 - percentageDone;
-        var labels = ["Done", "Not Done"]; // Label untuk setiap segmen
+                var percentageDone = {{ $percentageDone }};
+                var percentageNotDone = 100 - percentageDone;
+                var labels = ["Done", "Not Done"]; // Label untuk setiap segmen
 
-        var ctx = document.getElementById("donut-chart").getContext("2d");
+                var ctx = document.getElementById("donut-chart").getContext("2d");
 
-        var donutChart = new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: [percentageDone, percentageNotDone],
-                    backgroundColor: ["#17D72A", "#F3F2F2"],
-                }],
-            },
-            options: {
-                cutout: "70%",
-                elements: {
-                    arc: {
-                        borderWidth: 0,
-                        borderRadius: 30,
+                var donutChart = new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: [percentageDone, percentageNotDone],
+                            backgroundColor: ["#17D72A", "#F3F2F2"],
+                        }],
                     },
-                },
-                plugins: {
-                    legend: {
-                        display: false, // Hide legend
+                    options: {
+                        cutout: "70%",
+                        elements: {
+                            arc: {
+                                borderWidth: 0,
+                                borderRadius: 30,
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, // Hide legend
+                            },
+                        },
                     },
-                },
-            },
-            plugins: [{
-                id: 'text',
-                beforeDraw: function(chart, a, b) {
-                    var width = chart.width,
-                        height = chart.height,
-                        ctx = chart.ctx;
+                    plugins: [{
+                        id: 'text',
+                        beforeDraw: function(chart, a, b) {
+                            var width = chart.width,
+                                height = chart.height,
+                                ctx = chart.ctx;
 
-                    ctx.restore();
-                    var fontSize = (height / 100).toFixed(2);
-                    ctx.font = fontSize + "em sans-serif";
-                    ctx.textBaseline = "middle";
+                            ctx.restore();
+                            var fontSize = (height / 100).toFixed(2);
+                            ctx.font = fontSize + "em sans-serif";
+                            ctx.textBaseline = "middle";
 
-                    var percentageDone = {{ $percentageDone }};
-                    var text = Math.round(percentageDone) + "%";
-                    textX = Math.round((width - ctx.measureText(text).width) / 2),
-                        textY = height / 2;
+                            var percentageDone = {{ $percentageDone }};
+                            var text = Math.round(percentageDone) + "%";
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 2;
 
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
+                    }],
+                });
+
+
+                // Function to format the labels
+                function labelFormatter(label, series) {
+                    const formattedPercent = Math.round(series.percent).toFixed(0);
+                    return `<div style="font-size:8pt; text-align:center; padding:2px; color:white;">${label}<br/>${formattedPercent}%</div>`;
                 }
-            }],
-        });
-
-
-        // Function to format the labels
-        function labelFormatter(label, series) {
-            const formattedPercent = Math.round(series.percent).toFixed(0);
-            return `<div style="font-size:8pt; text-align:center; padding:2px; color:white;">${label}<br/>${formattedPercent}%</div>`;
-        }
     </script>
 
+    {{-- donut chart term of payment --}}
     <script>
         // Sample data
-        var progress = {{ $topProgress }};
-        var notProgress = 100 - progress;
+                var progress = {{ $topProgress }};
+                var notProgress = 100 - progress;
 
 
-        var ctx = document.getElementById("donut-chart2").getContext("2d");
+                var ctx = document.getElementById("donut-chart2").getContext("2d");
 
-        var donutChart = new Chart(ctx, {
-            type: "doughnut", // Specifies the chart type as a donut chart
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: [progress, notProgress],
-                    backgroundColor: ["#FE3E3E", "#F3F2F2"], // Customize segment colors
-                }, ],
-            },
-            options: {
-                cutout: "70%", // Control the size of the hole in the middle (percentage)
-                elements: {
-                    arc: {
-                        borderWidth: 0, // Remove border
-                        borderRadius: 30, // Set border radius to round the edges
+                var donutChart = new Chart(ctx, {
+                    type: "doughnut", // Specifies the chart type as a donut chart
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: [progress, notProgress],
+                            backgroundColor: ["#FE3E3E", "#F3F2F2"], // Customize segment colors
+                        }, ],
                     },
-                },
-                plugins: {
-                    legend: {
-                        display: false, // Hide legend
+                    options: {
+                        cutout: "70%", // Control the size of the hole in the middle (percentage)
+                        elements: {
+                            arc: {
+                                borderWidth: 0, // Remove border
+                                borderRadius: 30, // Set border radius to round the edges
+                            },
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, // Hide legend
+                            },
+                        },
                     },
-                },
-            },
-            plugins: [{
-                id: 'text',
-                beforeDraw: function(chart, a, b) {
-                    var width = chart.width,
-                        height = chart.height,
-                        ctx = chart.ctx;
+                    plugins: [{
+                        id: 'text',
+                        beforeDraw: function(chart, a, b) {
+                            var width = chart.width,
+                                height = chart.height,
+                                ctx = chart.ctx;
 
-                    ctx.restore();
-                    var fontSize = (height / 100).toFixed(2);
-                    ctx.font = fontSize + "em sans-serif";
-                    ctx.textBaseline = "middle";
+                            ctx.restore();
+                            var fontSize = (height / 100).toFixed(2);
+                            ctx.font = fontSize + "em sans-serif";
+                            ctx.textBaseline = "middle";
 
-                    var text = Math.round(progress) + "%";
-                    textX = Math.round((width - ctx.measureText(text).width) / 2),
-                        textY = height / 2;
+                            var text = Math.round(progress) + "%";
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                                textY = height / 2;
 
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-                }
-            }],
-        });
+                            ctx.fillText(text, textX, textY);
+                            ctx.save();
+                        }
+                    }],
+                });
     </script>
 
     {{-- Hapus Project Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on('click', '.hapusProject', function() {
-                var id = $(this).val();
+                    $(document).on('click', '.hapusProject', function() {
+                        var id = $(this).val();
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Beberapa data mungkin akan ikut terhapus",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Silahkan isi logika nya sendiri xixixi
-                        $.ajax({
-                            url: "{{ route('projects.destroy', '') }}" + '/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            success: function(response) {
-                                try {
-                                    if (response.message) {
-                                        Swal.fire({
-                                            title: "Sukses!",
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK'
-                                        }).then((hasil) => {
-                                            if (hasil.isConfirmed) {
-                                                window.location.href =
-                                                    "{{ route('projects.index') }}";
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Beberapa data mungkin akan ikut terhapus",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('projects.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.href =
+                                                            "{{ route('projects.index') }}";
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
                                             }
-                                        });
-                                    } else {
-                                        console.error('Terjadi kesalahan: ' + response
-                                            .error
-                                        ); // Tampilkan pesan kesalahan jika ada
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
                                     }
-                                } catch (error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat mengolah respons: ' +
-                                        error);
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(
-                                    'Terjadi kesalahan saat menghapus data: ' +
-                                    error);
+                                });
+
                             }
                         });
-
-                    }
+                    });
                 });
-            });
-        });
     </script>
+
     {{-- Hapus Milestone Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on('click', '.hapusMilestone', function() {
+                    $(document).on('click', '.hapusMilestone', function() {
+                        var id = $(this).val();
+
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('milestone.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
+                                            }
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
+                                    }
+                                });
+
+                            }
+                        });
+                    });
+                });
+    </script>
+
+    {{-- Hapus Document Record Pop Up --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on('click', '.hapusRecord', function() {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -823,7 +911,7 @@
                     if (result.isConfirmed) {
                         // Silahkan isi logika nya sendiri xixixi
                         $.ajax({
-                            url: "{{ route('milestone.destroy', '') }}" + '/' + id,
+                            url: "{{ route('recordDocument.destroy', '') }}" + '/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: "{{ csrf_token() }}",
@@ -868,194 +956,219 @@
     {{-- Hapus Production Cost Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on('click', '.hapusPCost', function() {
-                var id = $(this).val();
+                    $(document).on('click', '.hapusPCost', function() {
+                        var id = $(this).val();
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Silahkan isi logika nya sendiri xixixi
-                        $.ajax({
-                            url: "{{ route('production-cost.destroy', '') }}" + '/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            success: function(response) {
-                                try {
-                                    if (response.message) {
-                                        Swal.fire({
-                                            title: "Sukses!",
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK'
-                                        }).then((hasil) => {
-                                            if (hasil.isConfirmed) {
-                                                window.location.reload();
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('production-cost.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
                                             }
-                                        });
-                                    } else {
-                                        console.error('Terjadi kesalahan: ' + response
-                                            .error
-                                        ); // Tampilkan pesan kesalahan jika ada
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
                                     }
-                                } catch (error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat mengolah respons: ' +
-                                        error);
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(
-                                    'Terjadi kesalahan saat menghapus data: ' +
-                                    error);
+                                });
+
                             }
                         });
-
-                    }
+                    });
                 });
-            });
-        });
     </script>
 
     {{-- Hapus Payment Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on('click', '.hapusPayment', function() {
-                var id = $(this).val();
+                    $(document).on('click', '.hapusPayment', function() {
+                        var id = $(this).val();
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Silahkan isi logika nya sendiri xixixi
-                        $.ajax({
-                            url: "{{ route('top.destroy', '') }}" + '/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            success: function(response) {
-                                try {
-                                    if (response.message) {
-                                        Swal.fire({
-                                            title: "Sukses!",
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK'
-                                        }).then((hasil) => {
-                                            if (hasil.isConfirmed) {
-                                                window.location.reload();
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Data tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('top.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
                                             }
-                                        });
-                                    } else {
-                                        console.error('Terjadi kesalahan: ' + response
-                                            .error
-                                        ); // Tampilkan pesan kesalahan jika ada
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
                                     }
-                                } catch (error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat mengolah respons: ' +
-                                        error);
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(
-                                    'Terjadi kesalahan saat menghapus data: ' +
-                                    error);
+                                });
+
                             }
                         });
-
-                    }
+                    });
                 });
-            });
-        });
     </script>
 
     {{-- Hapus Operational Pop Up --}}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on('click', '.hapusOperational', function() {
-                var id = $(this).val();
+                    $(document).on('click', '.hapusOperational', function() {
+                        var id = $(this).val();
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Beberapa data yang terkait mungkin akan terhapus",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Silahkan isi logika nya sendiri xixixi
-                        $.ajax({
-                            url: "{{ route('operational.destroy', '') }}" + '/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            success: function(response) {
-                                try {
-                                    if (response.message) {
-                                        Swal.fire({
-                                            title: "Sukses!",
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK'
-                                        }).then((hasil) => {
-                                            if (hasil.isConfirmed) {
-                                                window.location.reload();
+                        // Display a confirmation dialog
+                        Swal.fire({
+                            title: "Anda yakin?",
+                            text: "Beberapa data yang terkait mungkin akan terhapus",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#f34e4e',
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'Cancel',
+                            backrop: 'static',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Silahkan isi logika nya sendiri xixixi
+                                $.ajax({
+                                    url: "{{ route('operational.destroy', '') }}" + '/' + id,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        try {
+                                            if (response.message) {
+                                                Swal.fire({
+                                                    title: "Sukses!",
+                                                    text: response.message,
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                }).then((hasil) => {
+                                                    if (hasil.isConfirmed) {
+                                                        window.location.reload();
+                                                    }
+                                                });
+                                            } else {
+                                                console.error('Terjadi kesalahan: ' + response
+                                                    .error
+                                                ); // Tampilkan pesan kesalahan jika ada
                                             }
-                                        });
-                                    } else {
-                                        console.error('Terjadi kesalahan: ' + response
-                                            .error
-                                        ); // Tampilkan pesan kesalahan jika ada
+                                        } catch (error) {
+                                            console.error(
+                                                'Terjadi kesalahan saat mengolah respons: ' +
+                                                error);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(
+                                            'Terjadi kesalahan saat menghapus data: ' +
+                                            error);
                                     }
-                                } catch (error) {
-                                    console.error(
-                                        'Terjadi kesalahan saat mengolah respons: ' +
-                                        error);
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(
-                                    'Terjadi kesalahan saat menghapus data: ' +
-                                    error);
+                                });
+
                             }
                         });
+                    });
+                });
+    </script>
 
+    {{-- Document Record edit --}}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.recordEdit', function() {
+                var id = $(this).val(); // Menggunakan data-id yang baru
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('recordDocument.show', '') }}" + "/" + id,
+                    dataType: "json",
+                    success: function(response) {
+                        $("#recordDocument_id").val(response.id);
+                        $("#record_submitted_date").val(response.submitted_date);
+                        $("#record_description").val(response.description);
+                        $("#record_due_date").val(response.due_date);
+                        $("#record_progress").val(response.progress);
+                        console.log("success");
+                    },
+                    error: function(response) {
+                        alert("Error: " + response.statusText);
                     }
                 });
             });
         });
     </script>
 
-    {{-- Milestone edit --}}
-    <script>
+     {{-- Milestone edit --}}
+     <script>
         $(document).ready(function() {
             $(document).on('click', '.milestoneEdit', function() {
                 var id = $(this).val(); // Menggunakan data-id yang baru
@@ -1104,87 +1217,87 @@
     {{-- Payment edit --}}
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.paymentEdit', function() {
-                var id = $(this).val(); // Menggunakan data-id yang baru
-                $.ajax({
-                    type: "GET",
-                    url: "/top/get-payment-data/" + id,
-                    dataType: "json",
-                    success: function(response) {
-                        $("#id_payment").val(response.id);
-                        $("#type_payment").val(response.type);
-                        $("#progress_payment").val(response.progress);
-                        $("#description_payment").val(response.description);
-                        $("#status_payment").val(response.status);
-                    },
-                    error: function(response) {
-                        alert("Error: " + response.statusText);
-                    }
+                    $(document).on('click', '.paymentEdit', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/top/get-payment-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#id_payment").val(response.id);
+                                $("#type_payment").val(response.type);
+                                $("#progress_payment").val(response.progress);
+                                $("#description_payment").val(response.description);
+                                $("#status_payment").val(response.status);
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
                 });
-            });
-        });
     </script>
 
     {{-- Operational edit --}}
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.editOperational', function() {
-                var id = $(this).val(); // Menggunakan data-id yang baru
-                $.ajax({
-                    type: "GET",
-                    url: "/operational/get-operational-data/" + id,
-                    dataType: "json",
-                    success: function(response) {
-                        $("#type_operational option[value='" + response.type + "']").prop(
-                            'selected', true);
-                        $("#transportation_mode_operational option[value='" + response
-                            .transportation_mode + "']").prop('selected', true);
-                        $("#spk_code_operational option[value='" + response.spk_code + "']")
-                            .prop('selected', true);
-                        $("#id_operational").val(response.id);
-                        $("#vehicle_number_operational").val(response.vehicle_number);
-                        $("#description_operational").val(response.description);
-                        $("#created_by_operational").val(response.created_by);
-                        $("#spk_number_operational").val(response.spk_number.split('-')[1]);
-                        $("#date_operational").val(response.date);
+                    $(document).on('click', '.editOperational', function() {
+                        var id = $(this).val(); // Menggunakan data-id yang baru
+                        $.ajax({
+                            type: "GET",
+                            url: "/operational/get-operational-data/" + id,
+                            dataType: "json",
+                            success: function(response) {
+                                $("#type_operational option[value='" + response.type + "']").prop(
+                                    'selected', true);
+                                $("#transportation_mode_operational option[value='" + response
+                                    .transportation_mode + "']").prop('selected', true);
+                                $("#spk_code_operational option[value='" + response.spk_code + "']")
+                                    .prop('selected', true);
+                                $("#id_operational").val(response.id);
+                                $("#vehicle_number_operational").val(response.vehicle_number);
+                                $("#description_operational").val(response.description);
+                                $("#created_by_operational").val(response.created_by);
+                                $("#spk_number_operational").val(response.spk_number.split('-')[1]);
+                                $("#date_operational").val(response.date);
+                                $("#code-Spk").text(
+                                    response.spk_code + " - ");
+                                var initialMode = $("#transportation_mode_operational")
+                                    .val(); // Mendapatkan nilai awal
+                                if (initialMode === 'mobil') {
+                                    $("#vehicle_number_container").show();
+                                } else {
+                                    $("#vehicle_number_container").hide();
+                                }
+                            },
+                            error: function(response) {
+                                alert("Error: " + response.statusText);
+                            }
+                        });
+                    });
+
+                    // etting Modal edit operational
+                    $("#spk_code_operational").on("change", function() {
+                        var selectedCode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
                         $("#code-Spk").text(
-                            response.spk_code + " - ");
-                        var initialMode = $("#transportation_mode_operational")
-                            .val(); // Mendapatkan nilai awal
-                        if (initialMode === 'mobil') {
+                            selectedCode + " - "
+                        ); // Mengubah teks pada elemen #code-Spk sesuai dengan nilai yang dipilih
+                    });
+
+                    $("#transportation_mode_operational").on("change", function() {
+                        var selectedMode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
+
+                        // Cek apakah mode yang dipilih adalah 'mobil'
+                        if (selectedMode === 'mobil') {
+                            // Jika 'mobil' dipilih, tampilkan elemen #vehicle_number_container
                             $("#vehicle_number_container").show();
                         } else {
+                            // Jika bukan 'mobil', sembunyikan elemen #vehicle_number_container
                             $("#vehicle_number_container").hide();
                         }
-                    },
-                    error: function(response) {
-                        alert("Error: " + response.statusText);
-                    }
+                    });
+
+
                 });
-            });
-
-            // etting Modal edit operational
-            $("#spk_code_operational").on("change", function() {
-                var selectedCode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
-                $("#code-Spk").text(
-                    selectedCode + " - "
-                ); // Mengubah teks pada elemen #code-Spk sesuai dengan nilai yang dipilih
-            });
-
-            $("#transportation_mode_operational").on("change", function() {
-                var selectedMode = $(this).val(); // Mendapatkan nilai yang dipilih dalam dropdown
-
-                // Cek apakah mode yang dipilih adalah 'mobil'
-                if (selectedMode === 'mobil') {
-                    // Jika 'mobil' dipilih, tampilkan elemen #vehicle_number_container
-                    $("#vehicle_number_container").show();
-                } else {
-                    // Jika bukan 'mobil', sembunyikan elemen #vehicle_number_container
-                    $("#vehicle_number_container").hide();
-                }
-            });
-
-
-        });
     </script>
 @endsection

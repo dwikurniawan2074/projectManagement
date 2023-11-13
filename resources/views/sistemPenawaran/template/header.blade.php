@@ -20,11 +20,6 @@
 <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}"
      rel="stylesheet" type="text/css" />
 <link href="{{ asset('templateAdmin/Admin/dist/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-
-
-@yield('headerScript')
-
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 </script>
@@ -44,6 +39,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flot.tooltip/0.9.0/jquery.flot.tooltip.min.js"
     integrity="sha512-oQJB9y5mlxC4Qp62hdJi/J1NzqiGlpprSfkxVNeosn23mVn5JA4Yn+6f26wWOWCDbV9CxgJzFfVv9DNLPmhxQg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{{-- templating headscript per file --}}
+@yield('headerScript')
 
 <style>
     /* navbar styling */
@@ -70,6 +68,10 @@
     }
     /* end navbar styling */
 
+    .card {
+        border-radius: 10px !important;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
 
     /* Style for the loader container */
     .loader {
@@ -92,6 +94,48 @@
         animation: infinite;
     }
     /* end loader container styling */
+
+    .table-title {
+        vertical-align: middle !important;
+    }
+
+    .details-text {
+        margin-bottom: unset;
+    }
+
+    .profile-photo-column {
+        padding: unset !important;
+    }
+
+    .left-side-menu .user-box .img-thumbnail {
+        border-radius: 30% !important;
+    }
+
+    .logout-font {
+        font-size: 18px;
+        font-weight: 100;
+        color: red;
+    }
+
+    .logout-font:hover {
+        font-weight: 900;
+    }
+
+    .profile-section {
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .btn-logout {
+        border: unset;
+        background-color: unset;
+    }
+
+    .page-item.active .page-link {
+        background-color: #FF3E3E !important;
+        border: #FF3E3E;
+    }
+
 
 
     /* styling profile secrtion */

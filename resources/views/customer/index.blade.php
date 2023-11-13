@@ -1,6 +1,10 @@
 @extends('template.index')
 
-@section('content')
+{{-- headerscript section --}}
+@section('headerScript')
+    {{-- Data Table CSS --}}
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
+
     <style>
         .btn-create {
             border-radius: 10px;
@@ -23,7 +27,11 @@
             text-align: start !important;
         }
     </style>
+@endsection
 
+{{-- content section --}}
+@section('content')
+    
     {{-- halaman baru --}}
     <div class="content-page">
         <div class="content">
@@ -40,7 +48,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <a href="{{ $createRoute }}"
-                                            class="btn btn-addItems w-md waves-effect waves-light mb-3 px-3">
+                                            class="btn btn-red w-md waves-effect waves-light mb-3 px-3">
                                             <i class="mdi mdi-plus" title="Menambahkan Customer"></i>Add Customer
                                         </a>
                                     </div>
@@ -118,11 +126,11 @@
     </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.css"
-        rel="stylesheet">
-    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.js">
-    </script>
+    
+    {{-- Data Table JS --}}
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -254,6 +262,15 @@
                     }
                 });
             });
+        });
+    </script>
+
+    {{-- script untuk menambahkan margin atas pada table --}}
+    <script>
+        $(document).ready(function(){
+            const rows = document.querySelectorAll('.row');
+            const footerTable = rows[5];
+            footerTable.classList.add("mt-2");
         });
     </script>
 @endsection

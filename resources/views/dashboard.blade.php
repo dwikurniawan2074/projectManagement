@@ -1,5 +1,10 @@
 @extends('template.index')
 
+{{-- headscript section --}}
+@section('headerScript')
+@endsection
+
+{{-- content section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -114,4 +119,8 @@
         });
     </script>
     {{-- <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script> --}}
+@endsection
+
+{{-- pagescript section --}}
+@section('pageScript')
 @endsection
