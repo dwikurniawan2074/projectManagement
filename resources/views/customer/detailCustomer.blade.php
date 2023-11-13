@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal"
-                                        data-bs-target="#add-customer-contact-modal"
+                                        data-bs-target="#customer-contact-modal"
                                             class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus" title="Menambahkan Customer Contact"></i>Add Customer
                                             Contact</button>
@@ -124,7 +124,7 @@
 
                     {{-- modals operational expenses --}}
                     <form class="expensesForm" data-parsley-validate>
-                        <div id="add-customer-contact-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                        <div id="customer-contact-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
                             style="overflow:hidden;">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -141,7 +141,7 @@
                                                 <div class="mb-3 text-start">
                                                     <label for="field-1" class="form-label">Name<span class="text-danger">*</span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="expense-item" placeholder="Name"
+                                                    <input type="text" class="form-control" id="name" placeholder="Name"
                                                         name="expense-item" parsley-trigger="change" required>
                                                 </div>
                                             </div>
@@ -149,7 +149,7 @@
                                                 <div class="mb-3 text-start">
                                                     <label for="field-2 " class="form-label">Phone Number<span
                                                             class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="expense-amount"
+                                                    <input type="text" class="form-control" id="phone"
                                                         placeholder="Phone Number" name="expense-amount" parsley-trigger="change" required>
                                                 </div>
                                             </div>
@@ -219,7 +219,7 @@
                             <div class="btn-group btn-group-sm" style="float: none;">
                                 <button type="button" class="tabledit-edit-button editCustomerContact btn btn-primary waves-effect waves-light"
                                 value="${full.id}"
-                                data-bs-toggle="modal" data-bs-target="#edit-customer-modal"
+                                data-bs-toggle="modal" data-bs-target="#customer-contact-modal"
                                 title="Edit Customer Contact" style="padding: 0.25rem 0.8rem;">
                                     <span class="mdi mdi-pencil"></span>
                             </div>
@@ -303,12 +303,13 @@
                 var id = $(this).val();
                 $.ajax({
                     type: "GET",
-                    url: "/customer/get-customer-contacts/" + id,
+                    url: "{{ route('customerContact.show', '') }}" + "/" + id,
                     dataType: "json",
                     success: function(response) {
-                        $("#customer_id").val(id);
+                        $("#customer_id").val(response.id);
                         $("#name").val(response.name)
                         $("#phone").val(response.phone);
+                        console.log(response)
                     },
                     error: function(response) {
                         alert("Error: " + response.statusText);
