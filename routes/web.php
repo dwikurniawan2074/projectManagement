@@ -135,7 +135,7 @@ Route::prefix('customerContact')->group(function () {
     Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
     Route::get('/update/{id}', [CustomerContactController::class, 'update'])->name('customerContact.update');
     Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
-    Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.getCustomerContact');
+    Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
 });
 
 //contoh route (post(/admin/roles)
