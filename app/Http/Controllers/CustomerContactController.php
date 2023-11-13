@@ -21,8 +21,9 @@ class CustomerContactController extends Controller
         return view('customerContact.index', compact('createRoute'));
     }
 
-    public function create()
+    public function create(CustomerContact $customerContacts, $id)
     {
+        $customerContacts = CustomerContact::find($id)->customer_id;
         return view('customer.createCustomerContact');
     }
 
@@ -42,25 +43,31 @@ class CustomerContactController extends Controller
         return redirect()->route('customerContact.index')->with('success', 'Customer contact created successfully.');
     }
 
-    public function show(CustomerContact $customerContact)
+    public function show(CustomerContact $customerContacts, $id)
     {
-        return view('customerContact.show', compact('customerContact'));
+        $customerContact = CustomerContact::find($id);
+        $relatedProjects = $customerContact->projects;
+        //return view('customerContact.show', compact('customerContact'));
+        return view('customer.show', compact('customerContact', 'relatedProjects'));
     }
 
-    public function edit(CustomerContact $customerContact)
+    public function edit($id)
     {
+        $customerContact = CustomerContact::find($id);
         return view('customerContact.edit', compact('customerContact'));
     }
 
-    public function update(Request $request, CustomerContact $customerContact)
+    public function update(Request $request, CustomerContact $customerContacts)
     {
         $request->validate([
-            'customer_id' => 'required',
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required'
         ]);
 
-        $customerContact->update($request->all());
+        $customerContacts->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone')
+        ]);
 
         return redirect()->route('customerContact.index')
             ->with('success', 'Customer contact updated successfully.');
@@ -69,15 +76,15 @@ class CustomerContactController extends Controller
     public function destroy($id)
     {
         try {
-            $customerContact = CustomerContact::findOrFail($id);
-            $customerContact->delete();
+            $customerContacts = CustomerContact::findOrFail($id);
+            $customerContacts->delete();
             return response()->json(['message' => 'customer contact berhasil dihapus.']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus customer contact.']);
         }
     }
 
-    public function getCustomerContacts($customer_id)
+    public function getCustomerData($customer_id)
     {
         $customerContacts = CustomerContact::where('customer_id', $customer_id)->get();
         return response()->json($customerContacts);
