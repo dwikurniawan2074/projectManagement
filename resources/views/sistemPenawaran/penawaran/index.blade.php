@@ -29,7 +29,7 @@
                     </div>
                     <!-- Modal -->
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 mb-3">
                         <form class="app-search" action="#">
                             <div class="app-search-box">
                                 <div class="input-group">
