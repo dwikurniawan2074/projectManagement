@@ -258,5 +258,4 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> --}}
 
     <!-- App css -->
-    <link href="{{ asset('templateAdmin/Admin/dist/assets/css/app.min.css') }}" rel="stylesheet" type="text/css"
-    id="app-style" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
