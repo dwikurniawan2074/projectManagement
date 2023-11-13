@@ -2,6 +2,50 @@
 
 {{-- headerscript section --}}
 @section('headerScript')
+    <style>
+        .col-3 > .card{
+            background-size: cover;
+        }
+
+        .col-3 > .card > .card-body > p:first-child{
+            margin-bottom: 0px;
+            font-weight: 600;
+        }
+        
+        .first-card{
+            background-image: url('{{ asset('images/yellow-bgx.png') }}');
+        }
+        
+        .second-card{
+            background-image: url('{{ asset('images/blue-bg.png') }}');
+        }
+
+        .third-card{
+            background-image: url('{{ asset('images/green-bg.png') }}');
+        }
+        
+        .fourth-card{
+            background-image: url('{{ asset('images/red-bg.png') }}');
+        }
+
+        .col-3 > .card > .card-body > p, 
+        .col-3 > .card > .card-body > h3{
+            color: white;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .presentase{
+            background-color: white;
+            border-radius: 10px;
+            /* color: #FBBC05; */
+            font-weight: 900;
+            width: fit-content;
+            padding: 1px 8px;
+        }
+    </style>
 @endsection
 
 {{-- content section --}}
@@ -13,34 +57,38 @@
 
             <div class="row">
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card first-card">
                         <div class="card-body">
-                            <h3>Total Sales</h3>
-                            <p>Test Deskripsi</p>
+                            <p>Total Sales</p>
+                            <h3>Rp. 180.982.900</h3>
+                            <p class="presentase text-warning text-center">+12,6%</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card second-card">
                         <div class="card-body">
-                            <h3>Total Order</h3>
-                            <p>Test Deskripsi</p>
+                            <p>Total Order</p>
+                            <h3>387</h3>
+                            <p class="presentase text-info text-center">+12,6%</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card third-card">
                         <div class="card-body">
-                            <h3>Approved Tender</h3>
-                            <p>Test Deskripsi</p>
+                            <p>Approved Tender</p>
+                            <h3>198</h3>
+                            <p class="presentase text-success text-center">+12,6%</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card fourth-card">
                         <div class="card-body">
-                            <h3>Rejected Tender</h3>
-                            <p>Test Deskripsi</p>
+                            <p>Rejected Tender</p>
+                            <h3>174</h3>
+                            <p class="presentase text-danger text-center">+12,6%</p>
                         </div>
                     </div>
                 </div>
