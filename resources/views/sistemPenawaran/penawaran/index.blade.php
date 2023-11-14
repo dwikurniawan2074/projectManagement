@@ -48,9 +48,10 @@
                     {{-- card --}}
 
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
+                        <div class="col-sm-6 col-md-4">
+                            <!-- Card 1 -->
+                            <div class="card">
+                                                                <div class="card-body project-box">
                                     <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
                                     <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
                                     <p class="text-muted font-13 mt-1">Customers</p>
@@ -62,27 +63,11 @@
                                         class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
-                                    <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
-                                    <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
-                                    <p class="text-muted font-13 mt-1">Customers</p>
-
-                                    <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
-                                    <p class="text-muted font-15">Sales : Maulana</p>
-                                        <a href="{{route('sistemPenawaran.penawaran.detail')}}">
-                                            <button type="button"
-                                            class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
+                        <div class="col-sm-6 col-md-4">
+                            <!-- Card 2 -->
+                            <div class="card">
+                                                                <div class="card-body project-box">
                                     <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
                                     <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
                                     <p class="text-muted font-13 mt-1">Customers</p>
@@ -94,9 +79,25 @@
                                         class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4">
+                            <!-- Card 3 -->
+                            <div class="card">
+                                                                <div class="card-body project-box">
+                                    <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
+                                    <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
+                                    <p class="text-muted font-13 mt-1">Customers</p>
 
+                                    <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
+                                    <p class="text-muted font-15">Sales : Maulana</p>
+                                    <a href="{{route('sistemPenawaran.penawaran.detail')}}">
+                                        <button type="button"
+                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
 
