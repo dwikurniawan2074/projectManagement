@@ -1,36 +1,59 @@
 @extends('template.index')
 
+{{-- headerscript section --}}
+@section('headerScript')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" /> 
+    <!-- dropzone file upload css -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
+
+    <style>
+        .select2-container--classic.select2-container--open .select2-dropdown {
+            border-color: #ced4da;
+        }
+
+        .select2-container--classic .select2-results__option--highlighted[aria-selected] {
+            background-color: #FF5B5B;
+        }
+        
+    </style>
+@endsection
+
+{{-- content section --}}
 @section('content')
 
-<style>
-    .btn-createAccount {
-        border-radius: 10px;
-        background-color: #FF3E3E;
-        border: #FF3E3E;
-        color: white;
-    }
-
-        .btn-editAccount {
+    <style>
+        .btn-createAccount {
+            border-radius: 10px;
             background-color: #FF3E3E;
             border: #FF3E3E;
             color: white;
         }
 
-        .btn-createAccount:focus {
-            color: white;
-        }
+            .btn-editAccount {
+                background-color: #FF3E3E;
+                border: #FF3E3E;
+                color: white;
+            }
 
-        .form-label {
-            text-align: start !important;
-        }
+            .btn-createAccount:focus {
+                color: white;
+            }
 
-    /*.modal-open .modal {*/
-    /*    overflow-y: hidden !important;*/
-    /*}*/
-    .actionColumn{
-        text-align: center !important;
-    }
-</style>
+            .form-label {
+                text-align: start !important;
+            }
+
+        /*.modal-open .modal {*/
+        /*    overflow-y: hidden !important;*/
+        /*}*/
+        .actionColumn{
+            text-align: center !important;
+        }
+    </style>
 
     <div class="content-page">
         <div class="content">
@@ -214,17 +237,21 @@
     </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
-    <!-- Include Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    {{-- Plugins js for file upload-dropify dan dropzone --}}
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
     <!-- Include Select2 JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    
     <!-- Required datatable js -->
-    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
-
     <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/r-2.5.0/sc-2.2.0/sp-2.2.0/sl-1.7.0/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#select-roles').select2({
@@ -238,6 +265,7 @@
             });
         });
     </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             var table = $('#datatable').DataTable({
@@ -395,6 +423,7 @@
             });
         }
     </script>
+
     <script type="text/javascript">
         function showRoles(userData) {
             // get all roles
@@ -440,6 +469,7 @@
             });
         }
     </script>
+
     <script type="text/javascript">
         function updateUser(userId) {
             // console.log(userId);
@@ -501,32 +531,41 @@
         }
     </script>
 
-    {{-- <script>
-    $(document).ready(function() {
-            // Initialize Magnific Popup for image links
-            $('.image-popup').magnificPopup({
-                type: 'image', // Type of content (image)
-                gallery: {
-                    enabled: true // Enable gallery mode for multiple images
-                }
-            });
-        });
-</script> --}}
     <script>
-        $(document).ready(function() {
-
-            $('#view').magnificPopup({
-                type: 'image',
+    $(document).ready(function() {
+        
+        $('#view').magnificPopup({
+            type: 'image',
                 closeOnContentClick: true,
                 mainClass: 'mfp-img-mobile',
                 image: {
                     verticalFit: true
                 }
-
+                
             });
         });
     </script>
 
+    {{-- script untuk menambahkan margin atas pada table --}}
+    <script>
+        $(document).ready(function(){
+            const rows = document.querySelectorAll('.row');
+            const footerTable = rows[11];
+            footerTable.classList.add("mt-2");
+        });
+    </script>
+
+{{-- <script>
+$(document).ready(function() {
+        // Initialize Magnific Popup for image links
+        $('.image-popup').magnificPopup({
+            type: 'image', // Type of content (image)
+            gallery: {
+                enabled: true // Enable gallery mode for multiple images
+            }
+        });
+    });
+</script> --}}
 {{--    <!-- isotope filter plugin -->--}}
 {{--    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/isotope-layout/isotope.pkgd.min.js') }}"></script>--}}
 

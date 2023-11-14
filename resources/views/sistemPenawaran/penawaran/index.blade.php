@@ -1,8 +1,10 @@
+@extends('sistemPenawaran.template.index')
+
+{{-- headerscript section --}}
 @section('headerScript')
 @endsection
 
-@extends('sistemPenawaran.template.index')
-
+{{-- content section --}}
 @section('content')
     <style>
         .btn-danger {
@@ -27,7 +29,7 @@
                     </div>
                     <!-- Modal -->
 
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 mb-3">
                         <form class="app-search" action="#">
                             <div class="app-search-box">
                                 <div class="input-group">
@@ -42,6 +44,7 @@
                     </div><!-- end col-->
 
                     {{-- card --}}
+
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="card ">
@@ -52,8 +55,9 @@
 
                                     <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
                                     <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
+                                    <a href="{{route('sistemPenawaran.penawaran.detail')}}">
+                                        <button type="button"
+                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
                                 </div>
                             </div>
 
@@ -67,8 +71,9 @@
 
                                     <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
                                     <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
+                                        <a href="{{route('sistemPenawaran.penawaran.detail')}}">
+                                            <button type="button"
+                                            class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
                                 </div>
                             </div>
 
@@ -82,55 +87,9 @@
 
                                     <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
                                     <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
-                                    <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
-                                    <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
-                                    <p class="text-muted font-13 mt-1">Customers</p>
-
-                                    <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
-                                    <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
-                                    <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
-                                    <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
-                                    <p class="text-muted font-13 mt-1">Customers</p>
-
-                                    <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
-                                    <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card ">
-                                <div class="card-body project-box">
-                                    <div class="badge bg-danger float-end mx-auto font-14 ">No.SGM</div>
-                                    <h4 class="mt-0"><a href="" class="text-dark">New Admin Design</a></h4>
-                                    <p class="text-muted font-13 mt-1">Customers</p>
-
-                                    <p class="text-muted font-15">Tanggal Penawaran : 01/01/2023</p>
-                                    <p class="text-muted font-15">Sales : Maulana</p>
-                                    <button type="button"
-                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button>
+                                    <a href="{{route('sistemPenawaran.penawaran.detail')}}">
+                                        <button type="button"
+                                        class="btn btn-danger rounded float-end rounded-pill">Preview</button></a>
                                 </div>
                             </div>
 
@@ -261,7 +220,7 @@
                                     <div class="col-sm-6 col-xl-4">
                                         <form action="">
                                             <div class="mb-3">
-                                                <label for="inputStateLeft" class="form-label">Delivery Time </label>
+                                                <label for="inputStateLeft">Delivery Time </label>
                                                 <select id="inputStateLeft" class="form-select">
                                                     <option selected>Choose...</option>
                                                     <option>15 Hari</option>
@@ -312,20 +271,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <form action="">
-                                            <div class="mb-3">
-                                                <label for="inputStateLeft" class="form-label">Negara</label>
-                                                <select id="inputStateLeft" class="form-select">
-                                                    <option selected>Choose...</option>
-                                                    <option>Indonesia</option>
-                                                    <option>Amerika</option>
-                                                    <option>Sunda Empire</option>
-                                                    <option>Bekasi</option>
-                                                </select>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        <div class="col-sm-4">
+                                            <form action="">
+                                                <div class="mb-3">
+                                                    <label for="inputStateLeft" class="form-label">Negara</label>
+                                                    <select id="inputStateLeft" class="form-select">
+                                                        <option selected>Choose...</option>
+                                                        <option>Indonesia</option>
+                                                        <option>Amerika</option>
+                                                        <option>Sunda Empire</option>
+                                                        <option>Bekasi</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
                                     <div class="col-sm-4">
                                         <form action="">
                                             <div class="mb-3">
@@ -384,5 +343,6 @@
     </div>
 @endsection
 
+{{-- pagescript section --}}
 @section('pageScript')
 @endsection

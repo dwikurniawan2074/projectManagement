@@ -81,7 +81,7 @@
     </form>
 
     {{-- modals edit document record --}}
-    <form action="" class="parsley-examples" novalidate="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('recordDocument.update') }}" class="parsley-examples" novalidate="" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div id="edit-record-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -94,11 +94,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body milestoneEditModal">
+                    <div class="modal-body recordEditModal">
                         <div class="row">
 
                             {{-- form input hidden project id --}}
-                            <input type="hidden" name="milestone_id" id="milestone_id" value="">
+                            <input type="hidden" name="recordDocument_id" id="recordDocument_id" value="">
 
                             {{-- form input submitted date --}}
                             <div class="mb-3">
@@ -106,7 +106,7 @@
                                         class="text-danger">*</span></label>
                                 <input type="date" name="submitted_date" parsley-trigger="change" required=""
                                     placeholder="Masukkan tanggal" class="form-control datepicker"
-                                    id="submitted_date">
+                                    id="record_submitted_date">
                             </div>
 
                             {{-- form input description --}}
@@ -114,7 +114,7 @@
                                 <label for="userName" class="form-label">Description<span
                                         class="text-danger">*</span></label>
                                 <input type="text" name="description" parsley-trigger="change" required=""
-                                    placeholder="Tambahkan deskripsi" id="description" class="form-control"
+                                    placeholder="Tambahkan deskripsi" id="record_description" class="form-control"
                                     value="">
                             </div>
 
@@ -123,14 +123,14 @@
                                 <label for="due_date" class="form-label">Due Date<span
                                         class="text-danger">*</span></label>
                                 <input type="date" name="due_date" parsley-trigger="change" required=""
-                                    placeholder="Masukkan tanggal" class="form-control datepicker" id="due_date">
+                                    placeholder="Masukkan tanggal" class="form-control datepicker" id="record_due_date">
                             </div>
 
                             {{-- form input progress --}}
                             <div class="mb-3">
                                 <label for="progress" class="form-label">Progress<span
                                         class="text-danger">*</span></label>
-                                <select class="form-control" id="progress" name="progress">
+                                <select class="form-control" id="record_progress" name="progress">
                                     <option value="Planned">Planned</option>
                                     <option value="On Progress">On Progress</option>
                                     <option value="Done">Done</option>
@@ -143,10 +143,10 @@
                                         class="text-danger">*</span></label>
                                 <input type="file" name="file" parsley-trigger="change" required=""
                                     data-plugins="dropify" data-height="150" class="form-control"
-                                    id="fileAttachment">
+                                    id="record_fileAttachment">
                             </div>
                         </div>
-
+                        
                         {{-- button cancel dan save --}}
                         <div class="modal-footer">
                             {{-- button cancel --}}
@@ -166,7 +166,7 @@
 
     {{-- modals edit production cost --}}
     <form action="{{ route('cost.update') }}" class="parsley-examples" novalidate="" method="post"
-        enctype="multipart/form-data">
+    enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div id="edit-cost-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel"

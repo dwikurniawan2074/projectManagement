@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MilestoneController;
+use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\OperationalAgendaController;
 use App\Http\Controllers\OperationalController;
 use App\Http\Controllers\OperationalExpensesController;
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'projects'], function () {
 });
 // Milestone
 Route::get('/get-milestone-data/{id}', [MilestoneController::class, 'getMilestoneData'])->name("milestone.get");
+Route::get('/get-record-data/{id}', [RecordDocumentController::class, 'getRecordDocument'])->name("recordDocument.get");
 // Pcost json
 Route::get('/get-cost-data/{id}', [ProductionCostController::class, 'getPCostData'])->name("cost.get");
 Route::put('production/update/', [ProductionCostController::class, 'update'])->name('cost.update');
@@ -94,6 +96,15 @@ Route::prefix('milestone')->group(function () {
     Route::get('file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
 });
 
+Route::prefix('recordDocument')->group(function () {
+    Route::get('/create/{id}', [RecordDocumentController::class, 'create'])->name('recordDocument.create');
+    Route::post('/store', [RecordDocumentController::class, 'store'])->name('recordDocument.store');
+    Route::put('/', [RecordDocumentController::class, 'update'])->name('recordDocument.update');
+    Route::get('/show/{id}', [RecordDocumentController::class, 'show'])->name('recordDocument.show');
+    Route::delete('/{id}', [RecordDocumentController::class, 'destroy'])->name('recordDocument.destroy');
+    Route::get('file/{file}', [RecordDocumentController::class, 'downloadfile'])->name('recordDocument.file');
+});
+
 Route::prefix('top')->group(function () {
     Route::get('/create/{id}', [TopController::class, 'create'])->name('top.create');
     Route::post('/store', [TopController::class, 'store'])->name('top.store');
@@ -120,11 +131,11 @@ Route::prefix('customerContact')->group(function () {
     Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
     Route::get('/create', [CustomerContactController::class, 'create'])->name('customerContact.create');
     Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
-    Route::get('/show/', [CustomerContactController::class, 'show'])->name('customerContact.show');
-    Route::get('/edit', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
-    Route::get('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
+    Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
+    Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
+    Route::get('/update/{id}', [CustomerContactController::class, 'update'])->name('customerContact.update');
     Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
-    Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.getCustomerContact');
+    Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
 });
 
 //contoh route (post(/admin/roles)
@@ -207,6 +218,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
+        Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
     });
     Route::prefix('mapping')->group(function () {
         Route::get('/', [MappingController::class, 'index'])->name('sistemPenawaran.mapping.index');

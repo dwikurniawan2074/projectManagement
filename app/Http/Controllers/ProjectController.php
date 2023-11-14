@@ -172,7 +172,7 @@ class ProjectController extends Controller
             ->first();
 
         // Ambil semua Milestone yang terkait dengan proyek ini dan urutkan berdasarkan created_at terbaru
-        $milestones = $project->milestones()->orderBy('created_at', 'asc')->paginate(3);
+        $milestones = $project->milestones()->orderBy('created_at', 'asc')->paginate(5);
         $doneMilestones = $project->milestones()->where('progress', 'Done')->count();
         $totalMilestones = $project->milestones()->count();
         $realCost = $project->productionCost->sum('amount');
@@ -182,8 +182,9 @@ class ProjectController extends Controller
         $operationals = $project->operationals()->orderBy('created_at', 'desc')->get();
         $tops = $project->tops()->orderBy('created_at', 'desc')->get();
         $topProgress = $tops->where('status', 'Done')->sum('progress');
+        $recordDocument = $project->RecordDocument()->get();
 
-        return view('projects.detailProjects', compact('milestones', 'projectData', 'productionCost', 'tops', 'operationals', 'percentageDone', 'realCost', 'realService', 'topProgress', 'project'));
+        return view('projects.detailProjects', compact('milestones', 'projectData', 'productionCost', 'tops', 'operationals', 'percentageDone', 'realCost', 'realService', 'topProgress', 'project', 'recordDocument'));
     }
 
 

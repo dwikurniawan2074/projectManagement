@@ -1,5 +1,10 @@
 @extends('sistemPenawaran.template.index')
 
+{{-- header script section --}}
+@section('headerScript')
+@endsection
+
+{{-- contenct section --}}
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -164,8 +169,9 @@
                             <div class="card-body">
                                 <div class="project-box d-flex justify-content-between">
                                     <div>
-                                        <h4 class="mt-0"><a href="" class="text-dark">Project1</a></h4>
-                                        <p class="text-muted font-13 mt-1">Customers</p>
+                                        <h4 class="mt-0"><a href="" class="text-dark ">PT.Apapun</a></h4>
+                                        <p class="text-muted font-13 mb-1 mt-2">Penawaran1</p>
+                                        <p class="text-muted font-13 mt-1">Jalan-Jalan ketangerang </p>
                                     </div>
                                     <div class="ml-auto">
                                         <button type="button" class="btn btn-blue btn-xs waves-effect waves-light">Edit
@@ -181,37 +187,9 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">
-                                                    <p class="title-text">Nomor RFQ</p>
-                                                    <p class="details-text">256-001</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
                                                     <p class="title-text">Nomor MSG</p>
                                                     <p class="details-text">0000/CS-TPP/x/2023</p>
                                                 </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Customer Contact Name</p>
-                                                    <p class="details-text">Andre Taulany</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Email</p>
-                                                    <p class="details-text">Andre123@gmail.com
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Nomor Handphone</p>
-                                                    <p class="details-text">153252532
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr>
                                                 <th scope="row">
                                                     <p class="title-text">Tanggal Penawaran</p>
                                                     <p class="details-text formatTanggal">00/00/00
@@ -219,22 +197,35 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Lokasi</p>
-                                                    <p class="details-text formatTanggal">Provinsi-Kota
+                                                <th colspan="2">
+                                                    <p class="title-text">Customer Contaact Name</p>
+                                                    <p class="details-text">Partogi P Simatupang</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">
+                                                    <p class="title-text">Email</p>
+                                                    <p class="details-text">Ogi@gmail.com</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2">
+                                                    <p class="title-text">No.Hp</p>
+                                                    <p class="details-text">1234556
                                                     </p>
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Price</p>
-                                                    <p class="details-text rupiah">10.000.000 Rp</p>
+                                                <th colspan="2">
+                                                    <p class="title-text">Rupiah</p>
+                                                    <p class="details-text">Rp.14.000.000
+                                                    </p>
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Status</p>
-                                                    <p class="details-text rupiah">Waiting To Approve
+                                                <th colspan="2">
+                                                    <p class="title-text mb-1">Status</p>
+                                                    <p class="details-text font-20 "><span class="badge bg-warning" >Waiting</span></td>
                                                     </p>
                                                 </th>
                                             </tr>
@@ -363,75 +354,49 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mb-2">
                                         <label for="sub pelayanan">Sub Layanan</label>
                                     </div>
-                                    <div class="ml-auto mb-2">
-                                        <button type="button" class="btn btn-danger rounded mt-2 ">
-                                            <i class="mdi mdi-plus" title="Untuk sub layanan"></i>Add
-                                        </button>
-                                    </div>
-
                                     <div class="row">
-                                        <div class="col-sm-6 col-xl-4">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Deskripsi</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
-                                                    </div>
+                                        <form method="post">
+                                            <div id="inputFormRow" class="row mb-3">
+                                                <div class="col-lg-3">
+                                                    <label for="description">Description:</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter description"
+                                                        autocomplete="off">
                                                 </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="col-sm-6 col-xl-1">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Qty</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
-                                                    </div>
+                                                <div class="col-lg-2">
+                                                    <label for="qty">Qty:</label>
+                                                    <input type="text" id="qty" name="qty[]"
+                                                        class="form-control" placeholder=" qty" autocomplete="off">
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-3">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="inputStateLeft">Satuan</label>
-                                                    <select id="inputStateLeft" class="form-select">
-                                                        <option selected>Choose...</option>
-                                                        <option>#####</option>
-                                                        <option>XXXXX</option>
-                                                        <option>AAAAA</option>
-                                                        <option>BBBBB</option>
+                                                <div class="col-lg-3">
+                                                    <label for="dropdown">Dropdown:</label>
+                                                    <select id="dropdown" name="dropdown[]" class="form-select">
+                                                        <option value="Option 1">Option 1</option>
+                                                        <option value="Option 2">Option 2</option>
+                                                        <option value="Option 3">Option 3</option>
                                                     </select>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-sm-6 col-xl-4 d-flex">
-                                            <form action="">
-                                                <div class="mb-3">
-                                                    <label for="customerNameLeft">Harga</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Masukan Jenis Trafo" aria-label="Username"
-                                                            id="customerNameLeft">
+                                                <div class="col-lg-3">
+                                                    <label for="harga">Harga:</label>
+                                                    <input type="text" id="description" name="description[]"
+                                                        class="form-control" placeholder="Enter Price"
+                                                        autocomplete="off">
+
+                                                </div>
+                                                <div class="col-1">
+                                                    - <div class="input-group-append  align-items-end">
+                                                        <button class="btn  btn-danger removeRow" type="button"><i
+                                                                class="fe-trash-2"></i></button>
                                                     </div>
                                                 </div>
-                                            </form>
-                                            <div class="ms-2 mt-3">
-                                                <button type="button"
-                                                    class="btn btn-blue btn-xs waves-effect waves-light"
-                                                    style="height: 35px"><i class="fa-solid fa-trash"></i>
-                                                </button>
                                             </div>
-                                        </div>
-
+                                        </form>
                                     </div>
+                                    <div id="newRow"></div>
+                                    <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                 </div>
                                 <div class="modal-footer gap-1">
                                     <button type="button" class="btn btn-secondary"
@@ -508,6 +473,29 @@
                                                 Harga belum termasuk alat bantu, alat berat dan helper jika diperlukan
                                             </label>
                                         </div>
+                                        <div class="form-check">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div id="inputFormsyarat">
+                                                        <div class="input-group mb-2">
+                                                            <input class="form-check-input " type="checkbox"
+                                                                value="" id="flexCheckChecked" checked>
+                                                            <input type="text" name="title[]"
+                                                                class="form-control m-input  ms-1"
+                                                                placeholder="Masukan Syarat" autocomplete="off">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-danger removeRow" type="button"><i
+                                                                        class="fe-trash"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="newsyarat"></div>
+                                                    <button id="addsyarat" type="button" class="btn btn-info">Add
+                                                        Row</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -523,6 +511,65 @@
         </div>
     </div>
     </div>
+    <script type="text/javascript">
+        // add row
+        $("#addRow").click(function() {
+            var html = '<div id="inputFormRow" class="row mb-3">';
+            html += '<div class="col-lg-3">';
+            html += '<label for="description">Description:</label>';
+            html += '<input type="text" name="description[]" class="form-control" placeholder="Enter description" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-2">';
+            html += '<label for="qty">Qty:</label>';
+            html += '<input type="text" name="qty[]" class="form-control" placeholder="Qty" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="dropdown">Dropdown:</label>';
+            html += '<select name="dropdown[]" class="form-select">';
+            html += '<option value="Option 1">Option 1</option>';
+            html += '<option value="Option 2">Option 2</option>';
+            html += '<option value="Option 3">Option 3</option>';
+            html += '</select>';
+            html += '</div>';
+            html += '<div class="col-lg-3">';
+            html += '<label for="price">Harga:</label>';
+            html += '<input type="text" name="price[]" class="form-control" placeholder="Enter Price" autocomplete="off">';
+            html += '</div>';
+            html += '<div class="col-1 d-flex align-items-end">';
+            html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash-2"></i></button>';
+            html += '</div>';
+            html += '</div>';
+
+            $('#newRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '.removeRow', function() {
+            $(this).closest('#inputFormRow').remove();
+        });
+    </script>
+
+<script type="text/javascript">
+    // add row
+    $("#addsyarat").click(function() {
+        var html = '<div class="input-group mb-2">';
+        html += '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>';
+        html += '<input type="text" name="title[]" class="form-control m-input ms-1" placeholder="Enter title" autocomplete="off">';
+        html += '<div class="input-group-append">';
+        html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash"></i></button>';
+        html += '</div>';
+        html += '</div>';
+
+        $('#newsyarat').append(html);
+    });
+
+    // remove row
+    $(document).on('click', '.removeRow', function() {
+        $(this).closest('.input-group').remove();
+    });
+</script>
 @endsection
+
+{{-- page script section --}}
 @section('pageScript')
 @endsection
