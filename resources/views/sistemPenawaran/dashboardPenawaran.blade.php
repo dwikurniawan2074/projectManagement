@@ -45,6 +45,14 @@
             width: fit-content;
             padding: 1px 8px;
         }
+
+        @media screen and (max-width: 1000px) {
+            .dashboard-card > .col-3 {
+                flex-shrink: 0;
+                width: 50%;
+                max-width: 50%;
+            }
+        }
     </style>
 @endsection
 
@@ -55,7 +63,7 @@
     <div class="content">
         <div class="container-fluid">
 
-            <div class="row">
+            <div class="row dashboard-card">
                 <div class="col-3">
                     <div class="card first-card">
                         <div class="card-body">
