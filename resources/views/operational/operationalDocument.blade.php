@@ -254,7 +254,7 @@
                 {{-- row tanggal --}}
                 <tr>
                     <td width="50%">
-                        Tangerang, {{$currentDate}}
+                        Tangerang, {{$operational->approved_date ?? $currentDate}}
                     </td>
                     <td width="50%">
 
