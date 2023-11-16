@@ -211,7 +211,7 @@ class OperationalController extends Controller
                     return $operationals->creator->first_name . ' ' . $operationals->creator->last_name;
                 })
                 ->addColumn('action', function ($operationals) {
-                    return '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-approval btn-sm" type="button">Approve</a>' .
+                    return '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Approve</a>' .
                         '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-success btn-sm" type="button">Preview</a>';
                 })
                 ->rawColumns(['action'])
@@ -219,6 +219,22 @@ class OperationalController extends Controller
         }
 //        dd($operationals);
         return view('approval');
+    }
+
+    public function approved()
+    {
+        $operationals = Operational::with('project:id,label')->where('approved_by', '!=', null)->select('id', 'spk_number', 'project_id', 'date', 'created_by', 'approved_by', 'approved_date')->get();
+        if (\request()->ajax()) {
+            return DataTables::of($operationals)
+                ->addIndexColumn()
+                ->addColumn('created_by', function ($operationals) {
+                    return $operationals->creator->first_name . ' ' . $operationals->creator->last_name;
+                })
+                ->addColumn('approved_by', function ($operationals) {
+                    return $operationals->approver->first_name . ' ' . $operationals->approver->last_name;
+                })
+                ->make(true);
+        }
     }
 
     public function approve(Operational $operational)

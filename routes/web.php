@@ -173,6 +173,7 @@ Route::prefix('operational')->group(function () {
     Route::get('/approval/{operational}/approve', [OperationalController::class, 'approve'])->name('operational.approve'); //~
     Route::get('/approval/download/{operational}', [OperationalController::class, 'downloadFile'])->name('operational.download'); //~
     Route::get('/approval', [OperationalController::class, 'approval'])->name('operational.approval'); //~
+    Route::get('/approved', [OperationalController::class, 'approved'])->name('operational.approved');
     Route::get('/approval/{operational}/preview', [OperationalController::class, 'preview'])->name('operational.preview');
     Route::get('/getOperational/{salesOrder}', [OperationalController::class, 'getOperational'])->name('operational.get-operational'); //? --
     Route::get('/getTeam/{operational}', [OperationalController::class, 'getTeam'])->name('operational.get-team');
