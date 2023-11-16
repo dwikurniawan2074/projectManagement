@@ -80,14 +80,11 @@ class CustomerController extends Controller
 
     public function getCustomerData($id)
     {
-        // Cari data milestone berdasarkan ID
         $customer = Customer::find($id);
 
         if (!$customer) {
             return response()->json(['error' => 'Customer not found'], 404);
         }
-
-        // Mengembalikan data cu$customer sebagai respons JSON
         return response()->json($customer);
     }
 

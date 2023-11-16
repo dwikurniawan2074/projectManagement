@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('record_documents', function (Blueprint $table) {
+        Schema::create('table_trafo', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('project_id');
-            $table->date('submitted_date');
-            $table->date('due_date');
-            $table->text('description');
-            $table->string('progress');
-            $table->string('file')->nullable();
+            $table->string('merk');
+            $table->string('capacity');
+            $table->integer('no_seri');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('record_documents');
+        Schema::dropIfExists('table_trafo');
     }
 };

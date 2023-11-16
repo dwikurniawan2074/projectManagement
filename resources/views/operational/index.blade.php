@@ -481,35 +481,35 @@
 
     <script type="text/javascript">
         function detailOperational(operational) {
-                if (operational !== "" && operational != null) {
-                    console.log(operational);
-                    $.ajax({
-                        url: "{{ route('operational.show', '') }}" + "/" + operational,
-                        type: "GET",
-                        success: async function (data) {
-                            console.log(data);
-                            await getExpenses(operational);
-                            await getAgendas(operational);
-                            await getMaterials(operational);
 
-                            // Get the first operational in the array.
-                            const operationalData = data[0];
+            if (operational !== "" && operational != null) {
+                console.log(operational);
+                $.ajax({
+                    url: "{{ route('operational.show', '') }}" + "/" + operational,
+                    type: "GET",
+                    success: async function (data) {
+                        console.log(data);
+                        await getExpenses(operational);
+                        await getAgendas(operational);
+                        await getMaterials(operational);
 
-                            // Get the project label.
-                            const projectLabel = operationalData.project.label;
-                            $('#spk_number').text(operationalData.spk_number);
-                            $('#date').text(operationalData.date);
-                            $('#label').text(projectLabel);
-                            $('#type').text(operationalData.type);
-                            if (operationalData.approver == null) {
-                                $('#file').text('Belum di Approve');
-                            } else {
-                                $('#file').text('Download File');
-                                $('#file').removeClass('btn btn-danger disabled')
-                                $('#file').addClass('btn btn-info')
-                                $('#file').attr('href', "{{ route('operational.download', '') }}" + "/" + operational);
+                        // Get the first operational in the array.
+                        const operationalData = data[0];
 
-
+                        // Get the project label.
+                        const projectLabel = operationalData.project.label;
+                        $('#spk_number').text(operationalData.spk_number);
+                        $('#date').text(operationalData.date);
+                        $('#label').text(projectLabel);
+                        $('#type').text(operationalData.type);
+                        if (operationalData.approver == null) {
+                            $('#file').text('Belum diapprove');
+                            $('#file').addClass('btn btn-danger disabled')
+                        } else {
+                            $('#file').text('Download File');
+                            $('#file').removeClass('btn btn-danger disabled')
+                            $('#file').addClass('btn btn-info')
+                            $('#file').attr('href', "{{ route('operational.download', '') }}" + "/" + operational);
                             }
                             $('#description').text(operationalData.description);
                             $('#transport').text(operationalData.transportation_mode);

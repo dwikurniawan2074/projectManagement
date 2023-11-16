@@ -1157,7 +1157,6 @@
                         $("#record_description").val(response.description);
                         $("#record_due_date").val(response.due_date);
                         $("#record_progress").val(response.progress);
-                        console.log("success");
                     },
                     error: function(response) {
                         alert("Error: " + response.statusText);

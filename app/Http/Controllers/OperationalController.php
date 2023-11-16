@@ -212,7 +212,6 @@ class OperationalController extends Controller
                 })
                 ->addColumn('action', function ($operationals) {
                     return '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-approval btn-sm" type="button">Approve</a>' .
-                        '<a href="' . route('operational.download', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Download</a>' .
                         '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-success btn-sm" type="button">Preview</a>';
                 })
                 ->rawColumns(['action'])
@@ -225,6 +224,7 @@ class OperationalController extends Controller
     public function approve(Operational $operational)
     {
         $operational->approved_by = auth()->user()->id;
+        $operational->approved_date = date('Y-m-d');
         $operational->save();
         return redirect()->back()->with('success', 'Operational berhasil diapprove');
     }
@@ -234,7 +234,7 @@ class OperationalController extends Controller
         $operational = $operational->load('project', 'team', 'agendas', 'creator');
         $customerId = Customer::where('id', $operational->project->customer_id)->first();
         $currentUser = auth()->user();
-        $currentDate = date('d-m-Y');
+        $currentDate = date('Y-m-d');
         return view('operational.operationalDocument', compact('operational', 'customerId', 'currentUser', 'currentDate'));
     }
 
@@ -243,7 +243,7 @@ class OperationalController extends Controller
         $operational = $operational->load('project', 'team', 'agendas', 'creator');
         $customerId = Customer::where('id', $operational->project->customer_id)->first();
         $currentUser = auth()->user();
-        $currentDate = date('d-m-Y');
+        $currentDate = date('Y-m-d');
         $file = PDF::loadView('operational.operationalDocument', compact('operational', 'customerId', 'currentUser', 'currentDate'));
         return $file->download($operational->spk_number . '.pdf');
     }
