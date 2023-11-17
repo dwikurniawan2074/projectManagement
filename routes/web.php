@@ -93,7 +93,7 @@ Route::prefix('milestone')->group(function () {
     Route::post('/store', [MilestoneController::class, 'store'])->name('milestone.store');
     Route::put('/', [MilestoneController::class, 'update'])->name('milestone.update');
     Route::delete('/{id}', [MilestoneController::class, 'destroy'])->name('milestone.destroy');
-    Route::get('file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
+    Route::get('/file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
 });
 
 Route::prefix('recordDocument')->group(function () {
