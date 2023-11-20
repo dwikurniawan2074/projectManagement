@@ -133,7 +133,7 @@ Route::prefix('customerContact')->group(function () {
     Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
     Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
     Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
-    Route::put('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
+    Route::post('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
     Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
     Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
 });

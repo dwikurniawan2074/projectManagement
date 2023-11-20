@@ -191,8 +191,28 @@ class ProjectController extends Controller
     // Menampilkan form untuk mengedit project
     public function edit($id)
     {
+        // Mengambil pengguna dengan peran "Project Manager" atau "Sales Executive"
+        $usersWithRoles = DB::table('users')
+            ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+            ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+            ->whereIn('roles.name', ['Project Manager', 'Sales Executive'])
+            ->select('users.id', 'users.first_name', 'users.last_name', 'roles.name as role') // Menggunakan kolom first_name dan last_name
+            ->distinct()
+            ->get();
+
+        // Mengelompokkan pengguna berdasarkan peran (PM atau SE)
+        $usersByRole = [];
+        foreach ($usersWithRoles as $user) {
+            $role = $user->role;
+            if (!isset($usersByRole[$role])) {
+                $usersByRole[$role] = [];
+            }
+            $fullName = $user->first_name . ' ' . $user->last_name;
+            $usersByRole[$role][] = ['id' => $user->id, 'name' => $fullName];
+        }
+        $customers = Customer::all();
         $project = Project::findOrFail($id);
-        return view('projects.editProjects', ['project' => $project]);
+        return view('projects.editProjects', compact('usersByRole', 'customers', 'project'));
     }
 
     // Mengupdate project ke dalam database

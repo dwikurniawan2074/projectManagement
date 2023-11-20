@@ -5,7 +5,8 @@
     <!-- Include Select2 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
-    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet"
+        type="text/css" />
 
     {{-- flatepckr date time css --}}
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
@@ -282,7 +283,10 @@
             </div>
         </div>
     </div>
+
+    @include('projects.modalProject')
 @endsection
+
 
 {{-- pagescript section --}}
 @section('pageScript')
@@ -339,8 +343,7 @@
             $('#customers').on('change', function() {
                 var customer_id = $(this).val();
                 if (customer_id === 'createNewCustomer') {
-                    // Redirect ke halaman pembuatan customer
-                    window.location.href = "{{ route('customer.create') }}";
+                    $("#add-customer-modal").modal("show");
                 } else {
                     $customerContact.prop('disabled', false);
                     $.ajax({
@@ -371,7 +374,7 @@
                 var customer_id = $("#customers").val();
                 var contact = $(this).val();
                 if (contact === "createContact") {
-                    window.location.href = `{{ route('customer.create', ['id' => '${customer_id}']) }}`;
+                    $("#add-customerContact-modal").modal("show");
                 }
             });
         });
