@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('hasroles');
+        $users = User::with('hasroles')->orderBy('created_at', 'desc');
         if (\request()->ajax()) {
             return DataTables::of($users->get())
                 ->addIndexColumn()

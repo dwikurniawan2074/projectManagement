@@ -255,9 +255,9 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <a href="{{ asset('images/milestone_files/' . $milestone->file) }}"
-                                                            title="Download File Milestone" type="button" 
-                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}} 
+                                                        <a href="{{route('milestone.file', $milestone->id)}}"
+                                                            title="Download File Milestone" type="button"
+                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}}
                                                             class="tabledit-edit-button btn btn-success waves-effect waves-light
                                                                 {{ !$milestone->file ? 'disabled' : '' }}" download>
                                                             <span class="mdi mdi-file-download-outline"></span>
@@ -344,7 +344,7 @@
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <a href="{{ asset('recordDocument_files/'. $record->file) }}" title="Download File Record" type="button"
-                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light 
+                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light
                                                             {{ !$record->file ? 'disabled' : '' }}" download>
                                                             <span class="mdi mdi-file-download-outline"></span>
                                                         </a>

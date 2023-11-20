@@ -198,7 +198,7 @@
 
 <!-- Init js-->
 <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-advanced.init.js') }}"></script>
-
+    
 <script>
     // Sample data (you can replace this with your own data)
     const data = [

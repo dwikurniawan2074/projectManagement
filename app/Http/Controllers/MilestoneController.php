@@ -36,8 +36,8 @@ class MilestoneController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $fileName = 'milestone_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('milestone_files'), $fileName);
-            $milestone->file = $fileName;
+            $filepath = $file->store('milestone_files', 'public');
+            $milestone->file = $filepath;
         }
 
         $project = Project::find($validatedData['project_id']);
@@ -110,12 +110,14 @@ class MilestoneController extends Controller
     //Download File
     public function downloadfile($file)
     {
-        $filePath = public_path('milestone_files/' . $file);
-
-        if (file_exists($filePath)) {
-            return response()->download($filePath, $file);
-        } else {
-            return abort(404, 'File not found');
+        $file =  Milestone::find($file)->file;
+        //check file exist then return response for download
+        if (Storage::disk('public')->exists($file)) {
+            return Storage::disk('public')->download($file);
         }
+        else{
+            return response()->json(['error' => 'File not found'], 404);
+        }
+
     }
 }
