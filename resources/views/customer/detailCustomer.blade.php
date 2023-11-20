@@ -190,8 +190,6 @@
                                                 <th scope="row">
                                                     <p class="title-text">Customer Contacts Total</p>
                                                     <p class="details-text">23</p>
-                                                    <p class="title-text">Customer Contacts
-                                                        Total</p>
                                                     <p class="details-text"></p>
                                                 </th>
                                             </tr>
@@ -406,6 +404,13 @@
                         alert("Error: " + response.statusText);
                     }
                 });
+            });
+
+            // Delete value on customer contact modal when its closed
+            $('#customer-contact-modal').on('hidden.bs.modal', function (e) {
+                $("#customer_id").val('');
+                $("#name").val('');
+                $("#phone").val('');
             });
         });
     </script>
