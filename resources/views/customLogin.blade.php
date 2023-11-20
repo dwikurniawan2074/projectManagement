@@ -6,7 +6,7 @@
     <title>Login - Project Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-    <meta content="Coderthemes" name="author" />
+    <meta content="Coder-themes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('images/logo_trafindo_only.png') }}">
@@ -45,7 +45,7 @@
 
 </head>
 
-<body class="loading background-page">
+<body class="loading background-page" >
 
     <div class="account-pages my-5">
         <div class="container">
@@ -65,7 +65,7 @@
 
                             <div class="text-center mb-4">
                                 <img src="{{ asset('images/logo_trafindo_full.png') }}" alt="logo_trafindo"
-                                    class="logo-trafindo mx-auto" style="max-height: 60px;">
+                                    class="logo-trafindo mx-auto" style="max-height: 60px;" loading="lazy">
                             </div>
 
                             <form action="{{ route('login') }}" class="parsley-examples" method="POST">

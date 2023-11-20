@@ -93,7 +93,7 @@ Route::prefix('milestone')->group(function () {
     Route::post('/store', [MilestoneController::class, 'store'])->name('milestone.store');
     Route::put('/', [MilestoneController::class, 'update'])->name('milestone.update');
     Route::delete('/{id}', [MilestoneController::class, 'destroy'])->name('milestone.destroy');
-    Route::get('file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
+    Route::get('/file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
 });
 
 Route::prefix('recordDocument')->group(function () {
@@ -133,7 +133,7 @@ Route::prefix('customerContact')->group(function () {
     Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
     Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
     Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
-    Route::get('/update/{id}', [CustomerContactController::class, 'update'])->name('customerContact.update');
+    Route::put('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
     Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
     Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
 });
@@ -173,6 +173,7 @@ Route::prefix('operational')->group(function () {
     Route::get('/approval/{operational}/approve', [OperationalController::class, 'approve'])->name('operational.approve'); //~
     Route::get('/approval/download/{operational}', [OperationalController::class, 'downloadFile'])->name('operational.download'); //~
     Route::get('/approval', [OperationalController::class, 'approval'])->name('operational.approval'); //~
+    Route::get('/approved', [OperationalController::class, 'approved'])->name('operational.approved');
     Route::get('/approval/{operational}/preview', [OperationalController::class, 'preview'])->name('operational.preview');
     Route::get('/getOperational/{salesOrder}', [OperationalController::class, 'getOperational'])->name('operational.get-operational'); //? --
     Route::get('/getTeam/{operational}', [OperationalController::class, 'getTeam'])->name('operational.get-team');
