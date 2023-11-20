@@ -114,10 +114,8 @@ class MilestoneController extends Controller
         //check file exist then return response for download
         if (Storage::disk('public')->exists($file)) {
             return Storage::disk('public')->download($file);
-        }
-        else{
+        } else {
             return response()->json(['error' => 'File not found'], 404);
         }
-
     }
 }

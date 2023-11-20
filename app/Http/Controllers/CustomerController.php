@@ -104,7 +104,8 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customerContacts = $customer->contacts;
         $relatedProjects = $customer->projects;
+        $cusId = $id;
 
-        return view('customer.detailCustomer', compact('customer', 'customerContacts', 'relatedProjects', 'id'));
+        return view('customer.detailCustomer', compact('cusId', 'customer', 'customerContacts', 'relatedProjects', 'id'));
     }
 }
