@@ -174,8 +174,10 @@
                                         <p class="text-muted font-13 mt-1">Jalan-Jalan ketangerang </p>
                                     </div>
                                     <div class="ml-auto">
-                                        <button type="button" class="btn btn-blue btn-xs waves-effect waves-light">Edit
-                                        </button>
+                                        <a href="{{ route('sistemPenawaran.penawaran.create') }}">    
+                                            <button type="button" class="btn btn-blue btn-xs waves-effect waves-light">Edit
+                                            </button>
+                                        </a>
                                         <button type="button" class="btn btn-success btn-xs waves-effect waves-light">Print
                                         </button>
                                     </div>
