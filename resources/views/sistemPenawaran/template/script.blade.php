@@ -1,21 +1,22 @@
-    <!-- App js-->
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
 
 
     <!-- Vendor -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/feather-icons/feather.min.js') }}"></script>
-
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/node-waves/waves.min.js') }}"></script>
+    
     <!-- Dashboar init js-->
     {{-- <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/dashboard.init.js') }}"></script> --}}
-
+    
     {{-- backup --}}
     <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js"></script>
-
-@yield('pageScript')
+    
+    <!-- App js-->
+    @yield('pageScript')
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
 
     <script>
         const body = document.querySelector("body");
