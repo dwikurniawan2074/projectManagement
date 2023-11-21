@@ -3,10 +3,8 @@
 {{-- headerscript section --}}
 @section('headerScript')
     <style>
-        .btn-create {
-            background-color: #FF3E3E !important;
+        .btn-red{
             border-radius: 10px !important;
-            color: white !important;
         }
 
         .modal-dialog {
@@ -24,10 +22,12 @@
 
                     <!-- Button trigger modal -->
                     <div class="col-sm-7 mb-3">
-                        <button type="button" class="btn btn-create" data-toggle="modal"
-                            data-target="#tambah-penawaran-modal">
-                            <i class="mdi mdi-plus" title="Untuk menambahkan project "></i>Tambah Penawaran
-                        </button>
+                        <a href="{{ route('sistemPenawaran.penawaran.create') }}">
+                            <button type="button" class="btn btn-red" data-toggle="modal"
+                            {{-- data-target="#tambah-penawaran-modal"> --}}
+                                <i class="mdi mdi-plus" title="Untuk menambahkan project "></i>Tambah Penawaran
+                            </button>
+                        </a>
                     </div>
                     <!-- Modal -->
 
