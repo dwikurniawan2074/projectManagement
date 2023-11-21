@@ -116,11 +116,15 @@
             background-color: unset;
         }
 
+        .btn-red {
+            background-color: #FF3E3E !important;
+            color: white !important;
+        }
+
         .page-item.active .page-link {
             background-color: #FF3E3E !important;
             border: #FF3E3E;
         }
-
 
 
         /* styling profile secrtion */
