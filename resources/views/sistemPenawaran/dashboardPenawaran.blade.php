@@ -125,7 +125,9 @@
 
                                 <h4 class="header-title mt-0 mb-3">Monthly Acquisition</h4>
 
-                                <div id="ordered-bars-chart" style="height: 320px;"></div>
+                                <div style="height: 300px;">
+                                    <canvas id="myChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     
@@ -157,8 +159,8 @@
                                 <h4 class="header-title mt-0 mb-3">Donut Pie</h4>
 
                                 <div id="donut-chart">
-                                    <div id="donut-chart-container" class="flot-chart" style="height: 260px;">
-                                    </div>
+                                    <canvas id="doughnutChart" style="height: 260px;">
+                                    </canvas>
                                 </div>
                             </div>
                         </div>
@@ -187,8 +189,8 @@
                                 <h4 class="header-title mt-0 mb-3">Pie Chart</h4>
 
                                 <div id="pie-chart">
-                                    <div id="pie-chart-container" class="flot-chart" style="height: 260px;">
-                                    </div>
+                                    <canvas id="pieChart" style="height: 260px;">
+                                    </canvas>
                                 </div>
 
                             </div>
@@ -203,16 +205,115 @@
 
 {{-- pagescript section --}}
 @section('pageScript')
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.time.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.resize.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.selection.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.stack.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-orderbars/js/jquery.flot.orderBars.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/flot-charts/jquery.flot.crosshair.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- init js -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/flot.init.js') }}"></script>
+
+    <script>
+        const myChart = document.getElementById('myChart');
+        
+        new Chart(myChart, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the context of the canvas element
+            var ctx = document.getElementById('doughnutChart').getContext('2d');
+        
+            // Provide data for the chart
+            const data = {
+                labels: [
+                    'Red',
+                    'Blue',
+                    'Yellow'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+    
+            // Set options for the chart
+            var options = {
+            // Add your customization options here
+                responsive: true,
+                maintainAspectRatio: false,
+            };
+        
+            // Create the doughnut chart
+            var doughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Your chart creation code here
+            var ctx = document.getElementById('pieChart').getContext('2d');
+
+            // Provide data for the chart
+            const data = {
+                labels: [
+                    'Red',
+                    'Blue',
+                    'Yellow'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+
+            // Set options for the chart
+            var options = {
+            // Add your customization options here
+                responsive: true,
+                maintainAspectRatio: false,
+            };
+
+            // Create the doughnut chart
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: options
+            });
+        });
+        // Get the context of the canvas element
+        
+    </script>
 @endsection
