@@ -215,6 +215,7 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('penawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
+        Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
     });
     Route::prefix('approval')->group(function () {
