@@ -30,18 +30,20 @@ class CustomerContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'customer_id' => 'required',
             'name' => 'required',
             'phone' => 'required'
         ]);
 
         CustomerContact::create([
+            'customer_id' => $request->input('customer_id'),
             'name' => $request->input('name'),
             'phone' => $request->input('phone')
         ]);
 
-        $indexRoute = route('customerContact.index');
-        return redirect()->route('customerContact.index')->with('success', 'Customer contact created successfully.');
+        return redirect()->back()->with('success', 'Customer contact created successfully.');
     }
+
 
     public function show($id)
     {
@@ -64,18 +66,32 @@ class CustomerContactController extends Controller
     public function update(Request $request, CustomerContact $customerContacts)
     {
         $request->validate([
+            'customer_id' => 'required',
             'name' => 'required',
             'phone' => 'required'
         ]);
 
-        $customerContacts->update([
+        $customerContact = $customerContacts->where('id', $request->input('customer_id'))->first();
+
+        if (!$customerContact) {
+            return redirect()->back()
+                ->with('error', 'Customer contact not found.');
+        }
+
+        $updateResult = $customerContact->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone')
         ]);
 
-        return redirect()->route('customerContact.index')
-            ->with('success', 'Customer contact updated successfully.');
+        if ($updateResult) {
+            return redirect()->back()
+                ->with('success', 'Customer contact updated successfully.');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Customer contact update failed.');
+        }
     }
+
 
     public function destroy($id)
     {

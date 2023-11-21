@@ -22,10 +22,9 @@
                                         <h4 class="mt-0 header-title">Customer Contacts</h4>
                                     </div>
                                     <div class="col-sm-4 text-end">
-                                        <button type="button" data-bs-toggle="modal"
-                                        data-bs-target="#customer-contact-modal"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
-                                                class="mdi mdi-plus" title="Menambahkan Customer Contact"></i>Add Customer
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#add-contact-modal"
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i class="mdi mdi-plus"
+                                                title="Menambahkan Customer Contact"></i>Add Customer
                                             Contact</button>
                                     </div>
                                 </div>
@@ -51,7 +50,7 @@
                         </div>
 
                         <!-- Modal Edit Customer Contact -->
-                        <div class="modal fade" id="editCustomerContactModal" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="customer-contact-modal" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: hidden;">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
@@ -60,24 +59,24 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form id="editCustomerContact" action="{{ route('customerContact.update', '') }}"
+                                    <form id="editCustomerContact" action="{{ route('customerContact.update') }}"
                                         method="POST" enctype="multipart/form-data" class="parsley-examples"
                                         novalidate="">
                                         @csrf
-                                        @method('GET')
+                                        @method('POST')
                                         <div class="modal-body">
                                             <input type="hidden" name="customer_id" id="customer_id">
                                             <div class="mb-3">
                                                 <label for="customer_name" class="form-label">Name<span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control" id="customer_name"
+                                                <input type="text" name="name" class="form-control" id="name"
                                                     parsley-trigger="change" required="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="customer_phone" class="form-label">Phone<span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="phone" class="form-control"
-                                                    id="customer_phone" parsley-trigger="change" required="">
+                                                <input type="text" name="phone" class="form-control" id="phone"
+                                                    parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -92,34 +91,33 @@
                         </div>
 
 
-                        <!-- Modal Edit Customer Contact -->
-                        <div class="modal fade" id="editCustomerContactModal" tabindex="-1" role="dialog"
+                        <!-- Modal Add Customer Contact -->
+                        <div class="modal fade" id="add-contact-modal" tabindex="-1" role="dialog"
                             aria-labelledby="myModalLabel" aria-hidden="true" style="overflow: hidden;">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Edit Customer Contact</h4>
+                                        <h4 class="modal-title">Add Customer Contact</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form id="editCustomerContact" action="{{ route('customerContact.update', '') }}"
-                                        method="POST" enctype="multipart/form-data" class="parsley-examples"
-                                        novalidate="">
+                                    <form action="{{ route('customerContact.store') }}" method="POST"
+                                        enctype="multipart/form-data" class="parsley-examples" novalidate="">
                                         @csrf
-                                        @method('GET')
+                                        @method('POST')
                                         <div class="modal-body">
-                                            <input type="hidden" name="customer_id" id="customer_id">
+                                            <input type="hidden" name="customer_id" value="{{ $cusId }}">
                                             <div class="mb-3">
                                                 <label for="customer_name" class="form-label">Name<span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="name" class="form-control"
-                                                    id="customer_name" parsley-trigger="change" required="">
+                                                <input type="text" name="name" class="form-control" id="name"
+                                                    parsley-trigger="change" required="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="customer_phone" class="form-label">Phone<span
                                                         class="text-danger">*</span></label>
-                                                <input type="text" name="phone" class="form-control"
-                                                    id="customer_phone" parsley-trigger="change" required="">
+                                                <input type="text" name="phone" class="form-control" id="phone"
+                                                    parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -209,9 +207,9 @@
                     </div>
 
                     {{-- modals operational expenses --}}
-                    <form class="expensesForm" data-parsley-validate>
-                        <div id="customer-contact-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-                            style="overflow:hidden;">
+                    {{-- <form class="expensesForm" data-parsley-validate>
+                        <div id="customer-contact-modal" class="modal fade" role="dialog"
+                            aria-labelledby="myModalLabel" aria-hidden="true" style="overflow:hidden;">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -229,8 +227,9 @@
                                                     <label for="field-1" class="form-label">Name<span
                                                             class="text-danger">*</span>
                                                     </label>
-                                                    <input type="text" class="form-control" id="name" placeholder="Name"
-                                                        name="expense-item" parsley-trigger="change" required>
+                                                    <input type="text" class="form-control" id="name"
+                                                        placeholder="Name" name="expense-item" parsley-trigger="change"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -238,7 +237,8 @@
                                                     <label for="field-2 " class="form-label">Phone Number<span
                                                             class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" id="phone"
-                                                        placeholder="Phone Number" name="expense-amount" parsley-trigger="change" required>
+                                                        placeholder="Phone Number" name="expense-amount"
+                                                        parsley-trigger="change" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -255,14 +255,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /.modal -->
-                        </div>
-                    </form>
+                            </div> --}}
+                    <!-- /.modal -->
                 </div>
+                </form>
             </div>
-
         </div>
+
+    </div>
     </div>
 @endsection
 
@@ -307,7 +307,7 @@
                             console.log(full);
                             return `
                             <div class="btn-group btn-group-sm" style="float: none;">
-                                <button type="button" class="tabledit-edit-button editCustomerContact btn btn-primary waves-effect waves-light"
+                                <button type="button" class="tabledit-edit-button editContactCustomer btn btn-primary waves-effect waves-light"
                                 value="${full.id}"
                                 data-bs-toggle="modal" data-bs-target="#customer-contact-modal"
                                 title="Edit Customer Contact" style="padding: 0.25rem 0.8rem;">
@@ -388,7 +388,7 @@
 
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.editCustomerContact', function() {
+            $(document).on('click', '.editContactCustomer', function() {
                 var id = $(this).val();
                 $.ajax({
                     type: "GET",
