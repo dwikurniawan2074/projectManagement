@@ -29,7 +29,30 @@
         </li>
 
         <li>
-            <h4 class="page-title-main">Dashboard</h4>
+            <h4 class="page-title-main">
+                @switch(true)
+                    @case(Request::is('projects'))
+                        Project
+                        @break
+                    @case(Request::is('milestone/*'))
+                        Milestone
+                        @break
+                    @case(Request::is('top/*'))
+                        TOP
+                        @break
+                    @case(Request::is('operational'))
+                        Operational
+                        @break
+                    @case(Request::is('approval/*'))
+                        Approval
+                        @break
+                    @case(Request::is('calendar'))
+                        Calendar
+                        @break
+                    @default
+                        Dashboard
+                @endswitch
+            </h4>
         </li>
     </ul>
 
@@ -183,7 +206,7 @@
                         <div class="row px-3">
                             <div class="col-7">
                                 <h5 class="mb-1">{{auth()->user()->first_name}}</h5>
-{{--                                <p class="text-muted left-user-info mb-0">{{auth()}}</p>--}}
+                                {{--                                <p class="text-muted left-user-info mb-0">{{auth()}}</p>--}}
                             </div>
                             <div class="col-2 my-auto">
                                 <form method="POST" action="{{route('logout')}}">
