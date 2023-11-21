@@ -69,7 +69,6 @@
                                         <th>Approved By</th>
                                         <th>Approved Date</th>
                                         <th>Service Date</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -125,7 +124,6 @@
                     {data: 'approved_by', name: 'approved_by'},
                     {data: 'approved_date', name: 'approved_date'},
                     {data: 'date', name: 'date'},
-                    {data: 'action', name: 'action'},
                 ]
             });
         });
