@@ -211,8 +211,10 @@ class OperationalController extends Controller
                     return $operationals->creator->first_name . ' ' . $operationals->creator->last_name;
                 })
                 ->addColumn('action', function ($operationals) {
-                    return '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Approve</a>' .
-                        '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-success btn-sm" type="button">Preview</a>';
+                    return '<div class="text-center">' .
+                        '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Approve</a>' .
+                        '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-success btn-sm" type="button">Preview</a>' .
+                        '</div>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
