@@ -554,7 +554,7 @@
     $("#addsyarat").click(function() {
         var html = '<div class="input-group mb-2">';
         html += '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>';
-        html += '<input type="text" name="title[]" class="form-control m-input ms-1" placeholder="Enter title" autocomplete="off">';
+        html += '<input type="text" name="title[]" class="form-control m-input ms-1" placeholder="Masukan Penawaran" autocomplete="off">';
         html += '<div class="input-group-append">';
         html += '<button class="btn btn-danger removeRow" type="button"><i class="fe-trash"></i></button>';
         html += '</div>';
