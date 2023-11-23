@@ -170,14 +170,11 @@
                     <div class="col-xl-4">
                         <div class="card">
                             <div class="card-body">
-
                                 <div class="row">
                                     <div class="col-12">
                                         <h4 class="mt-0 header-title"></h4>
                                     </div>
                                 </div>
-
-
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
@@ -202,61 +199,8 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-                    {{-- modals operational expenses --}}
-                    {{-- <form class="expensesForm" data-parsley-validate>
-                        <div id="customer-contact-modal" class="modal fade" role="dialog"
-                            aria-labelledby="myModalLabel" aria-hidden="true" style="overflow:hidden;">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">
-                                            Customer Contacts Data</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="row">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-3 text-start">
-                                                    <label for="field-1" class="form-label">Name<span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="Name" name="expense-item" parsley-trigger="change"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="mb-3 text-start">
-                                                    <label for="field-2 " class="form-label">Phone Number<span
-                                                            class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="phone"
-                                                        placeholder="Phone Number" name="expense-amount"
-                                                        parsley-trigger="change" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary waves-effect"
-                                                data-bs-dismiss="modal">
-                                                Close
-                                            </button>
-                                            <button type="submit" class="btn btn-save waves-effect waves-light"
-                                                id="expenseButton">
-                                                Save
-                                                changes
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
-                    <!-- /.modal -->
                 </div>
                 </form>
             </div>
