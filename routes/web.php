@@ -67,6 +67,10 @@ Route::get('/staff', function () {
     return view('staff');
 });
 
+Route::get('/summary', function () {
+    return view('summary');
+});
+
 //Route::get('/RoleSelect', function () {
 //    return view('rolecustomelogin');
 //});
