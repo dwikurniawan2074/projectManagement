@@ -203,7 +203,7 @@ class OperationalController extends Controller
      */
     public function approval()
     {
-        $operationals = Operational::with('project:id,label')->where('approved_by', null)->select('id', 'spk_number', 'project_id', 'date', 'created_by')->get();
+        $operationals = Operational::with('project:id,label')->where('approved_by', null)->select('id', 'spk_number', 'project_id', 'date', 'created_by')->orderBy('created_at', 'desc')->get();
         if (\request()->ajax()) {
             return DataTables::of($operationals)
                 ->addIndexColumn()
@@ -211,9 +211,10 @@ class OperationalController extends Controller
                     return $operationals->creator->first_name . ' ' . $operationals->creator->last_name;
                 })
                 ->addColumn('action', function ($operationals) {
+                    $approveUrl = route('operational.approve', $operationals->id);
                     return '<div class="text-center">' .
-                        '<a href="' . route('operational.approve', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Approve</a>' .
-                        '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-success btn-sm" type="button">Preview</a>' .
+                        '<button class="btn btn-success btn-sm" type="button" onclick="showConfirmation(\'' . $approveUrl . '\')">Approve</button>' .
+                        '<a href="' . route('operational.preview', $operationals->id) . '" class="btn btn-info btn-sm" type="button">Preview</a>' .
                         '</div>';
                 })
                 ->rawColumns(['action'])
@@ -225,7 +226,7 @@ class OperationalController extends Controller
 
     public function approved()
     {
-        $operationals = Operational::with('project:id,label')->where('approved_by', '!=', null)->select('id', 'spk_number', 'project_id', 'date', 'created_by', 'approved_by', 'approved_date')->get();
+        $operationals = Operational::with('project:id,label')->where('approved_by', '!=', null)->select('id', 'spk_number', 'project_id', 'date', 'created_by', 'approved_by', 'approved_date')->orderBy('created_at', 'desc')->get();
         if (\request()->ajax()) {
             return DataTables::of($operationals)
                 ->addIndexColumn()
