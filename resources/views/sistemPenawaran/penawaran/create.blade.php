@@ -11,7 +11,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{route('sistempenawaran.store')}}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -164,7 +165,7 @@
                                     <a href="{{ route('sistemPenawaran.penawaran.index') }}">
                                         <button type="button" class="btn btn-secondary waves-effect" onclick="">Cancel</button>
                                     </a>
-                                    <button class="btn btn-red waves-effect waves-light px-4" type="button" onclick="directTemp()">Save</button>
+                                    <button class="btn btn-red waves-effect waves-light px-4" type="submit">Save</button>
                                 </div>
                             </form>
                         </div>
