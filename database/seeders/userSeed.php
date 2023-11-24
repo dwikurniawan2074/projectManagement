@@ -17,14 +17,14 @@ class userSeed extends Seeder
         $this->call(RoleSeeder::class);
         Storage::fake('avatars');
 
-        $file = UploadedFile::fake()->image('avatar.png');
+        // $file = UploadedFile::fake()->image('avatar.png');
         $admin = User::create([
             'first_name' => 'Admin',
             'last_name' => 'Doe',
             'email' => 'admin@test.com',
             'division' => 'IT',
             'password' => 'password',
-            'signature' => $file,
+            'signature' => null,
         ]);
         $admin->hasroles()->attach(1);
 
