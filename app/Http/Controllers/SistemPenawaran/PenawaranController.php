@@ -42,8 +42,12 @@ class PenawaranController extends Controller
             'date'=>$request->tanggal_penawaran,
             'no_msg'=>$request->msg,
             'no_rfq'=>$request->no_rfq,
+            'segementasi_pasar'=>$request->segementasi_pasar,
+            'syarat_pembayaran'=>$request->syarat_pembayaran,
+            'jangka_waktu'=>$request->delivery_time,
+            'pelaksanaan_pekerjaan'=>$request->pelaksanaan_pekerjaan,
         ]);
-        
+        return redirect()->back();
     }
 
 }

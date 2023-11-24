@@ -85,7 +85,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="delivery time" class="form-label">Delivery Time</label>
-                                            <select class="form-select" name="delivery-time">
+                                            <select class="form-select" name="delivery_time">
                                                 <option selected="">15 Hari</option>
                                                 <option value="1">30 Hari</option>
                                                 <option value="2">45 Hari</option>
@@ -96,7 +96,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
-                                            <select class="form-select" name="segementasi-pasar">
+                                            <select class="form-select" name="segementasi_pasar">
                                                 <option selected="">BUMN</option>
                                                 <option value="1">Pertambangan</option>
                                                 <option value="2">Pertanian</option>
@@ -109,13 +109,13 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan Pekerjaan</label>
-                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan-pekerjaan" placeholder="Pelaksanaan Pekerjaan">
+                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="syarat-pembayaran" class="form-label">Syarat Pembayaran</label>
-                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat-pembayaran" placeholder="Syarat Pembayaran">
+                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat_pembayaran" placeholder="Syarat Pembayaran">
                                         </div>
                                     </div>
                                 </div>
