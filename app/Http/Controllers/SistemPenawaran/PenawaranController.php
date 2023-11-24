@@ -49,5 +49,9 @@ class PenawaranController extends Controller
         ]);
         return redirect()->back();
     }
+    public function form(){
+        return view('sistemPenawaran.penawaran.create');
+
+    }
 
 }
