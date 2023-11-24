@@ -147,7 +147,7 @@
                                     <div class="col-md-12">
                                         <div class="">
                                             <label for="alamat" class="form-label">Alamat</label>
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat"></textarea>
+                                            <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat"></textarea>
                                         </div>
                                     </div>
                                 </div>
