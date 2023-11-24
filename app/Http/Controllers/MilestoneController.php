@@ -35,10 +35,12 @@ class MilestoneController extends Controller
         // Simpan file
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $fileName = 'milestone_' . time() . '.' . $file->getClientOriginalExtension();
-            $filepath = $file->store('milestone_files', 'public');
+            $originalFileName = $file->getClientOriginalName(); // Mendapatkan nama asli file
+            $fileName = 'milestone_' . time() . '_' . $originalFileName;
+            $filepath = $file->storeAs('milestone_files', $fileName, 'public');
             $milestone->file = $filepath;
         }
+
 
         $project = Project::find($validatedData['project_id']);
         $project->milestones()->save($milestone);
@@ -60,20 +62,30 @@ class MilestoneController extends Controller
 
         $milestone = Milestone::findOrFail($request->milestone_id);
 
-        // Mengupdate data milestone dengan data yang validasi
-        $milestone->update($validatedData);
-
-        // Upload file jika ada
+        // Update file
         if ($request->hasFile('file')) {
+            $existingFilePath = $milestone->file; // Mendapatkan path file yang sudah ada
+
+            // Hapus file yang sudah ada jika diperlukan
+            if (Storage::disk('public')->exists($existingFilePath)) {
+                Storage::disk('public')->delete($existingFilePath);
+            }
+
+            // Upload file baru
             $file = $request->file('file');
-            $fileName = 'milestone_' . $file->getClientOriginalName();
-            $file->storeAs('milestone_files', $fileName, 'public');
-            $milestone->file = $fileName;
-            $milestone->save();
+            $originalFileName = $file->getClientOriginalName();
+            $fileName = 'milestone_' . time() . '_' . $originalFileName;
+            $filepath = $file->storeAs('milestone_files', $fileName, 'public');
+
+            // Update path file di model
+            $milestone->file = $filepath;
         }
+
+        $milestone->save(); // Simpan perubahan pada model
 
         return redirect()->route('projects.show', ['id' => $milestone->project_id])->with('success', 'Milestone berhasil diubah.');
     }
+
 
     // Kirim data json untuk edit milestone
     public function getMilestoneData($id)

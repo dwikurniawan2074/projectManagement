@@ -13,7 +13,8 @@ use Response;
 class RecordDocumentController extends Controller
 {
     // fungsi untuk menyimpan document record
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // Validasi data input dari form
         $validatedData = $request->validate([
             'project_id' => 'required|exists:projects,id',
@@ -34,27 +35,29 @@ class RecordDocumentController extends Controller
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $fileName = 'recordDocument_' . time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('recordDocument_files'), $fileName);
-            $recordDocument->file = $fileName;
+            $originalFileName = $file->getClientOriginalName(); // Mendapatkan nama asli file
+            $fileName = 'recordDocument_' . time() . '_' . $originalFileName;
+            $filepath = $file->storeAs('recordDocument_files', $fileName, 'public');
+            $recordDocument->file = $filepath;
         }
 
         $project = Project::find($validatedData['project_id']);
         $project->recordDocument()->save($recordDocument);
 
         return redirect()->route('projects.show', $validatedData['project_id'])->with('success', 'Record Document berhasil ditambahkan');
-    
     }
 
     // fungsi untuk membuat document record
-    public function create($id){
+    public function create($id)
+    {
         $project = $id;
-        
+
         return view('projects.createRecord', compact('project'));
     }
 
     // fungsi untuk mengupdate document record
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         // Validasi data input dari form
 
         $validatedData = $request->validate([
@@ -69,23 +72,33 @@ class RecordDocumentController extends Controller
 
         $recordDocument = RecordDocument::findOrFail($request->recordDocument_id);
 
-        // Mengupdate data milestone dengan data yang validasi
-        $recordDocument->update($validatedData);
-
-        // Upload file jika ada
+        // Update file
         if ($request->hasFile('file')) {
+            $existingFilePath = $recordDocument->file; // Mendapatkan path file yang sudah ada
+
+            // Hapus file yang sudah ada jika diperlukan
+            if (Storage::disk('public')->exists($existingFilePath)) {
+                Storage::disk('public')->delete($existingFilePath);
+            }
+
+            // Upload file baru
             $file = $request->file('file');
-            $fileName = 'recordDocument_' . $file->getClientOriginalName();
-            $file->storeAs('recordDocument_files', $fileName, 'public');
-            $recordDocument->file = $fileName;
-            $recordDocument->save();
+            $originalFileName = $file->getClientOriginalName();
+            $fileName = 'recordDocument_' . time() . '_' . $originalFileName;
+            $filepath = $file->storeAs('recordDocument_files', $fileName, 'public');
+
+            // Update path file di model
+            $recordDocument->file = $filepath;
         }
+
+        $recordDocument->save();
 
         return redirect()->route('projects.show', ['id' => $recordDocument->project_id])->with('success', 'Record Document berhasil diubah.');
     }
 
     // fungsi untuk menghapus document record
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             $recordDocument = RecordDocument::findOrFail($id);
             $recordDocument->delete();
@@ -96,11 +109,12 @@ class RecordDocumentController extends Controller
     }
 
 
-    public function show($id){
+    public function show($id)
+    {
         // Cari data record document berdasarkan ID
         $recordDocument = RecordDocument::find($id);
-                
-                
+
+
         if (!$recordDocument) {
             return response()->json(['error' => 'RecordDocument not found'], 404);
         }
@@ -109,4 +123,14 @@ class RecordDocumentController extends Controller
         return response()->json($recordDocument);
     }
 
+    public function downloadfile($file)
+    {
+        $file =  RecordDocument::find($file)->file;
+        //check file exist then return response for download
+        if (Storage::disk('public')->exists($file)) {
+            return Storage::disk('public')->download($file);
+        } else {
+            return response()->json(['error' => 'File not found'], 404);
+        }
+    }
 }
