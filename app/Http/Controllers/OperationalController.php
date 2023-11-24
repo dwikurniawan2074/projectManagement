@@ -67,11 +67,11 @@ class OperationalController extends Controller
         $validatedData = $request->validate([
             'project_id' => 'required|exists:projects,id',
             'date' => 'required|date',
-            'type' => 'required',
-            'transportation_mode' => 'required',
-            'spk_code' => 'required',
-            'spk_number' => 'required',
-            'description' => 'required',
+            'type' => 'required|string',
+            'transportation_mode' => 'required|string',
+            'spk_code' => 'required|string',
+            'spk_number' => 'required|string',
+            'description' => 'required|string',
             'created_by' => 'required',
         ]);
 
@@ -115,11 +115,11 @@ class OperationalController extends Controller
             $validatedData = $request->validate([
                 'id' => 'required',
                 'date' => 'required|date',
-                'type' => 'required',
-                'transportation_mode' => 'required',
-                'spk_code' => 'required',
-                'spk_number' => 'required',
-                'description' => 'required',
+                'type' => 'required|string',
+                'transportation_mode' => 'required|string',
+                'spk_code' => 'required|string',
+                'spk_number' => 'required|string',
+                'description' => 'required|string',
             ]);
 
             $combinedSPK = $request->input('spk_code') . '-' . $request->input('spk_number');
