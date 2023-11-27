@@ -101,7 +101,7 @@
                 </div>
 
 
-                {{-- <div class="modal fade" id="tambah-penawaran-modal" tabindex="-1" role="dialog"
+                <!-- {{-- <div class="modal fade" id="tambah-penawaran-modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
@@ -229,7 +229,7 @@
                                                 <select id="inputStateLeft" class="form-select">
                                                     <option selected>Choose...</option>
                                                     <option>15 Hari</option>
-                                                    <option>30 Hari</option>
+                                                    <option>31 Hari</option>
                                                     <option>45 Hari</option>
                                                     <option>60 Hari</option>
                                                 </select>
@@ -342,10 +342,10 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div> --}} -->
 
                 <!--  Modal content for the Large example -->
-                <div class="modal fade" id="tambah-penawaran-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <!-- <div class="modal fade" id="tambah-penawaran-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -417,7 +417,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="delivery time" class="form-label">Delivery Time</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="delivery_time">
                                                 <option selected="">15 Hari</option>
                                                 <option value="1">30 Hari</option>
                                                 <option value="2">45 Hari</option>
@@ -428,7 +428,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="segemntasi_pasar">
                                                 <option selected="">BUMN</option>
                                                 <option value="1">Pertambangan</option>
                                                 <option value="2">Pertanian</option>
@@ -441,13 +441,13 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan Pekerjaan</label>
-                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan-pekerjaan" placeholder="Pelaksanaan Pekerjaan">
+                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="syarat-pembayaran" class="form-label">Syarat Pembayaran</label>
-                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat-pembayaran" placeholder="Syarat Pembayaran">
+                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat_pembayaran" placeholder="Syarat Pembayaran">
                                         </div>
                                     </div>
                                 </div>
@@ -455,7 +455,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="negara" class="form-label">Negara</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="negara">
                                                 <option selected="">Indonesia</option>
                                                 <option value="1">Malaysia</option>
                                                 <option value="2">Singapur</option>
@@ -466,7 +466,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="provinsi">
                                                 <option selected="">Banten</option>
                                                 <option value="1">DKI Jakarta</option>
                                                 <option value="2">Jawa Barat</option>
@@ -477,7 +477,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="kabupaten_kota">
                                                 <option selected="">Kota Tangerang</option>
                                                 <option value="1">Tangerang Selatan</option>
                                             </select>
@@ -488,7 +488,7 @@
                                     <div class="col-md-12">
                                         <div class="">
                                             <label for="alamat" class="form-label">Alamat</label>
-                                            <textarea class="form-control" id="alamat" placeholder="Alamat"></textarea>
+                                            <textarea class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +499,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

@@ -88,7 +88,7 @@
                                             <label for="delivery time" class="form-label">Delivery Time</label>
                                             <select class="form-select" name="delivery_time">
                                                 <option selected="">15 Hari</option>
-                                                <option value="1">30 Hari</option>
+                                                <option value="1">31 Hari</option>
                                                 <option value="2">45 Hari</option>
                                                 <option value="3">60 Hari</option>
                                             </select>
@@ -120,11 +120,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="negara" class="form-label">Negara</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="negara">
                                                 <option selected="">Indonesia</option>
                                                 <option value="1">Malaysia</option>
                                                 <option value="2">Singapur</option>
@@ -135,7 +135,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="provinsi">
                                                 <option selected="">Banten</option>
                                                 <option value="1">DKI Jakarta</option>
                                                 <option value="2">Jawa Barat</option>
@@ -146,7 +146,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="kabupaten_kota">
                                                 <option selected="">Kota Tangerang</option>
                                                 <option value="1">Tangerang Selatan</option>
                                             </select>
@@ -157,10 +157,10 @@
                                     <div class="col-md-12">
                                         <div class="">
                                             <label for="alamat" class="form-label">Alamat</label>
-                                            <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat"></textarea>
+                                            <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="text-end mt-3">
                                     <a href="{{ route('sistemPenawaran.penawaran.index') }}">
                                         <button type="button" class="btn btn-secondary waves-effect" onclick="">Cancel</button>

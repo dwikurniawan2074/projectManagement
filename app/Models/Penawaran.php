@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Penawaran extends Model
 {
     use HasFactory;
-
+    protected $table = 'table_penawaran';
     protected $primaryKey = 'id';
     protected $fillable = [
         'email',
@@ -17,6 +17,10 @@ class Penawaran extends Model
         'cc',
         'date',
         'no_msg',
-        'no_ref',
+        'no_rfq',
+        'segementasi_pasar',
+        'syarat_pembayaran',
+        'jangka_waktu',
+        'pelaksanaan_pekerjaan',
     ];
 }
