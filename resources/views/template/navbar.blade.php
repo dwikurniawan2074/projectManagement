@@ -150,7 +150,7 @@
                 <li class="menu-title mt-2">Apps</li>
 
                 <li
-                    class="{{ Request::is('projects/*') || Request::is('milestone/*') || Request::is('top/*') ? 'menuitem-active' : ''}}">
+                    class="{{ Request::is('projects/*') || Request::is('milestone/*') || Request::is('top/*') || Request::is('recordDocument/*') || Request::is('submilestone')  ? 'menuitem-active' : ''}}">
                     <a href="{{ url('projects') }}">
                         <i class="mdi mdi-briefcase-variant-outline"></i>
                         <span> Projects </span>

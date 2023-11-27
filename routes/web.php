@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductionCostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SubMilestoneController;
 use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
@@ -36,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('marks-as-read/{notification}', [UserController::class, 'marksAsRead'])->name('markNotification');
 Route::get('mark-all-as-read', [UserController::class, 'marksAllAsRead'])->name('markAllNotification');
+
 Route::group(['prefix' => 'projects'], function () {
     Route::get('/', [ProjectController::class, 'index'])->name('projects.index');
     Route::get('/createProjects', [ProjectController::class, 'create'])->name('projects.createProjects');
@@ -98,6 +100,14 @@ Route::prefix('milestone')->group(function () {
     Route::put('/', [MilestoneController::class, 'update'])->name('milestone.update');
     Route::delete('/{id}', [MilestoneController::class, 'destroy'])->name('milestone.destroy');
     Route::get('/file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
+});
+
+Route::prefix('submilestone')->group(function () {
+    Route::get('/', [SubMilestoneController::class, 'index'])->name('submilestone.index');
+    Route::get('/create/{id}', [SubMilestoneController::class, 'create'])->name('submilestone.create');
+    Route::post('/store', [SubMilestoneController::class, 'store'])->name('submilestone.store');
+    Route::delete('/{id}', [SubMilestoneController::class, 'destroy'])->name('submilestone.destroy');
+    Route::get('/file/{file}', [SubMilestoneController::class, 'downloadfile'])->name('submilestone.file');
 });
 
 Route::prefix('recordDocument')->group(function () {
