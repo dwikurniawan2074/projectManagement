@@ -264,7 +264,7 @@
                                             <td>Harga Belum Termasuk PPN</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button"
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
                                                         class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
@@ -276,7 +276,7 @@
                                             <td>Harga Belum Termasuk PCR test bila diperlukan</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button"
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
                                                         class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
@@ -288,7 +288,7 @@
                                             <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button"
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
                                                         class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
@@ -296,11 +296,11 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td width="80">1</td>
+                                            <td width="80">4</td>
                                             <td>Harga Belum Termasuk PPN</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button"
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
                                                         class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
@@ -336,11 +336,13 @@
                                             </button>
                                     </div>
                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                        <button title="Edit Project" type="button"
-                                            class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                            style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
-                                            <span class="mdi mdi-pencil"></span>
-                                        </button>
+                                        <a href="{{ route('sistemPenawaran.penawaran.create') }}">
+                                            <button type="button" title="Edit Project" type="button"
+                                                class="tabledit-edit-button btn btn-primary waves-effect waves-light"
+                                                style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;" onclick="{{ route('sistemPenawaran.penawaran.create') }}">
+                                                <span class="mdi mdi-pencil"></span>
+                                            </button>
+                                        </a>
                                     </div>
                                     <div class="btn-group btn-group-sm" style="float: none;">
                                         <button title="Delete Project" type="button"
