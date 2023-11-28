@@ -31,7 +31,7 @@
         }
 
         /* .pagination-nav .pagination .active  {
-                                        } */
+                                            } */
 
         .pagination ul li {
             height: 100%;
@@ -230,8 +230,10 @@
                                                 <th>Entry Date</th>
                                                 <th>Description</th>
                                                 <th>Due Date</th>
+                                                <th>Bobot</th>
                                                 <th class="text-center">Status</th>
-                                                <th class="text-center" width="160">Actions</th>
+                                                <th class="text-center">Submilestones</th>
+                                                <th class="text-center" width="130">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>

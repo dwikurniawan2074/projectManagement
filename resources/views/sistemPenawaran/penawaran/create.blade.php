@@ -11,26 +11,22 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{route('sistempenawaran.store')}}" method="post">
+                                @csrf
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="project-name" class="form-label">Project Name</label>
-                                            <input type="text" class="form-control" id="project-name" name="project-name" placeholder="Name">
+                                            <input type="text" class="form-control" id="project-name" name="project_name" placeholder="Name">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="judul-pekerjaan" class="form-label">Judul Pekerjaan</label>
-                                            <input type="text" class="form-control" id="judul-pekerjaan" name="judul-pekerjaan" placeholder="Judul">
+                                            <input type="text" class="form-control" id="judul-pekerjaan" name="judul_pekerjaan" placeholder="Judul">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="no-rfq" class="form-label">No. RFQ</label>
-                                            <input type="text" class="form-control" id="no-rfq" name="no-rfq" placeholder="RFQ">
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -41,8 +37,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="no-msg" class="form-label">MSG No.</label>
-                                            <input type="text" class="form-control" id="no-msg" name="no-msg" placeholder="MSG">
+                                            <label for="no-msg" class="form-label">CC</label>
+                                            <input type="text" class="form-control" id="cc" name="cc" placeholder="CC">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="no-rfq" class="form-label">MSG.</label>
+                                            <input type="text" class="form-control" id="no-msg" name="msg" placeholder="MSG">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="no-rfq" class="form-label">No. RFQ</label>
+                                            <input type="text" class="form-control" id="no-rfq" name="no_rfq" placeholder="RFQ">
                                         </div>
                                     </div>
                                 </div>
@@ -56,13 +66,13 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="customer-contact" class="form-label">Customer Contact Name</label>
-                                            <input type="text" class="form-control" id="customer-contact" name="customer-contact" placeholder="Customer Contact">
+                                            <input type="text" class="form-control" id="customer-contact" name="customer_contact" placeholder="Customer Contact">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="no-hp" class="form-label">No. HP</label>
-                                            <input type="text" class="form-control" id="no-hp" name="no-hp" placeholder="No. HP">
+                                            <input type="text" class="form-control" id="no-hp" name="no_hp" placeholder="No. HP">
                                         </div>
                                     </div>
                                 </div>
@@ -70,15 +80,15 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="tanggal-penawaran" class="form-label">Tanggal Penawaran</label>
-                                            <input type="date" class="form-control" id="tanggal-penawaran" name="tanggal-penawaran">
+                                            <input type="date" class="form-control" id="tanggal-penawaran" name="tanggal_penawaran">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="delivery time" class="form-label">Delivery Time</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="delivery_time">
                                                 <option selected="">15 Hari</option>
-                                                <option value="1">30 Hari</option>
+                                                <option value="1">31 Hari</option>
                                                 <option value="2">45 Hari</option>
                                                 <option value="3">60 Hari</option>
                                             </select>
@@ -87,7 +97,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="segementasi_pasar">
                                                 <option selected="">BUMN</option>
                                                 <option value="1">Pertambangan</option>
                                                 <option value="2">Pertanian</option>
@@ -100,21 +110,21 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan Pekerjaan</label>
-                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan-pekerjaan" placeholder="Pelaksanaan Pekerjaan">
+                                            <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="syarat-pembayaran" class="form-label">Syarat Pembayaran</label>
-                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat-pembayaran" placeholder="Syarat Pembayaran">
+                                            <input type="text" class="form-control" id="syarat-pembayaran" name="syarat_pembayaran" placeholder="Syarat Pembayaran">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="negara" class="form-label">Negara</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="negara">
                                                 <option selected="">Indonesia</option>
                                                 <option value="1">Malaysia</option>
                                                 <option value="2">Singapur</option>
@@ -125,7 +135,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="provinsi">
                                                 <option selected="">Banten</option>
                                                 <option value="1">DKI Jakarta</option>
                                                 <option value="2">Jawa Barat</option>
@@ -136,7 +146,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                            <select class="form-select">
+                                            <select class="form-select" name="kabupaten_kota">
                                                 <option selected="">Kota Tangerang</option>
                                                 <option value="1">Tangerang Selatan</option>
                                             </select>
@@ -147,17 +157,15 @@
                                     <div class="col-md-12">
                                         <div class="">
                                             <label for="alamat" class="form-label">Alamat</label>
-                                            <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat"></textarea>
+                                            <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="text-end mt-3">
                                     <a href="{{ route('sistemPenawaran.penawaran.index') }}">
-                                        <button type="button" class="btn btn-secondary waves-effect"
-                                            onclick="">Cancel</button>
+                                        <button type="button" class="btn btn-secondary waves-effect" onclick="">Cancel</button>
                                     </a>
-                                    <button class="btn btn-red waves-effect waves-light px-4" type="button"
-                                        onclick="directTemp()">Save</button>
+                                    <button class="btn btn-red waves-effect waves-light px-4" type="submit">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -166,14 +174,14 @@
             </div>
         </div>
     </div>
-@endsection
+    @endsection
 
-@section('pageScript')
-<script>
-    function directTemp(){
-        const target = "{{ route('sistemPenawaran.penawaran.detail') }}";
-        console.log('susces');
-        window.location.href = target;
-    }
-</script>
-@endsection
+    @section('pageScript')
+    <script>
+        function directTemp() {
+            const target = "{{ route('sistemPenawaran.penawaran.detail') }}";
+            console.log('susces');
+            window.location.href = target;
+        }
+    </script>
+    @endsection
