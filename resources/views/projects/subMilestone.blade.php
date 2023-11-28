@@ -3,6 +3,12 @@
 @section('headerScript')
 {{-- flatepckr date time css --}}
 <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
+
+
+<!-- dropzone file upload css -->
+<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -278,9 +284,16 @@
 @endsection
 
 @section('pageScript')
+{{-- library chart js --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 {{-- flatpckr date time js --}}
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+{{-- Plugins js for file upload-dropify dan dropzone --}}
+<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+<script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+<script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
 
 <script>

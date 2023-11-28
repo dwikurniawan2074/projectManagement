@@ -30,9 +30,6 @@
             justify-content: space-around;
         }
 
-        /* .pagination-nav .pagination .active  {
-        } */
-
         .pagination ul li {
             height: 100%;
         }
