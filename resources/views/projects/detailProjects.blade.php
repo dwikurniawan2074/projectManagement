@@ -31,7 +31,7 @@
         }
 
         /* .pagination-nav .pagination .active  {
-                } */
+                                        } */
 
         .pagination ul li {
             height: 100%;
@@ -349,14 +349,14 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <<a href="{{ route('recordDocument.file', $recordDocument->id) }}"
+                                                                <a href="{{ route('recordDocument.file', $record->id) }}"
                                                                     title="Download File recordDocument" type="button"
                                                                     {{-- pengecekan kondisi jika tidak ada file button disabled --}}
                                                                     class="tabledit-edit-button btn btn-success waves-effect waves-light
-                                                                {{ !$recordDocument->file ? 'disabled' : '' }}"
+                                                                {{ !$record->file ? 'disabled' : '' }}"
                                                                     download>
                                                                     <span class="mdi mdi-file-download-outline"></span>
-                                                                    </a>
+                                                                </a>
                                                             </div>
                                                             <div class="btn-group btn-group-sm" style="float: none;">
                                                                 <button title="Edit Record" type="button"
