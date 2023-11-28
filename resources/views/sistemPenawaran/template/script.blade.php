@@ -42,4 +42,14 @@
             });
         });
     </script>
+
+    {{-- Script buat tanggal --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('.datepicker', {
+                enableTime: false, // Hapus ini jika ingin memungkinkan input waktu juga
+                dateFormat: "Y-m-d",
+            });
+        });
+    </script>
     
