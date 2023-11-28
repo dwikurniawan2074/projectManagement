@@ -31,7 +31,7 @@
         }
 
         /* .pagination-nav .pagination .active  {
-                                            } */
+            } */
 
         .pagination ul li {
             height: 100%;
@@ -249,6 +249,7 @@
                                                         <td class="formatTanggal">{{ $milestone['submitted_date'] }}</td>
                                                         <td>{{ $milestone['description'] }}</td>
                                                         <td class="formatTanggal">{{ $milestone['due_date'] }}</td>
+                                                        <td class="">10%</td>
                                                         <td class="text-center">
                                                             <span
                                                                 class="badge
@@ -260,16 +261,29 @@
                                                                     ">{{ $milestone['progress'] }}</span>
                                                         </td>
                                                         <td class="text-center">
-                                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <a href="{{ route('milestone.file', $milestone->id) }}"
-                                                                    title="Download File Milestone" type="button"
-                                                                    {{-- pengecekan kondisi jika tidak ada file button disabled --}}
-                                                                    class="tabledit-edit-button btn btn-success waves-effect waves-light
-                                                                {{ !$milestone->file ? 'disabled' : '' }}"
-                                                                    download>
-                                                                    <span class="mdi mdi-file-download-outline"></span>
-                                                                </a>
-                                                            </div>
+                                                            <a href="{{ route('submilestone.index') }}">
+                                                                <span class="badge bg-info p-1">
+                                                                    <span class="mdi mdi-eye"></span> Details</span>
+                                                            </a>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            {{-- <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <a href=""
+                                                            title="Report" type="button" --}}
+                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}}
+                                                            {{-- class="tabledit-edit-button btn btn-success waves-effect waves-light">
+                                                            <span class="mdi mdi-file-document-edit-outline"></span>
+                                                        </a>
+                                                    </div> --}}
+                                                            {{-- <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <a href="{{route('milestone.file', $milestone->id)}}"
+                                                            title="Download File Milestone" type="button" --}}
+                                                            {{-- pengecekan kondisi jika tidak ada file button disabled --}}
+                                                            {{-- class="tabledit-edit-button btn btn-success waves-effect waves-light
+                                                                {{ !$milestone->file ? 'disabled' : '' }}" download>
+                                                            <span class="mdi mdi-file-download-outline"></span>
+                                                        </a>
+                                                    </div> --}}
                                                             <div class="btn-group btn-group-sm" style="float: none;">
                                                                 <button title="Edit Milestone" type="button"
                                                                     data-bs-toggle="modal"
@@ -351,11 +365,10 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="btn-group btn-group-sm" style="float: none;">
-                                                                <a href="{{ route('recordDocument.file', $record->id) }}"
-                                                                    title="Download File recordDocument" type="button"
-                                                                    {{-- pengecekan kondisi jika tidak ada file button disabled --}}
+                                                                <a href="{{ asset('recordDocument_files/' . $record->file) }}"
+                                                                    title="Download File Record" type="button"
                                                                     class="tabledit-edit-button btn btn-success waves-effect waves-light
-                                                                {{ !$record->file ? 'disabled' : '' }}"
+                                                            {{ !$record->file ? 'disabled' : '' }}"
                                                                     download>
                                                                     <span class="mdi mdi-file-download-outline"></span>
                                                                 </a>
