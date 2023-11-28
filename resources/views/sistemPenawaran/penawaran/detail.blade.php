@@ -84,7 +84,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -99,7 +99,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -114,7 +114,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -173,7 +173,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -198,7 +198,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -223,7 +223,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -267,7 +267,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -279,7 +279,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -291,7 +291,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -303,7 +303,7 @@
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
                                                         class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
                                                     <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -346,7 +346,7 @@
                                     </div>
                                     <div class="btn-group btn-group-sm" style="float: none;">
                                         <button title="Delete Project" type="button"
-                                            class="tabledit-edit-button hapusProject btn btn-danger" value="">
+                                            class="tabledit-edit-button hapusPenawaran btn btn-danger" value="">
                                             <span class="mdi mdi-trash-can-outline"></span>
                                         </button>
                                     </div>
@@ -493,4 +493,99 @@
     });
 </script>
 
+{{-- function hapus penawaran--}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('click', '.hapusPenawaran', function() {
+            var id = $(this).val();
+
+            // Display a confirmation dialog
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                backrop: 'static',
+                allowOutsideClick: false
+            }).then((result) => {
+                // silahkan tulis logika nya disini xixixixi
+            });
+        });
+    });
+</script>
+
+{{-- function hapus trafo--}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('click', '.hapusTrafo', function() {
+            var id = $(this).val();
+
+            // Display a confirmation dialog
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                backrop: 'static',
+                allowOutsideClick: false
+            }).then((result) => {
+                // silahkan tulis logika nya disini xixixixi
+            });
+        });
+    });
+</script>
+
+{{-- function hapus layanan--}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('click', '.hapusLayanan', function() {
+            var id = $(this).val();
+
+            // Display a confirmation dialog
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                backrop: 'static',
+                allowOutsideClick: false
+            }).then((result) => {
+                // silahkan tulis logika nya disini xixixixi
+            });
+        });
+    });
+</script>
+
+{{-- function hapus layanan--}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(document).on('click', '.hapusSyarat', function() {
+            var id = $(this).val();
+
+            // Display a confirmation dialog
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                backrop: 'static',
+                allowOutsideClick: false
+            }).then((result) => {
+                // silahkan tulis logika nya disini xixixixi
+            });
+        });
+    });
+</script>
 @endsection
