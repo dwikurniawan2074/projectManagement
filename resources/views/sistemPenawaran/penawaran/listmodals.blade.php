@@ -1,7 +1,7 @@
 <div class="list-modals">
 
     {{-- modals data trafo --}}
-    <form action="" class="parsley-examples" novalidate="" method="post"
+    <form action="{{ route('sistemPenawaran.trafo.store') }}" class="parsley-examples" novalidate="" method="post"
     enctype="multipart/form-data">
         @csrf
         <div id="trafo-modals" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -16,8 +16,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                            
+                            {{-- hidden input id penawaran --}}
+                            <input type="hidden" name="id_penawaran" value="123">
 
-                            {{-- form generate read only project name --}}
+                            {{-- form input merk trafo --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Merk<span
                                         class="text-danger">*</span></label>
