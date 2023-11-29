@@ -14,4 +14,9 @@ class Sub_Layanan extends Model
         'id_layanan',
         'name',
     ];
+
+    public function jenis_layanan()
+    {
+        return $this->belongsTo(Jenis_Layanan::class, 'id_penawaran');
+    }
 }

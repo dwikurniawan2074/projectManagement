@@ -23,4 +23,6 @@ class Penawaran extends Model
         'jangka_waktu',
         'pelaksanaan_pekerjaan',
     ];
+
+    
 }

@@ -16,4 +16,10 @@ class Trafo extends Model
         'capacity',
         'no_seri',
     ];
+
+
+    public function penawaran()
+    {
+        return $this->belongsTo(Penawaran::class, 'id_penawaran');
+    }
 }
