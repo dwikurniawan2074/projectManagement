@@ -24,7 +24,7 @@ class RecordDocumentController extends Controller
             'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048', // Validasi file gambar
         ]);
 
-        // Simpan data Milestone ke dalam database dengan mengaitkannya dengan ID proyek
+        // Simpan data record document ke dalam database dengan mengaitkannya dengan ID proyek
         $recordDocument = new RecordDocument([
             'submitted_date' => $request->input('submitted_date'),
             'description' => $request->input('description'),
