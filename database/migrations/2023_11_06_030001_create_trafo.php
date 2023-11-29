@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('merk');
             $table->string('capacity');
             $table->integer('no_seri');
-            $table->string('year');
+            $table->date('tahun');
             $table->timestamps();
         });
     }
