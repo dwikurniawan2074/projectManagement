@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Trafo extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
     protected $table = 'trafo';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -15,7 +16,7 @@ class Trafo extends Model
         'merk',
         'capacity',
         'no_seri',
-        'year',
+        'tahun',
     ];
 
 
