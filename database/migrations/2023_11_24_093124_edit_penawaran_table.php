@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('table_penawaran', function (Blueprint $table) {
+        Schema::table('penawaran', function (Blueprint $table) {
             $table->string('segmentasi_pasar');
             $table->string('syarat_pembayaran');
             $table->string('jangka_waktu');
@@ -17,7 +17,7 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::table('table_penawaran', function (Blueprint $table) {
+        Schema::table('penawaran', function (Blueprint $table) {
             $table->dropColumn('segmentasi_pasar');
             $table->dropColumn('syarat_pembayaran');
             $table->dropColumn('jangka_waktu');

@@ -1,7 +1,7 @@
 <div class="list-modals">
 
     {{-- modals data trafo --}}
-    <form action="" class="parsley-examples" novalidate="" method="post"
+    <form action="{{ route('sistemPenawaran.trafo.store') }}" class="parsley-examples" novalidate="" method="post"
     enctype="multipart/form-data">
         @csrf
         <div id="trafo-modals" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -16,28 +16,31 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                            
+                            {{-- hidden input id penawaran --}}
+                            <input type="hidden" name="id_penawaran" value="123">
 
-                            {{-- form generate read only project name --}}
+                            {{-- form input merk trafo --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Merk<span
                                         class="text-danger">*</span></label>
                                 <input type="text" name="merk" id="merk" parsley-trigger="change" class="form-control">
                             </div>
 
-                            {{-- form input description --}}
+                            {{-- form input capacity --}}
                             <div class="mb-3">
                                 <label for="capacity" class="form-label">Capacity<span
                                         class="text-danger">*</span></label>
-                                <input type="text" name="description" id="description" parsley-trigger="change" class="form-control">
+                                <input type="text" name="capacity" id="capacity" parsley-trigger="change" class="form-control">
                             </div>
 
-                            {{-- form input amount --}}
+                            {{-- form input nomor seri --}}
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="no-seri" class="form-label">No. Seri<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="no-seri" id="no-seri" parsley-trigger="change" class="form-control">
+                                        <input type="text" name="no_seri" id="no_seri" parsley-trigger="change" class="form-control">
                                     </div>
                                     <div class="col-6">
                                         <label for="tahun" class="form-label">Tahun<span
