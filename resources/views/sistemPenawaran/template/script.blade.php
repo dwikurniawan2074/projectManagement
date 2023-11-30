@@ -8,6 +8,10 @@
     
     <!-- Dashboar init js-->
     {{-- <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/dashboard.init.js') }}"></script> --}}
+
+     <!-- Sweet alert init js-->
+     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/sweet-alerts.init.js') }}"></script>
+     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
     
     {{-- backup --}}
     <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script>
@@ -39,6 +43,16 @@
 
             $(document).on('ajaxStop', function() {
                 $('#loading-indicator').hide();
+            });
+        });
+    </script>
+
+    {{-- Script buat tanggal --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr('.datepicker', {
+                enableTime: false, // Hapus ini jika ingin memungkinkan input waktu juga
+                dateFormat: "Y-m-d",
             });
         });
     </script>

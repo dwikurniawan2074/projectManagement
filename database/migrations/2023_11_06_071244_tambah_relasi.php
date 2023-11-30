@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('table_penawaran', function (Blueprint $table) {
+        Schema::table('trafo', function (Blueprint $table) {
             $table->uuid('id_penawaran')->after('id');
-            $table->foreign('id_penawaran')->references('id')->on('table_trafo')->cascadeOnDelete();
+            $table->foreign('id_penawaran')->references('id')->on('penawaran')->cascadeOnDelete();
         });
-        Schema::table('table_sub_layanan', function (Blueprint $table) {
-            $table->uuid('id_sub_layanan')->after('id');
-            $table->foreign('id_sub_layanan')->references('id')->on('table_jenis_layanan')->cascadeOnDelete();
+
+        Schema::table('sub_layanan', function (Blueprint $table) {
+            $table->uuid('id_layanan')->after('id');
+            $table->foreign('id_layanan')->references('id')->on('jenis_layanan')->cascadeOnDelete();
         });
     }
 
@@ -26,11 +27,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('table_penawaran', function (Blueprint $table): void {
+        Schema::table('trafo', function (Blueprint $table): void {
             $table->dropForeign(['id_penawaran']);
         });
-        Schema::table('table_sub_layanan', function (Blueprint $table): void {
-            $table->dropForeign(['id_sub_layanan']);
+        Schema::table('sub_layanan', function (Blueprint $table): void {
+            $table->dropForeign(['id_layanan']);
         });
     }
 };

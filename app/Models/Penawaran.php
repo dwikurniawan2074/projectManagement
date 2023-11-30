@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Penawaran extends Model
 {
-    use HasFactory;
-    protected $table = 'table_penawaran';
+    use HasFactory, HasUlids;
+    protected $table = 'penawaran';
     protected $primaryKey = 'id';
     protected $fillable = [
         'email',
@@ -23,4 +24,6 @@ class Penawaran extends Model
         'jangka_waktu',
         'pelaksanaan_pekerjaan',
     ];
+
+    
 }

@@ -1,6 +1,8 @@
 @extends('sistemPenawaran.template.index')
 
 @section('headerScript')
+    {{-- flatepckr date time css --}}
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -89,7 +91,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="tanggal-penawaran" class="form-label">Tanggal Penawaran</label>
+                                                <label for="tanggal-penawaran" class="form-label">Tanggal
+                                                    Penawaran</label>
                                                 <input type="date" class="form-control" id="tanggal-penawaran"
                                                     name="tanggal_penawaran">
                                             </div>
@@ -134,54 +137,53 @@
                                                     name="syarat_pembayaran" placeholder="Syarat Pembayaran">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="negara" class="form-label">Negara</label>
-                                                <select class="form-select" name="negara">
-                                                    <option selected="">Indonesia</option>
-                                                    <option value="1">Malaysia</option>
-                                                    <option value="2">Singapur</option>
-                                                    <option value="3">Philipina</option>
-                                                </select>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="negara" class="form-label">Negara</label>
+                                                    <select class="form-select" name="negara">
+                                                        <option selected="">Indonesia</option>
+                                                        <option value="1">Malaysia</option>
+                                                        <option value="2">Singapur</option>
+                                                        <option value="3">Philipina</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="provinsi" class="form-label">Provinsi</label>
+                                                    <select class="form-select" name="provinsi">
+                                                        <option selected="">Banten</option>
+                                                        <option value="1">DKI Jakarta</option>
+                                                        <option value="2">Jawa Barat</option>
+                                                        <option value="3">Yogyakarta</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="kota" class="form-label">Kabupaten/Kota</label>
+                                                    <select class="form-select" name="kabupaten_kota">
+                                                        <option selected="">Kota Tangerang</option>
+                                                        <option value="1">Tangerang Selatan</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="provinsi" class="form-label">Provinsi</label>
-                                                <select class="form-select" name="provinsi">
-                                                    <option selected="">Banten</option>
-                                                    <option value="1">DKI Jakarta</option>
-                                                    <option value="2">Jawa Barat</option>
-                                                    <option value="3">Yogyakarta</option>
-                                                </select>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="">
+                                                    <label for="alamat" class="form-label">Alamat</label>
+                                                    <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                                <select class="form-select" name="kabupaten_kota">
-                                                    <option selected="">Kota Tangerang</option>
-                                                    <option value="1">Tangerang Selatan</option>
-                                                </select>
-                                            </div>
+                                        <div class="text-end mt-3">
+                                            <a href="{{ route('sistemPenawaran.penawaran.index') }}"
+                                                class="btn btn-secondary waves-effect">Cancel</a>
+                                            <button class="btn btn-red waves-effect waves-light px-4" type="submit"
+                                                id="submitButton">Save</button>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="">
-                                                <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-end mt-3">
-                                        <a href="{{ route('sistemPenawaran.penawaran.index') }}"
-                                            class="btn btn-secondary waves-effect">Cancel</a>
-                                        <button class="btn btn-red waves-effect waves-light px-4" type="submit"
-                                            id="submitButton">Save</button>
-                                    </div>
                                 </form>
                             </div>
                         </div>
