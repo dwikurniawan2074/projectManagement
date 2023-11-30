@@ -19,6 +19,7 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
+use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use App\Material;
@@ -69,8 +70,8 @@ Route::get('/staff', function () {
     return view('staff');
 });
 
-Route::get('/summary', function () {
-    return view('summary');
+Route::prefix('summary')->group(function () {
+    Route::get('/', [SummaryController::class, 'index'])->name('summary.index');
 });
 
 //Route::get('/RoleSelect', function () {

@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+{{--    @dd($project)--}}
 <div class="content-page">
     <div class="content">
         <div class="container-fluid">
@@ -18,7 +19,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4>My Projects</h4>
-                            <h3>50</h3>
+                            <h3>{{$project}}</h3>
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('lineChart');
-  
+
     new Chart(ctx, {
       type: 'line',
       data: {
@@ -96,7 +97,7 @@
             tension: 0.1
         }]
       },
-      
+
     });
 </script>
 
@@ -104,7 +105,7 @@
     document.addEventListener('DOMContentLoaded', function() {
             // Get the context of the canvas element
             var ctx = document.getElementById('doughnutChart').getContext('2d');
-        
+
             // Provide data for the chart
             const data = {
                 labels: [
@@ -122,14 +123,14 @@
                     hoverOffset: 4
                 }]
             };
-    
+
             // Set options for the chart
             var options = {
             // Add your customization options here
                 responsive: true,
                 maintainAspectRatio: false,
             };
-        
+
             // Create the doughnut chart
             var doughnutChart = new Chart(ctx, {
             type: 'doughnut',
