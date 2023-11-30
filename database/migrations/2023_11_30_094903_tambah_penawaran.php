@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('penawaran', function (Blueprint $table) {
-            $table->string('negara');
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->string('alamat');
+            $table->string('project_name');
+            $table->string('judul_pekerjaan');
         });
     }
 
@@ -25,10 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('penawaran', function (Blueprint $table) {
-            $table->dropColumn('negara');
-            $table->dropColumn('provinsi');
-            $table->dropColumn('kota');
-            $table->dropColumn('alamat');
+            $table->dropColumn('project_name');
+            $table->dropColumn('judul_pekerjaan');
         });
     }
 };

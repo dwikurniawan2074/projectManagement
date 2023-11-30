@@ -232,7 +232,7 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
         Route::get('/create', [PenawaranController::class, 'form'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
-        Route::post('/store',[PenawaranController::class,'create'])->name('sistempenawaran.store');
+        Route::post('/store', [PenawaranController::class, 'create'])->name('sistempenawaran.store');
     });
 
     Route::prefix('approval')->group(function () {
@@ -246,7 +246,6 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('trafo')->group(function () {
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
-        
     });
 });
 // end routes sistem administrasi penawaran
