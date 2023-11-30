@@ -19,6 +19,8 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
+use App\Http\Controllers\SubMilestonesController;
+use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use App\Material;
@@ -51,6 +53,12 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('/production-cost', [ProductionCostController::class, 'store'])->name('production-cost.store');
     Route::delete('/production-cost/{id}', [ProductionCostController::class, 'destroy'])->name('production-cost.destroy');
     Route::get('/get-projects', [ProjectController::class, 'getProjects'])->name('getProjects');
+    Route::prefix('milestone')->group(function () {
+        Route::post('/store', [SubMilestonesController::class, 'store'])->name('sub_milestone.store');
+        Route::get('/form', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
+        Route::put('/update', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
+        Route::delete('/delete', [SubMilestonesController::class, 'destroy'])->name('sub_milestone.delete');
+    });
 });
 // Milestone
 Route::get('/get-milestone-data/{id}', [MilestoneController::class, 'getMilestoneData'])->name("milestone.get");
@@ -231,7 +239,7 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
         Route::get('/create', [PenawaranController::class, 'form'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
-        Route::post('/store',[PenawaranController::class,'create'])->name('sistempenawaran.store');
+        Route::post('/store', [PenawaranController::class, 'create'])->name('sistempenawaran.store');
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
