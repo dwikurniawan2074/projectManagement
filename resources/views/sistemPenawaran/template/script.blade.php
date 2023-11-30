@@ -1,6 +1,5 @@
 
-    <!-- App js-->
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
+    
 
     <!-- Vendor -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery/jquery.min.js') }}"></script>
@@ -24,7 +23,8 @@
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/parsleyjs/parsley.min.js') }}"></script>
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-validation.init.js') }}"></script>
     
-
+    <!-- App js-->
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
     @yield('pageScript')
 
     <script>

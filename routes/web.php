@@ -19,6 +19,7 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
+use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
