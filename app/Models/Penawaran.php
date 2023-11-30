@@ -12,18 +12,22 @@ class Penawaran extends Model
     protected $table = 'penawaran';
     protected $primaryKey = 'id';
     protected $fillable = [
+        'project_name',
+        'judul_pekerjaan',
         'email',
         'tel_fax',
         'attd',
         'cc',
         'date',
         'no_msg',
-        'no_rfq',
+        'no_ref',
         'segementasi_pasar',
         'syarat_pembayaran',
         'jangka_waktu',
         'pelaksanaan_pekerjaan',
+        'negara',
+        'provinsi',
+        'kota',
+        'alamat',
     ];
-
-    
 }

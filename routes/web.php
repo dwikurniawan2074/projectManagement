@@ -253,9 +253,6 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('trafo')->group(function () {
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
-        Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
-        Route::put('/update/{id}', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');
-        Route::delete('/destroy/{id}', [TrafoController::class, 'destroy'])->name('sistemPenawaran.trafo.destroy');
     });
 });
 // end routes sistem administrasi penawaran
