@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Milestone extends Model
 {
@@ -18,4 +19,9 @@ class Milestone extends Model
         'due_date',
         'progress',
     ];
+
+    public function sub_milestone(): HasMany
+    {
+        return $this->hasMany(SubMilestone::class);
+    }
 }
