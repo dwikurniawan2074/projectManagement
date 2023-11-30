@@ -70,54 +70,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
+                                        @if ($trafo->isEmpty())
                                         <tr>
-                                            <td>1</td>
-                                            <td>Trafindo</td>
-                                            <td>1400 KwH</td>
-                                            <td>TRX192832</td>
-                                            <td>2020</td>
+                                            <td colspan="6" align="center">Belum ada Trafo</td>
+                                        </tr>
+                                        @endif
+                                        @php($index = 1)
+                                        @foreach ($trafo as $trf)
+                                        <tr>
+                                            <td>{{ $index++ }}</td>
+                                            <td>{{ $trf['merk'] }}</td>
+                                            <td>{{ $trf['capacity'] }}</td>
+                                            <td>{{ $trf['no_seri'] }}</td>
+                                            <td>{{ $trf['tahun'] }}</td>
                                             <td>
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
-                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
-                                                    <button type="button"
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals"  value="{{ $trf['id'] }}"
+                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill trafoEdit">edit</button>
+                                                    <button type="button" value="{{ $trf['id'] }}"
                                                         class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Trafindo</td>
-                                            <td>1400 KwH</td>
-                                            <td>TRX192832</td>
-                                            <td>2020</td>
-                                            <td>
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
-                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Trafindo</td>
-                                            <td>1400 KwH</td>
-                                            <td>TRX192832</td>
-                                            <td>2020</td>
-                                            <td>
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals" 
-                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">edit</button>
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -420,6 +395,7 @@
 @endsection
 
 @section('pageScript')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -532,10 +508,51 @@
                 confirmButtonColor: '#f34e4e',
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonText: 'Cancel',
-                backrop: 'static',
+                backdrop: 'static',
                 allowOutsideClick: false
             }).then((result) => {
                 // silahkan tulis logika nya disini xixixixi
+                if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.trafo.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function(response) {
+                                console.log('success');
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
             });
         });
     });
@@ -556,7 +573,7 @@
                 confirmButtonColor: '#f34e4e',
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonText: 'Cancel',
-                backrop: 'static',
+                // backrop: 'static',
                 allowOutsideClick: false
             }).then((result) => {
                 // silahkan tulis logika nya disini xixixixi
@@ -586,6 +603,39 @@
                 // silahkan tulis logika nya disini xixixixi
             });
         });
+    });
+</script>
+
+{{-- Trafo edit --}}
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.trafoEdit', function() {
+            var id = $(this).val(); // Menggunakan data-id yang baru
+            $.ajax({
+                type: "GET",
+                url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
+                dataType: "json",
+                success: function(response) {
+                    $("#id_penawaran").val(response.id);
+                    $("#merk").val(response.merk);
+                    $("#capacity").val(response.capacity);
+                    $("#no_seri").val(response.no_seri);
+                    $("#tahun").val(response.tahun);
+                },
+                error: function(response) {
+                    alert("Error: " + response.statusText);
+                }
+            });
+        });
+
+        // Delete value on customer contact modal when its closed
+        $('#trafo-modals').on('hidden.bs.modal', function (e) {
+                $("#id_penawaran").val('');
+                $("#merk").val('');
+                $("#capacity").val('');
+                $("#no_seri").val('');
+                $("#tahun").val('');
+            });
     });
 </script>
 @endsection
