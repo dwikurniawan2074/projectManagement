@@ -3,26 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendMail;
-use App\Mail\SendPassword;
 use App\Models\Role;
 use App\Models\User;
-use Auth;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
+use Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 
 class UserController extends Controller
 {
     /**
-     * @return Application|Factory|View|\Illuminate\Foundation\Application|\Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|JsonResponse
+     * @throws Exception
      */
     public function index()
     {
@@ -114,7 +114,7 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('signature')) {
-            \Storage::delete($user->signature);
+            Storage::disk('public')->delete($user->signature);
             $file = $request->file('signature');
             $filepath = $file->store('signatures', 'public');
         }
@@ -134,12 +134,12 @@ class UserController extends Controller
 
     /**
      * @param User $user
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function delete(User $user): \Illuminate\Http\JsonResponse
+    public function delete(User $user): JsonResponse
     {
         if ($user->signature) {
-            \Storage::delete($user->signature);
+            Storage::disk('public')->delete($user->signature);
         }
         if ($user->hasroles()->exists()) {
             $user->hasroles()->detach();
@@ -171,6 +171,7 @@ class UserController extends Controller
         $notifications->markAsRead();
         return response()->json(['success' => 'Notifikasi berhasil dibaca']);
     }
+
     public function marksAllAsRead()
     {
         $notifications = auth()->user()->unreadNotifications->markAsRead();

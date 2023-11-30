@@ -1,4 +1,5 @@
 
+    
 
     <!-- Vendor -->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery/jquery.min.js') }}"></script>
@@ -8,19 +9,23 @@
     
     <!-- Dashboar init js-->
     {{-- <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/dashboard.init.js') }}"></script> --}}
-
-     <!-- Sweet alert init js-->
-     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/sweet-alerts.init.js') }}"></script>
-     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    
+    <!-- Sweet alert init js-->
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/sweet-alerts.init.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
     
     {{-- backup --}}
     <script src="https://kit.fontawesome.com/031855bb65.js" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js"></script>
     
+    <!-- Form Validation js-->
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/parsleyjs/parsley.min.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-validation.init.js') }}"></script>
+    
     <!-- App js-->
-    @yield('pageScript')
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
+    @yield('pageScript')
 
     <script>
         const body = document.querySelector("body");
@@ -55,5 +60,39 @@
                 dateFormat: "Y-m-d",
             });
         });
+    </script>
+
+    {{-- script untuk manggil alert jika berhasil create/edit --}}
+    <script>
+        var alertSuccess = document.getElementById('success-alert');
+
+        if (alertSuccess) {
+            $(document).ready(function() {
+                Swal.fire({
+                    title: "Complete!",
+                    text: "{{ session('success') }}",
+                    icon: "success",
+                });
+            });
+        } else {
+
+        }
+    </script>
+
+    {{-- script untuk manggil alert jika tidak ada error --}}
+    <script>
+        var alertSuccess = document.getElementById('error-alert');
+
+        if (alertSuccess) {
+            $(document).ready(function() {
+                Swal.fire({
+                    title: "Ooops..",
+                    text: "{{ session('error') }}",
+                    icon: "error",
+                });
+            });
+        } else {
+
+        }
     </script>
     
