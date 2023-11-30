@@ -30,7 +30,8 @@
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal"
                                                 data-bs-target="#submilestone-modal"
-                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"
+                                                onclick="setStore()"><i
                                                 class="mdi mdi-plus"
                                                 title="Menambahkan Customer Contact"></i>Add Sub Milestones
                                         </button>
@@ -77,7 +78,9 @@
                                                         <button title="edit data" type="button" data-bs-toggle="modal"
                                                                 value="" data-bs-target="#submilestone-modal"
                                                                 title="Edit Payment"
-                                                                class="tabledit-edit-button btn btn-primary waves-effect waves-light"
+                                                                onclick='setUpdated("{{ $sub_milestone->id }}")'
+                                                                class="tabledit-edit-button btn btn-primary waves-effect
+waves-light"
                                                                 style="background-color: #3E8BFF;">
                                                             <span class="mdi mdi-pencil"></span>
                                                         </button>
@@ -154,8 +157,8 @@
                     </div>
 
                     {{-- modals sub milestone --}}
-                    <form action="" class="parsley-examples" novalidate="" method=""
-                          enctype="multipart/form-data" id="formSubMilestone">
+                    <form action="" class="parsley-examples formSubMilestone" data-parsley-validate method=""
+                          enctype="multipart/form-data">
                         @csrf
                         <div id="submilestone-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
                              aria-hidden="true"
@@ -228,12 +231,13 @@
                                             <div class="mb-3">
                                                 <label for="userName" class="form-label">File Attachment<span
                                                         class="text-danger">*</span></label>
-                                                <input type="file" name="file" parsley-trigger="change" required=""
+                                                <input type="file" name="file" parsley-trigger="change"
                                                        data-plugins="dropify" data-height="150" class="form-control"
                                                        id="fileAttachment">
                                             </div>
                                             <input type="hidden" name="milestone_id" id="milestone_id"
                                                    value="{{$id}}">
+                                            <input type="hidden" name="id" id="subMilestone_id" value="">
                                         </div>
                                         <div class=" modal-footer">
                                             {{-- button cancel --}}
@@ -267,8 +271,6 @@
     {{-- flatpckr date time js --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     {{-- Plugins js for file upload-dropify dan dropzone --}}
     <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
@@ -352,28 +354,48 @@
         });
     </script>
     <script type="text/javascript">
+        const formSubMilestone = $('.formSubMilestone');
         $(document).ready(function () {
-            $('#formSubMilestone').submit(function (e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('sub_milestone.store') }}",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        console.log(data);
-                        $('#submilestone-modal').modal('hide');
-                        location.reload();
-                    },
-                    error: function (data) {
-                        console.log(data);
-                        console.log(formData)
-                    }
-                });
+
+            formSubMilestone[0].reset();
+        });
+
+        function setStore() {
+            formSubMilestone.attr('action', "{{ route('sub_milestone.store') }}");
+            formSubMilestone.attr('method', "POST");
+            console.log('clickeds')
+        }
+
+        function setUpdated(id) {
+            formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}");
+            formSubMilestone.attr('method', "PUT");
+            console.log(id)
+        }
+
+
+        formSubMilestone.submit(function (e) {
+            e.preventDefault();
+            let action = formSubMilestone.attr('action');
+            let method = formSubMilestone.attr('method');
+            let formData = new FormData(this);
+            $.ajax({
+                type: method,
+                url: action,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    $('#submilestone-modal').modal('hide');
+                    location.reload();
+                },
+                error: function (data) {
+                    console.log(data);
+                    console.log(formData);
+                }
             });
         });
     </script>
+
 @endsection
