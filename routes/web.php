@@ -19,7 +19,6 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
-use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use App\Material;
@@ -238,8 +237,14 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
         Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
     });
+
     Route::prefix('mapping')->group(function () {
         Route::get('/', [MappingController::class, 'index'])->name('sistemPenawaran.mapping.index');
+    });
+
+    Route::prefix('trafo')->group(function () {
+        Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
+
     });
 });
 // end routes sistem administrasi penawaran
