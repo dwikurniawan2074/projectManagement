@@ -28,6 +28,7 @@ class TrafoController extends Controller
     public function show($id){
         $trafo = Trafo::find($id);
         
+
         if (!$trafo) {
             return response()->json(['error' => 'Trafo not found'], 404);
         }
@@ -36,14 +37,23 @@ class TrafoController extends Controller
     }
 
 
-    public function update($id){
-        $trafo = Trafo::find($id);
+    public function update(Request $request){
         
-        if (!$trafo) {
-            return response()->json(['error' => 'Trafo not found'], 404);
-        }
+        $validated = $request->validate([
+            'id_trafo' => 'required',
+            'id_penawaran' => 'required',
+            'merk' => 'required',
+            'capacity' => 'required',
+            'no_seri' => 'required',
+            'tahun' => 'required',
+        ]);
 
-        return response()->json($trafo);
+        $trafo = Trafo::findOrFail($validated['id_trafo']);
+
+        // Mengupdate data milestone dengan data yang validasi
+        $trafo->update($validated);
+
+        return redirect()->route('sistemPenawaran.penawaran.detail')->with('success', 'Data trafo berhasil diubah.');
     }
 
     // fungsi untuk menghapus document record
@@ -56,4 +66,5 @@ class TrafoController extends Controller
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus data trafo.'], 500);
         }
     }
+
 }

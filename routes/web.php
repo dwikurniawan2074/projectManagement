@@ -13,13 +13,13 @@ use App\Http\Controllers\OperationalMaterialController;
 use App\Http\Controllers\ProductionCostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubMilestoneController;
 use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
+use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -254,7 +254,9 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('trafo')->group(function () {
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
-
+        Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
+        Route::put('/update', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');
+        Route::delete('/destroy/{id}', [TrafoController::class, 'destroy'])->name('sistemPenawaran.trafo.destroy');
     });
 });
 // end routes sistem administrasi penawaran

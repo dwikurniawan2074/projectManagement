@@ -609,6 +609,10 @@
 {{-- Trafo edit --}}
 <script>
     $(document).ready(function() {
+        var form = document.getElementById('form-trafo');
+        var inputTrafo = document.getElementById('input-trafo');
+        // console.log(inputIdPenawaran);
+
         $(document).on('click', '.trafoEdit', function() {
             var id = $(this).val(); // Menggunakan data-id yang baru
             $.ajax({
@@ -616,7 +620,27 @@
                 url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
                 dataType: "json",
                 success: function(response) {
-                    $("#id_penawaran").val(response.id);
+                    form.setAttribute('action', '{{ route('sistemPenawaran.trafo.update')}}');
+
+                    // create element input hidden untuk edit 
+                    var newInput = document.createElement('input');
+                    newInput.setAttribute('type', 'hidden');
+                    newInput.setAttribute('name', '_method');
+                    newInput.setAttribute('id', '_method');
+                    newInput.setAttribute('value', 'PUT');
+                    form.appendChild(newInput);
+
+                    // create element input hidden untuk id trafo 
+                    var newInput = document.createElement('input');
+                    newInput.setAttribute('type', 'hidden');
+                    newInput.setAttribute('name', 'id_trafo');
+                    newInput.setAttribute('id', 'id_trafo');
+                    newInput.setAttribute('value', '');
+                    form.appendChild(newInput);
+
+
+                    $("#id_trafo").val(response.id);
+                    $("#id_penawaran").val(response.id_penawaran);
                     $("#merk").val(response.merk);
                     $("#capacity").val(response.capacity);
                     $("#no_seri").val(response.no_seri);
@@ -628,14 +652,20 @@
             });
         });
 
-        // Delete value on customer contact modal when its closed
+        // Delete value on trafo modal when its closed
         $('#trafo-modals').on('hidden.bs.modal', function (e) {
-                $("#id_penawaran").val('');
-                $("#merk").val('');
-                $("#capacity").val('');
-                $("#no_seri").val('');
-                $("#tahun").val('');
-            });
+            var inputTrafo = document.getElementById('_method');
+            var inputTrafo = document.getElementById('id_trafo');
+            
+            form.setAttribute('action', '{{ route('sistemPenawaran.trafo.store') }}');
+            $("#id_penawaran").val('');
+            $("#merk").val('');
+            $("#capacity").val('');
+            $("#no_seri").val('');
+            $("#tahun").val('');
+            
+            inputTrafo.remove();
+        });
     });
 </script>
 @endsection
