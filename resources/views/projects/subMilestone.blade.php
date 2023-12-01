@@ -87,7 +87,6 @@ waves-light"
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button title="hapus data" type="button" value=""
-                                                                onclick='deleteSubMilestone("{{ $sub_milestone->id }}")'
                                                                 class="tabledit-edit-button hapusPayment btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
                                                         </button>
@@ -158,7 +157,7 @@ waves-light"
                     </div>
 
                     {{-- modals sub milestone --}}
-                    <form action="" class="parsley-examples" id="formSubMilestone" data-parsley-validate method=""
+                    <form action="" class="parsley-examples formSubMilestone" data-parsley-validate method=""
                           enctype="multipart/form-data">
                         @csrf
                         <div id="submilestone-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -185,7 +184,7 @@ waves-light"
                                                 <input type="date" name="start_date" parsley-trigger="change"
                                                        required=""
                                                        placeholder="Masukkan tanggal" class="form-control datepicker"
-                                                       id="start_date">
+                                                       id="submitted_date">
                                             </div>
 
                                             {{-- form input description --}}
@@ -238,6 +237,7 @@ waves-light"
                                             </div>
                                             <input type="hidden" name="milestone_id" id="milestone_id"
                                                    value="{{$id}}">
+                                            <input type="hidden" name="id" id="subMilestone_id" value="">
                                         </div>
                                         <div class=" modal-footer">
                                             {{-- button cancel --}}
@@ -270,8 +270,6 @@ waves-light"
 
     {{-- flatpckr date time js --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
     {{-- Plugins js for file upload-dropify dan dropzone --}}
@@ -316,93 +314,62 @@ waves-light"
 
     </script>
 
+    {{-- Hapus Payment Pop Up --}}
     <script type="text/javascript">
-        const formSubMilestone = $('#formSubMilestone');
-        console.log(formSubMilestone)
+        $(document).ready(function () {
+            $(document).on('click', '.hapusPayment', function () {
+                var id = $(this).val();
+
+                // Display a confirmation dialog
+                Swal.fire({
+                    title: "Anda yakin?",
+                    text: "Data tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f34e4e',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                    backrop: 'static',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('top.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function () {
+                                return console.log('success');
+                            },
+                            error: function () {
+                                return console.log('error');
+                            }
+                        });
+
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        const formSubMilestone = $('.formSubMilestone');
         $(document).ready(function () {
 
             formSubMilestone[0].reset();
         });
 
         function setStore() {
-            formSubMilestone[0].reset();
-            $('#_method').remove();
             formSubMilestone.attr('action', "{{ route('sub_milestone.store') }}");
             formSubMilestone.attr('method', "POST");
-
+            console.log('clickeds')
         }
 
         function setUpdated(id) {
-            formSubMilestone[0].reset();
-            formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}" + '/' + id);
-            formSubMilestone.attr('method', "POST");
-            formSubMilestone.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
+            formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}");
+            formSubMilestone.attr('method', "PUT");
             console.log(id)
-            $.ajax({
-                url: "{{ route('sub_milestone.form', '') }}" + '/' + id,
-                type: 'GET',
-                success: function (data) {
-                    console.log(data);
-                    $('#milestone_id').val(data.milestone_id);
-                    $('#start_date').val(data.start_date);
-                    $('#description').val(data.description);
-                    $('#due_date').val(data.due_date);
-                    $('#bobot').val(data.bobot);
-                    $('#progress').val(data.progress);
-                    $('#fileAttachment').val(data.file);
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            });
-        }
-
-        function deleteSubMilestone(id) {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Anda tidak akan dapat mengembalikan ini!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3E8BFF',
-                cancelButtonColor: '#FF3E3E',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Tidak, batalkan!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: "{{ route('sub_milestone.delete', '') }}" + '/' + id,
-                        type: 'DELETE',
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                        },
-                        success: function () {
-                            console.log('success');
-                            Swal.fire(
-                                'Dihapus!',
-                                'Data berhasil dihapus.',
-                                'success'
-                            ).then(() => {
-                                location.reload();
-                            });
-                        },
-                        error: function () {
-                            console.log('error');
-                            Swal.fire(
-                                'Dibatalkan',
-                                'Data batal dihapus :)',
-                                'error'
-                            );
-                        }
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire(
-                        'Dibatalkan',
-                        'Data batal dihapus :)',
-                        'error'
-                    );
-                }
-            });
         }
 
 
@@ -411,14 +378,10 @@ waves-light"
             let action = formSubMilestone.attr('action');
             let method = formSubMilestone.attr('method');
             let formData = new FormData(this);
-
             $.ajax({
                 type: method,
                 url: action,
                 data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
                 cache: false,
                 contentType: false,
                 processData: false,
