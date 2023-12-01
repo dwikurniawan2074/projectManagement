@@ -20,8 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/attrchange@1.0.1/attrchange.min.js"></script>
     
     <!-- Form Validation js-->
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/parsleyjs/parsley.min.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-validation.init.js') }}"></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/parsleyjs/parsley.min.js') }}" defer></script>
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-validation.init.js') }}" defer></script>
     
     <!-- App js-->
     <script src="{{ asset('templateAdmin/Admin/dist/assets/js/app.min.js') }}"></script>
