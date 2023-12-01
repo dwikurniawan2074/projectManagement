@@ -184,7 +184,7 @@ waves-light"
                                                 <input type="date" name="start_date" parsley-trigger="change"
                                                        required=""
                                                        placeholder="Masukkan tanggal" class="form-control datepicker"
-                                                       id="submitted_date">
+                                                       id="start_date">
                                             </div>
 
                                             {{-- form input description --}}
@@ -237,7 +237,6 @@ waves-light"
                                             </div>
                                             <input type="hidden" name="milestone_id" id="milestone_id"
                                                    value="{{$id}}">
-                                            <input type="hidden" name="id" id="subMilestone_id" value="">
                                         </div>
                                         <div class=" modal-footer">
                                             {{-- button cancel --}}
@@ -270,6 +269,8 @@ waves-light"
 
     {{-- flatpckr date time js --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
     {{-- Plugins js for file upload-dropify dan dropzone --}}
@@ -363,13 +364,32 @@ waves-light"
         function setStore() {
             formSubMilestone.attr('action', "{{ route('sub_milestone.store') }}");
             formSubMilestone.attr('method', "POST");
+
             console.log('clickeds')
         }
 
         function setUpdated(id) {
-            formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}");
-            formSubMilestone.attr('method', "PUT");
+            formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}" + '/' + id);
+            formSubMilestone.attr('method', "POST");
+            formSubMilestone.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
             console.log(id)
+            $.ajax({
+                url: "{{ route('sub_milestone.form', '') }}" + '/' + id,
+                type: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    $('#milestone_id').val(data.milestone_id);
+                    $('#start_date').val(data.start_date);
+                    $('#description').val(data.description);
+                    $('#due_date').val(data.due_date);
+                    $('#bobot').val(data.bobot);
+                    $('#progress').val(data.progress);
+                    $('#fileAttachment').val(data.file);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
         }
 
 
@@ -378,10 +398,16 @@ waves-light"
             let action = formSubMilestone.attr('action');
             let method = formSubMilestone.attr('method');
             let formData = new FormData(this);
+            if (method == 'PUT') {
+                formData.append('_method', 'PUT');
+            }
             $.ajax({
                 type: method,
                 url: action,
                 data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 cache: false,
                 contentType: false,
                 processData: false,

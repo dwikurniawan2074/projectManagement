@@ -56,8 +56,8 @@ Route::group(['prefix' => 'projects'], function () {
     Route::prefix('milestone')->group(function () {
         Route::get('/{id}', [SubMilestonesController::class, 'index'])->name('sub_milestone.index');
         Route::post('/store', [SubMilestonesController::class, 'store'])->name('sub_milestone.store');
-        Route::get('/form', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
-        Route::put('/update', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
+        Route::get('/form/{id}', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
+        Route::patch('/update/{id}', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
         Route::delete('/delete', [SubMilestonesController::class, 'destroy'])->name('sub_milestone.delete');
     });
 });

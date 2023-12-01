@@ -44,18 +44,16 @@ class SubMilestonesController extends Controller
         return session()->flash('success', 'Sub Milestone berhasil ditambahkan');
     }
 
-    public function form(Request $request)
+    public function form($id)
     {
-        $sub_milestone = SubMilestone::findOrFail($request->id);
-        return response()->json([
-            'sub_milestone' => $sub_milestone
-        ]);
+        $sub_milestone = SubMilestone::findOrFail($id);
+//        dd($request->id);
+        return response()->json($sub_milestone);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'id' => 'required',
             'start_date' => 'date',
             'due_date' => 'date',
             'description' => 'string',
@@ -64,7 +62,12 @@ class SubMilestonesController extends Controller
             'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048',
         ]);
 
-        $sub_milestone = SubMilestone::findOrFail($validated['id']);
+        $sub_milestone = SubMilestone::findOrFail($id);
+        if (!$sub_milestone) {
+            return response()->json([
+                'message' => 'Sub Milestone tidak ditemukan',
+            ]);
+        }
         if ($request->hasFile('file')) {
             if ($sub_milestone->file != null) {
                 if (Storage::disk('public')->exists($sub_milestone->file)) {
@@ -77,7 +80,7 @@ class SubMilestonesController extends Controller
             $sub_milestone->file = $filepath;
         }
         $sub_milestone->start_date = $validated['start_date'] ?? $sub_milestone->start_date;
-        $sub_milestone->due_date = $validated['due_date'] ?? $sub_milestone->due_date;
+        $sub_milestone->due_date = $validated['due_date'];
         $sub_milestone->description = $validated['description'] ?? $sub_milestone->description;
         $sub_milestone->bobot = $validated['bobot'] ?? $sub_milestone->bobot;
         $sub_milestone->progress = $validated['progress'] ?? $sub_milestone->progress;
