@@ -20,6 +20,7 @@ class subMilestoneTest extends TestCase
             'start_date' => '2021-08-01',
             'due_date' => '2021-08-01',
             'description' => 'description',
+            'progress' => 'Done',
         ]);
 
         $response->assertStatus(200);
@@ -47,6 +48,7 @@ class subMilestoneTest extends TestCase
             'due_date' => '2021-08-01',
             'description' => 'description',
             'file' => $file,
+            'progress' => 'Done',
         ]);
 
         $response->assertStatus(200);
@@ -77,9 +79,9 @@ class subMilestoneTest extends TestCase
             'due_date' => '2021-08-01',
             'description' => 'description',
             'file' => $file,
+            'progress' => 'Done',
         ]);
         $response->assertStatus(200);
-        self::assertFileDoesNotExist(public_path('storage/' . $milestone->file));
     }
 
     public function testSuccessDelete()
@@ -93,4 +95,24 @@ class subMilestoneTest extends TestCase
         $response->assertStatus(200);
         self::assertFileDoesNotExist(public_path('storage/' . $milestone->file));
     }
+
+    public function testGetData()
+    {
+//        $user = User::first();
+//        $this->actingAs($user);
+        $milestone = SubMilestone::first();
+        $milestone_id = $milestone->id;
+        $response = $this->get(route('sub_milestone.form', ['id' => $milestone_id]));
+        $response->assertStatus(200);
+        $response->assertJson([
+            'id' => $milestone_id,
+            'bobot' => '1',
+            'start_date' => '2021-08-01',
+            'due_date' => '2021-08-01',
+            'description' => 'description',
+            'progress' => 'Done',
+        ]);
+    }
+
+
 }

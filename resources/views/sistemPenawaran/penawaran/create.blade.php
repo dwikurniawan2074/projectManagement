@@ -13,7 +13,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('sistempenawaran.store') }}" method="POST">
+                                <form action="{{ route('sistempenawaran.store') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -52,38 +52,38 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="no-rfq" class="form-label">MSG.</label>
-                                                <input type="text" class="form-control" id="no-msg" name="msg"
+                                                <input type="text" class="form-control" id="no-msg" name="no_msg"
                                                     placeholder="MSG">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="no-rfq" class="form-label">No. RFQ</label>
-                                                <input type="text" class="form-control" id="no-rfq" name="no_rfq"
+                                                <input type="text" class="form-control" id="no-ref" name="no_ref"
                                                     placeholder="RFQ">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="mb-3">
+                                            {{-- <div class="mb-3">
                                                 <label for="customer" class="form-label">Customer</label>
                                                 <input type="text" class="form-control" id="customer" name="customer"
                                                     placeholder="Customer">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="mb-3">
+                                            {{-- <div class="mb-3">
                                                 <label for="customer-contact" class="form-label">Customer Contact
                                                     Name</label>
                                                 <input type="text" class="form-control" id="customer-contact"
                                                     name="customer_contact" placeholder="Customer Contact">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="no-hp" class="form-label">No. HP</label>
-                                                <input type="text" class="form-control" id="no-hp" name="no_hp"
+                                                <input type="text" class="form-control" id="no-hp" name="tel_fax"
                                                     placeholder="No. HP">
                                             </div>
                                         </div>
@@ -94,13 +94,13 @@
                                                 <label for="tanggal-penawaran" class="form-label">Tanggal
                                                     Penawaran</label>
                                                 <input type="date" class="form-control" id="tanggal-penawaran"
-                                                    name="tanggal_penawaran">
+                                                    name="date">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="delivery time" class="form-label">Delivery Time</label>
-                                                <select class="form-select" name="delivery_time">
+                                                <select class="form-select" name="jangka_waktu">
                                                     <option selected="">15 Hari</option>
                                                     <option value="1">31 Hari</option>
                                                     <option value="2">45 Hari</option>
@@ -163,7 +163,7 @@
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                                    <select class="form-select" name="kabupaten_kota">
+                                                    <select class="form-select" name="kota">
                                                         <option selected="">Kota Tangerang</option>
                                                         <option value="1">Tangerang Selatan</option>
                                                     </select>

@@ -18,6 +18,7 @@ class SubMilestone extends Model
         'description',
         'file',
         'bobot',
+        'progress',
     ];
 
     public function milestone(): BelongsTo

@@ -22,7 +22,8 @@
 
                     <!-- Button trigger modal -->
                     <div class="col-sm-7 mb-3">
-                        <a href="{{ $createRoute }}" class="btn btn-red w-md waves-effect waves-light mb-3 px-3"r>
+                        <a href="{{ route('sistemPenawaran.penawaran.create') }}"
+                            class="btn btn-red w-md waves-effect waves-light mb-3 px-3"r>
                             <i class="mdi mdi-plus" title="Menambahkan Penawaran"></i>Tambah Penawaran
                         </a>
                     </div>
@@ -343,160 +344,160 @@
 
                 <!--  Modal content for the Large example -->
                 <!-- <div class="modal fade" id="tambah-penawaran-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-xl modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myLargeModalLabel">Tambah Penawaran</h4>
-                                                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="project-name" class="form-label">Project Name</label>
-                                                                        <input type="text" class="form-control" id="project-name" name="project-name" placeholder="Name">
+                                                                <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title" id="myLargeModalLabel">Tambah Penawaran</h4>
+                                                                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="project-name" class="form-label">Project Name</label>
+                                                                                        <input type="text" class="form-control" id="project-name" name="project-name" placeholder="Name">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="judul-pekerjaan" class="form-label">Judul Pekerjaan</label>
+                                                                                        <input type="text" class="form-control" id="judul-pekerjaan" name="judul-pekerjaan" placeholder="Judul">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="no-rfq" class="form-label">No. RFQ</label>
+                                                                                        <input type="text" class="form-control" id="no-rfq" name="no-rfq" placeholder="RFQ">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="email" class="form-label">Email</label>
+                                                                                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="no-msg" class="form-label">MSG No.</label>
+                                                                                        <input type="text" class="form-control" id="no-msg" name="no-msg" placeholder="MSG">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="customer" class="form-label">Customer</label>
+                                                                                        <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="customer-contact" class="form-label">Customer Contact Name</label>
+                                                                                        <input type="text" class="form-control" id="customer-contact" name="customer-contact" placeholder="Customer Contact">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="no-hp" class="form-label">No. HP</label>
+                                                                                        <input type="text" class="form-control" id="no-hp" name="no-hp" placeholder="No. HP">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="tanggal-penawaran" class="form-label">Tanggal Penawaran</label>
+                                                                                        <input type="date" class="form-control" id="tanggal-penawaran" name="tanggal-penawaran">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="delivery time" class="form-label">Delivery Time</label>
+                                                                                        <select class="form-select" name="delivery_time">
+                                                                                            <option selected="">15 Hari</option>
+                                                                                            <option value="1">30 Hari</option>
+                                                                                            <option value="2">45 Hari</option>
+                                                                                            <option value="3">60 Hari</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
+                                                                                        <select class="form-select" name="segemntasi_pasar">
+                                                                                            <option selected="">BUMN</option>
+                                                                                            <option value="1">Pertambangan</option>
+                                                                                            <option value="2">Pertanian</option>
+                                                                                            <option value="3">Manufaktur</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan Pekerjaan</label>
+                                                                                        <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="syarat-pembayaran" class="form-label">Syarat Pembayaran</label>
+                                                                                        <input type="text" class="form-control" id="syarat-pembayaran" name="syarat_pembayaran" placeholder="Syarat Pembayaran">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="negara" class="form-label">Negara</label>
+                                                                                        <select class="form-select" name="negara">
+                                                                                            <option selected="">Indonesia</option>
+                                                                                            <option value="1">Malaysia</option>
+                                                                                            <option value="2">Singapur</option>
+                                                                                            <option value="3">Philipina</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="provinsi" class="form-label">Provinsi</label>
+                                                                                        <select class="form-select" name="provinsi">
+                                                                                            <option selected="">Banten</option>
+                                                                                            <option value="1">DKI Jakarta</option>
+                                                                                            <option value="2">Jawa Barat</option>
+                                                                                            <option value="3">Yogyakarta</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="mb-3">
+                                                                                        <label for="kota" class="form-label">Kabupaten/Kota</label>
+                                                                                        <select class="form-select" name="kabupaten_kota">
+                                                                                            <option selected="">Kota Tangerang</option>
+                                                                                            <option value="1">Tangerang Selatan</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="">
+                                                                                        <label for="alamat" class="form-label">Alamat</label>
+                                                                                        <textarea class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="button" class="btn btn-danger">Save changes</button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="judul-pekerjaan" class="form-label">Judul Pekerjaan</label>
-                                                                        <input type="text" class="form-control" id="judul-pekerjaan" name="judul-pekerjaan" placeholder="Judul">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="no-rfq" class="form-label">No. RFQ</label>
-                                                                        <input type="text" class="form-control" id="no-rfq" name="no-rfq" placeholder="RFQ">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="email" class="form-label">Email</label>
-                                                                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="no-msg" class="form-label">MSG No.</label>
-                                                                        <input type="text" class="form-control" id="no-msg" name="no-msg" placeholder="MSG">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="customer" class="form-label">Customer</label>
-                                                                        <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="customer-contact" class="form-label">Customer Contact Name</label>
-                                                                        <input type="text" class="form-control" id="customer-contact" name="customer-contact" placeholder="Customer Contact">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="no-hp" class="form-label">No. HP</label>
-                                                                        <input type="text" class="form-control" id="no-hp" name="no-hp" placeholder="No. HP">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="tanggal-penawaran" class="form-label">Tanggal Penawaran</label>
-                                                                        <input type="date" class="form-control" id="tanggal-penawaran" name="tanggal-penawaran">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="delivery time" class="form-label">Delivery Time</label>
-                                                                        <select class="form-select" name="delivery_time">
-                                                                            <option selected="">15 Hari</option>
-                                                                            <option value="1">30 Hari</option>
-                                                                            <option value="2">45 Hari</option>
-                                                                            <option value="3">60 Hari</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
-                                                                        <select class="form-select" name="segemntasi_pasar">
-                                                                            <option selected="">BUMN</option>
-                                                                            <option value="1">Pertambangan</option>
-                                                                            <option value="2">Pertanian</option>
-                                                                            <option value="3">Manufaktur</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan Pekerjaan</label>
-                                                                        <input type="text" class="form-control" id="pelaksanaan-pekerjaan" name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="mb-3">
-                                                                        <label for="syarat-pembayaran" class="form-label">Syarat Pembayaran</label>
-                                                                        <input type="text" class="form-control" id="syarat-pembayaran" name="syarat_pembayaran" placeholder="Syarat Pembayaran">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="negara" class="form-label">Negara</label>
-                                                                        <select class="form-select" name="negara">
-                                                                            <option selected="">Indonesia</option>
-                                                                            <option value="1">Malaysia</option>
-                                                                            <option value="2">Singapur</option>
-                                                                            <option value="3">Philipina</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="provinsi" class="form-label">Provinsi</label>
-                                                                        <select class="form-select" name="provinsi">
-                                                                            <option selected="">Banten</option>
-                                                                            <option value="1">DKI Jakarta</option>
-                                                                            <option value="2">Jawa Barat</option>
-                                                                            <option value="3">Yogyakarta</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="mb-3">
-                                                                        <label for="kota" class="form-label">Kabupaten/Kota</label>
-                                                                        <select class="form-select" name="kabupaten_kota">
-                                                                            <option selected="">Kota Tangerang</option>
-                                                                            <option value="1">Tangerang Selatan</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="">
-                                                                        <label for="alamat" class="form-label">Alamat</label>
-                                                                        <textarea class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-danger">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                                            </div> -->
 
             </div>
         </div>
