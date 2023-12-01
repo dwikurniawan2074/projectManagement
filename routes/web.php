@@ -13,13 +13,13 @@ use App\Http\Controllers\OperationalMaterialController;
 use App\Http\Controllers\ProductionCostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubMilestoneController;
 use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
-use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -55,10 +55,11 @@ Route::group(['prefix' => 'projects'], function () {
     Route::delete('/production-cost/{id}', [ProductionCostController::class, 'destroy'])->name('production-cost.destroy');
     Route::get('/get-projects', [ProjectController::class, 'getProjects'])->name('getProjects');
     Route::prefix('milestone')->group(function () {
+        Route::get('/{id}', [SubMilestonesController::class, 'index'])->name('sub_milestone.index');
         Route::post('/store', [SubMilestonesController::class, 'store'])->name('sub_milestone.store');
-        Route::get('/form', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
-        Route::put('/update', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
-        Route::delete('/delete', [SubMilestonesController::class, 'destroy'])->name('sub_milestone.delete');
+        Route::get('/form/{id}', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
+        Route::patch('/update/{id}', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
+        Route::delete('/delete/{id}', [SubMilestonesController::class, 'destroy'])->name('sub_milestone.delete');
     });
 });
 // Milestone
@@ -253,6 +254,7 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('trafo')->group(function () {
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
+
     });
 });
 // end routes sistem administrasi penawaran
