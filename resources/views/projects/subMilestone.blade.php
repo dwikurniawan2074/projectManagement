@@ -87,6 +87,7 @@ waves-light"
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button title="hapus data" type="button" value=""
+                                                                onclick='deleteSubMilestone("{{ $sub_milestone->id }}")'
                                                                 class="tabledit-edit-button hapusPayment btn btn-danger">
                                                             <span class="mdi mdi-trash-can-outline"></span>
                                                         </button>
@@ -157,7 +158,7 @@ waves-light"
                     </div>
 
                     {{-- modals sub milestone --}}
-                    <form action="" class="parsley-examples formSubMilestone" data-parsley-validate method=""
+                    <form action="" class="parsley-examples" id="formSubMilestone" data-parsley-validate method=""
                           enctype="multipart/form-data">
                         @csrf
                         <div id="submilestone-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -315,60 +316,24 @@ waves-light"
 
     </script>
 
-    {{-- Hapus Payment Pop Up --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusPayment', function () {
-                var id = $(this).val();
-
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Silahkan isi logika nya sendiri xixixi
-                        $.ajax({
-                            url: "{{ route('top.destroy', '') }}" + '/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: "{{ csrf_token() }}",
-                            },
-                            success: function () {
-                                return console.log('success');
-                            },
-                            error: function () {
-                                return console.log('error');
-                            }
-                        });
-
-                    }
-                });
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        const formSubMilestone = $('.formSubMilestone');
+        const formSubMilestone = $('#formSubMilestone');
+        console.log(formSubMilestone)
         $(document).ready(function () {
 
             formSubMilestone[0].reset();
         });
 
         function setStore() {
+            formSubMilestone[0].reset();
+            $('#_method').remove();
             formSubMilestone.attr('action', "{{ route('sub_milestone.store') }}");
             formSubMilestone.attr('method', "POST");
 
-            console.log('clickeds')
         }
 
         function setUpdated(id) {
+            formSubMilestone[0].reset();
             formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}" + '/' + id);
             formSubMilestone.attr('method', "POST");
             formSubMilestone.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
@@ -392,15 +357,61 @@ waves-light"
             });
         }
 
+        function deleteSubMilestone(id) {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3E8BFF',
+                cancelButtonColor: '#FF3E3E',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Tidak, batalkan!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('sub_milestone.delete', '') }}" + '/' + id,
+                        type: 'DELETE',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                        },
+                        success: function () {
+                            console.log('success');
+                            Swal.fire(
+                                'Dihapus!',
+                                'Data berhasil dihapus.',
+                                'success'
+                            ).then(() => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            console.log('error');
+                            Swal.fire(
+                                'Dibatalkan',
+                                'Data batal dihapus :)',
+                                'error'
+                            );
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire(
+                        'Dibatalkan',
+                        'Data batal dihapus :)',
+                        'error'
+                    );
+                }
+            });
+        }
+
 
         formSubMilestone.submit(function (e) {
             e.preventDefault();
             let action = formSubMilestone.attr('action');
             let method = formSubMilestone.attr('method');
             let formData = new FormData(this);
-            if (method == 'PUT') {
-                formData.append('_method', 'PUT');
-            }
+
             $.ajax({
                 type: method,
                 url: action,

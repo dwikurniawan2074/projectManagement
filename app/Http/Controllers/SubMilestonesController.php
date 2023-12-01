@@ -80,16 +80,13 @@ class SubMilestonesController extends Controller
             $sub_milestone->file = $filepath;
         }
         $sub_milestone->start_date = $validated['start_date'] ?? $sub_milestone->start_date;
-        $sub_milestone->due_date = $validated['due_date'];
+        $sub_milestone->due_date = $validated['due_date'] ?? $sub_milestone->due_date;
         $sub_milestone->description = $validated['description'] ?? $sub_milestone->description;
         $sub_milestone->bobot = $validated['bobot'] ?? $sub_milestone->bobot;
         $sub_milestone->progress = $validated['progress'] ?? $sub_milestone->progress;
 
         $sub_milestone->save();
-        return response()->json([
-            'message' => 'Sub Milestone berhasil diubah',
-            'sub_milestone' => $sub_milestone
-        ]);
+        return session()->flash('success', 'Sub Milestone berhasil diupdate');
     }
 
     public function destroy(Request $request)
