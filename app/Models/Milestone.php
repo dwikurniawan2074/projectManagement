@@ -18,6 +18,7 @@ class Milestone extends Model
         'description',
         'due_date',
         'progress',
+        'bobot'
     ];
 
     public function sub_milestone(): HasMany
