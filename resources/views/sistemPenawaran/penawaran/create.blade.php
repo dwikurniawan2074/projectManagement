@@ -13,7 +13,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('sistempenawaran.store') }}" method="post">
+                                <form action="{{ route('sistemPenawaran.penawaran.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -21,6 +21,7 @@
                                                 <label for="project-name" class="form-label">Project Name</label>
                                                 <input type="text" class="form-control" id="project-name"
                                                     name="project_name" placeholder="Name">
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -40,6 +41,7 @@
                                                     placeholder="Email">
                                             </div>
                                         </div>
+
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="no-msg" class="form-label">CC</label>
@@ -66,15 +68,15 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            {{-- <div class="mb-3">
+                                            <div class="mb-3">
                                                 <label for="customer" class="form-label">Customer</label>
-                                                <input type="text" class="form-control" id="customer" name="customer"
+                                                <input type="text" class="form-control" id="customer" name="attd"
                                                     placeholder="Customer">
-                                            </div> --}}
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             {{-- <div class="mb-3">
-                                                <label for="customer-contact" class="form-label">Customer Contact
+                                                {{-- <label for="customer-contact" class="form-label">Customer Contact
                                                     Name</label>
                                                 <input type="text" class="form-control" id="customer-contact"
                                                     name="customer_contact" placeholder="Customer Contact">
@@ -99,20 +101,20 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="delivery time" class="form-label">Delivery Time</label>
+                                                <label for="delivery-time" class="form-label">Delivery Time</label>
                                                 <select class="form-select" name="jangka_waktu">
-                                                    <option selected="">15 Hari</option>
-                                                    <option value="1">31 Hari</option>
-                                                    <option value="2">45 Hari</option>
-                                                    <option value="3">60 Hari</option>
+                                                    <option value="">--Pilih Delivery Time--</option>
+                                                    <option value="1">15 Hari</option>
+                                                    <option value="2">30 Hari</option>
+                                                    <option value="3">45 Hari</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
-                                                <select class="form-select" name="segementasi_pasar">
-                                                    <option selected="">BUMN</option>
+                                                <select class="form-select" name="segmentasi_pasar">
+                                                    <option value="">--Pilih Segmentasi--</option>
                                                     <option value="1">Pertambangan</option>
                                                     <option value="2">Pertanian</option>
                                                     <option value="3">Manufaktur</option>
@@ -142,10 +144,10 @@
                                                 <div class="mb-3">
                                                     <label for="negara" class="form-label">Negara</label>
                                                     <select class="form-select" name="negara">
-                                                        <option selected="">Indonesia</option>
+                                                        <option value="">--Pilih Negara--</option>
                                                         <option value="1">Malaysia</option>
-                                                        <option value="2">Singapur</option>
-                                                        <option value="3">Philipina</option>
+                                                        <option value="2">Singapura</option>
+                                                        <option value="3">Indonesia</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -153,9 +155,9 @@
                                                 <div class="mb-3">
                                                     <label for="provinsi" class="form-label">Provinsi</label>
                                                     <select class="form-select" name="provinsi">
-                                                        <option selected="">Banten</option>
+                                                        <option value="">--Pilih Provinsi--</option>
                                                         <option value="1">DKI Jakarta</option>
-                                                        <option value="2">Jawa Barat</option>
+                                                        <option value="2">Banten</option>
                                                         <option value="3">Yogyakarta</option>
                                                     </select>
                                                 </div>
@@ -164,8 +166,9 @@
                                                 <div class="mb-3">
                                                     <label for="kota" class="form-label">Kabupaten/Kota</label>
                                                     <select class="form-select" name="kota">
-                                                        <option selected="">Kota Tangerang</option>
-                                                        <option value="1">Tangerang Selatan</option>
+                                                        <option value="">--Pilih Kota/Kabupaten--</option>
+                                                        <option value="1">Kota Tangerang</option>
+                                                        <option value="2">Tangerang Selatan</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -178,6 +181,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- <button type="submit">knt</button> --}}
                                         <div class="text-end mt-3">
                                             <a href="{{ route('sistemPenawaran.penawaran.index') }}"
                                                 class="btn btn-secondary waves-effect">Cancel</a>
@@ -185,6 +189,7 @@
                                                 id="submitButton">Save</button>
                                         </div>
                                 </form>
+                                {{-- <button type="button" onclick="test()">Ping</button> --}}
                             </div>
                         </div>
                     </div>

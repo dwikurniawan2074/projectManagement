@@ -239,9 +239,9 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('penawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
-        Route::get('/create', [PenawaranController::class, 'form'])->name('sistemPenawaran.penawaran.create');
+        Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
-        Route::post('/store', [PenawaranController::class, 'create'])->name('sistempenawaran.store');
+        Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
