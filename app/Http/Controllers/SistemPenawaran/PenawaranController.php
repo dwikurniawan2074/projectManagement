@@ -18,7 +18,8 @@ class PenawaranController extends Controller
     public function detail()
     {
         $trafo = Trafo::all();
-        return view('sistemPenawaran.penawaran.detail', compact('trafo'));
+        $formTrafoAction = 'store';
+        return view('sistemPenawaran.penawaran.detail', compact('trafo', 'formTrafoAction'));
     }
 
     // public function form()

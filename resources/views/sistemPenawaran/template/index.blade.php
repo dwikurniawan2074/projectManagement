@@ -33,6 +33,12 @@
     <div id="wrapper">
         @include(' sistemPenawaran.template.navbar')
 
+        @if (session('success'))
+            <div id="success-alert"></div>
+        @elseif(session('error'))
+            <div id="error-alert"></div>
+        @endif
+
         @yield('content')
         
         @include('sistemPenawaran.template.footer')
