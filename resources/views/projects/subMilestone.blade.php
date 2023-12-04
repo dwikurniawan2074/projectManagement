@@ -68,7 +68,8 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group btn-group-sm" style="float: none;">
-                                                        <a href="" title="Download File Record" type="button"
+                                                        <a href="{{route('sub_milestone.file', $sub_milestone->id)}}"
+                                                           title="Download File Record" type="button"
                                                            class="tabledit-edit-button btn btn-success waves-effect waves-light"
                                                            download>
                                                             <span class="mdi mdi-file-download-outline"></span>
@@ -413,9 +414,9 @@ waves-light"
         }
 
 
-        if (formSubMilestone.parsley().isValid()) {
-            formSubMilestone.submit(function (e) {
-                e.preventDefault();
+        formSubMilestone.submit(function (e) {
+            e.preventDefault();
+            if (formSubMilestone.parsley().isValid()) {
                 let action = formSubMilestone.attr('action');
                 let method = formSubMilestone.attr('method');
                 let formData = new FormData(this);
@@ -433,17 +434,18 @@ waves-light"
                     success: function (data) {
                         console.log(data);
                         $('#submilestone-modal').modal('hide');
-                        window.location.href = window.location.href;
+                        window.location.reload(); // Reload the window upon successful form submission
                     },
                     error: function (data) {
                         console.log(data);
                         console.log(formData);
                     }
                 });
-            })
-        } else {
-            console.log('gagal');
-        }
+            } else {
+                console.log('Form validation failed');
+            }
+        });
+
     </script>
 
 @endsection

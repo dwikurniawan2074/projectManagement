@@ -5,7 +5,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MilestoneController;
-use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\OperationalAgendaController;
 use App\Http\Controllers\OperationalController;
 use App\Http\Controllers\OperationalExpensesController;
@@ -13,8 +12,8 @@ use App\Http\Controllers\OperationalMaterialController;
 use App\Http\Controllers\ProductionCostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RecordDocumentController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SubMilestoneController;
 use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
@@ -54,12 +53,13 @@ Route::group(['prefix' => 'projects'], function () {
     Route::post('/production-cost', [ProductionCostController::class, 'store'])->name('production-cost.store');
     Route::delete('/production-cost/{id}', [ProductionCostController::class, 'destroy'])->name('production-cost.destroy');
     Route::get('/get-projects', [ProjectController::class, 'getProjects'])->name('getProjects');
-    Route::prefix('milestone')->group(function () {
+    Route::prefix('subMilestone')->group(function () {
         Route::get('/{id}', [SubMilestonesController::class, 'index'])->name('sub_milestone.index');
         Route::post('/store', [SubMilestonesController::class, 'store'])->name('sub_milestone.store');
         Route::get('/form/{id}', [SubMilestonesController::class, 'form'])->name('sub_milestone.form');
         Route::patch('/update/{id}', [SubMilestonesController::class, 'update'])->name('sub_milestone.update');
         Route::delete('/delete/{id}', [SubMilestonesController::class, 'destroy'])->name('sub_milestone.delete');
+        Route::get('/file/{id}', [SubMilestonesController::class, 'download'])->name('sub_milestone.file');
     });
 });
 // Milestone
@@ -112,13 +112,13 @@ Route::prefix('milestone')->group(function () {
     Route::get('/file/{file}', [MilestoneController::class, 'downloadfile'])->name('milestone.file');
 });
 
-Route::prefix('submilestone')->group(function () {
-    Route::get('/', [SubMilestoneController::class, 'index'])->name('submilestone.index');
-    Route::get('/create/{id}', [SubMilestoneController::class, 'create'])->name('submilestone.create');
-    Route::post('/store', [SubMilestoneController::class, 'store'])->name('submilestone.store');
-    Route::delete('/{id}', [SubMilestoneController::class, 'destroy'])->name('submilestone.destroy');
-    Route::get('/file/{file}', [SubMilestoneController::class, 'downloadfile'])->name('submilestone.file');
-});
+//Route::prefix('submilestone')->group(function () {
+//    Route::get('/', [SubMilestoneController::class, 'index'])->name('submilestone.index');
+//    Route::get('/create/{id}', [SubMilestoneController::class, 'create'])->name('submilestone.create');
+//    Route::post('/store', [SubMilestoneController::class, 'store'])->name('submilestone.store');
+//    Route::delete('/{id}', [SubMilestoneController::class, 'destroy'])->name('submilestone.destroy');
+//    Route::get('/file/{id}', [SubMilestoneController::class, 'download'])->name('submilestone.file');
+//});
 
 Route::prefix('recordDocument')->group(function () {
     Route::get('/create/{id}', [RecordDocumentController::class, 'create'])->name('recordDocument.create');
