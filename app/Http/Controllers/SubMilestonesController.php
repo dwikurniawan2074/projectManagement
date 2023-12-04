@@ -119,4 +119,16 @@ class SubMilestonesController extends Controller
             'message' => 'Sub Milestone berhasil dihapus',
         ]);
     }
+
+    public function download($id)
+    {
+        $sub_milestone = SubMilestone::findOrFail($id);
+        if (!$sub_milestone->file) {
+            session()->flash('error', 'File tidak ditemukan');
+            return response()->json([
+                'message' => 'File tidak ditemukan',
+            ]);
+        }
+        return Storage::disk('public')->download($sub_milestone->file);
+    }
 }
