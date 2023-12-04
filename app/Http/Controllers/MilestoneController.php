@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Milestone;
 use App\Models\Project;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use File;
-use Illuminate\Support\Facades\Response as FacadesResponse;
-use Response;
 
 class MilestoneController extends Controller
 {
@@ -21,6 +19,7 @@ class MilestoneController extends Controller
             'description' => 'required|string',
             'due_date' => 'required|date',
             'progress' => 'required|string',
+            'bobot' => 'required|numeric',
             'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048', // Validasi file gambar
         ]);
 
@@ -30,6 +29,7 @@ class MilestoneController extends Controller
             'description' => $request->input('description'),
             'due_date' => $request->input('due_date'),
             'progress' => $request->input('progress'),
+            'bobot' => $request->input('bobot'),
         ]);
 
         // Simpan file
@@ -55,6 +55,7 @@ class MilestoneController extends Controller
             'description' => 'required',
             'due_date' => 'required|date',
             'progress' => 'required|in:Planned,On Progress,Done', // Pilihan yang valid
+            'bobot' => 'required|numeric',
             'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048', // Contoh validasi untuk tipe file
         ]);
 
@@ -102,7 +103,7 @@ class MilestoneController extends Controller
             $milestone = Milestone::findOrFail($id);
             $milestone->delete();
             return response()->json(['message' => 'Milestone berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus Milestone.'], 500);
         }
     }
@@ -110,7 +111,7 @@ class MilestoneController extends Controller
     //Download File
     public function downloadfile($file)
     {
-        $file =  Milestone::find($file)->file;
+        $file = Milestone::find($file)->file;
         //check file exist then return response for download
         if (Storage::disk('public')->exists($file)) {
             return Storage::disk('public')->download($file);

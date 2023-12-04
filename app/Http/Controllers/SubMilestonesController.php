@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Milestone;
 use App\Models\SubMilestone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,8 +11,21 @@ class SubMilestonesController extends Controller
 {
     public function index($id)
     {
-        $sub_milestones = SubMilestone::where('milestone_id', $id)->orderBy('created_at', 'desc')->paginate(10);
-        return view('projects.subMilestone', compact('sub_milestones', 'id'));
+        $subMilestonesQuery = SubMilestone::where('milestone_id', $id);
+        $sub_milestones = $subMilestonesQuery->orderBy('created_at', 'desc')->paginate(10);
+        $progressCounts = $subMilestonesQuery->whereIn('progress', ['Done', 'OnProgress', 'Planned'])->get()->countBy('progress');
+
+        $milestone = Milestone::findOrFail($id)->get(['submitted_date', 'description', 'due_date', 'bobot'])->first();
+
+        return view('projects.subMilestone', [
+            'sub_milestones' => $sub_milestones,
+            'id' => $id,
+            'done' => $progressCounts['Done'] ?? 0,
+            'on_progress' => $progressCounts['OnProgress'] ?? 0,
+            'planned' => $progressCounts['Planned'] ?? 0,
+            'milestone' => $milestone,
+            'max' => $subMilestonesQuery->sum('bobot')
+        ]);
     }
 
     public function store(Request $request)
@@ -23,7 +37,7 @@ class SubMilestonesController extends Controller
             'due_date' => 'required|date',
             'description' => 'required|string',
             'progress' => 'required|string|in:Done,OnProgress,Planned',
-            'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048',
+            'file' => 'nullable|file|mimetypes:application/pdf,image/*,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-rar-compressed,application/octet-stream|max:102400',
         ]);
 
         $sub_milestone = SubMilestone::create([
@@ -59,7 +73,7 @@ class SubMilestonesController extends Controller
             'description' => 'string',
             'bobot' => 'numeric',
             'progress' => 'string|in:Done,OnProgress,Planned',
-            'file' => 'nullable|file|mimes:jpg,png,jpeg,pdf,docx|max:2048',
+            'file' => 'nullable|file|mimetypes:application/pdf,image/*,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,application/x-rar-compressed,application/octet-stream|max:102400',
         ]);
 
         $sub_milestone = SubMilestone::findOrFail($id);

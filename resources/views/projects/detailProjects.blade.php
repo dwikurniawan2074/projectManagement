@@ -248,7 +248,7 @@
                                                     <td class="formatTanggal">{{ $milestone['submitted_date'] }}</td>
                                                     <td>{{ $milestone['description'] }}</td>
                                                     <td class="formatTanggal">{{ $milestone['due_date'] }}</td>
-                                                    <td class="">10%</td>
+                                                    <td class="">{{$milestone['bobot']}}%</td>
                                                     <td class="text-center">
                                                     <span class="badge
                                                                         @if ($milestone['progress'] == 'Done') bg-success
