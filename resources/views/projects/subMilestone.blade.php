@@ -126,26 +126,32 @@ waves-light"
                                         <tbody>
                                         <tr>
                                             <th scope="row">
-                                                <p class="title-text">Milestone Name</p>
-                                                <p class="details-text">Approval Drawing</p>
+                                                <p class="title-text">Milestone Desc</p>
+                                                <p class="details-text">{{$milestone->description}}</p>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Start Date</p>
-                                                <p class="details-text">23 Agustus 2023</p>
+                                                <p class="details-text formatTanggal">{{$milestone->submitted_date}}</p>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Due Date</p>
-                                                <p class="details-text">30 Agustus 2023</p>
+                                                <p class="details-text formatTanggal">{{$milestone->due_date}}</p>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Bobot Milestones</p>
-                                                <p class="details-text">10%</p>
+                                                <p class="details-text">{{$milestone->bobot}}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Bobot Tersedia</p>
+                                                <p class="details-text">{{$milestone->bobot - $max}}</p>
                                             </th>
                                         </tr>
 
@@ -212,9 +218,10 @@ waves-light"
                                             <div class="mb-3">
                                                 <label for="bobot" class="form-label">Bobot<span
                                                         class="text-danger">*</span></label>
-                                                <input type="number" name="bobot" parsley-trigger="change" required=""
+                                                <input type="number" name="bobot" parsley-trigger="change" required
                                                        placeholder="Masukkan bobot" class="form-control"
-                                                       id="bobot">
+                                                       id="bobot" pattern="[0-9]{1,3}"
+                                                       max="{{$milestone->bobot - $max}}">
 
                                             </div>
                                             {{-- form input progress --}}
@@ -291,12 +298,12 @@ waves-light"
                     'On Progress'
                 ],
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    label: 'Sub Milestones',
+                    data: [{{$done}}, {{$on_progress}}, {{$planned}}],
                     backgroundColor: [
-                        'rgb(1, 214, 22)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
+                        '#10c469',
+                        '#f9c851',
+                        '#3E8BFF'
                     ],
                     hoverOffset: 4
                 }]
@@ -349,7 +356,7 @@ waves-light"
                     $('#due_date').val(data.due_date);
                     $('#bobot').val(data.bobot);
                     $('#progress').val(data.progress);
-                    $('#fileAttachment').val(data.file);
+                    // console.log(data.file)
                 },
                 error: function (data) {
                     console.log(data);
@@ -406,33 +413,37 @@ waves-light"
         }
 
 
-        formSubMilestone.submit(function (e) {
-            e.preventDefault();
-            let action = formSubMilestone.attr('action');
-            let method = formSubMilestone.attr('method');
-            let formData = new FormData(this);
+        if (formSubMilestone.parsley().isValid()) {
+            formSubMilestone.submit(function (e) {
+                e.preventDefault();
+                let action = formSubMilestone.attr('action');
+                let method = formSubMilestone.attr('method');
+                let formData = new FormData(this);
 
-            $.ajax({
-                type: method,
-                url: action,
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    console.log(data);
-                    $('#submilestone-modal').modal('hide');
-                    location.reload();
-                },
-                error: function (data) {
-                    console.log(data);
-                    console.log(formData);
-                }
-            });
-        });
+                $.ajax({
+                    type: method,
+                    url: action,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log(data);
+                        $('#submilestone-modal').modal('hide');
+                        window.location.href = window.location.href;
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        console.log(formData);
+                    }
+                });
+            })
+        } else {
+            console.log('gagal');
+        }
     </script>
 
 @endsection
