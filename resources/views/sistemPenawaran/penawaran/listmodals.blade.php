@@ -83,19 +83,20 @@
                     <div class="modal-body">
                         <div class="row">
 
-                            {{-- form generate read only project name --}}
+                            {{-- form select data trafo--}}
                             <div class="mb-3">
                                 <label for="trafo" class="form-label">Trafo<span
                                         class="text-danger">*</span></label>
                                 <select name="trafo" id="trafo" parsley-trigger="change" class="form-select">
                                     <option disabled selected="">Choose...</option>
-                                    <option value="">TRX82313</option>
-                                    <option value="">TRX82313</option>
-                                    <option value="">TRX82313</option>
+                                    <option value="">-- none --</option>
+                                    @foreach ($trafo as $trf)
+                                    <option value="{{ $trf['id'] }}">{{ $trf['merk'] }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
-                            {{-- form input description --}}
+                            {{-- form select nama layanan --}}
                             <div class="mb-3">
                                 <label for="nama-layanan" class="form-label">Nama Layanan<span
                                         class="text-danger">*</span></label>
@@ -107,9 +108,43 @@
                                 </select>
                             </div>
 
+                             {{-- form included sub layanan from layanan --}}
+                             <div class="mb-3">
+                                <label for="nama-layanan" class="form-label">Sub Layanan Included<span
+                                        class="text-danger">*</span></label>
+                                <select name="nama-layanan" id="nama-layanan" parsley-trigger="change" class="form-select">
+                                    <option disabled selected="">Choose...</option>
+                                    <option value="">Maintenance</option>
+                                    <option value="">Refactoring</option>
+                                    <option value="">Checking</option>
+                                </select>
+                            </div>
+
+                            <div class="row mb-3 pe-0">
+                                <div class="col-lg-3">
+                                    <label for="qty">Qty:</label>
+                                    <input type="text" id="qty" name="qty[]" class="form-control" placeholder=" qty" autocomplete="off">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="dropdown">Satuan</label>
+                                    <select id="dropdown" name="dropdown[]" class="form-select">
+                                        <option value="Option 1" selected>Liter</option>
+                                        <option value="Option 2">Pcs</option>
+                                        <option value="Option 3">Box</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 pe-0">
+                                    <label for="harga">Harga:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                        <input type="text" id="harga" name="harga[]" class="form-control" placeholder="Enter Price" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row mb-3 me-0">
                                 <div class="col-9">
-                                    <label for="sub-layanan" class="form-label">Sub Layanan</label>
+                                    <label for="sub-layanan" class="form-label">Sub Layanan Lain</label>
                                 </div>
                                 <div class="col-3 text-end pe-0">
                                     <button type="button" id="addSubLayanan"
