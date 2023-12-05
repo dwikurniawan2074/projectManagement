@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -94,7 +95,7 @@ class CustomerController extends Controller
             $customer = Customer::findOrFail($id);
             $customer->delete();
             return response()->json(['message' => 'customer berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus customer.'], 500);
         }
     }

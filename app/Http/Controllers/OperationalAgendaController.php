@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OperationalAgenda;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -15,12 +13,12 @@ class OperationalAgendaController extends Controller
     /**
      * @param Request $request
      * @param $operational
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @return JsonResponse
+     * @throws Exception
      */
     public function index(Request $request, $operational)
     {
-        if ($request->ajax()){
+        if ($request->ajax()) {
             $agenda = OperationalAgenda::where('operational_id', $operational)->orderByDesc('created_at')->get();
             return DataTables::of($agenda)
                 ->addIndexColumn()
@@ -95,7 +93,7 @@ class OperationalAgendaController extends Controller
         return response()->json([
             'success' => 'Operational Agenda deleted successfully!'
         ], 200);
-     }
+    }
 
     /**
      * @param Request $request
@@ -103,9 +101,9 @@ class OperationalAgendaController extends Controller
      * @return JsonResponse
      */
     public function showAgenda(Request $request, string $agenda)
-     {
-         $attrAgenda = OperationalAgenda::where('id', $agenda)->get();
+    {
+        $attrAgenda = OperationalAgenda::where('id', $agenda)->get();
 
-         return response()->json($attrAgenda);
-     }
+        return response()->json($attrAgenda);
+    }
 }

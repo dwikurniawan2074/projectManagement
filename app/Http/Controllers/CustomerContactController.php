@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CustomerContact;
+use Exception;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class CustomerContactController extends Controller
@@ -99,7 +100,7 @@ class CustomerContactController extends Controller
             $customerContacts = CustomerContact::findOrFail($id);
             $customerContacts->delete();
             return response()->json(['message' => 'customer contact berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus customer contact.']);
         }
     }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Top;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class TopController extends Controller
@@ -188,7 +188,7 @@ class TopController extends Controller
             $payment = Top::findOrFail($id);
             $payment->delete();
             return response()->json(['message' => 'Payment berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus payment.'], 500);
         }
     }

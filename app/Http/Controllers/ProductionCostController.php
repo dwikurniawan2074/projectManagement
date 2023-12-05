@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductionCost;
 use App\Models\Project;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductionCostController extends Controller
@@ -84,7 +85,7 @@ class ProductionCostController extends Controller
             $productionCost = ProductionCost::findOrFail($id);
             $productionCost->delete();
             return response()->json(['message' => 'Production Cost berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus Production Cost.'], 500);
         }
     }

@@ -21,7 +21,7 @@ class Penawaran extends Model
         'date',
         'no_msg',
         'no_ref',
-        'segementasi_pasar',
+        'segmentasi_pasar',
         'syarat_pembayaran',
         'jangka_waktu',
         'pelaksanaan_pekerjaan',

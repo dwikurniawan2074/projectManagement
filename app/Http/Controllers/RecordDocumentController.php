@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\RecordDocument;
 use App\Models\Project;
-use Illuminate\Support\Facades\Storage;
-use File;
-use Illuminate\Support\Facades\Response as FacadesResponse;
-use Response;
+use App\Models\RecordDocument;
+use Exception;
+use Illuminate\Http\Request;
 
 class RecordDocumentController extends Controller
 {
     // fungsi untuk menyimpan document record
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // Validasi data input dari form
         $validatedData = $request->validate([
             'project_id' => 'required|exists:projects,id',
@@ -43,18 +41,20 @@ class RecordDocumentController extends Controller
         $project->recordDocument()->save($recordDocument);
 
         return redirect()->route('projects.show', $validatedData['project_id'])->with('success', 'Record Document berhasil ditambahkan');
-    
+
     }
 
     // fungsi untuk membuat document record
-    public function create($id){
+    public function create($id)
+    {
         $project = $id;
-        
+
         return view('projects.createRecord', compact('project'));
     }
 
     // fungsi untuk mengupdate document record
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         // Validasi data input dari form
 
         $validatedData = $request->validate([
@@ -85,22 +85,24 @@ class RecordDocumentController extends Controller
     }
 
     // fungsi untuk menghapus document record
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             $recordDocument = RecordDocument::findOrFail($id);
             $recordDocument->delete();
             return response()->json(['message' => 'Record Document berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus Milestone.'], 500);
         }
     }
 
 
-    public function show($id){
+    public function show($id)
+    {
         // Cari data record document berdasarkan ID
         $recordDocument = RecordDocument::find($id);
-                
-                
+
+
         if (!$recordDocument) {
             return response()->json(['error' => 'RecordDocument not found'], 404);
         }
