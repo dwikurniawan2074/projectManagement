@@ -3,12 +3,13 @@
     function a() {
         (this.$body = n("body")), (this.$realData = []);
     }
+
     (a.prototype.createPlotGraph = function (a, o, t, r, e, i, l) {
         n.plot(
             n(a),
             [
-                { data: o, label: r[0], color: e[0] },
-                { data: t, label: r[1], color: e[1] },
+                {data: o, label: r[0], color: e[0]},
+                {data: t, label: r[1], color: e[1]},
             ],
             {
                 series: {
@@ -17,10 +18,10 @@
                         fill: !0,
                         lineWidth: 2,
                         fillColor: {
-                            colors: [{ opacity: 0.4 }, { opacity: 0.4 }],
+                            colors: [{opacity: 0.4}, {opacity: 0.4}],
                         },
                     },
-                    points: { show: !1 },
+                    points: {show: !1},
                     shadowSize: 0,
                 },
                 grid: {
@@ -46,16 +47,16 @@
                 },
                 yaxis: {
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
                 xaxis: {
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
                 tooltip: !0,
                 tooltipOpts: {
                     content: "%s: Value of %x is %y",
-                    shifts: { x: -60, y: 25 },
+                    shifts: {x: -60, y: 25},
                     defaultTheme: !1,
                 },
             }
@@ -63,17 +64,17 @@
     }),
         (a.prototype.createPieGraph = function (a, o, t, r) {
             (t = [
-                { label: o[0], data: t[0] },
-                { label: o[1], data: t[1] },
-                { label: o[2], data: t[2] },
+                {label: o[0], data: t[0]},
+                {label: o[1], data: t[1]},
+                {label: o[2], data: t[2]},
             ]),
                 (r = {
-                    series: { pie: { show: !0 } },
-                    legend: { show: !0, backgroundColor: "transparent" },
-                    grid: { hoverable: !0, clickable: !0 },
+                    series: {pie: {show: !0}},
+                    legend: {show: !0, backgroundColor: "transparent"},
+                    grid: {hoverable: !0, clickable: !0},
                     colors: r,
                     tooltip: !0,
-                    tooltipOpts: { content: "%s, %p.0%" },
+                    tooltipOpts: {content: "%s, %p.0%"},
                 });
             n.plot(n(a), t, r);
         }),
@@ -82,7 +83,6 @@
                 0 < this.$realData.length &&
                 (this.$realData = this.$realData.slice(1));
                 this.$realData.length < 300;
-
             ) {
                 var a =
                     (0 < this.$realData.length
@@ -100,9 +100,9 @@
             return n.plot(a, [o], {
                 colors: t,
                 series: {
-                    grow: { active: !1 },
+                    grow: {active: !1},
                     shadowSize: 0,
-                    lines: { show: !0, fill: !1, lineWidth: 2, steps: !1 },
+                    lines: {show: !0, fill: !1, lineWidth: 2, steps: !1},
                 },
                 grid: {
                     show: !0,
@@ -121,30 +121,30 @@
                 tooltip: !0,
                 tooltipOpts: {
                     content: "Value is : %y.0%",
-                    shifts: { x: -30, y: -50 },
+                    shifts: {x: -30, y: -50},
                 },
                 yaxis: {
                     min: 0,
                     max: 100,
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
                 xaxis: {
                     show: !1,
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
             });
         }),
         (a.prototype.createDonutGraph = function (a, o, t, r) {
             (t = [
-                { label: o[0], data: t[0] },
-                { label: o[1], data: t[1] },
-                { label: o[2], data: t[2] },
-                { label: o[3], data: t[3] },
+                {label: o[0], data: t[0]},
+                {label: o[1], data: t[1]},
+                {label: o[2], data: t[2]},
+                {label: o[3], data: t[3]},
             ]),
                 (r = {
-                    series: { pie: { show: !0, innerRadius: 0.7 } },
+                    series: {pie: {show: !0, innerRadius: 0.7}},
                     legend: {
                         show: !0,
                         labelFormatter: function (a, o) {
@@ -160,10 +160,10 @@
                         width: 20,
                         padding: 1,
                     },
-                    grid: { hoverable: !0, clickable: !0 },
+                    grid: {hoverable: !0, clickable: !0},
                     colors: r,
                     tooltip: !0,
-                    tooltipOpts: { content: "%s, %p.0%" },
+                    tooltipOpts: {content: "%s, %p.0%"},
                 });
             n.plot(n(a), t, r);
         }),
@@ -172,19 +172,19 @@
                 {
                     label: t[0],
                     data: r[0],
-                    lines: { show: !0, fill: !0 },
-                    points: { show: !0 },
+                    lines: {show: !0, fill: !0},
+                    points: {show: !0},
                 },
                 {
                     label: t[1],
                     data: r[1],
-                    lines: { show: !0 },
-                    points: { show: !0 },
+                    lines: {show: !0},
+                    points: {show: !0},
                 },
-                { label: t[2], data: r[2], bars: { show: !0 } },
+                {label: t[2], data: r[2], bars: {show: !0}},
             ]),
                 (o = {
-                    series: { shadowSize: 0 },
+                    series: {shadowSize: 0},
                     grid: {
                         hoverable: !0,
                         clickable: !0,
@@ -194,7 +194,7 @@
                     },
                     colors: ["#ff8acc", "#5b69bc", "#10c469"],
                     tooltip: !0,
-                    tooltipOpts: { defaultTheme: !1 },
+                    tooltipOpts: {defaultTheme: !1},
                     legend: {
                         position: "ne",
                         margin: [0, -24],
@@ -209,12 +209,12 @@
                     },
                     yaxis: {
                         tickColor: "rgba(173, 181, 189, 0.1)",
-                        font: { color: "#98a6ad" },
+                        font: {color: "#98a6ad"},
                     },
                     xaxis: {
                         ticks: o,
                         tickColor: "rgba(173, 181, 189, 0.1)",
-                        font: { color: "#98a6ad" },
+                        font: {color: "#98a6ad"},
                     },
                 });
             n.plot(n(a), r, o);
@@ -400,12 +400,12 @@
                 t.push([o, parseInt(30 * Math.random())]);
             for (var r = [], o = 0; o <= 10; o += 1)
                 r.push([o, parseInt(30 * Math.random())]);
-            var e = new Array();
-            e.push({ label: "Series One", data: a, bars: { order: 3 } }),
-                e.push({ label: "Series Two", data: t, bars: { order: 2 } }),
-                e.push({ label: "Series Three", data: r, bars: { order: 1 } });
+            var e = [];
+            e.push({label: "Series One", data: a, bars: {order: 3}}),
+                e.push({label: "Series Two", data: t, bars: {order: 2}}),
+                e.push({label: "Series Three", data: r, bars: {order: 1}});
             var i = {
-                bars: { show: !0, barWidth: 0.2, fill: 1 },
+                bars: {show: !0, barWidth: 0.2, fill: 1},
                 grid: {
                     show: !0,
                     aboveData: !1,
@@ -419,7 +419,7 @@
                     mouseActiveRadius: 20,
                     borderColor: "rgba(173, 181, 189, 0.1)",
                 },
-                series: { stack: 0 },
+                series: {stack: 0},
                 legend: {
                     position: "ne",
                     margin: [0, -24],
@@ -434,17 +434,17 @@
                 },
                 yaxis: {
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
                 xaxis: {
                     tickColor: "rgba(173, 181, 189, 0.1)",
-                    font: { color: "#98a6ad" },
+                    font: {color: "#98a6ad"},
                 },
                 colors: ["#188ae2", "#10c469", "#ebeff2"],
                 tooltip: !0,
                 tooltipOpts: {
                     content: "%s : %y.0",
-                    shifts: { x: -30, y: -50 },
+                    shifts: {x: -30, y: -50},
                 },
             };
             $.plot($("#ordered-bars-chart"), e, i);

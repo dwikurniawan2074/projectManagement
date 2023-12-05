@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Operational;
 use App\Models\OperationalExpense;
-use Illuminate\Http\RedirectResponse;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -12,7 +13,7 @@ class OperationalExpensesController extends Controller
 {
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function index(Request $request, $operational)
     {
@@ -27,7 +28,7 @@ class OperationalExpensesController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -53,7 +54,7 @@ class OperationalExpensesController extends Controller
     /**
      * @param Request $request
      * @param OperationalExpense $expense
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Request $request, OperationalExpense $expense)
     {
@@ -71,7 +72,7 @@ class OperationalExpensesController extends Controller
 
     /**
      * @param OperationalExpense $expense
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function delete(OperationalExpense $expense)
     {
