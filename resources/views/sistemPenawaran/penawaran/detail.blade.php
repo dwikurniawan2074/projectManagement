@@ -120,6 +120,7 @@
                                             <th>Trafo</th>
                                             <th>Nama</th>
                                             <th>Sub Layanan</th>
+                                            <th>Harga</th>
                                             <th class="text-center" width="160">Actions</th>
                                         </tr>
                                     </thead>
@@ -143,6 +144,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
@@ -168,6 +170,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
@@ -193,6 +196,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
