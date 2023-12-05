@@ -62,6 +62,19 @@
         });
     </script>
 
+    {{-- Script buat tahun --}}
+    <script>
+        $(document).ready(function() {
+            $("#tahun").datepicker({
+                format: "yyyy",
+                viewMode: "years", 
+                minViewMode: "years",
+                startView: "decade",
+                autoclose: true,
+            });
+        });
+    </script>
+
     {{-- script untuk manggil alert jika berhasil create/edit --}}
     <script>
         var alertSuccess = document.getElementById('success-alert');

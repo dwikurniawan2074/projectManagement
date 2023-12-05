@@ -19,6 +19,7 @@ class TrafoController extends Controller
             'no_seri' => 'required',
             'tahun' => 'required',
         ]);
+        
 
         $trafo = Trafo::create($validated);
 
