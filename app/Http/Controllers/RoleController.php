@@ -6,19 +6,20 @@ use App\Models\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function index()
     {
         $roles = Role::all();
-        if (\request()->ajax()){
+        if (\request()->ajax()) {
             return response()->json($roles);
         }
         return view('roles.index', compact('roles'));
@@ -38,7 +39,7 @@ class RoleController extends Controller
         $data = $request->validate([
             'name' => 'required|max:12|unique:roles',
         ]);
-        if (!$data){
+        if (!$data) {
             return redirect()->back()->with('error', 'Role gagal ditambahkan');
         }
         $role = Role::create($data);
@@ -63,7 +64,7 @@ class RoleController extends Controller
         $data = $request->validate([
             'name' => 'required|max:12',
         ]);
-        if (!$data){
+        if (!$data) {
             return redirect()->back()->with('error', 'Role gagal diupdate');
         }
         $role->update($data);

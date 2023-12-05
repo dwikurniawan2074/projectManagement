@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Operational;
 use App\Models\OperationalMaterial;
+use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class OperationalMaterialController extends Controller
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function index(Request $request, $operational)
     {
-        if ($request->ajax()){
+        if ($request->ajax()) {
             $material = OperationalMaterial::where('operational_id', $operational)->orderByDesc('created_at')->get();
             return DataTables::of($material)
                 ->addIndexColumn()
@@ -54,10 +54,10 @@ class OperationalMaterialController extends Controller
         //return request as json
         return response()->json([
             'success' => "Operational Material updated successfully",
-            'data'=> [
+            'data' => [
                 'req' => $req,
                 'operationalMaterial' => $material
-                ]
+            ]
         ], 200);
     }
 
