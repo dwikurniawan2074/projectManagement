@@ -9,17 +9,25 @@ use Illuminate\Http\Request;
 
 class PenawaranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $searchQuery = $request->input('search');
+
+        $penawaran = Penawaran::where('project_name', 'like', '%' . $searchQuery . '%')->get();
+
+        return view('sistemPenawaran.penawaran.index', compact('penawaran'));
+
         $penawaran = Penawaran::all();
         return view('sistemPenawaran.penawaran.index', ['penawaran' => $penawaran]);
     }
 
-    public function detail()
+    public function detail($id)
     {
+        $penawaran = Penawaran::find($id);
+
         $trafo = Trafo::all();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('trafo', 'formTrafoAction'));
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction'));
     }
 
     // public function form()
@@ -29,7 +37,8 @@ class PenawaranController extends Controller
 
     public function create()
     {
-        return view('sistemPenawaran.penawaran.create');
+        $penawaran = Penawaran::all();
+        return view('sistemPenawaran.penawaran.create', compact('penawaran'));
     }
     public function store(Request $request)
     {
