@@ -37,6 +37,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('customerContact')->group(function () {
         Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
@@ -76,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::get('/get-milestone-data/{id}', [MilestoneController::class, 'getMilestoneData'])->name("milestone.get");
     Route::get('/get-record-data/{id}', [RecordDocumentController::class, 'getRecordDocument'])->name("recordDocument.get");
-// Pcost json
+    // Pcost json
     Route::get('/get-cost-data/{id}', [ProductionCostController::class, 'getPCostData'])->name("cost.get");
     Route::put('production/update/', [ProductionCostController::class, 'update'])->name('cost.update');
     Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard')->name('dashboard.index');
@@ -240,7 +242,10 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::prefix('layanan')->group(function () {
             Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
         });
+        Route::get('/edit/{id}', [PenawaranController::class, 'edit'])->name('sistemPenawaran.penawaran.edit');
+        Route::delete('/delete/{id}', [PenawaranController::class, 'destroy'])->name('sistemPenawaran.penawaran.destroy');
     });
+
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
         Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
