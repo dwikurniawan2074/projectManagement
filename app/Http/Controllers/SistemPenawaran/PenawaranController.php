@@ -4,21 +4,30 @@ namespace App\Http\Controllers\SistemPenawaran;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penawaran;
+use App\Models\Trafo;
 use Illuminate\Http\Request;
 
 class PenawaranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $searchQuery = $request->input('search');
+
+        $penawaran = Penawaran::where('project_name', 'like', '%' . $searchQuery . '%')->get();
+
+        return view('sistemPenawaran.penawaran.index', compact('penawaran'));
+
         $penawaran = Penawaran::all();
         return view('sistemPenawaran.penawaran.index', ['penawaran' => $penawaran]);
     }
 
-    public function detail(Penawaran $penawaran)
+    public function detail($id)
     {
-        $data = $penawaran->with('trafo')->first();
+        $penawaran = Penawaran::find($id);
+
+        $trafo = Trafo::all();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('data', 'formTrafoAction'));
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction'));
     }
 
     // public function form()
@@ -30,7 +39,6 @@ class PenawaranController extends Controller
     {
         return view('sistemPenawaran.penawaran.create');
     }
-
     public function store(Request $request)
     {
 

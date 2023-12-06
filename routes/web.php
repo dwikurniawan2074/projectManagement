@@ -155,7 +155,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/approval', [OperationalController::class, 'approval'])->name('operational.approval');
         Route::get('/approved', [OperationalController::class, 'approved'])->name('operational.approved');
         Route::get('/approval/{operational}/preview', [OperationalController::class, 'preview'])->name('operational.preview');
-        Route::get('/getOperational/{salesOrder}', [OperationalController::class, 'getOperational'])->name('operational.get-operational');
+        Route::get('/getOperational/{salesOrder}', [OperationalController::class, 'getOperational'])->name('operational.get-operational'); //? --
         Route::get('/getTeam/{operational}', [OperationalController::class, 'getTeam'])->name('operational.get-team');
         Route::prefix('expense')->group(function () {
             Route::get('/get/{operational}', [OperationalExpensesController::class, 'index'])->name('operational.expense.index');
@@ -235,7 +235,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     Route::prefix('penawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
         Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
-        Route::get('/detail/{penawaran}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
+        Route::get('/detail/{id}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
         Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
         Route::prefix('layanan')->group(function () {
             Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
@@ -251,6 +251,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     });
 
     Route::prefix('trafo')->group(function () {
+        Route::get('/create', [TrafoController::class, 'create'])->name('sistemPenawaran.trafo.create');
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
         Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
         Route::put('/update', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');

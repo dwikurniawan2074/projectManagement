@@ -23,42 +23,43 @@
                     <!-- Button trigger modal -->
                     <div class="col-sm-7 mb-3">
                         <a href="{{ route('sistemPenawaran.penawaran.create') }}"
-                           class="btn btn-red w-md waves-effect waves-light mb-3 px-3" r>
+                            class="btn btn-red w-md waves-effect waves-light mb-3 px-3"r>
                             <i class="mdi mdi-plus" title="Menambahkan Penawaran"></i>Tambah Penawaran
                         </a>
                     </div>
                     <!-- Modal -->
 
                     <div class="col-sm-5 mb-3">
-                        <form class="app-search" action="#">
+                        <form class="app-search" action="{{ route('sistemPenawaran.penawaran.index') }}" method="GET">
                             <div class="app-search-box">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Search..."
-                                           id="top-search">
+                                        id="top-search">
                                     <button class="btn input-group-text" type="submit">
                                         <i class="fe-search"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
+
                     </div><!-- end col-->
 
                     @foreach ($penawaran as $item)
                         <div class="col-sm-6 col-md-4">
                             <div class="card">
                                 <div class="card-body project-box">
-                                    <!-- Tampilkan detail Penawaran -->
-                                    <div class="badge bg-danger float-end mx-auto font-14 ">{{ $item->no_msg }}</div>
-                                    <h4 class="mt-0"><a href="" class="text-dark">{{ $item->project_name }}</a>
-                                    </h4>
-                                    <p class="text-muted font-13 mt-1">{{ $item->judul_pekerjaan }}</p>
-                                    <p class="text-muted font-15">Tanggal Penawaran : {{ $item->date }}</p>
-                                    <p class="text-muted font-15">Sales : {{ $item->attd }}</p>
-                                    <a href="{{ route('sistemPenawaran.penawaran.detail', $item->id) }}">
-                                        <button type="button"
-                                                class="btn btn-danger rounded float-end rounded-pill">Preview
-                                        </button>
-                                    </a>
+                                    <a href="{{ route('sistemPenawaran.penawaran.detail', ['id' => $item->id]) }}">
+                                        <!-- Tampilkan detail Penawaran -->
+                                        <div class="badge bg-danger float-end mx-auto font-14 ">{{ $item->no_msg }}</div>
+                                        <h4 class="mt-0"><a href="" class="text-dark">{{ $item->project_name }}</a>
+                                        </h4>
+                                        <p class="text-muted font-13 mt-1">{{ $item->judul_pekerjaan }}</p>
+                                        <p class="text-muted font-15">Tanggal Penawaran : {{ $item->date }}</p>
+                                        <p class="text-muted font-15">Sales : {{ $item->attd }}</p>
+                                        <a href="{{ route('sistemPenawaran.penawaran.detail', ['id' => $item->id]) }}">
+                                            <button type="button"
+                                                class="btn btn-danger rounded float-end rounded-pill">Preview</button>
+                                        </a>
                                 </div>
                             </div>
                         </div>
