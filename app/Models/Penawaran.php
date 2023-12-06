@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
 class Penawaran extends Model
 {
     use HasFactory, HasUlids;
+
     protected $table = 'penawaran';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -30,4 +31,9 @@ class Penawaran extends Model
         'kota',
         'alamat',
     ];
+
+    public function trafo()
+    {
+        return $this->hasMany(Trafo::class, 'id_penawaran', 'id');
+    }
 }

@@ -37,8 +37,7 @@ class PenawaranController extends Controller
 
     public function create()
     {
-        $penawaran = Penawaran::all();
-        return view('sistemPenawaran.penawaran.create', compact('penawaran'));
+        return view('sistemPenawaran.penawaran.create');
     }
     public function store(Request $request)
     {
