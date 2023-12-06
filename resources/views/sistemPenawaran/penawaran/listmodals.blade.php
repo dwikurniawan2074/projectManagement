@@ -25,14 +25,16 @@
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Merk<span
                                         class="text-danger">*</span></label>
-                                <input type="text" name="merk" id="merk" parsley-trigger="change" class="form-control" required>
+                                <input type="text" name="merk" id="merk" parsley-trigger="change" 
+                                class="form-control" placeholder="Masukkan Merk" required>
                             </div>
 
                             {{-- form input capacity --}}
                             <div class="mb-3">
                                 <label for="capacity" class="form-label">Capacity<span
                                         class="text-danger">*</span></label>
-                                <input type="text" name="capacity" id="capacity" parsley-trigger="change" class="form-control" required="">
+                                <input type="text" name="capacity" id="capacity" parsley-trigger="change" 
+                                class="form-control" required="" placeholder="Masukkan Kapasitas">
                             </div>
 
                             {{-- form input nomor seri --}}
@@ -41,12 +43,14 @@
                                     <div class="col-6">
                                         <label for="no-seri" class="form-label">No. Seri<span
                                                 class="text-danger">*</span></label>
-                                        <input type="text" name="no_seri" id="no_seri" parsley-trigger="change" class="form-control" required="">
+                                        <input type="text" name="no_seri" id="no_seri" parsley-trigger="change" 
+                                        class="form-control" required="" placeholder="Masukkan No-Seri">
                                     </div>
                                     <div class="col-6">
                                         <label for="tahun" class="form-label">Tahun<span
                                                 class="text-danger">*</span></label>
-                                        <input type="number" name="tahun" id="tahun" parsley-trigger="change" class="form-control" required="">
+                                        <input type="text" name="tahun" id="tahun" parsley-trigger="change" 
+                                        class="form-control" required="" placeholder="Masukkan Tanggal">
                                     </div>
                                 </div>
                             </div>
