@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MilestoneController;
 use App\Http\Controllers\OperationalAgendaController;
@@ -36,6 +38,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['auth'])->group(function () {
+    Route::prefix('customerContact')->group(function () {
+        Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
+        Route::get('/create', [CustomerContactController::class, 'create'])->name('customerContact.create');
+        Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
+        Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
+        Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
+        Route::post('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
+        Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
+        Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
+    });
     //Notification
     Route::post('marks-as-read/{notification}', [UserController::class, 'marksAsRead'])->name('markNotification');
     Route::get('mark-all-as-read', [UserController::class, 'marksAllAsRead'])->name('markAllNotification');
@@ -223,8 +235,11 @@ Route::prefix('sistemPenawaran')->group(function () {
     Route::prefix('penawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
         Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
-        Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
+        Route::get('/detail/{penawaran}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
         Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
+        Route::prefix('layanan')->group(function () {
+            Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
+        });
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
