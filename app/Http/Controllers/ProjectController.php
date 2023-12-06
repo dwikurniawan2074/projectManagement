@@ -3,19 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\CustomerContact;
 use App\Models\Project;
 use App\Models\User;
 use App\Notifications\projectNotification;
-use Auth;
-use Illuminate\Contracts\Pagination\Paginator as PaginationPaginator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Notification;
 
 class ProjectController extends Controller
 {
@@ -145,7 +139,7 @@ class ProjectController extends Controller
             $label = $project->label;
             $name = auth()->user()->first_name;
             $users = User::Role(['Project Manager', 'Sales Executive'])->get();
-            \Illuminate\Support\Facades\Notification::send($users, new projectNotification(
+            Notification::send($users, new projectNotification(
                 'SO project ' . '""' . $label . '""' . ' perlu diisi',
                 $name,
                 'warning',
@@ -257,7 +251,7 @@ class ProjectController extends Controller
             $project = Project::findOrFail($id);
             $project->delete();
             return response()->json(['message' => 'Project berhasil dihapus.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus proyek.'], 500);
         }
     }

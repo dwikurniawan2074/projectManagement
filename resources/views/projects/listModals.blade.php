@@ -45,6 +45,15 @@
                                     placeholder="Masukkan tanggal" class="form-control datepicker" id="due_date">
                             </div>
 
+                             {{-- form input bobot --}}
+                             <div class="mb-3">
+                                <label for="bobot" class="form-label">Bobot<span
+                                        class="text-danger">*</span></label>
+                                <input type="number" name="bobot" parsley-trigger="change" required=""
+                                    placeholder="Tambahkan Bobot" id="bobot" class="form-control"
+                                    value="">
+                            </div>
+
                             {{-- form input progress --}}
                             <div class="mb-3">
                                 <label for="progress" class="form-label">Progress<span

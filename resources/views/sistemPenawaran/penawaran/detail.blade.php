@@ -1,6 +1,7 @@
 @extends('sistemPenawaran.template.index')
 
 @section('headerScript')
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
     .btn-red {
         border-radius: 5px !important;
@@ -33,6 +34,7 @@
     .dropdown-toggle{
         border: 1px solid #DEE2E6 !important;
     }
+    
 </style>
 @endsection
 
@@ -120,6 +122,7 @@
                                             <th>Trafo</th>
                                             <th>Nama</th>
                                             <th>Sub Layanan</th>
+                                            <th>Harga</th>
                                             <th class="text-center" width="160">Actions</th>
                                         </tr>
                                     </thead>
@@ -143,6 +146,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
@@ -168,6 +172,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
@@ -193,6 +198,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td class="rupiah">1345000</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
@@ -397,6 +403,8 @@
 @section('pageScript')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#check6').on('click', function() {

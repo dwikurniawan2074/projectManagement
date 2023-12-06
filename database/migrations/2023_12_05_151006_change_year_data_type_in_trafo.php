@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_layanan', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('trafo', function (Blueprint $table) {
+            $table->year('tahun')->change();
         });
-    }   
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_layanan');
+        Schema::table('trafo', function (Blueprint $table) {
+            $table->year('tahun');
+        });
     }
 };

@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\Role;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,17 +54,17 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->route('login');
     }
+
     public function setSession($role)
     {
-        if(Auth::user()->hasroles->contains('name', $role))
-        {
+        if (Auth::user()->hasroles->contains('name', $role)) {
             Session::put('role', $role);
-            if($role == 'Sales Executive'){
+            if ($role == 'Sales Executive') {
                 return redirect()->route('sistemPenawaran.dashboardPenawaran');
-            }else{
+            } else {
                 return redirect()->route('dashboarddashboard.index');
-            };
-        }else{
+            }
+        } else {
             Session::put('role', 'none');
             return redirect()->route('roleSelect');
         }

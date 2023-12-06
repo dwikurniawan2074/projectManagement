@@ -62,6 +62,19 @@
         });
     </script>
 
+    {{-- Script buat tahun --}}
+    <script>
+        $(document).ready(function() {
+            $("#tahun").datepicker({
+                format: "yyyy",
+                viewMode: "years", 
+                minViewMode: "years",
+                startView: "decade",
+                autoclose: true,
+            });
+        });
+    </script>
+
     {{-- script untuk manggil alert jika berhasil create/edit --}}
     <script>
         var alertSuccess = document.getElementById('success-alert');
@@ -94,5 +107,18 @@
         } else {
 
         }
+    </script>
+
+    {{-- Script buat ubah format uang --}}
+    <script>
+        $(document).ready(function() {
+            $('.rupiah').each(function() {
+                var angka = parseFloat($(this).text());
+                if (!isNaN(angka)) {
+                    var formatRupiah = angka.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
+                    $(this).text('Rp ' + formatRupiah);
+                }
+            });
+        });
     </script>
     
