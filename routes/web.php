@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LayananController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MilestoneController;
 use App\Http\Controllers\OperationalAgendaController;
@@ -35,7 +37,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('customerContact')->group(function () {
+        Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
+        Route::get('/create', [CustomerContactController::class, 'create'])->name('customerContact.create');
+        Route::post('/store', [CustomerContactController::class, 'store'])->name('customerContact.store');
+        Route::get('/show/{id}', [CustomerContactController::class, 'show'])->name('customerContact.show');
+        Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
+        Route::post('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
+        Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
+        Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
+    });
     //Notification
     Route::post('marks-as-read/{notification}', [UserController::class, 'marksAsRead'])->name('markNotification');
     Route::get('mark-all-as-read', [UserController::class, 'marksAllAsRead'])->name('markAllNotification');
@@ -108,7 +120,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/detail/{id}', [CustomerController::class, 'detail'])->name('customer.detail');
         Route::get('/get-customer-data/{id}', [CustomerController::class, 'getCustomerData'])->name("customer.get");
     });
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware(['hasRole:Admin'])->group(function () {
         Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
         Route::get('/roles/create', [RoleController::class, 'createForm'])->name('roles.createForm');
         Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
@@ -127,20 +139,20 @@ Route::middleware('auth')->group(function () {
         Route::get('/users/getTechnician/{operational}', [UserController::class, 'getTechnician'])->name('users.getTechnician');
     });
     Route::prefix('operational')->group(function () {
-        Route::get('/', [OperationalController::class, 'index'])->name('operational.index'); //?
-        Route::get('/showId/{id}', [OperationalController::class, 'showById'])->name('operational.showById'); //?
+        Route::get('/', [OperationalController::class, 'index'])->name('operational.index');
+        Route::get('/showId/{id}', [OperationalController::class, 'showById'])->name('operational.showById');
         Route::get('/create/{id}', [OperationalController::class, 'create'])->name('operational.create');
         Route::get('/create', function () {
             return view('projects.createOperational');
         })->name('createOperational');
         Route::get('/get-operational-data/{id}', [OperationalController::class, 'getOperationalData'])->name('operational.getOperationalData');
         Route::post('/store', [OperationalController::class, 'store'])->name('operational.store');
-        Route::get('/show/{operational}', [OperationalController::class, 'show'])->name('operational.show'); //?
-        Route::put('/update', [OperationalController::class, 'update'])->name('operational.update'); //~
+        Route::get('/show/{operational}', [OperationalController::class, 'show'])->name('operational.show');
+        Route::put('/update', [OperationalController::class, 'update'])->name('operational.update');
         Route::delete('/{operational}', [OperationalController::class, 'destroy'])->name('operational.destroy');
-        Route::get('/approval/{operational}/approve', [OperationalController::class, 'approve'])->name('operational.approve'); //~
-        Route::get('/approval/download/{operational}', [OperationalController::class, 'downloadFile'])->name('operational.download'); //~
-        Route::get('/approval', [OperationalController::class, 'approval'])->name('operational.approval'); //~
+        Route::get('/approval/{operational}/approve', [OperationalController::class, 'approve'])->name('operational.approve');
+        Route::get('/approval/download/{operational}', [OperationalController::class, 'downloadFile'])->name('operational.download');
+        Route::get('/approval', [OperationalController::class, 'approval'])->name('operational.approval');
         Route::get('/approved', [OperationalController::class, 'approved'])->name('operational.approved');
         Route::get('/approval/{operational}/preview', [OperationalController::class, 'preview'])->name('operational.preview');
         Route::get('/getOperational/{salesOrder}', [OperationalController::class, 'getOperational'])->name('operational.get-operational'); //? --
@@ -225,6 +237,9 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail/{id}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
         Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
+        Route::prefix('layanan')->group(function () {
+            Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
+        });
     });
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
