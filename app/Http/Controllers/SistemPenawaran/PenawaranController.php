@@ -4,7 +4,6 @@ namespace App\Http\Controllers\SistemPenawaran;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penawaran;
-use App\Models\Trafo;
 use Illuminate\Http\Request;
 
 class PenawaranController extends Controller
@@ -15,11 +14,11 @@ class PenawaranController extends Controller
         return view('sistemPenawaran.penawaran.index', ['penawaran' => $penawaran]);
     }
 
-    public function detail()
+    public function detail(Penawaran $penawaran)
     {
-        $trafo = Trafo::all();
+        $data = $penawaran->with('trafo')->first();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('trafo', 'formTrafoAction'));
+        return view('sistemPenawaran.penawaran.detail', compact('data', 'formTrafoAction'));
     }
 
     // public function form()
@@ -31,6 +30,7 @@ class PenawaranController extends Controller
     {
         return view('sistemPenawaran.penawaran.create');
     }
+
     public function store(Request $request)
     {
 

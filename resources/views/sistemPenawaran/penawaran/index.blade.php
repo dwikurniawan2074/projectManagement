@@ -23,7 +23,7 @@
                     <!-- Button trigger modal -->
                     <div class="col-sm-7 mb-3">
                         <a href="{{ route('sistemPenawaran.penawaran.create') }}"
-                            class="btn btn-red w-md waves-effect waves-light mb-3 px-3"r>
+                           class="btn btn-red w-md waves-effect waves-light mb-3 px-3" r>
                             <i class="mdi mdi-plus" title="Menambahkan Penawaran"></i>Tambah Penawaran
                         </a>
                     </div>
@@ -34,7 +34,7 @@
                             <div class="app-search-box">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Search..."
-                                        id="top-search">
+                                           id="top-search">
                                     <button class="btn input-group-text" type="submit">
                                         <i class="fe-search"></i>
                                     </button>
@@ -54,9 +54,10 @@
                                     <p class="text-muted font-13 mt-1">{{ $item->judul_pekerjaan }}</p>
                                     <p class="text-muted font-15">Tanggal Penawaran : {{ $item->date }}</p>
                                     <p class="text-muted font-15">Sales : {{ $item->attd }}</p>
-                                    <a href="{{ route('sistemPenawaran.penawaran.detail') }}">
+                                    <a href="{{ route('sistemPenawaran.penawaran.detail', $item->id) }}">
                                         <button type="button"
-                                            class="btn btn-danger rounded float-end rounded-pill">Preview</button>
+                                                class="btn btn-danger rounded float-end rounded-pill">Preview
+                                        </button>
                                     </a>
                                 </div>
                             </div>
