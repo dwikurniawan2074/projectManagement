@@ -89,4 +89,26 @@ class PenawaranController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Project berhasil ditambahkan');
     }
+
+    public function edit($id)
+    {
+        $penawaran = Penawaran::find($id);
+        if (!$penawaran) {
+            return redirect()->route('sistemPenawaran.penawaran.index')->with('error', 'Penawaran tidak ditemukan.');
+        }
+
+        return view('sistemPenawaran.penawaran.edit', compact('penawaran'));
+    }
+
+    public function destroy($id)
+    {
+        $penawaran = Penawaran::find($id);
+        if (!$penawaran) {
+            return redirect()->route('sistemPenawaran.penawaran.index')->with('error', 'Penawaran tidak ditemukan.');
+        }
+
+        $penawaran->delete();
+
+        return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Penawaran berhasil dihapus.');
+    }
 }
