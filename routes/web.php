@@ -223,7 +223,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     Route::prefix('penawaran')->group(function () {
         Route::get('/', [PenawaranController::class, 'index'])->name('sistemPenawaran.penawaran.index');
         Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
-        Route::get('/detail', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
+        Route::get('/detail/{id}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
         Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
     });
     Route::prefix('approval')->group(function () {
@@ -236,6 +236,7 @@ Route::prefix('sistemPenawaran')->group(function () {
     });
 
     Route::prefix('trafo')->group(function () {
+        Route::get('/create', [TrafoController::class, 'create'])->name('sistemPenawaran.trafo.create');
         Route::post('/store', [TrafoController::class, 'store'])->name('sistemPenawaran.trafo.store');
         Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
         Route::put('/update', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');
