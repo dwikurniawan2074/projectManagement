@@ -371,10 +371,12 @@
                                         </div>
                                         <div class="col-5 text-end">
                                             <div class="btn-group btn-group-sm" style="float: none;">
-                                                <button title="Edit Project" type="button"
-                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
-                                                    <span class="mdi mdi-printer"></span>
-                                                </button>
+                                                <a
+                                                    href="{{ route('sistemPenawaran.penawaran.edit', ['id' => $penawaran->id]) }}">
+                                                    <button title="Edit Project" type="button"
+                                                        class="tabledit-edit-button btn btn-info waves-effect waves-light">
+                                                        <span class="mdi mdi-printer"></span>
+                                                    </button>
                                             </div>
                                             <div class="btn-group btn-group-sm" style="float: none;">
                                                 <a href="{{ route('sistemPenawaran.penawaran.create') }}">
@@ -387,12 +389,18 @@
                                                 </a>
                                             </div>
                                             <div class="btn-group btn-group-sm" style="float: none;">
-                                                <button title="Delete Project" type="button"
-                                                    class="tabledit-edit-button hapusPenawaran btn btn-danger"
-                                                    value="">
-                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                </button>
+                                                <form
+                                                    action="{{ route('sistemPenawaran.penawaran.destroy', ['id' => $penawaran->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button title="Delete Project" type="submit"
+                                                        class="tabledit-hapus-button btn btn-danger" value="">
+                                                        <span class="mdi mdi-trash-can-outline"></span>
+                                                    </button>
+                                                </form>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -852,7 +860,7 @@
                             });
                         } else {
                             console.error('Terjadi kesalahan: ' + response.data
-                            .error); // Tampilkan pesan kesalahan jika ada
+                                .error); // Tampilkan pesan kesalahan jika ada
                         }
                     }).catch((error) => {
                         console.error('Terjadi kesalahan saat mengirim data: ' + error);

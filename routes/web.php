@@ -38,7 +38,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('customerContact')->group(function () {
         Route::get('/{id}', [CustomerContactController::class, 'index'])->name('customerContact.index');
