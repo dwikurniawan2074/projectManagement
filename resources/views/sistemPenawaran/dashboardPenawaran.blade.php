@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
 
-                                <h4 class="header-title mt-0 mb-3">Monthly Acquisition</h4>
+                                <h4 class="header-title mt-0 mb-3">Sales Overview</h4>
 
                                 <div style="height: 300px;">
                                     <canvas id="myChart"></canvas>
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
 
-                                <h4 class="header-title mt-0 mb-3">Donut Pie</h4>
+                                <h4 class="header-title mt-0 mb-3">Sales Status</h4>
 
                                 <div id="donut-chart">
                                     <canvas id="doughnutChart" style="height: 260px;">
@@ -186,7 +186,7 @@
                                     </div>
                                 </div>
 
-                                <h4 class="header-title mt-0 mb-3">Pie Chart</h4>
+                                <h4 class="header-title mt-0 mb-3">Market Segmentation</h4>
 
                                 <div id="pie-chart">
                                     <canvas id="pieChart" style="height: 260px;">
@@ -216,9 +216,9 @@
         new Chart(myChart, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Sales Total For a Month',
                     data: [12, 19, 3, 5, 2, 3],
                     borderWidth: 1
                 }]
@@ -243,16 +243,16 @@
             // Provide data for the chart
             const data = {
                 labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow'
+                    'Rejected',
+                    'Approved',
+                    'Unknown'
                 ],
                 datasets: [{
                     label: 'My First Dataset',
                     data: [300, 50, 100],
                     backgroundColor: [
                     'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
+                    'rgb(90, 237, 107)',
                     'rgb(255, 205, 86)'
                     ],
                     hoverOffset: 4
@@ -283,9 +283,9 @@
             // Provide data for the chart
             const data = {
                 labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow'
+                    'BUMN',
+                    'Pertambangan',
+                    'IT'
                 ],
                 datasets: [{
                     label: 'My First Dataset',
