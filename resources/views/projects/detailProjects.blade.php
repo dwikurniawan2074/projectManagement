@@ -640,7 +640,7 @@
                                             <th scope="row">
                                                 <p class="title-text">Weekly Progress</p>
                                                 {{-- <a href="{{ route('projects.showWeekly') }}"> --}}
-                                                <a href="{{ route('projects.showDaily') }}">
+                                                <a href="{{ route('projects.showWeekly', [$projectData['id']]) }}">
                                                 <span class="badge bg-danger p-1">
                                                     <span class="mdi mdi-eye"></span> Show Weekly Progress</span>
                                                 </a>
