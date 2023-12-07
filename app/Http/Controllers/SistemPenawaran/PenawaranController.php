@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SistemPenawaran;
 
 use App\Http\Controllers\Controller;
+use App\Models\Layanan;
 use App\Models\Penawaran;
 use App\Models\Trafo;
 use Illuminate\Http\Request;
@@ -27,7 +28,13 @@ class PenawaranController extends Controller
         $data = $id;
         $trafo = Trafo::all();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data'));
+        $layanan = Layanan::where('id_penawaran', $id)
+            ->with(['trafo' => function ($query) {
+                $query->select('id', 'no_seri', 'merk');
+            }])
+            ->paginate(10);
+        $layanan->setCollection($layanan->groupBy(['trafo.no_seri', 'layanan']));
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan'));
     }
 
     // public function form()

@@ -137,122 +137,55 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{-- <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TRX192832</td>
-                                            <td>Maintenance</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <div class="dropdown-item sub-layanan-item">Basic Maintenance
+                                        {{--                                        @dd($layanan)--}}
+                                        @foreach ($layanan as $trafoNumber => $layananGroup)
+                                            @foreach ($layananGroup as $layananName => $subLayananList)
+                                                @php($total_price = 0)
+                                                <tr>
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td>{{ $trafoNumber }}</td>
+                                                    <td>{{ $layananName }}</td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-light btn-sm dropdown-toggle"
+                                                                    type="button"
+                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                Sub Layanan<i class="mdi mdi-chevron-down"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                @foreach($subLayananList as $subLayanan)
+                                                                    <div
+                                                                        class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
+                                                                    @php($total_price += $subLayanan['price'])
+                                                                @endforeach
+                                                            </div>
                                                         </div>
-                                                        <div class="dropdown-item sub-layanan-item">Full Maintenance
+                                                    </td>
+                                                    <td class="rupiah">
+                                                        {{$total_price}}
+                                                    </td>
+                                                    <td class="text-center" width="160">
+                                                        <div class="d-flex gap-1 justify-content-center">
+                                                            <button type="button" data-bs-toggle="modal"
+                                                                    data-bs-target="#layanan-modals"
+                                                                    class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                                edit
+                                                            </button>
+                                                            <button type="button"
+                                                                    class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                                Delete
+                                                            </button>
                                                         </div>
-                                                        <div class="dropdown-item sub-layanan-item">Additional
-                                                            Maintenance
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="rupiah">1345000</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>TRX192832</td>
-                                            <td>Maintenance</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <div class="dropdown-item sub-layanan-item">Basic Maintenance
-                                                        </div>
-                                                        <div class="dropdown-item sub-layanan-item">Full Maintenance
-                                                        </div>
-                                                        <div class="dropdown-item sub-layanan-item">Additional
-                                                            Maintenance
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="rupiah">1345000</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>TRX192832</td>
-                                            <td>Maintenance</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <div class="dropdown-item sub-layanan-item">Basic Maintenance
-                                                        </div>
-                                                        <div class="dropdown-item sub-layanan-item">Full Maintenance
-                                                        </div>
-                                                        <div class="dropdown-item sub-layanan-item">Additional
-                                                            Maintenance
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="rupiah">1345000</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endforeach
                                         </tbody>
                                     </table>
+                                    <div class="pagination-nav mt-2 d-flex justify-content-around">
+                                        {{ $layanan->links('pagination::bootstrap-5') }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -832,10 +765,47 @@
                     }
                 }).catch((error) => {
                     console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                    Swal.fire({
+                        title: "Gagal!",
+                        text: error.response.data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((hasil) => {
+                        if (hasil.isConfirmed) {
+                            window.location.reload();
+                        }
+                    });
                 });
             }
         })
 
+        function showLayanan(id_penawaran, id_trafo, layanan) {
+            axios({
+                method: 'GET',
+                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    penawaran: id_penawaran,
+                    trafo: id_trafo,
+                    layanan: layanan
+                }
+            }).then((response) => {
+                console.log(response);
+
+            }).catch((error) => {
+                console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                Swal.fire({
+                    title: "Gagal!",
+                    text: error.response.data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((hasil) => {
+                    if (hasil.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            });
+        }
 
     </script>
 @endsection
