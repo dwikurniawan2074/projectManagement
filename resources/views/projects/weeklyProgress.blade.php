@@ -142,6 +142,7 @@
       .yellow-cell{
         background-color: #FFFF00;
       }
+      @media print{@page {size: landscape}}
     </style>
 
   </head>
@@ -149,7 +150,7 @@
     <div align="center">
       <div style="width: 1200px">
 
-        <div class="watermark">
+        <div class="watermark fabrication-schedule">
           <div class="bg">&nbsp;</div>
 
           <table class="tb_data border" border="1" width="100%" >
@@ -1194,8 +1195,61 @@
             </tbody>
           </table>
         </div>
-        {{-- <div style="page-break-after: always"></div> --}}
         
+        <div style="page-break-after: always"></div>
+
+        <div class="watermark daily-report">
+          <div class="bg">&nbsp;</div>
+
+          <table class="tb_data border" border="1" width="100%" >
+            <tbody>
+              <tr class="table-head-row">
+                <th rowspan="2" width="150" class="text-vertical-center">
+                    <img src="{{ asset('images/logo_trafindo_full.png') }}" alt="logo_trafindo"
+                    style="width: 130px; ">
+                </th>
+                <th align="center" colspan="4">Progress Daily Report</th>
+                <th width="150" rowspan="2" class="text-vertical-center">
+                </th>
+              </tr>
+              <tr style="font-size: 10pt" class="break-down-row">
+                {{-- <td><b>WORK BREAK DOWN</b></td> --}}
+                <td align="center" colspan="4" style="padding: 10px;">Transformer 700 KvA</td>
+                {{-- <td>12Jun</td> --}}
+              </tr>
+              <tr class="table-head-row-second">
+                <td align="center">Weekly</td>
+                <td align="center" colspan="4">Mechanical / Electrical / Accessories Protection</td>
+                <td align="center">Remarks</td>
+              </tr>
+              <tr >
+                <td align="center" style="padding: 100px 0px;">3 Juli 2023</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Remarks</td>
+              </tr>
+              <tr >
+                <td align="center" style="padding: 100px 0px;">3 Juli 2023</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Remarks</td>
+              </tr>
+              <tr >
+                <td align="center" style="padding: 100px 0px;">3 Juli 2023</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Col 1</td>
+                <td align="center">Remarks</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
     </div>
 
     <!-- tambahan -->
