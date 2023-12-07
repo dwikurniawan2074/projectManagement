@@ -19,12 +19,12 @@
                         <div class="row">
 
                             {{-- hidden input id penawaran --}}
-                            <input type="hidden" name="id_penawaran" id="id_penawaran" value="{{$data->id}}">
+                            <input type="hidden" name="id_penawaran" id="id_penawaran" value="{{$data}}">
 
                             {{-- form input merk trafo --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Merk<span
-                                            class="text-danger">*</span></label>a
+                                        class="text-danger">*</span></label>a
                                 <input type="text" name="merk" id="merk" parsley-trigger="change"
                                        class="form-control" placeholder="Masukkan Merk" required>
                             </div>
@@ -32,7 +32,7 @@
                             {{-- form input capacity --}}
                             <div class="mb-3">
                                 <label for="capacity" class="form-label">Capacity<span
-                                            class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label>
                                 <input type="text" name="capacity" id="capacity" parsley-trigger="change"
                                        class="form-control" required="" placeholder="Masukkan Kapasitas">
                             </div>
@@ -42,13 +42,13 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="no-seri" class="form-label">No. Seri<span
-                                                    class="text-danger">*</span></label>
+                                                class="text-danger">*</span></label>
                                         <input type="text" name="no_seri" id="no_seri" parsley-trigger="change"
                                                class="form-control" required="" placeholder="Masukkan No-Seri">
                                     </div>
                                     <div class="col-6">
                                         <label for="tahun" class="form-label">Tahun<span
-                                                    class="text-danger">*</span></label>
+                                                class="text-danger">*</span></label>
                                         <input type="text" name="tahun" id="tahun" parsley-trigger="change"
                                                class="form-control" required="" placeholder="Masukkan Tanggal">
                                     </div>
@@ -87,17 +87,17 @@
                     <div class="modal-body">
                         <div class="row">
                             {{-- hidden input id penawaran --}}
-                            <input type="hidden" name="id_penawaran" id="id_penawaran" value="{{$data->id}}">
+                            <input type="hidden" name="id_penawaran" id="id_penawaran" value="{{$data}}">
 
 
                             {{-- form select data trafo--}}
                             <div class="mb-3">
                                 <label for="trafo" class="form-label">Trafo<span
-                                            class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label>
                                 <select name="trafo" id="id_trafo" parsley-trigger="change" class="form-select">
                                     <option disabled selected="">Choose...</option>
                                     <option value="">-- none --</option>
-                                    @foreach ($data->trafo as $trf)
+                                    @foreach ($trafo as $trf)
                                         <option value="{{ $trf['id'] }}">{{ $trf['merk'] }} - {{$trf->no_seri}}</option>
                                     @endforeach
                                 </select>
@@ -106,7 +106,7 @@
                             {{-- form select nama layanan --}}
                             <div class="mb-3">
                                 <label for="nama-layanan" class="form-label">Nama Layanan<span
-                                            class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label>
                                 <select name="nama-layanan" id="nama-layanan" parsley-trigger="change"
                                         class="form-select" onchange="selectSub_layanan()">
                                     <option disabled selected="">Choose...</option>
@@ -119,7 +119,7 @@
                             {{-- form included sub layanan from layanan --}}
                             <div class="mb-3">
                                 <label for="nama-subLayanan" class="form-label">Sub Layanan Included<span
-                                            class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label>
                                 <select name="nama-subLayanan" id="nama-subLayanan" parsley-trigger="change"
                                         class="form-select">
                                     <option disabled selected="">Choose...</option>
@@ -129,7 +129,7 @@
                             <div class="row mb-3 pe-0">
                                 <div class="col-lg-3">
                                     <label for="qty">Qty:</label>
-                                    <input type="text" id="qty" name="qty[]" class="form-control" placeholder=" qty"
+                                    <input type="number" id="qty" name="qty[]" class="form-control" placeholder=" qty"
                                            autocomplete="off">
                                 </div>
                                 <div class="col-lg-3">
@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="col-lg-2">
                                         <label for="qty">Qty:</label>
-                                        <input type="text" id="qtySL" name="qty[]" class="form-control"
+                                        <input type="number" id="qtySL" name="qty[]" class="form-control"
                                                placeholder=" qty"
                                                autocomplete="off">
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="col-1 d-flex align-items-end">
                                         <div class="input-group-append  align-items-end">
                                             <button class="btn  btn-danger removeRow" type="button"><i
-                                                        class="fe-trash-2"></i></button>
+                                                    class="fe-trash-2"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -290,7 +290,7 @@
                                     </div>
                                     <div class="col-3 d-flex">
                                         <button class="btn btn-danger removeSyarat" type="button"><i
-                                                    class="fe-trash-2"></i></button>
+                                                class="fe-trash-2"></i></button>
                                     </div>
                                     {{-- <label for="merk" class="form-label">Penawaran</label> --}}
                                 </div>
