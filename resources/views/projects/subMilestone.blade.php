@@ -326,7 +326,6 @@ waves-light"
 
     <script type="text/javascript">
         const formSubMilestone = $('#formSubMilestone');
-        console.log(formSubMilestone)
         $(document).ready(function () {
 
             formSubMilestone[0].reset();
@@ -345,22 +344,19 @@ waves-light"
             formSubMilestone.attr('action', "{{ route('sub_milestone.update', '') }}" + '/' + id);
             formSubMilestone.attr('method', "POST");
             formSubMilestone.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
-            console.log(id)
             $.ajax({
                 url: "{{ route('sub_milestone.form', '') }}" + '/' + id,
                 type: 'GET',
                 success: function (data) {
-                    console.log(data);
                     $('#milestone_id').val(data.milestone_id);
                     $('#start_date').val(data.start_date);
                     $('#description').val(data.description);
                     $('#due_date').val(data.due_date);
                     $('#bobot').val(data.bobot);
                     $('#progress').val(data.progress);
-                    // console.log(data.file)
                 },
                 error: function (data) {
-                    console.log(data);
+                    console.log('error');
                 }
             });
         }
@@ -385,7 +381,6 @@ waves-light"
                             _token: "{{ csrf_token() }}",
                         },
                         success: function () {
-                            console.log('success');
                             Swal.fire(
                                 'Dihapus!',
                                 'Data berhasil dihapus.',
@@ -432,13 +427,11 @@ waves-light"
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        console.log(data);
                         $('#submilestone-modal').modal('hide');
                         window.location.reload(); // Reload the window upon successful form submission
                     },
                     error: function (data) {
-                        console.log(data);
-                        console.log(formData);
+                        console.log('error')
                     }
                 });
             } else {

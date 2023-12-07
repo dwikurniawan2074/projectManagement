@@ -3,23 +3,38 @@
 namespace App\Http\Controllers\SistemPenawaran;
 
 use App\Http\Controllers\Controller;
+use App\Models\Layanan;
 use App\Models\Penawaran;
 use App\Models\Trafo;
 use Illuminate\Http\Request;
 
 class PenawaranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $searchQuery = $request->input('search');
+
+        $penawaran = Penawaran::where('project_name', 'like', '%' . $searchQuery . '%')->get();
+
+        return view('sistemPenawaran.penawaran.index', compact('penawaran'));
+
         $penawaran = Penawaran::all();
         return view('sistemPenawaran.penawaran.index', ['penawaran' => $penawaran]);
     }
 
-    public function detail()
+    public function detail($id)
     {
+        $penawaran = Penawaran::find($id);
+        $data = $id;
         $trafo = Trafo::all();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('trafo', 'formTrafoAction'));
+        $layanan = Layanan::where('id_penawaran', $id)
+            ->with(['trafo' => function ($query) {
+                $query->select('id', 'no_seri', 'merk');
+            }])
+            ->paginate(10);
+        $layanan->setCollection($layanan->groupBy(['trafo.no_seri', 'layanan']));
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan'));
     }
 
     // public function form()
@@ -31,6 +46,7 @@ class PenawaranController extends Controller
     {
         return view('sistemPenawaran.penawaran.create');
     }
+
     public function store(Request $request)
     {
 
@@ -79,5 +95,27 @@ class PenawaranController extends Controller
         $penawaran->save();
         // Redirect dengan pesan sukses
         return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Project berhasil ditambahkan');
+    }
+
+    public function edit($id)
+    {
+        $penawaran = Penawaran::find($id);
+        if (!$penawaran) {
+            return redirect()->route('sistemPenawaran.penawaran.index')->with('error', 'Penawaran tidak ditemukan.');
+        }
+
+        return view('sistemPenawaran.penawaran.edit', compact('penawaran'));
+    }
+
+    public function destroy($id)
+    {
+        $penawaran = Penawaran::find($id);
+        if (!$penawaran) {
+            return redirect()->route('sistemPenawaran.penawaran.index')->with('error', 'Penawaran tidak ditemukan.');
+        }
+
+        $penawaran->delete();
+
+        return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Penawaran berhasil dihapus.');
     }
 }

@@ -200,9 +200,10 @@
 
     @section('pageScript')
         <script>
-            function directTemp() {
-                const target = "{{ route('sistemPenawaran.penawaran.detail') }}";
-                console.log('susces');
+            function directTemp(id) {
+                const target = "{{ route('sistemPenawaran.penawaran.detail', ':id') }}";
+                target = target.replace(':id', id);
+                console.log('success');
                 window.location.href = target;
             }
         </script>

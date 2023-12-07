@@ -19,13 +19,13 @@ class TrafoController extends Controller
             'no_seri' => 'required',
             'tahun' => 'required',
         ]);
-        
+
 
         $trafo = Trafo::create($validated);
 
         // $trafo->save();
 
-        return redirect('sistemPenawaran/penawaran/detail')->with('success', 'Data trafo berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Data trafo berhasil ditambahkan');
     }
 
     public function show($id)

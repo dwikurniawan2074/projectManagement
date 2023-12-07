@@ -439,6 +439,9 @@
         $(document).ready(function () {
             $('.agendasForm').parsley();
             $('.expensesForm').parsley();
+            let selectElement = $('#sales-order');
+            let selectedOption = selectElement.find('option[selected]');
+            selectElement.val(selectedOption.length ? selectedOption.val() : "");
             //if form id is addAgenda and form is valid
             $('.agendasForm').on('submit', function (event) {
                 event.preventDefault();
@@ -464,7 +467,6 @@
             if ($('#select-operational').val() != "") {
                 detailOperational($('#select-operational').val());
                 getOperationals($('#sales-order').val(), $('#select-operational').val());
-                console.log($('#select-operational').val());
             }
 
             $('.materialsForm').on('submit', function (event) {
@@ -488,7 +490,6 @@
                     url: `{{ route('operational.get-operational', '') }}/${salesOrder}`,
                     type: "GET",
                     success: function (data) {
-                        console.log(data);
                         const selectOperational = $("#select-operational");
                         selectOperational.empty();
                         selectOperational.append($('<option>', {
@@ -511,12 +512,10 @@
         function detailOperational(operational) {
 
             if (operational !== "" && operational != null) {
-                console.log(operational);
                 $.ajax({
                     url: "{{ route('operational.show', '') }}" + "/" + operational,
                     type: "GET",
                     success: async function (data) {
-                        console.log(data);
                         await getExpenses(operational);
                         await getAgendas(operational);
                         await getMaterials(operational);
@@ -563,7 +562,6 @@
                             $('#table-technician tbody').empty();
                             //looping team
                             for (const member of operationalData.team) {
-                                console.log(member.first_name);
                                 $('#table-technician tbody').append(`
                                 <tr>
                                     <th scope="row">${i}</th>
@@ -597,7 +595,6 @@
 
     <script type="text/javascript">
         function deleteTeam(operational, user_id) {
-            // console.log(operational, user_id)
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this action!',
@@ -621,8 +618,8 @@
                             detailOperational(operational)
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            console.error(xhr.responseText);
                             // Handle errors here if needed.
+                            console.log('Error occurred!');
                         }
                     });
                 }
@@ -673,8 +670,6 @@
 
     <script type="text/javascript">
         function getExpenses(expense) {
-            console.log(expense);
-            // let operational = $('#select-operational').val();
             let table = $('#table-expenses').DataTable({
                 autoWidth: false,
                 processing: true,
@@ -746,8 +741,6 @@
     <script type="text/javascript">
         function editExpense(expense) {
 
-            console.log(expense);
-
             let modal = $('#add-expenses-modal');
             const button = modal.find('#expenseButton');
             button.innerHTML = 'Save Changes';
@@ -758,13 +751,11 @@
 
             let operational = $('#select-operational').val();
             let operationalText = $('#select-operational option:selected').text();
-            console.log(operational)
             axios({
                 method: 'GET',
                 url: "{{ route('operational.expense.show', '') }}" + "/" + expense,
             })
                 .then(function (response) {
-                    console.log(response);
                     modal.find('#operational-label').text(operationalText);
                     modal.find('#expense-id').val(operational);
                     modal.find('#expense-date').val(response.data[0].date);
@@ -773,7 +764,7 @@
                     modal.find('#updateExpense').attr("data-id", response.data[0].id)
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.log('error');
                 })
         }
     </script>
@@ -844,7 +835,6 @@
     <!-- Update Expense -->
     <script type="text/javascript">
         function updateExpense(expense) {
-            console.log(expense)
             let modal = $('#add-expenses-modal');
             Swal.fire({
                 title: 'Are you sure?',
@@ -868,7 +858,6 @@
                             item: item,
                         },
                     }).then(function (response) {
-                        console.log(response);
                         Swal.fire(
                             'Updated!',
                             'Your file has been updated.',
@@ -877,7 +866,6 @@
                         $('#table-expenses').DataTable().ajax.reload();
                         modal.modal('hide');
                     }).catch(function (error) {
-                        console.log(error);
                         swal.fire("Error!", "Please try again", "error");
                     })
                 }
@@ -904,7 +892,6 @@
                             _token: "{{ csrf_token() }}",
                         },
                     }).then(function (response) {
-                        console.log(response);
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -912,7 +899,6 @@
                         )
                         $('#table-expenses').DataTable().ajax.reload();
                     }).catch(function (error) {
-                        console.log(error);
                         swal.fire("Error!", "Please try again", "error");
                     })
                 }
@@ -960,7 +946,6 @@
                     item: item,
                 },
             }).then(function (response) {
-                console.log(response);
                 Swal.fire(
                     'Added!',
                     'Expense has been added.',
@@ -969,7 +954,6 @@
                 $('#table-expenses').DataTable().ajax.reload();
                 modal.modal('hide');
             }).catch(function (error) {
-                console.log(error);
                 swal.fire("Error!", "Please try again", "error");
             })
         }
@@ -989,12 +973,10 @@
                 url: "{{ route('users.getTechnician', '') }}" + "/" + operational,
                 type: "GET",
                 success: function (responseData) {
-                    console.log(responseData);
                     data = responseData;
                     $('#select-technician').empty();
                     $('#select-technician').append(`<option selected value="">-- Pilih Technician --</option>`);
                     $.each(data, function (key, value) {
-                        console.log(value.first_name);
                         let option = new Option(value.first_name, value.id, false, false)
                         $('#select-technician').append(option)
                     });
@@ -1021,7 +1003,6 @@
                 return;
             }
             let operational = $('#select-operational').val();
-            console.log(selected);
             axios({
                 url: "{{ route('operational.attach-team', '') }}" + '/' + operational,
                 method: 'PATCH',
@@ -1030,7 +1011,6 @@
                     user_id: selected,
                 },
             }).then(function (response) {
-                console.log(response);
                 $('#add-technician-modal').modal('hide');
                 Swal.fire(
                     'Added!',
@@ -1039,7 +1019,6 @@
                 );
                 detailOperational(operational)
             }).catch(function (error) {
-                console.log(error);
                 swal.fire("Error!", "Please try again", "error");
             });
         }
@@ -1131,7 +1110,6 @@
                             _token: "{{ csrf_token() }}",
                         },
                     }).then(function (response) {
-                        console.log(response);
                         Swal.fire(
                             'Deleted!',
                             'Your expense has been deleted.',
@@ -1139,7 +1117,6 @@
                         )
                         $('#table-agendas').DataTable().ajax.reload();
                     }).catch(function (error) {
-                        console.log(error);
                         swal.fire("Error!", "Please try again", "error");
                     })
                 }
@@ -1173,7 +1150,6 @@
             const dueDate = modal.find('#due-date').val();
             let status = $('#progress').val();
             const operational = $('#select-operational').val();
-            console.log(status)
 
             if (!operational) {
                 swal.fire("Error!", "Please select operational", "error");
@@ -1193,7 +1169,6 @@
                     modal.modal('hide');
                 })
                 .catch(function (error) {
-                    console.log(error)
                     swal.fire("Error!", "Please try again", "error");
                 });
         }
@@ -1215,13 +1190,12 @@
             })
                 .then(function (response) {
                     modal.find('#due-date').val(response.data[0].due_date);
-                    console.log(response)
                     modal.find('#description').val(response.data[0].description);
                     modal.find('#progress').val(response.data[0].status);
                     modal.find('#updateAgenda').attr("data-id", response.data[0].id)
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.log('Error');
                 })
         }
 
@@ -1255,7 +1229,6 @@
                             modal.modal('hide');
                         })
                         .catch(function (error) {
-                            console.log(error)
                             swal.fire("Error!", "Please try again", "error");
                         })
                 }
@@ -1298,7 +1271,6 @@
                 $('#table-material').DataTable().ajax.reload();
                 modal.modal('hide');
             } catch (error) {
-                console.error(error);
                 swal.fire("Error!", "Please try again", "error");
             }
         }
@@ -1308,9 +1280,7 @@
             const modal = $('#add-material-modal');
             const doValue = modal.find('#do_number').val();
             const memoValue = modal.find('#memo_number').val();
-            console.log(material)
-            console.log('doValue:', doValue);
-            console.log('memoValue:', memoValue);
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'You will not be able to recover this action!',
@@ -1333,9 +1303,8 @@
                         )
                         $('#table-material').DataTable().ajax.reload();
                         modal.modal('hide');
-                        console.log(response)
                     } catch (error) {
-                        console.error(error);
+                        console.log('error');
                     }
                 }
             });
@@ -1359,7 +1328,7 @@
                     modal.find('#updateMaterial').attr("data-id", response.data.id)
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    console.log('error');
                 })
         }
 
@@ -1391,7 +1360,7 @@
                             $('#table-material').DataTable().ajax.reload();
                         }
                     } catch (error) {
-                        console.error(error);
+                        console.log('error');
                     }
                 }
             });
