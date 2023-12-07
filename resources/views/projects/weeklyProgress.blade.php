@@ -5,6 +5,9 @@
     <link rel="shortcut icon" href="{{ asset('images/logo_trafindo_only.png') }}">
     <script src="/assets/v1/js/external/jquery.min.js"></script>
     <script src="/assets/v1/js/forrep.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style type="text/css">
       body {
         margin: 0 auto;
@@ -142,15 +145,36 @@
       .yellow-cell{
         background-color: #FFFF00;
       }
-      @media print{@page {size: landscape}}
+      @media print{
+        @page {
+          size: landscape
+        }
+        .navbar{
+          display: none;
+        }
+      }
     </style>
 
   </head>
   <body style="" cz-shortcut-listen="true">
     <div align="center">
+
+      {{-- add navbar disini --}}
+      <nav class="navbar bg-light">
+        <div class="container-fluid d-flex justify-content-around">
+          <span class="navbar-brand mb-0 h1" style="color: #777;">Weekly Progress</span>
+          <div class="button-group">
+            <a href="{{ route('projects.show', ['id' => $project->id]) }}">
+              <button type="button" class="btn btn-secondary btn-sm"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp; Back</button>
+            </a>
+            <button type="button" class="btn btn-danger ms-2 btn-sm" onclick="window.print()"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; Print</button>
+          </div>
+        </div>
+      </nav>
+
       <div style="width: 1200px">
 
-        <div class="watermark fabrication-schedule">
+        <div class="watermark fabrication-schedule" style="margin-bottom: 100px;">
           <div class="bg">&nbsp;</div>
 
           <table class="tb_data border" border="1" width="100%" >
@@ -169,9 +193,11 @@
                   </p>
                   28 Juli 2023</th>
                 <th colspan="19" class="text-vertical-center">
-                  <h2>
-                    FABRICATION SCHEDULE
-                  </h2>
+                  <h6>
+                    <b>
+                      FABRICATION SCHEDULE
+                    </b>
+                  </h6>
                 </th>
                 <th colspan="6" class="text-vertical-center">
                     <img src="{{ asset('images/logo_trafindo_full.png') }}" alt="logo_trafindo"
@@ -1196,7 +1222,7 @@
           </table>
         </div>
         
-        <div style="page-break-after: always"></div>
+        <div style="page-break-after: always;"></div>
 
         <div class="watermark daily-report">
           <div class="bg">&nbsp;</div>
@@ -1252,11 +1278,10 @@
         </div>
     </div>
 
-    <!-- tambahan -->
-    <script src="/assets/v1/js/forrep.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-      var list = "/siakad/repp_khsmahasiswa";
+    <script>
+      window.onload = function() {
+          window.print();
+        };
     </script>
   </body>
 </html>

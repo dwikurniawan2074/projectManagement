@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::put('/{id}', [ProjectController::class, 'update'])->name('projects.update');
         Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
-        Route::get('/showWeekly', [ProjectController::class, 'showWeekly'])->name('projects.showWeekly');
+        Route::get('/showWeekly/{id}', [ProjectController::class, 'showWeekly'])->name('projects.showWeekly');
         Route::get('/showDaily', [ProjectController::class, 'showDaily'])->name('projects.showDaily');
         Route::get('/createProductionCost/{id}', [ProductionCostController::class, 'create'])->name('production-cost.create');
         Route::post('/production-cost', [ProductionCostController::class, 'store'])->name('production-cost.store');
