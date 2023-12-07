@@ -24,10 +24,10 @@ class PenawaranController extends Controller
     public function detail($id)
     {
         $penawaran = Penawaran::find($id);
-
+        $data = $id;
         $trafo = Trafo::all();
         $formTrafoAction = 'store';
-        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction'));
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data'));
     }
 
     // public function form()
@@ -39,6 +39,7 @@ class PenawaranController extends Controller
     {
         return view('sistemPenawaran.penawaran.create');
     }
+
     public function store(Request $request)
     {
 
