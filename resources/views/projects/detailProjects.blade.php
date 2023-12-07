@@ -636,6 +636,16 @@
                                                 </p>
                                             </th>
                                         </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Weekly Progress</p>
+                                                {{-- <a href="{{ route('projects.showWeekly') }}"> --}}
+                                                <a href="{{ route('projects.showDaily') }}">
+                                                <span class="badge bg-danger p-1">
+                                                    <span class="mdi mdi-eye"></span> Show Weekly Progress</span>
+                                                </a>
+                                            </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

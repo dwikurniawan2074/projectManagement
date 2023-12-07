@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\User;
 use App\Notifications\projectNotification;
 use Exception;
+// use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
@@ -254,5 +255,29 @@ class ProjectController extends Controller
         } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus proyek.'], 500);
         }
+    }
+
+    public function showWeekly(){
+        // $dompdf = new Dompdf();
+
+
+        // $weeklyPdf = view('projects.weeklyProgress')->render();
+        
+
+        // // Load HTML content into Dompdf
+        // $dompdf->loadHtml($weeklyPdf);
+        
+        // $dompdf->setPaper('A4', 'landscape'); // Set paper orientation
+        // $dompdf->render();
+
+        
+
+        // Save PDFs to storage or public directory
+        // return $dompdf->stream('print_preview.pdf');
+        return view('projects.weeklyProgress');
+    }
+
+    public function showDaily(){
+        return view('projects.dailyProgress');
     }
 }
