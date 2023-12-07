@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
         // Route::get('/{id}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
         Route::put('/{id}', [ProjectController::class, 'update'])->name('projects.update');
         Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+        Route::get('/showWeekly', [ProjectController::class, 'showWeekly'])->name('projects.showWeekly');
+        Route::get('/showDaily', [ProjectController::class, 'showDaily'])->name('projects.showDaily');
         Route::get('/createProductionCost/{id}', [ProductionCostController::class, 'create'])->name('production-cost.create');
         Route::post('/production-cost', [ProductionCostController::class, 'store'])->name('production-cost.store');
         Route::delete('/production-cost/{id}', [ProductionCostController::class, 'destroy'])->name('production-cost.destroy');
@@ -199,6 +201,18 @@ Route::prefix('summary')->group(function () {
 //cara penggunaan middleware "hasRole:role1, role2, dst"
 Route::prefix('test')->group(function () {
     Route::get('/admin', function () {
+        // use GuzzleHttp\Client;
+        // $client = new Client();
+        // $response = $client->get('https://nominatim.openstreetmap.org/search?format=json&q=country');
+
+        // $data = json_decode($response->getBody(), true);
+
+        // // Process $data to extract country information
+
+        // return view('your-blade-view', [
+        //     'countries' => $extractedCountries, // Pass country data to the view
+        //     // Pass province and city data similarly
+        // ]);
         return view('testPage.index');
     })->middleware(['auth', 'hasRole:Admin'])->name('testPage.index');
     Route::get('/admin/technician', function () {
