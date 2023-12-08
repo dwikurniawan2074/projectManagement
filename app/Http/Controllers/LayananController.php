@@ -72,43 +72,31 @@ class LayananController extends Controller
             'subLayanan.*.harga' => 'required|string',
         ]);
 
-        $dataLayanan = Layanan::where('id_penawaran', $validated['id_penawaran'])
+        $dataLayananIds = Layanan::where('id_penawaran', $validated['id_penawaran'])
             ->where('id_trafo', $validated['id_trafo'])
             ->where('layanan', $validated['layanan'])
-            ->get('id');
-
-        $dataLayananIds = $dataLayanan->pluck('id')->toArray();
+            ->pluck('id')->toArray();
 
         foreach ($validated['subLayanan'] as $sublayanan) {
+            $data = [
+                'id_trafo' => $validated['id_trafo'] ?? null,
+                'id_penawaran' => $validated['id_penawaran'],
+                'layanan' => $validated['layanan'],
+                'sub_layanan' => $sublayanan['subLayanan'],
+                'qty' => $sublayanan['qty'],
+                'satuan' => $sublayanan['satuan'],
+                'price' => $sublayanan['harga'],
+            ];
             if (empty($sublayanan['id'])) {
-                Layanan::create([
-                    'id_trafo' => $validated['id_trafo'] ?? null,
-                    'id_penawaran' => $validated['id_penawaran'],
-                    'layanan' => $validated['layanan'],
-                    'sub_layanan' => $sublayanan['subLayanan'],
-                    'qty' => $sublayanan['qty'],
-                    'satuan' => $sublayanan['satuan'],
-                    'price' => $sublayanan['harga'],
-                ]);
+                Layanan::create($data);
                 continue;
             }
             if (in_array($sublayanan['id'], $dataLayananIds)) {
-                $layanan = Layanan::find($sublayanan['id']);
-                $layanan->update([
-                    'id_trafo' => $validated['id_trafo'] ?? null,
-                    'id_penawaran' => $validated['id_penawaran'],
-                    'layanan' => $validated['layanan'],
-                    'sub_layanan' => $sublayanan['subLayanan'],
-                    'qty' => $sublayanan['qty'],
-                    'satuan' => $sublayanan['satuan'],
-                    'price' => $sublayanan['harga'],
-                ]);
+                Layanan::find($sublayanan['id'])->update($data);
                 $dataLayananIds = array_diff($dataLayananIds, [$sublayanan['id']]);
             }
         }
-        foreach ($dataLayananIds as $id) {
-            Layanan::destroy($id);
-        }
+        Layanan::destroy($dataLayananIds);
 
         return response()->json(['message' => 'Success!', 'data' => $request->all()], 200);
     }
