@@ -241,6 +241,8 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::prefix('layanan')->group(function () {
             Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
             Route::get('/show', [LayananController::class, 'show'])->name('sistemPenawaran.penawaran.layanan.show');
+            Route::patch('/update', [LayananController::class, 'update'])->name('sistemPenawaran.penawaran.layanan.update');
+            Route::delete('/delete', [LayananController::class, 'destroy'])->name('sistemPenawaran.penawaran.layanan.destroy');
         });
         Route::get('/edit/{id}', [PenawaranController::class, 'edit'])->name('sistemPenawaran.penawaran.edit');
         Route::delete('/delete/{id}', [PenawaranController::class, 'destroy'])->name('sistemPenawaran.penawaran.destroy');

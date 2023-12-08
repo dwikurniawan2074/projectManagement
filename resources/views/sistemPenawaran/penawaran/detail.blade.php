@@ -139,46 +139,52 @@
                                         <tbody>
                                         {{--                                        @dd($layanan)--}}
                                         @foreach ($layanan as $trafoNumber => $layananGroup)
-                                            @foreach ($layananGroup as $layananName => $subLayananList)
-                                                @php($total_price = 0)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{ $trafoNumber }}</td>
-                                                    <td>{{ $layananName }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-light btn-sm dropdown-toggle"
-                                                                    type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                Sub Layanan<i class="mdi mdi-chevron-down"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                @foreach($subLayananList as $subLayanan)
-                                                                    <div
-                                                                        class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
-                                                                    @php($total_price += $subLayanan['price'])
-                                                                @endforeach
+                                            @foreach($layananGroup as $layananId => $trafoId)
+                                                @foreach ($trafoId as $layananName => $subLayananList)
+                                                    @php($total_price = 0)
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{ $trafoNumber }}</td>
+                                                        <td>{{ $layananName }}</td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-light btn-sm dropdown-toggle"
+                                                                        type="button"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false">
+                                                                    Sub Layanan<i class="mdi mdi-chevron-down"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    @foreach($subLayananList as $subLayanan)
+                                                                        <div
+                                                                            class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
+                                                                        @php($total_price += $subLayanan['price'])
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="rupiah">
-                                                        {{$total_price}}
-                                                    </td>
-                                                    <td class="text-center" width="160">
-                                                        <div class="d-flex gap-1 justify-content-center">
-                                                            <button type="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#layanan-modals"
-                                                                    class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                                edit
-                                                            </button>
-                                                            <button type="button"
-                                                                    class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                                Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td class="rupiah">
+                                                            {{$total_price}}
+                                                        </td>
+                                                        <td class="text-center" width="160">
+                                                            <div class="d-flex gap-1 justify-content-center">
+                                                                <button type="button" data-bs-toggle="modal"
+                                                                        data-bs-target="#layanan-modals"
+                                                                        onclick='setUpdate("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                                    edit
+                                                                </button>
+                                                                {{--                                                            @dd($subLayananList)--}}
+                                                                <button type="button"
+                                                                        id="subLayanan_delete"
+                                                                        onclick='setDelete("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             @endforeach
                                         @endforeach
                                         </tbody>
@@ -582,28 +588,28 @@
     </script>
 
     {{-- function hapus layanan--}}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusLayanan', function () {
-                var id = $(this).val();
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $(document).on('click', '.hapusLayanan', function () {--}}
+    {{--                var id = $(this).val();--}}
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    // backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    // silahkan tulis logika nya disini xixixixi
-                });
-            });
-        });
-    </script>
+    {{--                // Display a confirmation dialog--}}
+    {{--                Swal.fire({--}}
+    {{--                    title: "Anda yakin?",--}}
+    {{--                    text: "Data tidak bisa dikembalikan!",--}}
+    {{--                    icon: 'warning',--}}
+    {{--                    showCancelButton: true,--}}
+    {{--                    confirmButtonColor: '#f34e4e',--}}
+    {{--                    confirmButtonText: 'Yes, delete it!',--}}
+    {{--                    cancelButtonText: 'Cancel',--}}
+    {{--                    // backrop: 'static',--}}
+    {{--                    allowOutsideClick: false--}}
+    {{--                }).then((result) => {--}}
+    {{--                    // silahkan tulis logika nya disini xixixixi--}}
+    {{--                });--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    </script>--}}
 
     {{-- function hapus layanan--}}
     <script type="text/javascript">
@@ -696,6 +702,7 @@
         const formLayanan = $('#formLayanan');
         $(document).ready(() => {
             formLayanan.parsley().reset();
+            formLayanan[0].reset();
         })
 
         function setStoreLayanan() {
@@ -706,11 +713,100 @@
             formLayanan.find('#id_layanan').remove();
         }
 
-        function setUpdatedLayanan(id) {
+        function setUpdate(id_penawaran, id_trafo, layanan) {
             formLayanan.parsley().reset();
-            {{--formLayanan.attr('action', '{{ route('sistemPenawaran.layanan.update') }}');--}}
+            formLayanan.attr('action', '{{ route('sistemPenawaran.penawaran.layanan.update') }}');
             formLayanan.attr('method', 'POST');
-            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PUT">');
+            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
+
+            axios({
+                method: 'GET',
+                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
+                params: {
+                    penawaran: id_penawaran,
+                    trafo: id_trafo,
+                    layanan: layanan
+                }
+            }).then((response) => {
+                console.log(response);
+                formLayanan.parsley().reset();
+                formLayanan.find('#id_penawaran').val(response.data.data.id_penawaran);
+                formLayanan.find('#id_trafo').val(response.data.data.id_trafo);
+                console.log(response.data.data.dataLayanan[0].layanan);
+                formLayanan.find('#nama-layanan').val(response.data.data.layanan);
+                formLayanan.find('#nama-subLayanan').append('<option value="' + response.data.data.dataLayanan[0].sub_layanan + '" selected  >' + response.data.data.dataLayanan[0].sub_layanan + '</option>')
+                formLayanan.find('#qty').val(response.data.data.dataLayanan[0].qty);
+                formLayanan.find('#satuan').val(response.data.data.dataLayanan[0].satuan);
+                formLayanan.find('#harga').val(response.data.data.dataLayanan[0].price);
+                formLayanan.find('#id_subLayanan').val(response.data.data.dataLayanan[0].id);
+
+                formLayanan.find('#id_subLayananSL').val(response.data.data.dataLayanan[1].id);
+                formLayanan.find('#descriptionSL').val(response.data.data.dataLayanan[1].sub_layanan);
+                formLayanan.find('#qtySL').val(response.data.data.dataLayanan[1].qty);
+                formLayanan.find('#satuanSL').val(response.data.data.dataLayanan[1].satuan);
+                formLayanan.find('#hargaSL').val(response.data.data.dataLayanan[1].price);
+
+                for (let i = 2; i < response.data.data.dataLayanan.length; i++) {
+                    let newRow = $('.sub-layanan-list .row.mb-3').first().clone();
+                    newRow.find('#id_subLayananSL').val(response.data.data.dataLayanan[i].id);
+                    newRow.find('#descriptionSL').val(response.data.data.dataLayanan[i].sub_layanan);
+                    newRow.find('#qtySL').val(response.data.data.dataLayanan[i].qty);
+                    newRow.find('#satuanSL').val(response.data.data.dataLayanan[i].satuan);
+                    newRow.find('#hargaSL').val(response.data.data.dataLayanan[i].price);
+                    $('.sub-layanan-list').append(newRow);
+                }
+
+
+            }).catch((error) => {
+                console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                Swal.fire({
+                    title: "Gagal!",
+                    text: error.response.data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((hasil) => {
+                    if (hasil.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+
+        function setDelete(id_penawaran, id_trafo, layanan) {
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('{{ route('sistemPenawaran.penawaran.layanan.destroy') }}', {
+                        params: {penawaran: id_penawaran, trafo: id_trafo, layanan: layanan}
+                    }).then((response) => {
+                        Swal.fire({
+                            title: response.data.message ? "Sukses!" : "Gagal!",
+                            text: response.data.message || response.data.error,
+                            icon: response.data.message ? 'success' : 'error',
+                            confirmButtonText: 'OK'
+                        }).then((hasil) => {
+                            if (hasil.isConfirmed) window.location.reload();
+                        });
+                    }).catch((error) => {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: error.response.data.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        })
+                            .then(hasil => {
+                                if (hasil.isConfirmed) window.location.reload();
+                            });
+                    });
+                }
+            });
         }
 
         formLayanan.submit((e) => {
@@ -718,17 +814,20 @@
             let data = [];
 
             data.push({
+                id: $('#id_subLayanan').val() ?? null,
                 subLayanan: $('#nama-subLayanan').val(),
                 qty: $('#qty').val(),
                 satuan: $('#satuan').val(),
                 harga: $('#harga').val()
             });
             $('.sub-layanan-list .row.mb-3').each((index, element) => {
+                let id_subLayanan = $(element).find('#id_subLayananSL').val() ?? null;
                 let subLayanan = $(element).find('#descriptionSL').val();
                 let harga = $(element).find('#hargaSL').val();
                 let qty = $(element).find('#qtySL').val();
                 let satuan = $(element).find('#satuanSL').val();
                 data.push({
+                    id: id_subLayanan,
                     subLayanan: subLayanan,
                     qty: qty,
                     satuan: satuan,
@@ -736,17 +835,21 @@
                 });
             });
 
+            dataForm = {
+                _token: "{{ csrf_token() }}",
+                id_trafo: $('#id_trafo').val(),
+                id_penawaran: $('#id_penawaran').val(),
+                layanan: $('#nama-layanan').val(),
+                subLayanan: data,
+            }
+            if ($('#_method').val() == 'PATCH') {
+                dataForm._method = $('#_method').val();
+            }
             if (formLayanan.parsley().validate()) {
                 axios({
                     method: formLayanan.attr('method'),
                     url: formLayanan.attr('action'),
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id_trafo: $('#id_trafo').val(),
-                        id_penawaran: $('#id_penawaran').val(),
-                        layanan: $('#nama-layanan').val(),
-                        subLayanan: data,
-                    }
+                    data: dataForm
                 }).then((response) => {
                     console.log(response);
                     if (response.data.message) {
@@ -779,33 +882,6 @@
             }
         })
 
-        function showLayanan(id_penawaran, id_trafo, layanan) {
-            axios({
-                method: 'GET',
-                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    penawaran: id_penawaran,
-                    trafo: id_trafo,
-                    layanan: layanan
-                }
-            }).then((response) => {
-                console.log(response);
-
-            }).catch((error) => {
-                console.error('Terjadi kesalahan saat mengirim data: ' + error);
-                Swal.fire({
-                    title: "Gagal!",
-                    text: error.response.data.message,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((hasil) => {
-                    if (hasil.isConfirmed) {
-                        window.location.reload();
-                    }
-                });
-            });
-        }
 
     </script>
 @endsection
