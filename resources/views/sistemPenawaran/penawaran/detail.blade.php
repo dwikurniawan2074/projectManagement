@@ -22,8 +22,10 @@
         }
 
         #layanan-modals .modal-content {
-            max-height: 700px; /* Adjust the height as needed */
-            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 700px;
+            /* Adjust the height as needed */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
             overflow-x: hidden;
         }
 
@@ -34,7 +36,6 @@
         .dropdown-toggle {
             border: 1px solid #DEE2E6 !important;
         }
-
     </style>
 @endsection
 
@@ -139,46 +140,52 @@
                                         <tbody>
                                         {{--                                        @dd($layanan)--}}
                                         @foreach ($layanan as $trafoNumber => $layananGroup)
-                                            @foreach ($layananGroup as $layananName => $subLayananList)
-                                                @php($total_price = 0)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{ $trafoNumber }}</td>
-                                                    <td>{{ $layananName }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-light btn-sm dropdown-toggle"
-                                                                    type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                Sub Layanan<i class="mdi mdi-chevron-down"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                @foreach($subLayananList as $subLayanan)
-                                                                    <div
-                                                                        class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
-                                                                    @php($total_price += $subLayanan['price'])
-                                                                @endforeach
+                                            @foreach($layananGroup as $layananId => $trafoId)
+                                                @foreach ($trafoId as $layananName => $subLayananList)
+                                                    @php($total_price = 0)
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{ $trafoNumber }}</td>
+                                                        <td>{{ $layananName }}</td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-light btn-sm dropdown-toggle"
+                                                                        type="button"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false">
+                                                                    Sub Layanan<i class="mdi mdi-chevron-down"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    @foreach($subLayananList as $subLayanan)
+                                                                        <div
+                                                                            class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
+                                                                        @php($total_price += $subLayanan['price'])
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="rupiah">
-                                                        {{$total_price}}
-                                                    </td>
-                                                    <td class="text-center" width="160">
-                                                        <div class="d-flex gap-1 justify-content-center">
-                                                            <button type="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#layanan-modals"
-                                                                    class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                                edit
-                                                            </button>
-                                                            <button type="button"
-                                                                    class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                                Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                        <td class="rupiah">
+                                                            {{$total_price}}
+                                                        </td>
+                                                        <td class="text-center" width="160">
+                                                            <div class="d-flex gap-1 justify-content-center">
+                                                                <button type="button" data-bs-toggle="modal"
+                                                                        data-bs-target="#layanan-modals"
+                                                                        onclick='setUpdate("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                                    edit
+                                                                </button>
+                                                                {{--                                                            @dd($subLayananList)--}}
+                                                                <button type="button"
+                                                                        id="subLayanan_delete"
+                                                                        onclick='setDelete("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             @endforeach
                                         @endforeach
                                         </tbody>
@@ -247,37 +254,46 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h4 class="mt-0 header-title">Trafindo Projects</h4>
+                                        <h4 class="mt-0 header-title">{{ $penawaran->project_name }}</h4>
                                         <p class="text-muted font-14 mb-0">
-                                            PT Trafoindo Prima Perkasa
+                                            {{ $penawaran->attd }}
                                         </p>
                                         <p class="text-muted font-14 mb-3">
-                                            Jl. Prabusiliwangi No.14
+                                            {{ $penawaran->alamat }}
                                         </p>
                                     </div>
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <button title="Edit Project" type="button"
-                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light"
-                                            >
+                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                 <span class="mdi mdi-printer"></span>
                                             </button>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <a href="{{ route('sistemPenawaran.penawaran.create') }}">
-                                                <button type="button" title="Edit Project" type="button"
+                                            <form
+                                                action="{{ route('sistemPenawaran.penawaran.edit', ['id' => $penawaran->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit" title="Edit Project"
                                                         class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                        style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;"
-                                                        onclick="{{ route('sistemPenawaran.penawaran.create') }}">
+                                                        style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
-                                            </a>
+                                            </form>
+
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Delete Project" type="button"
-                                                    class="tabledit-edit-button hapusPenawaran btn btn-danger" value="">
-                                                <span class="mdi mdi-trash-can-outline"></span>
-                                            </button>
+                                            <form
+                                                action="{{ route('sistemPenawaran.penawaran.destroy', ['id' => $penawaran->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button title="Delete Project" type="submit"
+                                                        class="tabledit-hapus-button btn btn-danger" value="">
+                                                    <span class="mdi mdi-trash-can-outline"></span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -289,32 +305,32 @@
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Tanggal Penawaran</p>
-                                                <p class="details-text">23/11/2023</p>
+                                                <p class="details-text">{{ $penawaran->date }}</p>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Nomor MSG</p>
-                                                <p class="details-text">0000/CS-TPP/x/2023
+                                                <p class="details-text">{{ $penawaran->no_msg }}
                                                 </p>
                                             </th>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <th scope="row">
                                                 <p class="title-text">Customer Contact Name</p>
-                                                <p class="details-text">Andria Wijaya</p>
+                                                <p class="details-text">{{ $penawaran->customer }}</p>
                                             </th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">Email</p>
-                                                <p class="details-text">andria.wijaya@gmailc.com</p>
+                                                <p class="details-text">{{ $penawaran->email }}</p>
                                             </th>
                                         </tr>
                                         <tr>
                                             <th scope="row">
                                                 <p class="title-text">No. HP</p>
-                                                <p class="details-text">088999665474</p>
+                                                <p class="details-text">{{ $penawaran->tel_fax }}</p>
                                             </th>
                                         </tr>
                                         <tr>
@@ -442,7 +458,7 @@
         });
     </script>
 
-    {{-- function hapus penawaran--}}
+    {{-- function hapus penawaran --}}
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).on('click', '.hapusPenawaran', function () {
@@ -466,7 +482,7 @@
         });
     </script>
 
-    {{-- function hapus trafo--}}
+    {{-- function hapus trafo --}}
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).on('click', '.hapusTrafo', function () {
@@ -488,7 +504,8 @@
                     if (result.isConfirmed) {
                         // Silahkan isi logika nya sendiri xixixi
                         $.ajax({
-                            url: "{{ route('sistemPenawaran.trafo.destroy', '') }}" + '/' + id,
+                            url: "{{ route('sistemPenawaran.trafo.destroy', '') }}" + '/' +
+                                id,
                             type: 'DELETE',
                             data: {
                                 _token: "{{ csrf_token() }}",
@@ -532,28 +549,28 @@
     </script>
 
     {{-- function hapus layanan--}}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusLayanan', function () {
-                var id = $(this).val();
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $(document).on('click', '.hapusLayanan', function () {--}}
+    {{--                var id = $(this).val();--}}
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    // backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    // silahkan tulis logika nya disini xixixixi
-                });
-            });
-        });
-    </script>
+    {{--                // Display a confirmation dialog--}}
+    {{--                Swal.fire({--}}
+    {{--                    title: "Anda yakin?",--}}
+    {{--                    text: "Data tidak bisa dikembalikan!",--}}
+    {{--                    icon: 'warning',--}}
+    {{--                    showCancelButton: true,--}}
+    {{--                    confirmButtonColor: '#f34e4e',--}}
+    {{--                    confirmButtonText: 'Yes, delete it!',--}}
+    {{--                    cancelButtonText: 'Cancel',--}}
+    {{--                    // backrop: 'static',--}}
+    {{--                    allowOutsideClick: false--}}
+    {{--                }).then((result) => {--}}
+    {{--                    // silahkan tulis logika nya disini xixixixi--}}
+    {{--                });--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    </script>--}}
 
     {{-- function hapus syarat--}}
     <script type="text/javascript">
@@ -634,7 +651,8 @@
                     url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
                     dataType: "json",
                     success: function (response) {
-                        form.setAttribute('action', '{{ route('sistemPenawaran.trafo.update')}}');
+                        form.setAttribute('action',
+                            '{{ route('sistemPenawaran.trafo.update') }}');
 
                         // create element input hidden untuk edit
                         var newInput = document.createElement('input');
@@ -687,6 +705,7 @@
         const formLayanan = $('#formLayanan');
         $(document).ready(() => {
             formLayanan.parsley().reset();
+            formLayanan[0].reset();
         })
 
         function setStoreLayanan() {
@@ -697,11 +716,100 @@
             formLayanan.find('#id_layanan').remove();
         }
 
-        function setUpdatedLayanan(id) {
+        function setUpdate(id_penawaran, id_trafo, layanan) {
             formLayanan.parsley().reset();
-            {{--formLayanan.attr('action', '{{ route('sistemPenawaran.layanan.update') }}');--}}
+            formLayanan.attr('action', '{{ route('sistemPenawaran.penawaran.layanan.update') }}');
             formLayanan.attr('method', 'POST');
-            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PUT">');
+            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
+
+            axios({
+                method: 'GET',
+                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
+                params: {
+                    penawaran: id_penawaran,
+                    trafo: id_trafo,
+                    layanan: layanan
+                }
+            }).then((response) => {
+                console.log(response);
+                formLayanan.parsley().reset();
+                formLayanan.find('#id_penawaran').val(response.data.data.id_penawaran);
+                formLayanan.find('#id_trafo').val(response.data.data.id_trafo);
+                console.log(response.data.data.dataLayanan[0].layanan);
+                formLayanan.find('#nama-layanan').val(response.data.data.layanan);
+                formLayanan.find('#nama-subLayanan').append('<option value="' + response.data.data.dataLayanan[0].sub_layanan + '" selected  >' + response.data.data.dataLayanan[0].sub_layanan + '</option>')
+                formLayanan.find('#qty').val(response.data.data.dataLayanan[0].qty);
+                formLayanan.find('#satuan').val(response.data.data.dataLayanan[0].satuan);
+                formLayanan.find('#harga').val(response.data.data.dataLayanan[0].price);
+                formLayanan.find('#id_subLayanan').val(response.data.data.dataLayanan[0].id);
+
+                formLayanan.find('#id_subLayananSL').val(response.data.data.dataLayanan[1].id);
+                formLayanan.find('#descriptionSL').val(response.data.data.dataLayanan[1].sub_layanan);
+                formLayanan.find('#qtySL').val(response.data.data.dataLayanan[1].qty);
+                formLayanan.find('#satuanSL').val(response.data.data.dataLayanan[1].satuan);
+                formLayanan.find('#hargaSL').val(response.data.data.dataLayanan[1].price);
+
+                for (let i = 2; i < response.data.data.dataLayanan.length; i++) {
+                    let newRow = $('.sub-layanan-list .row.mb-3').first().clone();
+                    newRow.find('#id_subLayananSL').val(response.data.data.dataLayanan[i].id);
+                    newRow.find('#descriptionSL').val(response.data.data.dataLayanan[i].sub_layanan);
+                    newRow.find('#qtySL').val(response.data.data.dataLayanan[i].qty);
+                    newRow.find('#satuanSL').val(response.data.data.dataLayanan[i].satuan);
+                    newRow.find('#hargaSL').val(response.data.data.dataLayanan[i].price);
+                    $('.sub-layanan-list').append(newRow);
+                }
+
+
+            }).catch((error) => {
+                console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                Swal.fire({
+                    title: "Gagal!",
+                    text: error.response.data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((hasil) => {
+                    if (hasil.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+
+        function setDelete(id_penawaran, id_trafo, layanan) {
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('{{ route('sistemPenawaran.penawaran.layanan.destroy') }}', {
+                        params: {penawaran: id_penawaran, trafo: id_trafo, layanan: layanan}
+                    }).then((response) => {
+                        Swal.fire({
+                            title: response.data.message ? "Sukses!" : "Gagal!",
+                            text: response.data.message || response.data.error,
+                            icon: response.data.message ? 'success' : 'error',
+                            confirmButtonText: 'OK'
+                        }).then((hasil) => {
+                            if (hasil.isConfirmed) window.location.reload();
+                        });
+                    }).catch((error) => {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: error.response.data.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        })
+                            .then(hasil => {
+                                if (hasil.isConfirmed) window.location.reload();
+                            });
+                    });
+                }
+            });
         }
 
         formLayanan.submit((e) => {
@@ -709,17 +817,20 @@
             let data = [];
 
             data.push({
+                id: $('#id_subLayanan').val() ?? null,
                 subLayanan: $('#nama-subLayanan').val(),
                 qty: $('#qty').val(),
                 satuan: $('#satuan').val(),
                 harga: $('#harga').val()
             });
             $('.sub-layanan-list .row.mb-3').each((index, element) => {
+                let id_subLayanan = $(element).find('#id_subLayananSL').val() ?? null;
                 let subLayanan = $(element).find('#descriptionSL').val();
                 let harga = $(element).find('#hargaSL').val();
                 let qty = $(element).find('#qtySL').val();
                 let satuan = $(element).find('#satuanSL').val();
                 data.push({
+                    id: id_subLayanan,
                     subLayanan: subLayanan,
                     qty: qty,
                     satuan: satuan,
@@ -727,17 +838,21 @@
                 });
             });
 
+            dataForm = {
+                _token: "{{ csrf_token() }}",
+                id_trafo: $('#id_trafo').val(),
+                id_penawaran: $('#id_penawaran').val(),
+                layanan: $('#nama-layanan').val(),
+                subLayanan: data,
+            }
+            if ($('#_method').val() == 'PATCH') {
+                dataForm._method = $('#_method').val();
+            }
             if (formLayanan.parsley().validate()) {
                 axios({
                     method: formLayanan.attr('method'),
                     url: formLayanan.attr('action'),
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id_trafo: $('#id_trafo').val(),
-                        id_penawaran: $('#id_penawaran').val(),
-                        layanan: $('#nama-layanan').val(),
-                        subLayanan: data,
-                    }
+                    data: dataForm
                 }).then((response) => {
                     console.log(response);
                     if (response.data.message) {
@@ -770,33 +885,6 @@
             }
         })
 
-        function showLayanan(id_penawaran, id_trafo, layanan) {
-            axios({
-                method: 'GET',
-                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    penawaran: id_penawaran,
-                    trafo: id_trafo,
-                    layanan: layanan
-                }
-            }).then((response) => {
-                console.log(response);
-
-            }).catch((error) => {
-                console.error('Terjadi kesalahan saat mengirim data: ' + error);
-                Swal.fire({
-                    title: "Gagal!",
-                    text: error.response.data.message,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((hasil) => {
-                    if (hasil.isConfirmed) {
-                        window.location.reload();
-                    }
-                });
-            });
-        }
 
     </script>
 @endsection
