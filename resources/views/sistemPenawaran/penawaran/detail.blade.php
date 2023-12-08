@@ -138,7 +138,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                        @dd($layanan)--}}
+                                        @if ($layanan->isEmpty())
+                                            <tr>
+                                                <td colspan="6" align="center">Belum ada Layanan</td>
+                                            </tr>
+                                        @endif
                                         @foreach ($layanan as $trafoNumber => $layananGroup)
                                             @foreach($layananGroup as $layananId => $trafoId)
                                                 @foreach ($trafoId as $layananName => $subLayananList)
@@ -221,11 +225,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{-- @if ($syarat->isEmpty())
+                                        @if ($syarat->isEmpty())
                                         <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
-                                        {{-- @endif --}}
+                                            <td colspan="3" align="center">Belum ada Syarat Ketentuan</td>
+                                        </tr>
+                                        @endif
 
                                         @php($index = 1)
                                         @foreach ( $syarat as $srt)    
@@ -391,15 +395,11 @@
             $('#addSubLayanan').on('click', function () {
                 // Clone the existing row
                 var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
-
-                // Clear input values in the cloned row if needed
                 newRow.find('input, select').val('');
-
-                // Append the cloned row to the list
                 $('.sub-layanan-list').append(newRow);
             });
 
-            // Remove sub layanan row
+            
             $(document).on('click', '.removeRow', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount > 1) {
@@ -412,13 +412,13 @@
             $('#layanan-modals').on('hidden.bs.modal', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount === 0) {
-                    // If no rows are left, add a default row
                     var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
                     $('.sub-layanan-list').append(newRow);
                 }
             });
         });
     </script>
+    
     <script type="text/javascript">
         function selectSub_layanan() {
             let value = $('#nama-layanan').val();
@@ -436,23 +436,34 @@
 
     <script>
         $(document).ready(function () {
+            let counter = 0;
             $('#check6').on('change', function () {
                 if ($(this).is(':checked')) {
-                    $('#addSyarat').show(); // Show the "Add Syarat" button if checkbox is checked
+                    $('#addSyarat').show();
                 } else {
-                    $('#addSyarat').hide(); // Hide the button if checkbox is unchecked
+                    $('#addSyarat').hide(); 
                 }
             });
 
             $('#addSyarat').on('click', function () {
-                var newSyaratRow = $('#syarat-lain-row').clone().removeAttr('id').show();
-                $('.syarat-lain-list').append(newSyaratRow);
+                let newInput = `<div class="row my-1" id="syaratLainRow_${counter}">
+                                <div class="col-9 d-flex align-items-end">
+                                    <input type="text" name="syaratLainInput[]" class="form-control">
+                                </div>
+                                <div class="col-3 d-flex">
+                                    <button class="btn btn-danger removeSyarat" type="button" data-target="${counter}"><i class="fe-trash-2"></i></button>
+                                </div>
+                            </div>`;
+
+                $('.syarat-lain-list').append(newInput);
+                counter++;
             });
 
             $(document).on('click', '.removeSyarat', function () {
                 var rowCount = $('.syarat-lain-list .row').length;
                 if (rowCount > 1) {
-                    $(this).closest('.row').remove();
+                    let target = $(this).data('target');
+                    $(`#syaratLainRow_${target}`).remove();
                 }
             });
         });
