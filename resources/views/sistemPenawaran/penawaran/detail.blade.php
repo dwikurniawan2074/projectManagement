@@ -22,8 +22,10 @@
         }
 
         #layanan-modals .modal-content {
-            max-height: 700px; /* Adjust the height as needed */
-            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 700px;
+            /* Adjust the height as needed */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
             overflow-x: hidden;
         }
 
@@ -34,12 +36,11 @@
         .dropdown-toggle {
             border: 1px solid #DEE2E6 !important;
         }
-
     </style>
 @endsection
 
 @section('content')
-    {{--    @dd($data)--}}
+    {{--    @dd($data) --}}
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
@@ -56,8 +57,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals"
-                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
-                                                class="mdi mdi-plus">
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i class="mdi mdi-plus">
                                             </i>Add Trafo
                                         </button>
                                     </div>
@@ -65,44 +65,44 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Merk</th>
-                                            <th>Capacity</th>
-                                            <th>No. Seri</th>
-                                            <th>Tahun</th>
-                                            <th class="text-center" width="160">Actions</th>
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Merk</th>
+                                                <th>Capacity</th>
+                                                <th>No. Seri</th>
+                                                <th>Tahun</th>
+                                                <th class="text-center" width="160">Actions</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @if ($trafo->isEmpty())
-                                            <tr>
-                                                <td colspan="6" align="center">Belum ada Trafo</td>
-                                            </tr>
-                                        @endif
-                                        @php($index = 1)
-                                        @foreach ($trafo as $trf)
-                                            <tr>
-                                                <td>{{ $index++ }}</td>
-                                                <td>{{ $trf['merk'] }}</td>
-                                                <td>{{ $trf['capacity'] }}</td>
-                                                <td>{{ $trf['no_seri'] }}</td>
-                                                <td>{{ $trf['tahun'] }}</td>
-                                                <td>
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
+                                            @if ($trafo->isEmpty())
+                                                <tr>
+                                                    <td colspan="6" align="center">Belum ada Trafo</td>
+                                                </tr>
+                                            @endif
+                                            @php($index = 1)
+                                            @foreach ($trafo as $trf)
+                                                <tr>
+                                                    <td>{{ $index++ }}</td>
+                                                    <td>{{ $trf['merk'] }}</td>
+                                                    <td>{{ $trf['capacity'] }}</td>
+                                                    <td>{{ $trf['no_seri'] }}</td>
+                                                    <td>{{ $trf['tahun'] }}</td>
+                                                    <td>
+                                                        <div class="d-flex gap-1 justify-content-center">
+                                                            <button type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#trafo-modals" value="{{ $trf['id'] }}"
                                                                 class="btn btn-primary btn-xs waves-effect waves-light rounded-pill trafoEdit">
-                                                            edit
-                                                        </button>
-                                                        <button type="button" value="{{ $trf['id'] }}"
+                                                                edit
+                                                            </button>
+                                                            <button type="button" value="{{ $trf['id'] }}"
                                                                 class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -118,8 +118,8 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
-                                                class="btn btn-red w-md waves-effect waves-light mb-3"
-                                                onclick="setStoreLayanan()">
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"
+                                            onclick="setStoreLayanan()">
                                             <i class="mdi mdi-plus"></i>Add Layanan
                                         </button>
                                     </div>
@@ -127,60 +127,173 @@
                                 <div class="table-responsive" style="overflow-x: unset;">
                                     <table class="table mb-0">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Trafo</th>
-                                            <th>Nama</th>
-                                            <th>Sub Layanan</th>
-                                            <th>Harga</th>
-                                            <th class="text-center" width="160">Actions</th>
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Trafo</th>
+                                                <th>Nama</th>
+                                                <th>Sub Layanan</th>
+                                                <th>Harga</th>
+                                                <th class="text-center" width="160">Actions</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                        @dd($layanan)--}}
-                                        @foreach ($layanan as $trafoNumber => $layananGroup)
-                                            @foreach ($layananGroup as $layananName => $subLayananList)
-                                                @php($total_price = 0)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{ $trafoNumber }}</td>
-                                                    <td>{{ $layananName }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button class="btn btn-light btn-sm dropdown-toggle"
-                                                                    type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                Sub Layanan<i class="mdi mdi-chevron-down"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                @foreach($subLayananList as $subLayanan)
-                                                                    <div
-                                                                        class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
-                                                                    @php($total_price += $subLayanan['price'])
-                                                                @endforeach
+                                            {{-- <tr>
+                                            <td colspan="6" align="center">Belum ada payment</td>
+                                        </tr> --}}
+                                            <tr>
+                                                <td>1</td>
+                                                <td>TRX192832</td>
+                                                <td>Maintenance</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Additional
+                                                                Maintenance
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                    <td class="rupiah">
-                                                        {{$total_price}}
-                                                    </td>
-                                                    <td class="text-center" width="160">
-                                                        <div class="d-flex gap-1 justify-content-center">
-                                                            <button type="button" data-bs-toggle="modal"
+                                                    </div>
+                                                </td>
+                                                <td class="rupiah">1345000</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#layanan-modals"
+                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>TRX192832</td>
+                                                <td>Maintenance</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Additional
+                                                                Maintenance
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="rupiah">1345000</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#layanan-modals"
+                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>TRX192832</td>
+                                                <td>Maintenance</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
+                                                            </div>
+                                                            <div class="dropdown-item sub-layanan-item">Additional
+                                                                Maintenance
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="rupiah">1345000</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#layanan-modals"
+                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{--                                        @dd($layanan) --}}
+                                            @foreach ($layanan as $trafoNumber => $layananGroup)
+                                                @foreach ($layananGroup as $layananName => $subLayananList)
+                                                    @php($total_price = 0)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $trafoNumber }}</td>
+                                                        <td>{{ $layananName }}</td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <button class="btn btn-light btn-sm dropdown-toggle"
+                                                                    type="button" data-bs-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                    Sub Layanan<i class="mdi mdi-chevron-down"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu">
+                                                                    @foreach ($subLayananList as $subLayanan)
+                                                                        <div class="dropdown-item sub-layanan-item">
+                                                                            {{ $subLayanan['sub_layanan'] }}</div>
+                                                                        @php($total_price += $subLayanan['price'])
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="rupiah">
+                                                            {{ $total_price }}
+                                                        </td>
+                                                        <td class="text-center" width="160">
+                                                            <div class="d-flex gap-1 justify-content-center">
+                                                                <button type="button" data-bs-toggle="modal"
                                                                     data-bs-target="#layanan-modals"
                                                                     class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                                edit
-                                                            </button>
-                                                            <button type="button"
+                                                                    edit
+                                                                </button>
+                                                                <button type="button"
                                                                     class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                                Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                                    Delete
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             @endforeach
-                                        @endforeach
                                         </tbody>
                                     </table>
                                     <div class="pagination-nav mt-2 d-flex justify-content-around">
@@ -199,7 +312,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
-                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Syarat
                                         </button>
                                     </div>
@@ -207,84 +320,84 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Description</th>
-                                            <th class="text-center" width="160">Actions</th>
-                                        </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Description</th>
+                                                <th class="text-center" width="160">Actions</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        {{-- <tr>
+                                            {{-- <tr>
                                             <td colspan="6" align="center">Belum ada payment</td>
                                         </tr> --}}
-                                        <tr>
-                                            <td width="80">1</td>
-                                            <td>Harga Belum Termasuk PPN</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
+                                            <tr>
+                                                <td width="80">1</td>
+                                                <td>Harga Belum Termasuk PPN</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="80">2</td>
-                                            <td>Harga Belum Termasuk PCR test bila diperlukan</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="80">2</td>
+                                                <td>Harga Belum Termasuk PCR test bila diperlukan</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="80">3</td>
-                                            <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="80">3</td>
+                                                <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="80">4</td>
-                                            <td>Harga Belum Termasuk PPN</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="80">4</td>
+                                                <td>Harga Belum Termasuk PPN</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
+                                                            edit
+                                                        </button>
+                                                        <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -297,37 +410,46 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h4 class="mt-0 header-title">Trafindo Projects</h4>
+                                        <h4 class="mt-0 header-title">{{ $penawaran->project_name }}</h4>
                                         <p class="text-muted font-14 mb-0">
-                                            PT Trafoindo Prima Perkasa
+                                            {{ $penawaran->attd }}
                                         </p>
                                         <p class="text-muted font-14 mb-3">
-                                            Jl. Prabusiliwangi No.14
+                                            {{ $penawaran->alamat }}
                                         </p>
                                     </div>
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <button title="Edit Project" type="button"
-                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light"
-                                            >
+                                                class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                 <span class="mdi mdi-printer"></span>
                                             </button>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <a href="{{ route('sistemPenawaran.penawaran.create') }}">
-                                                <button type="button" title="Edit Project" type="button"
-                                                        class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                        style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;"
-                                                        onclick="{{ route('sistemPenawaran.penawaran.create') }}">
+                                            <form
+                                                action="{{ route('sistemPenawaran.penawaran.edit', ['id' => $penawaran->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('GET')
+                                                <button type="submit" title="Edit Project"
+                                                    class="tabledit-edit-button btn btn-primary waves-effect waves-light"
+                                                    style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
-                                            </a>
+                                            </form>
+
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Delete Project" type="button"
-                                                    class="tabledit-edit-button hapusPenawaran btn btn-danger" value="">
-                                                <span class="mdi mdi-trash-can-outline"></span>
-                                            </button>
+                                            <form
+                                                action="{{ route('sistemPenawaran.penawaran.destroy', ['id' => $penawaran->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button title="Delete Project" type="submit"
+                                                    class="tabledit-hapus-button btn btn-danger" value="">
+                                                    <span class="mdi mdi-trash-can-outline"></span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -336,51 +458,51 @@
                                         <thead>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Tanggal Penawaran</p>
-                                                <p class="details-text">23/11/2023</p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Nomor MSG</p>
-                                                <p class="details-text">0000/CS-TPP/x/2023
-                                                </p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Customer Contact Name</p>
-                                                <p class="details-text">Andria Wijaya</p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Email</p>
-                                                <p class="details-text">andria.wijaya@gmailc.com</p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">No. HP</p>
-                                                <p class="details-text">088999665474</p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Total</p>
-                                                <p class="details-text">Rp. 150.000.000</p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Status</p>
-                                                <p class="details-text">
-                                                    <span class="badge bg-warning">Waiting</span>
-                                                </p>
-                                            </th>
-                                        </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Tanggal Penawaran</p>
+                                                    <p class="details-text">{{ $penawaran->date }}</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Nomor MSG</p>
+                                                    <p class="details-text">{{ $penawaran->no_msg }}
+                                                    </p>
+                                                </th>
+                                            </tr>
+                                            {{-- <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Customer Contact Name</p>
+                                                    <p class="details-text">{{ $penawaran->customer }}</p>
+                                                </th>
+                                            </tr> --}}
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Email</p>
+                                                    <p class="details-text">{{ $penawaran->email }}</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">No. HP</p>
+                                                    <p class="details-text">{{ $penawaran->tel_fax }}</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Total</p>
+                                                    <p class="details-text">Rp. 150.000.000</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Status</p>
+                                                    <p class="details-text">
+                                                        <span class="badge bg-warning">Waiting</span>
+                                                    </p>
+                                                </th>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -395,7 +517,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('pageScript')
@@ -403,12 +524,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#check6').on('click', function () {
+        $(document).ready(function() {
+            $('#check6').on('click', function() {
                 if ($(this).is(':checked')) {
                     $('#syarat-lain-row').show();
                     $('#addSyarat').show();
@@ -421,8 +541,8 @@
     </script>
 
     <script>
-        $(document).ready(function () {
-            $('#addSubLayanan').on('click', function () {
+        $(document).ready(function() {
+            $('#addSubLayanan').on('click', function() {
                 // Clone the existing row
                 var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
 
@@ -434,7 +554,7 @@
             });
 
             // Remove sub layanan row
-            $(document).on('click', '.removeRow', function () {
+            $(document).on('click', '.removeRow', function() {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount > 1) {
                     $(this).closest('.row.mb-3').remove();
@@ -443,7 +563,7 @@
 
 
             // Handle modal close event
-            $('#layanan-modals').on('hidden.bs.modal', function () {
+            $('#layanan-modals').on('hidden.bs.modal', function() {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount === 0) {
                     // If no rows are left, add a default row
@@ -469,8 +589,8 @@
     </script>
 
     <script>
-        $(document).ready(function () {
-            $('#check6').on('change', function () {
+        $(document).ready(function() {
+            $('#check6').on('change', function() {
                 if ($(this).is(':checked')) {
                     $('#addSyarat').show(); // Show the "Add Syarat" button if checkbox is checked
                 } else {
@@ -478,12 +598,12 @@
                 }
             });
 
-            $('#addSyarat').on('click', function () {
+            $('#addSyarat').on('click', function() {
                 var newSyaratRow = $('#syarat-lain-row').clone().removeAttr('id').show();
                 $('.syarat-lain-list').append(newSyaratRow);
             });
 
-            $(document).on('click', '.removeSyarat', function () {
+            $(document).on('click', '.removeSyarat', function() {
                 var rowCount = $('.syarat-lain-list .row').length;
                 if (rowCount > 1) {
                     $(this).closest('.row').remove();
@@ -492,10 +612,10 @@
         });
     </script>
 
-    {{-- function hapus penawaran--}}
+    {{-- function hapus penawaran --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusPenawaran', function () {
+        $(document).ready(function() {
+            $(document).on('click', '.hapusPenawaran', function() {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -516,10 +636,10 @@
         });
     </script>
 
-    {{-- function hapus trafo--}}
+    {{-- function hapus trafo --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusTrafo', function () {
+        $(document).ready(function() {
+            $(document).on('click', '.hapusTrafo', function() {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -538,12 +658,13 @@
                     if (result.isConfirmed) {
                         // Silahkan isi logika nya sendiri xixixi
                         $.ajax({
-                            url: "{{ route('sistemPenawaran.trafo.destroy', '') }}" + '/' + id,
+                            url: "{{ route('sistemPenawaran.trafo.destroy', '') }}" + '/' +
+                                id,
                             type: 'DELETE',
                             data: {
                                 _token: "{{ csrf_token() }}",
                             },
-                            success: function (response) {
+                            success: function(response) {
                                 console.log('success');
                                 try {
                                     if (response.message) {
@@ -568,7 +689,7 @@
                                         error);
                                 }
                             },
-                            error: function (xhr, status, error) {
+                            error: function(xhr, status, error) {
                                 console.error(
                                     'Terjadi kesalahan saat menghapus data: ' +
                                     error);
@@ -581,10 +702,10 @@
         });
     </script>
 
-    {{-- function hapus layanan--}}
+    {{-- function hapus layanan --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusLayanan', function () {
+        $(document).ready(function() {
+            $(document).on('click', '.hapusLayanan', function() {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -605,10 +726,10 @@
         });
     </script>
 
-    {{-- function hapus layanan--}}
+    {{-- function hapus layanan --}}
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '.hapusSyarat', function () {
+        $(document).ready(function() {
+            $(document).on('click', '.hapusSyarat', function() {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -631,19 +752,20 @@
 
     {{-- Trafo edit --}}
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var form = document.getElementById('form-trafo');
             var inputTrafo = document.getElementById('input-trafo');
             // console.log(inputIdPenawaran);
 
-            $(document).on('click', '.trafoEdit', function () {
+            $(document).on('click', '.trafoEdit', function() {
                 var id = $(this).val(); // Menggunakan data-id yang baru
                 $.ajax({
                     type: "GET",
                     url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
                     dataType: "json",
-                    success: function (response) {
-                        form.setAttribute('action', '{{ route('sistemPenawaran.trafo.update')}}');
+                    success: function(response) {
+                        form.setAttribute('action',
+                            '{{ route('sistemPenawaran.trafo.update') }}');
 
                         // create element input hidden untuk edit
                         var newInput = document.createElement('input');
@@ -669,14 +791,14 @@
                         $("#no_seri").val(response.no_seri);
                         $("#tahun").val(response.tahun);
                     },
-                    error: function (response) {
+                    error: function(response) {
                         alert("Error: " + response.statusText);
                     }
                 });
             });
 
             // Delete value on trafo modal when its closed
-            $('#trafo-modals').on('hidden.bs.modal', function (e) {
+            $('#trafo-modals').on('hidden.bs.modal', function(e) {
                 var inputTrafo = document.getElementById('_method');
                 var inputTrafo = document.getElementById('id_trafo');
 
@@ -708,7 +830,7 @@
 
         function setUpdatedLayanan(id) {
             formLayanan.parsley().reset();
-            {{--formLayanan.attr('action', '{{ route('sistemPenawaran.layanan.update') }}');--}}
+            {{-- formLayanan.attr('action', '{{ route('sistemPenawaran.layanan.update') }}'); --}}
             formLayanan.attr('method', 'POST');
             formLayanan.append('<input type="hidden" name="_method" id="_method" value="PUT">');
         }
@@ -761,7 +883,8 @@
                             }
                         });
                     } else {
-                        console.error('Terjadi kesalahan: ' + response.data.error); // Tampilkan pesan kesalahan jika ada
+                        console.error('Terjadi kesalahan: ' + response.data
+                            .error); // Tampilkan pesan kesalahan jika ada
                     }
                 }).catch((error) => {
                     console.error('Terjadi kesalahan saat mengirim data: ' + error);
@@ -778,34 +901,5 @@
                 });
             }
         })
-
-        function showLayanan(id_penawaran, id_trafo, layanan) {
-            axios({
-                method: 'GET',
-                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    penawaran: id_penawaran,
-                    trafo: id_trafo,
-                    layanan: layanan
-                }
-            }).then((response) => {
-                console.log(response);
-
-            }).catch((error) => {
-                console.error('Terjadi kesalahan saat mengirim data: ' + error);
-                Swal.fire({
-                    title: "Gagal!",
-                    text: error.response.data.message,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((hasil) => {
-                    if (hasil.isConfirmed) {
-                        window.location.reload();
-                    }
-                });
-            });
-        }
-
     </script>
 @endsection
