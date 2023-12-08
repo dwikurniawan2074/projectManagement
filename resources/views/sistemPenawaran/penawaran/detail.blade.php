@@ -57,7 +57,8 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i class="mdi mdi-plus">
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                                class="mdi mdi-plus">
                                             </i>Add Trafo
                                         </button>
                                     </div>
@@ -65,44 +66,44 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Merk</th>
-                                                <th>Capacity</th>
-                                                <th>No. Seri</th>
-                                                <th>Tahun</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Merk</th>
+                                            <th>Capacity</th>
+                                            <th>No. Seri</th>
+                                            <th>Tahun</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($trafo->isEmpty())
-                                                <tr>
-                                                    <td colspan="6" align="center">Belum ada Trafo</td>
-                                                </tr>
-                                            @endif
-                                            @php($index = 1)
-                                            @foreach ($trafo as $trf)
-                                                <tr>
-                                                    <td>{{ $index++ }}</td>
-                                                    <td>{{ $trf['merk'] }}</td>
-                                                    <td>{{ $trf['capacity'] }}</td>
-                                                    <td>{{ $trf['no_seri'] }}</td>
-                                                    <td>{{ $trf['tahun'] }}</td>
-                                                    <td>
-                                                        <div class="d-flex gap-1 justify-content-center">
-                                                            <button type="button" data-bs-toggle="modal"
+                                        @if ($trafo->isEmpty())
+                                            <tr>
+                                                <td colspan="6" align="center">Belum ada Trafo</td>
+                                            </tr>
+                                        @endif
+                                        @php($index = 1)
+                                        @foreach ($trafo as $trf)
+                                            <tr>
+                                                <td>{{ $index++ }}</td>
+                                                <td>{{ $trf['merk'] }}</td>
+                                                <td>{{ $trf['capacity'] }}</td>
+                                                <td>{{ $trf['no_seri'] }}</td>
+                                                <td>{{ $trf['tahun'] }}</td>
+                                                <td>
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#trafo-modals" value="{{ $trf['id'] }}"
                                                                 class="btn btn-primary btn-xs waves-effect waves-light rounded-pill trafoEdit">
-                                                                edit
-                                                            </button>
-                                                            <button type="button" value="{{ $trf['id'] }}"
+                                                            edit
+                                                        </button>
+                                                        <button type="button" value="{{ $trf['id'] }}"
                                                                 class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">
-                                                                Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -118,8 +119,8 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"
-                                            onclick="setStoreLayanan()">
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"
+                                                onclick="setStoreLayanan()">
                                             <i class="mdi mdi-plus"></i>Add Layanan
                                         </button>
                                     </div>
@@ -127,14 +128,14 @@
                                 <div class="table-responsive" style="overflow-x: unset;">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Trafo</th>
-                                                <th>Nama</th>
-                                                <th>Sub Layanan</th>
-                                                <th>Harga</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Trafo</th>
+                                            <th>Nama</th>
+                                            <th>Sub Layanan</th>
+                                            <th>Harga</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
                                         {{--                                        @dd($layanan)--}}
@@ -205,7 +206,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Syarat
                                         </button>
                                     </div>
@@ -213,84 +214,84 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Description</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Description</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
-                                            <tr>
-                                                <td width="80">1</td>
-                                                <td>Harga Belum Termasuk PPN</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
+                                        {{-- <tr>
+                                        <td colspan="6" align="center">Belum ada payment</td>
+                                    </tr> --}}
+                                        <tr>
+                                            <td width="80">1</td>
+                                            <td>Harga Belum Termasuk PPN</td>
+                                            <td class="text-center" width="160">
+                                                <div class="d-flex gap-1 justify-content-center">
+                                                    <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
+                                                        edit
+                                                    </button>
+                                                    <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="80">2</td>
-                                                <td>Harga Belum Termasuk PCR test bila diperlukan</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="80">2</td>
+                                            <td>Harga Belum Termasuk PCR test bila diperlukan</td>
+                                            <td class="text-center" width="160">
+                                                <div class="d-flex gap-1 justify-content-center">
+                                                    <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
+                                                        edit
+                                                    </button>
+                                                    <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="80">3</td>
-                                                <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="80">3</td>
+                                            <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
+                                            <td class="text-center" width="160">
+                                                <div class="d-flex gap-1 justify-content-center">
+                                                    <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
+                                                        edit
+                                                    </button>
+                                                    <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="80">4</td>
-                                                <td>Harga Belum Termasuk PPN</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="80">4</td>
+                                            <td>Harga Belum Termasuk PPN</td>
+                                            <td class="text-center" width="160">
+                                                <div class="d-flex gap-1 justify-content-center">
+                                                    <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#syarat-modals"
                                                             class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
+                                                        edit
+                                                    </button>
+                                                    <button type="button"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -314,7 +315,7 @@
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <button title="Edit Project" type="button"
-                                                class="tabledit-edit-button btn btn-info waves-effect waves-light">
+                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                 <span class="mdi mdi-printer"></span>
                                             </button>
                                         </div>
@@ -325,8 +326,8 @@
                                                 @csrf
                                                 @method('GET')
                                                 <button type="submit" title="Edit Project"
-                                                    class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                    style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
+                                                        class="tabledit-edit-button btn btn-primary waves-effect waves-light"
+                                                        style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
                                             </form>
@@ -339,7 +340,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete Project" type="submit"
-                                                    class="tabledit-hapus-button btn btn-danger" value="">
+                                                        class="tabledit-hapus-button btn btn-danger" value="">
                                                     <span class="mdi mdi-trash-can-outline"></span>
                                                 </button>
                                             </form>
@@ -351,51 +352,51 @@
                                         <thead>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Tanggal Penawaran</p>
-                                                    <p class="details-text">{{ $penawaran->date }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Nomor MSG</p>
-                                                    <p class="details-text">{{ $penawaran->no_msg }}
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            {{-- <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Customer Contact Name</p>
-                                                    <p class="details-text">{{ $penawaran->customer }}</p>
-                                                </th>
-                                            </tr> --}}
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Email</p>
-                                                    <p class="details-text">{{ $penawaran->email }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">No. HP</p>
-                                                    <p class="details-text">{{ $penawaran->tel_fax }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Total</p>
-                                                    <p class="details-text">Rp. 150.000.000</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Status</p>
-                                                    <p class="details-text">
-                                                        <span class="badge bg-warning">Waiting</span>
-                                                    </p>
-                                                </th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Tanggal Penawaran</p>
+                                                <p class="details-text">{{ $penawaran->date }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Nomor MSG</p>
+                                                <p class="details-text">{{ $penawaran->no_msg }}
+                                                </p>
+                                            </th>
+                                        </tr>
+                                        {{-- <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Customer Contact Name</p>
+                                                <p class="details-text">{{ $penawaran->customer }}</p>
+                                            </th>
+                                        </tr> --}}
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Email</p>
+                                                <p class="details-text">{{ $penawaran->email }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">No. HP</p>
+                                                <p class="details-text">{{ $penawaran->tel_fax }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Total</p>
+                                                <p class="details-text">Rp. 150.000.000</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Status</p>
+                                                <p class="details-text">
+                                                    <span class="badge bg-warning">Waiting</span>
+                                                </p>
+                                            </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -418,11 +419,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#check6').on('click', function() {
+        $(document).ready(function () {
+            $('#check6').on('click', function () {
                 if ($(this).is(':checked')) {
                     $('#syarat-lain-row').show();
                     $('#addSyarat').show();
@@ -435,8 +437,8 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('#addSubLayanan').on('click', function() {
+        $(document).ready(function () {
+            $('#addSubLayanan').on('click', function () {
                 // Clone the existing row
                 var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
 
@@ -448,7 +450,7 @@
             });
 
             // Remove sub layanan row
-            $(document).on('click', '.removeRow', function() {
+            $(document).on('click', '.removeRow', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount > 1) {
                     $(this).closest('.row.mb-3').remove();
@@ -457,7 +459,7 @@
 
 
             // Handle modal close event
-            $('#layanan-modals').on('hidden.bs.modal', function() {
+            $('#layanan-modals').on('hidden.bs.modal', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount === 0) {
                     // If no rows are left, add a default row
@@ -483,8 +485,8 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('#check6').on('change', function() {
+        $(document).ready(function () {
+            $('#check6').on('change', function () {
                 if ($(this).is(':checked')) {
                     $('#addSyarat').show(); // Show the "Add Syarat" button if checkbox is checked
                 } else {
@@ -492,12 +494,12 @@
                 }
             });
 
-            $('#addSyarat').on('click', function() {
+            $('#addSyarat').on('click', function () {
                 var newSyaratRow = $('#syarat-lain-row').clone().removeAttr('id').show();
                 $('.syarat-lain-list').append(newSyaratRow);
             });
 
-            $(document).on('click', '.removeSyarat', function() {
+            $(document).on('click', '.removeSyarat', function () {
                 var rowCount = $('.syarat-lain-list .row').length;
                 if (rowCount > 1) {
                     $(this).closest('.row').remove();
@@ -508,8 +510,8 @@
 
     {{-- function hapus penawaran --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusPenawaran', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusPenawaran', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -532,8 +534,8 @@
 
     {{-- function hapus trafo --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusTrafo', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusTrafo', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -558,7 +560,7 @@
                             data: {
                                 _token: "{{ csrf_token() }}",
                             },
-                            success: function(response) {
+                            success: function (response) {
                                 console.log('success');
                                 try {
                                     if (response.message) {
@@ -583,7 +585,7 @@
                                         error);
                                 }
                             },
-                            error: function(xhr, status, error) {
+                            error: function (xhr, status, error) {
                                 console.error(
                                     'Terjadi kesalahan saat menghapus data: ' +
                                     error);
@@ -622,8 +624,8 @@
 
     {{-- function hapus layanan --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusSyarat', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusSyarat', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -646,18 +648,18 @@
 
     {{-- Trafo edit --}}
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var form = document.getElementById('form-trafo');
             var inputTrafo = document.getElementById('input-trafo');
             // console.log(inputIdPenawaran);
 
-            $(document).on('click', '.trafoEdit', function() {
+            $(document).on('click', '.trafoEdit', function () {
                 var id = $(this).val(); // Menggunakan data-id yang baru
                 $.ajax({
                     type: "GET",
                     url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
                     dataType: "json",
-                    success: function(response) {
+                    success: function (response) {
                         form.setAttribute('action',
                             '{{ route('sistemPenawaran.trafo.update') }}');
 
@@ -685,14 +687,14 @@
                         $("#no_seri").val(response.no_seri);
                         $("#tahun").val(response.tahun);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert("Error: " + response.statusText);
                     }
                 });
             });
 
             // Delete value on trafo modal when its closed
-            $('#trafo-modals').on('hidden.bs.modal', function(e) {
+            $('#trafo-modals').on('hidden.bs.modal', function (e) {
                 var inputTrafo = document.getElementById('_method');
                 var inputTrafo = document.getElementById('id_trafo');
 

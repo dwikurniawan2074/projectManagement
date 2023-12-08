@@ -144,7 +144,7 @@
                                     <label for="harga">Harga:</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                        <input type="number " id="harga" name="harga[]" class="form-control"
+                                        <input type="number" id="harga" name="harga[]" class="form-control"
                                                placeholder="Enter Price" autocomplete="off">
                                         <input type="hidden" name="id_subLayanan" id="id_subLayanan">
                                     </div>
@@ -188,7 +188,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <label for="harga">Harga:</label>
-                                        <input type="text" id="hargaSL" name="harga[]" class="form-control"
+                                        <input type="number" id="hargaSL" name="harga[]" class="form-control"
                                                placeholder="Enter Price" autocomplete="off">
 
                                     </div>
