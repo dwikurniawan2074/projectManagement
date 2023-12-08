@@ -20,6 +20,7 @@ use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
 use App\Http\Controllers\SistemPenawaran\TrafoController;
+use App\Http\Controllers\SistemPenawaran\SyaratController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -275,6 +276,11 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
         Route::put('/update', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');
         Route::delete('/destroy/{id}', [TrafoController::class, 'destroy'])->name('sistemPenawaran.trafo.destroy');
+    });
+
+    Route::prefix('syarat')->group(function () {
+        Route::post('/store', [SyaratController::class, 'store'])->name('sistemPenawaran.syarat.store');
+        Route::delete('/destroy/{id}', [SyaratController::class, 'destroy'])->name('sistemPenawaran.syarat.destroy');
     });
 });
 // end routes sistem administrasi penawaran
