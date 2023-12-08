@@ -288,7 +288,7 @@
                             <div class="syarat-lain-list mb-2 ps-4">
                                 <div id="syarat-lain-row" class="row my-1" style="display: none;">
                                     <div class="col-9 d-flex align-items-end">
-                                        <input type="text" name="syaratLainInput" id="syaratLainInput"
+                                        <input type="text" name="syaratLainInput[]" id="syaratLainInput"
                                                class="form-control">
                                     </div>
                                     <div class="col-3 d-flex">
