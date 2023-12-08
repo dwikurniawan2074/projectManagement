@@ -54,7 +54,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div>
-                                <h4 class="header-title mt-0 mb-3">Resume Milestones</h4>
+                                <h4 class="header-title mt-0 mb-3">My Resume Milestones</h4>
                                 <div id="donut-chart">
                                     <canvas id="doughnutChart"></canvas>
                                 </div>
@@ -110,7 +110,7 @@
             const data = {
                 labels: [
                     'Completed',
-                    'Blue',
+                    'Planned',
                     'On Progress'
                 ],
                 datasets: [{

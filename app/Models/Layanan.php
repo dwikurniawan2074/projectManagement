@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Layanan extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'layanan',
@@ -18,4 +20,14 @@ class Layanan extends Model
         'id_penawaran',
         'id_trafo',
     ];
+
+    public function penawaran(): BelongsTo
+    {
+        return $this->belongsTo(Penawaran::class, 'id_penawaran');
+    }
+
+    public function trafo(): BelongsTo
+    {
+        return $this->belongsTo(Trafo::class, 'id_trafo');
+    }
 }
