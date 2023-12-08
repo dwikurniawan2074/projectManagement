@@ -221,77 +221,27 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{-- <tr>
-                                        <td colspan="6" align="center">Belum ada payment</td>
-                                    </tr> --}}
+                                        {{-- @if ($syarat->isEmpty())
                                         <tr>
-                                            <td width="80">1</td>
-                                            <td>Harga Belum Termasuk PPN</td>
+                                            <td colspan="6" align="center">Belum ada payment</td>
+                                        </tr> --}}
+                                        {{-- @endif --}}
+
+                                        @php($index = 1)
+                                        @foreach ( $syarat as $srt)    
+                                        <tr>
+                                            <td width="80">{{ $index++ }}</td>
+                                            <td>{{ $srt['deskripsi'] }}</td>
                                             <td class="text-center" width="160">
                                                 <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
+                                                    <button type="button" value="{{ $srt['id'] }}"
                                                             class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
                                                         Delete
                                                     </button>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td width="80">2</td>
-                                            <td>Harga Belum Termasuk PCR test bila diperlukan</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="80">3</td>
-                                            <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td width="80">4</td>
-                                            <td>Harga Belum Termasuk PPN</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                        edit
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -622,7 +572,7 @@
     {{--        });--}}
     {{--    </script>--}}
 
-    {{-- function hapus layanan --}}
+    {{-- function hapus syarat--}}
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).on('click', '.hapusSyarat', function () {
@@ -641,6 +591,47 @@
                     allowOutsideClick: false
                 }).then((result) => {
                     // silahkan tulis logika nya disini xixixixi
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.syarat.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function (response) {
+                                console.log('success');
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
                 });
             });
         });

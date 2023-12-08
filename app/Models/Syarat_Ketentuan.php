@@ -12,6 +12,6 @@ class Syarat_Ketentuan extends Model
     protected $table = 'syarat_ketentuan';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name',
+        'deskripsi',
     ];
 }

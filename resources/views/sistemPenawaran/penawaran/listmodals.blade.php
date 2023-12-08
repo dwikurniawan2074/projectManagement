@@ -219,7 +219,7 @@
 
 
     {{-- modals syarat ketentuan --}}
-    <form action="" class="parsley-examples" novalidate="" method="post"
+    <form action="{{ route('sistemPenawaran.syarat.store') }}" class="parsley-examples" novalidate="" method="post"
           enctype="multipart/form-data">
         @csrf
         <div id="syarat-modals" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -238,34 +238,34 @@
                             {{-- form generate read only penawaran name --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Penawaran</label>
-                                <input type="text" name="penawaran" id="penawaran"
-                                       class="form-control" placeholder="256-001 PT ABC Tangerang" disabled readonly>
+                                <input type="text" name="id_penawaran" id="id_penawaran" value="{{ $penawaran['id'] }}" hidden>
+                                <input type="text" class="form-control" placeholder="{{ $penawaran['project_name'] }}" disabled readonly>
                             </div>
 
                             <label for="merk" class="form-label">Syarat dan Ketentuan</label>
 
                             <div class="syarat-ketentuan-list mb-1">
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check1">
+                                    <input class="form-check-input" type="checkbox" value="" id="check1" name="check1">
                                     <label class="form-check-label" for="check1">Harga belum termasuk PPN</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check2">
+                                    <input class="form-check-input" type="checkbox" value="" id="check2" name="check2">
                                     <label class="form-check-label" for="check2">Harga tidak berlaku selama libur hari
                                         raya keagamaan dan libur nasional</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check3">
+                                    <input class="form-check-input" type="checkbox" value="" id="check3" name="check3">
                                     <label class="form-check-label" for="check3">Harga belum termasuk PCR test bila
                                         diperlukan</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check4">
+                                    <input class="form-check-input" type="checkbox" value="" id="check4" name="check4">
                                     <label class="form-check-label" for="check4">Harga belum termasuk penggantian
                                         material/sparepart trafo</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check5">
+                                    <input class="form-check-input" type="checkbox" value="" id="check5" name="check5">
                                     <label class="form-check-label" for="check5">Harga belum termasuk alat bantu, alat
                                         berat dan helper jika diperlukan</label>
                                 </div>
@@ -278,7 +278,7 @@
                                         <div class="col-4 d-flex pe-4 justify-content-end">
                                             <button type="button" id="addSyarat" style="display: none;"
                                                     class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">
-                                                Add Syarat
+                                                Add Syarat Lain
                                             </button>
                                         </div>
                                     </div>
