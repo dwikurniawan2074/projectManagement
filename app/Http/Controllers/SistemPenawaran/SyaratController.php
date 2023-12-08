@@ -14,6 +14,7 @@ class SyaratController extends Controller
         // dd($request->all());
         // Get the penawaran ID from the form
         $penawaranId = $request->input('id_penawaran');
+        $syaratLainInput = $request->input('syaratLainInput', []);
 
         // Array to hold checkbox values and labels
         $checkboxes = [
@@ -25,6 +26,7 @@ class SyaratController extends Controller
             'Syarat Lain'
             // Add new checkbox labels here
         ];
+
 
         // Loop through checkboxes
         foreach ($checkboxes as $key => $label) {
@@ -38,6 +40,14 @@ class SyaratController extends Controller
                 $syaratKetentuan->deskripsi = $label; // Store checkbox label as 'syarat' field (adjust column name)
                 $syaratKetentuan->save(); // Save the record
             }
+        }
+
+        foreach ($syaratLainInput as $syaratLain) {
+            // Assuming you have a Model named 'Option' to store the data
+            $syaratKetentuan = new Syarat_Ketentuan();
+            $syaratKetentuan->id_penawaran = $penawaranId; // Store the selected option in the 'name' column (adjust column name)
+            $syaratKetentuan->deskripsi = $syaratLain; // Store the selected option in the 'name' column (adjust column name)
+            $syaratKetentuan->save();
         }
 
         // Redirect back or to a success page
