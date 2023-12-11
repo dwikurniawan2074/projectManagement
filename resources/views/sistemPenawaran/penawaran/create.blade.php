@@ -75,12 +75,12 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            {{-- <div class="mb-3">
-                                                {{-- <label for="customer-contact" class="form-label">Customer Contact
+                                            <div class="mb-3">
+                                                <label for="customer-contact" class="form-label">Customer Contact
                                                     Name</label>
                                                 <input type="text" class="form-control" id="customer-contact"
                                                     name="customer_contact" placeholder="Customer Contact">
-                                            </div> --}}
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
