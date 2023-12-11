@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Laporan KHS Mahasiswa</title>
+    <title>Penawaran Document</title>
     <link href="/assets/v1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/v1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="/assets/v1/js/external/jquery.min.js"></script>
@@ -133,7 +133,41 @@
         .title {
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 5px;
+        }
+
+        .table-head>tbody>tr>td {
+            padding-left: 10px;
+        }
+
+        .header-document>tbody>tr>td
+            >table>tbody>tr>td {
+            margin: 0px;
+            font-size: 9px;
+            padding-left: 4px;
+        }
+
+        .document-title-row{
+            margin: 20px 0px;
+        }
+
+        .document-title{
+            margin: 0px;
+        }
+
+        .tb_data > tbody > tr > th,
+        .tb_data > tbody > tr > td{
+            padding: 2px 0px;
+        }
+
+        .left-space{
+            padding-left: 2px !important;
+        }
+
+        .footer-document>table>tbody>tr>td {
+            margin: 0px;
+            font-size: 10px;
+            padding-left: 4px;
+            padding: 0px 0px 0px 4px;
         }
 
         @media print {
@@ -201,9 +235,8 @@
                 width: 8.333333333333332%;
             }
 
-            .footer1 {
+            .footer-document {
                 position: fixed;
-                left: 0;
                 bottom: 0;
                 width: 100%;
                 color: white;
@@ -217,91 +250,98 @@
 
     <div align="center">
         <div style="width:800px">
-            <table style="width: 800px;">
+            <table class="header-document" style="width: 800px;">
                 <tbody>
-                    <tr style="display: flex;  justify-content: space-between;">
-                        <td style="width: 15%;" align="center"><img src="{{asset('images/logonew.png') }}" width="190"
-                                height="80"></td>
-                        <td>
-                            <p style="margin: 0;">Phone/Fax : (62-21) 385
-                                0703, 386 1865, 345 1384</p>
-                            <p style="margin: 0;">E-Mail :
-                                trafo@trafoindonesia@gmail.com</p>
-                            <p style="margin: 0;">Hotline : 0815 1729 0000</p>
-                            <p style="margin: 0;">Website :
-                                www.trafoindonesia.com</p>
-                            <p style="margin: 0;">Head Office : Jl. Hayam
-                                Wuruk 4 FX, Jakarta 10120</p>
+                    <tr style="display: flex;   justify-content: space-between; margin: 10px 0px 30px 0px;">
+                        <td style="width: 50%; display:flex; align-items: center;" align="left"><img src="{{asset('images/logonew.png') }}" width="190"
+                                height="60"></td>
+                        <td style="padding-top: 5px;">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Phone/Fax</td>
+                                        <td>:</td>
+                                        <td>0703, 386 1865, 345 1384</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <td>:</td>
+                                        <td>trafo@trafoindonesia@gmail.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotline</td>
+                                        <td>:</td>
+                                        <td>0815 1729 0000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website</td>
+                                        <td>:</td>
+                                        <td>www.trafoindonesia.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Head Office</td>
+                                        <td>:</td>
+                                        <td>Jl. Hayam Wuruk 4 FX, Jakarta 10120</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <hr style="border: 0; border-top: 5px double; #8c8c8c; margin-top: 0;">
-            <style>
-                .tb_head td {
-                    vertical-align: top;
-                }
-            </style>
             <div class="watermark">
                 <!-- <div class="bg">&nbsp;</div> -->
                 <div align="center">
-                    <table class="tb_head " style="text-transform:uppercase;" width="100%">
+                    <table class="table-head border" border="1" width="100%">
                         <tbody>
                             <tr>
                                 <td width="100">To</td>
-                                <td width="10"> : </td>
-                                <td width="399">DWI KURNIAWAN</td>
-                                <td width="150" valign="top">Date</td>
-                                <td width="10" valign="top"> : </td>
-                                <td valign="top">00/00/0000 </td>
+                                <td width="15"> : </td>
+                                <td width="299">PT ABC Tangerang</td>
+                                <td width="70" valign="top">Date</td>
+                                <td width="15" valign="top"> : </td>
+                                <td valign="top">17 Oktober 2023 </td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td> : </td>
-                                <td>Dwi@gmail.com</td>
-                                <td>Msg no</td>
+                                <td>testing@gmail.com</td>
+                                <td>MSG No.</td>
                                 <td> : </td>
-                                <td>0000/0000/0000</td>
+                                <td>1590/CS–TPP/VII/2023</td>
                             </tr>
                             <tr>
                                 <td>Tel/Fax</td>
                                 <td> : </td>
                                 <td>616516816868</td>
-                                <td>Ref No</td>
+                                <td>Ref No.</td>
                                 <td> : </td>
                                 <td>-</td>
                             </tr>
                             <tr>
                                 <td>attd</td>
                                 <td> : </td>
-                                <td>7</td>
-                                <td>pages</td>
+                                <td>Bpk. User Testing</td>
+                                <td>Pages</td>
                                 <td> : </td>
-                                <td>2023 Ganjil</td>
+                                <td>1/2</td>
                             </tr>
                             <tr>
                                 <td>cc</td>
                                 <td> : </td>
-                                <td>7</td>
+                                <td></td>
                                 <td>Total</td>
                                 <td> : </td>
-                                <td>2023 Ganjil</td>
-                            </tr>
-                        </tbody>
-                    </table><br>
-                    <div class="title">PENAWARAN HARGA</div>
-                    <!-- <div class="title">Kartu Hasil Studi (KHS)</div> -->
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td class="title">PROJECT</td>
-                                <td class="title">:</td>
-                                <td class="title">PT ABC Tangerang</td>
-                                <td class="title">-</td>
-                                <td class="title">Tangerang</td>
+                                <td>2</td>
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <div class="document-title-row">
+                        <h4 class="document-title">PENAWARAN HARGA</h4>
+                        <h4 class="document-title"><b>PT ABC Tangerang - Kota Tangerang</b></h4>
+                    </div>
+                    <!-- <div class="title">Kartu Hasil Studi (KHS)</div> -->
                 </div>
                 <hr>
                 <div align="left">
@@ -320,83 +360,38 @@
                             <th>Total Price(Rp)</th>
                             <!--<th>Keterangan</th>-->
                         </tr>
-                        <tr valign="top" class style="font-size:10pt">
-                            <td rowspan="3" align="center">1</td>
-                            <td><strong>Trafindo 1x200 KVA SN : 131300647</strong></td>
-                            <td align="center"></td>
-                            <td align="center">3</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>A. Penggantian oli</td>
-                            <td></td>
-                            <td></td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>&nbsp;&nbsp;&nbsp; Operating System</td>
-                            <td align="center">60</td>
-                            <td align="center">Liter</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" class style="font-size:10pt">
-                            <td rowspan="3" align="center">2</td>
-                            <td><strong>Trafindo 1x200 KVA SN : 131300647</strong></td>
-                            <td align="center"></td>
-                            <td align="center">3</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>A. Penggantian oli</td>
-                            <td></td>
-                            <td></td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>&nbsp;&nbsp;&nbsp; Operating System</td>
-                            <td align="center">60</td>
-                            <td align="center">Liter</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" class style="font-size:10pt">
-                            <td rowspan="3" align="center">3</td>
-                            <td><strong>Trafindo 1x200 KVA SN : 131300647</strong></td>
-                            <td align="center"></td>
-                            <td align="center">3</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>A. Penggantian oli</td>
-                            <td></td>
-                            <td></td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
-                        <tr valign="top" style="font-size:10pt">
-                            <td>&nbsp;&nbsp;&nbsp; Operating System</td>
-                            <td align="center">60</td>
-                            <td align="center">Liter</td>
-                            <td align="center"></td>
-                            <td align="center"></td>
-                            <!--<td align="center"></td>-->
-                        </tr>
+                        @for ($i=0; $i<5; $i++)
+                            
+                            <tr valign="top" class style="font-size:10pt">
+                                <td  align="center">{{ $i+1 }}</td>
+                                <td class="left-space"><strong>Trafindo 1x200 KVA SN : 131300647</strong></td>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                                <!--<td align="center"></td>-->
+                            </tr>
+                            <tr valign="top" style="font-size:10pt">
+                                <td></td>
+                                <td class="left-space">A. Penggantian oli</td>
+                                <td></td>
+                                <td></td>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                                <!--<td align="center"></td>-->
+                            </tr>
+                            <tr valign="top" style="font-size:10pt">
+                                <td></td>
+                                <td class="left-space">&nbsp;&nbsp;&nbsp; Operating System</td>
+                                <td align="center">60</td>
+                                <td align="center">Liter</td>
+                                <td align="center"></td>
+                                <td align="center"></td>
+                                <!--<td align="center"></td>-->
+                            </tr>
+                        @endfor
                         <tr>
-                            <td align="center" colspan="5">Total</td>
+                            <td align="end" colspan="5" style="padding-right: 20px;"><b>Total</b></td>
                             <td align="center" colspan="5">5.000.000</td>
                         </tr>
                     </tbody>
@@ -404,29 +399,36 @@
                 <br>
                 <table class="tb_data " width="100%">
                     <tr>
-                        <td width="200" rowspan="7">Syarat dan Ketentuan :</td>
+                        <td width="200">Syarat dan Ketentuan :</td>
+                        <td>:</td>
                         <td>- Harga belum termasuk PPN</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga tidak berlaku selama libur hari raya
                             keagamaan dan hari libur nasional</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga belum termasuk PCR test bila diperlukan</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga belum termasuk penggantian material/
                             sparepart trafo</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga belum termasuk alat bantu, alat berat
                             dan helper jika diperlukan</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga belum termasuk penambahan selang
                             purifikasi untuk jarak lebih dari 50 meter</td>
                     </tr>
                     <tr>
+                        <td colspan="2"></td>
                         <td>- Harga belum termasuk modifikasi filter valve
                             jika non standar</td>
                     </tr>
@@ -452,11 +454,11 @@
 
                 </table> <br>
 
-                <table width="100%" class="footer-table">
+                <table width="100%" class="footer-table" style="margin-bottom: 20px;">
                     <tbody>
                         <tr>
                             <td width="50%">
-                                Demikian penawaran kamisampaikan sambil
+                                Demikian penawaran kami sampaikan sambil
                                 menunggu kabar baik dari Bapak, kami ucapkan
                                 terima kasih. </td>
                         </tr>
@@ -467,7 +469,7 @@
 
                         <tr rowspan="4">
                             <!-- <td>&nbsp;</td>  -->
-                            <td> <img src="Tanda_Tangan_Mick_Schumacher.png"
+                            <td style="padding: 5px 0px;"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Wonho-Signature.svg/1024px-Wonho-Signature.svg.png"
                                     style="width:180px; height:90px; float: left; margin-right: 150px; " </td>
                         </tr>
 
@@ -478,7 +480,7 @@
                             <td>After Sales Manager</td>
                         </tr>
                     </tbody>
-                </table> <br>
+                </table>
 
                 <table class="tb_data " width="100%">
                     <tr>
@@ -491,41 +493,42 @@
                         <td width="15" align="center">:</td>
                         <td>(021) 385 0703 / 0815 1046 5538</td>
                     </tr>
-                    <tr>
+                    <tr style="margin-bottom: 10px;">
                         <td width="200">E-mail</td>
                         <td width="15" align="center">:</td>
                         <td>yudi.setyadi@trafoindonesia.com</td>
                     </tr>
-                </table><br>
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                        <td colspan="3" style="padding-top: 10px;"><i>service@trafoindonesia.com // Purnomosidhi Darmawan // 0816 954 615 // After Sales Manager // purnomosidhi@trafoindonesia.com</i></td>
+                    </tr>
+                </table>
 
-                <div class="footer1">
+                <div class="footer-document" style="margin-top: 30px;">
                     <table class="tb_data" width="100%">
                         <tr>
-                            <td width="200">Factory I</td>
+                            <td width="50">Factory I</td>
                             <td width="15" align="center">:</td>
-                            <td>Yudi Setiadi</td>
+                            <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang</td>
                         </tr>
                         <tr>
-                            <td width="200">Factory II</td>
+                            <td width="50">Factory II</td>
                             <td width="15" align="center">:</td>
-                            <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam
-                                Jaya, Kec. Jatiuwung - Tangerang</td>
+                            <td>Jl. Siliwangi, RT 06 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 19002-05, Fax: (62-21) 593 19001</td>
                         </tr>
                         <tr>
-                            <td width="200">Factory III</td>
+                            <td width="50">Factory III</td>
                             <td width align="center">:</td>
-                            <td>Jl. Siliwangi, RT 06 / 04 Kel. Alam
-                                Jaya, Kec. Jatiuwung - Tangerang, Phone:
-                                (62-21) 593 19002-05, Fax: (62-21) 593
-                                19001</td>
+                            <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 20276-78, Fax: (62-21) 593 20279</td>
                         </tr>
                         <tr>
-                            <td width="200">Factory IV</td>
+                            <td width="50">Factory IV</td>
                             <td width="15" align="center">:</td>
-                            <td>Jl. Raya Siliwangi, RT 04/RW 001, Kel.
-                                Gombor, Kec. Periuk, Tangerang, Banten -
-                                Indonesia, Phone: (62-21) 590 1565,
-                                5901560 </td>
+                            <td>Jl. Raya Siliwangi, RT 04/RW 001, Kel. Gombor, Kec. Periuk, Tangerang, Banten - Indonesia, Phone: (62-21) 590 1565, 5901560</td>
                         </tr>
                     </table>
                 </div>
