@@ -87,7 +87,7 @@ class UserController extends Controller
             'name' => $request->first_name,
             'password' => $request->password,
         ];
-       
+
         try {
             Mail::to($request->email)->send(new SendPassword($emailData));
             return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, dan email berhasil dikirim ke ' . $request->email);
@@ -118,7 +118,9 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('signature')) {
-            Storage::disk('public')->delete($user->signature);
+            if ($user->signature) {
+                Storage::disk('public')->delete($user->signature);
+            }
             $file = $request->file('signature');
             $filepath = $file->store('signatures', 'public');
         }
