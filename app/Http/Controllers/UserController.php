@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendMail;
 use App\Mail\SendPassword;
 use App\Models\Role;
 use App\Models\User;
@@ -84,16 +83,17 @@ class UserController extends Controller
         foreach ($request->input('roles') as $role) {
             $user->hasroles()->attach($role);
         }
-        if (env('MAIL_FROM_ADDRESS')) {
-            $emailData = [
-                'name' => $request->first_name,
-                'password' => $request->password,
-            ];
+        $emailData = [
+            'name' => $request->first_name,
+            'password' => $request->password,
+        ];
+
+        try {
             Mail::to($request->email)->send(new SendPassword($emailData));
-        } else {
+            return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, dan email berhasil dikirim ke ' . $request->email);
+        } catch (Exception $e) {
             return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, namun email gagal dikirim');
         }
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, dan email berhasil dikirim ke ' . $request->email);
     }
 
     /**
@@ -118,7 +118,9 @@ class UserController extends Controller
         ]);
 
         if ($request->hasFile('signature')) {
-            Storage::disk('public')->delete($user->signature);
+            if ($user->signature) {
+                Storage::disk('public')->delete($user->signature);
+            }
             $file = $request->file('signature');
             $filepath = $file->store('signatures', 'public');
         }
