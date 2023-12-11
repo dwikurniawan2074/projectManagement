@@ -165,11 +165,13 @@
                         confirmButtonColor: '#1abc9c',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes, add it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        } else {
+                            event.stopPropagation();
+                        }
                     });
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
                 })
 
             </script>
