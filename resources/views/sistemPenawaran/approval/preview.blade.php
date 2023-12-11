@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{{ asset('contoh.pdf') }}" style="width:100%; height:700px;"></iframe>
+                                <iframe class="embed-responsive-item" src="{{}}" style="width:100%; height:700px;"></iframe>
                             </div>
                         </div>
                     </div>
