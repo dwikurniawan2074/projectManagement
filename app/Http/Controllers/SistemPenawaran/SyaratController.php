@@ -14,6 +14,8 @@ class SyaratController extends Controller
         $penawaranId = $request->input('id_penawaran');
         $syaratLainInput = $request->input('syaratLainInput', []);
 
+
+
         $checkboxes = [
             'Harga belum termasuk PPN',
             'Harga tidak berlaku selama libur hari raya keagamaan dan libur nasional',
@@ -35,12 +37,15 @@ class SyaratController extends Controller
             }
         }
 
-        foreach ($syaratLainInput as $syaratLain) {
-            $syaratKetentuan = new Syarat_Ketentuan();
-            $syaratKetentuan->id_penawaran = $penawaranId;
-            $syaratKetentuan->deskripsi = $syaratLain;
-            $syaratKetentuan->save();
+        if ($syaratLainInput[0]!=null) {
+            foreach ($syaratLainInput as $syaratLain) {
+                $syaratKetentuan = new Syarat_Ketentuan();
+                $syaratKetentuan->id_penawaran = $penawaranId;
+                $syaratKetentuan->deskripsi = $syaratLain;
+                $syaratKetentuan->save();
+            }
         }
+        
 
         return redirect()->back()->with('success', 'Syarat dan Ketentuan berhasil disimpan.');
     }
