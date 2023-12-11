@@ -183,7 +183,7 @@
                 <th width="200" colspan="2" class="text-vertical-center">CUSTOMER NAME PROJECT PURCHASE ORDER SPECIFICATION DATA CONTRACT END (DELIVERY)</th>
                 <th colspan="4" class="second-column">
                   <p>
-                    PT POLYTAMA PROPINDO 
+                    {{ $customer['companyName'] }}
                   </p>
                   <p style="margin-bottom: 0px;">
                     JL-41300 REV, 01 
@@ -204,835 +204,90 @@
                     style="width: 130px; ">
                 </th>
               </tr>
+
+              @php
+                  use Carbon\Carbon;
+                  
+                  $weekCount = 28; // Replace this with the count of weeks you have
+                  // $dates = ['12Jun', 's/d', '1Mei']; // Replace with your actual dates for each week
+              @endphp
+              
               <tr style="font-size: 10pt" class="break-down-row">
                 <td align="center" colspan="2" rowspan="3" class="text-vertical-center"><b>WORK BREAK DOWN</b></td>
                 <td align="center" width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
-                <td>12Jun</td>
+                @for ($i = 0; $i < $weekCount; $i++)
+                    <td>1 Jun</td>
+                @endfor
                 <!--<td align="center"></td>-->
               </tr>
               <tr style="font-size: 10pt" class="percentage-row">
                 <!-- <td align="center" colspan="2">Work Break Down</td> -->
                 <!-- <td>col</td> -->
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
-                <td>s/d</td>
+                @for ($i = 0; $i < $weekCount; $i++)
+                    <td>s/d</td>
+                @endfor
                 <!--<td align="center"></td>-->
               </tr>
               <tr style="font-size: 10pt">
                 <!-- <td align="center" colspan="2">Work Break Down</td> -->
                 <!-- <td>col</td> -->
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
-                <td>1Mei</td>
+                @for ($i = 0; $i < $weekCount; $i++)
+                    <td>1 Jun</td>
+                @endfor
                 <!--<td align="center"></td>-->
               </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td  class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td align="center" rowspan="2" class="text-vertical-center">Approval Desain</td>
-                    <td class="yellow-cell">Plan</td>
-                    <td align="center" rowspan="2" class="text-vertical-center">10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <!-- <td rowspan="2"></td> -->
-                    <td class="blue-cell">Actual</td>
-                    <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
-                    <td ></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
+                  @php($totalBobot = 0)
+                  @foreach ($milestones as $milestone)
+                    <tr>
+                      <td align="center" rowspan="2" class="text-vertical-center">{{ $milestone['description'] }}</td>
+                      <td class="yellow-cell">Plan</td>
+                      <td align="center" rowspan="2" class="text-vertical-center">{{ $milestone['bobot'] }}</td>
+
+                      {{-- hitung total bobot dari keseluruhan milestone --}}
+                      @php($totalBobot += $milestone['bobot'])
+                      
+                      @for ($i = 1; $i <= $weekCount; $i++)
+                            <td> </td>
+                      @endfor
+                    </tr>
+                    <tr>
+                      <!-- <td rowspan="2"></td> -->
+                      <td class="blue-cell">Actual</td>
+                      <!-- <td width="30" rowspan="3" class="text-vertical-center">&nbsp;%&nbsp;</td> -->
+                      <td ></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  @endforeach
               <tr>
                 <td align="center" colspan="2" style="background-color: #D9D9D9;">Total</td>
                 <!-- <td class="blue-cell">Actual</td> -->
-                <td align="center" style="background-color: #D9D9D9;">100</td>
+                <td align="center" style="background-color: #D9D9D9;">{{ $totalBobot }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -1278,10 +533,10 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
       window.onload = function() {
           window.print();
         };
-    </script>
+    </script> --}}
   </body>
 </html>
