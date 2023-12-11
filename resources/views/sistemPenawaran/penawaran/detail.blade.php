@@ -40,7 +40,7 @@
 @endsection
 
 @section('content')
-    {{--    @dd($data) --}}
+    {{--    @dd($data)--}}
     <div class="content-page">
         <div class="content">
             <div class="container-fluid">
@@ -57,7 +57,8 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#trafo-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i class="mdi mdi-plus">
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                                class="mdi mdi-plus">
                                             </i>Add Trafo
                                         </button>
                                     </div>
@@ -65,44 +66,44 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Merk</th>
-                                                <th>Capacity</th>
-                                                <th>No. Seri</th>
-                                                <th>Tahun</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Merk</th>
+                                            <th>Capacity</th>
+                                            <th>No. Seri</th>
+                                            <th>Tahun</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            @if ($trafo->isEmpty())
-                                                <tr>
-                                                    <td colspan="6" align="center">Belum ada Trafo</td>
-                                                </tr>
-                                            @endif
-                                            @php($index = 1)
-                                            @foreach ($trafo as $trf)
-                                                <tr>
-                                                    <td>{{ $index++ }}</td>
-                                                    <td>{{ $trf['merk'] }}</td>
-                                                    <td>{{ $trf['capacity'] }}</td>
-                                                    <td>{{ $trf['no_seri'] }}</td>
-                                                    <td>{{ $trf['tahun'] }}</td>
-                                                    <td>
-                                                        <div class="d-flex gap-1 justify-content-center">
-                                                            <button type="button" data-bs-toggle="modal"
+                                        @if ($trafo->isEmpty())
+                                            <tr>
+                                                <td colspan="6" align="center">Belum ada Trafo</td>
+                                            </tr>
+                                        @endif
+                                        @php($index = 1)
+                                        @foreach ($trafo as $trf)
+                                            <tr>
+                                                <td>{{ $index++ }}</td>
+                                                <td>{{ $trf['merk'] }}</td>
+                                                <td>{{ $trf['capacity'] }}</td>
+                                                <td>{{ $trf['no_seri'] }}</td>
+                                                <td>{{ $trf['tahun'] }}</td>
+                                                <td>
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" data-bs-toggle="modal"
                                                                 data-bs-target="#trafo-modals" value="{{ $trf['id'] }}"
                                                                 class="btn btn-primary btn-xs waves-effect waves-light rounded-pill trafoEdit">
-                                                                edit
-                                                            </button>
-                                                            <button type="button" value="{{ $trf['id'] }}"
+                                                            edit
+                                                        </button>
+                                                        <button type="button" value="{{ $trf['id'] }}"
                                                                 class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusTrafo">
-                                                                Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -118,8 +119,8 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#layanan-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"
-                                            onclick="setStoreLayanan()">
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"
+                                                onclick="setStoreLayanan()">
                                             <i class="mdi mdi-plus"></i>Add Layanan
                                         </button>
                                     </div>
@@ -127,166 +128,62 @@
                                 <div class="table-responsive" style="overflow-x: unset;">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Trafo</th>
-                                                <th>Nama</th>
-                                                <th>Sub Layanan</th>
-                                                <th>Harga</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Trafo</th>
+                                            <th>Nama</th>
+                                            <th>Sub Layanan</th>
+                                            <th>Harga</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
+                                        @if ($layanan->isEmpty())
                                             <tr>
-                                                <td>1</td>
-                                                <td>TRX192832</td>
-                                                <td>Maintenance</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Additional
-                                                                Maintenance
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="rupiah">1345000</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                <td colspan="6" align="center">Belum ada Layanan</td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>TRX192832</td>
-                                                <td>Maintenance</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Additional
-                                                                Maintenance
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="rupiah">1345000</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>TRX192832</td>
-                                                <td>Maintenance</td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-light btn-sm dropdown-toggle" type="button"
-                                                            data-bs-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            Basic Maintenance <i class="mdi mdi-chevron-down"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <div class="dropdown-item sub-layanan-item">Basic Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Full Maintenance
-                                                            </div>
-                                                            <div class="dropdown-item sub-layanan-item">Additional
-                                                                Maintenance
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="rupiah">1345000</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#layanan-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {{--                                        @dd($layanan) --}}
-                                            @foreach ($layanan as $trafoNumber => $layananGroup)
-                                                @foreach ($layananGroup as $layananName => $subLayananList)
+                                        @endif
+                                        @foreach ($layanan as $trafoNumber => $layananGroup)
+                                            @foreach($layananGroup as $layananId => $trafoId)
+                                                @foreach ($trafoId as $layananName => $subLayananList)
                                                     @php($total_price = 0)
                                                     <tr>
-                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{$loop->iteration}}</td>
                                                         <td>{{ $trafoNumber }}</td>
                                                         <td>{{ $layananName }}</td>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button class="btn btn-light btn-sm dropdown-toggle"
-                                                                    type="button" data-bs-toggle="dropdown"
-                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                        type="button"
+                                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                        aria-expanded="false">
                                                                     Sub Layanan<i class="mdi mdi-chevron-down"></i>
                                                                 </button>
                                                                 <div class="dropdown-menu">
-                                                                    @foreach ($subLayananList as $subLayanan)
-                                                                        <div class="dropdown-item sub-layanan-item">
-                                                                            {{ $subLayanan['sub_layanan'] }}</div>
+                                                                    @foreach($subLayananList as $subLayanan)
+                                                                        <div
+                                                                            class="dropdown-item sub-layanan-item">{{ $subLayanan['sub_layanan'] }}</div>
                                                                         @php($total_price += $subLayanan['price'])
                                                                     @endforeach
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td class="rupiah">
-                                                            {{ $total_price }}
+                                                            {{$total_price}}
                                                         </td>
                                                         <td class="text-center" width="160">
                                                             <div class="d-flex gap-1 justify-content-center">
                                                                 <button type="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#layanan-modals"
-                                                                    class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
+                                                                        data-bs-target="#layanan-modals"
+                                                                        onclick='setUpdate("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
                                                                     edit
                                                                 </button>
+                                                                {{--                                                            @dd($subLayananList)--}}
                                                                 <button type="button"
-                                                                    class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
+                                                                        id="subLayanan_delete"
+                                                                        onclick='setDelete("{{ $data }}", "{{ addslashes($layananId) }}", "{{ addslashes($layananName) }}")'
+                                                                        class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusLayanan">
                                                                     Delete
                                                                 </button>
                                                             </div>
@@ -294,6 +191,7 @@
                                                     </tr>
                                                 @endforeach
                                             @endforeach
+                                        @endforeach
                                         </tbody>
                                     </table>
                                     <div class="pagination-nav mt-2 d-flex justify-content-around">
@@ -312,7 +210,7 @@
                                     </div>
                                     <div class="col-sm-4 text-end">
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#syarat-modals"
-                                            class="btn btn-red w-md waves-effect waves-light mb-3"><i
+                                                class="btn btn-red w-md waves-effect waves-light mb-3"><i
                                                 class="mdi mdi-plus"></i>Add Syarat
                                         </button>
                                     </div>
@@ -320,84 +218,34 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Description</th>
-                                                <th class="text-center" width="160">Actions</th>
-                                            </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Description</th>
+                                            <th class="text-center" width="160">Actions</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr>
-                                            <td colspan="6" align="center">Belum ada payment</td>
-                                        </tr> --}}
+                                        @if ($syarat->isEmpty())
                                             <tr>
-                                                <td width="80">1</td>
-                                                <td>Harga Belum Termasuk PPN</td>
+                                                <td colspan="3" align="center">Belum ada Syarat Ketentuan</td>
+                                            </tr>
+                                        @endif
+
+                                        @php($index = 1)
+                                        @foreach ( $syarat as $srt)
+                                            <tr>
+                                                <td width="80">{{ $index++ }}</td>
+                                                <td>{{ $srt['deskripsi'] }}</td>
                                                 <td class="text-center" width="160">
                                                     <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
+                                                        <button type="button" value="{{ $srt['id'] }}"
+                                                                class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
                                                             Delete
                                                         </button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td width="80">2</td>
-                                                <td>Harga Belum Termasuk PCR test bila diperlukan</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="80">3</td>
-                                                <td>Harga Belum Termasuk Alat Bantu, Alat Berat dan Helper</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="80">4</td>
-                                                <td>Harga Belum Termasuk PPN</td>
-                                                <td class="text-center" width="160">
-                                                    <div class="d-flex gap-1 justify-content-center">
-                                                        <button type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#syarat-modals"
-                                                            class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">
-                                                            edit
-                                                        </button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                            Delete
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -421,7 +269,7 @@
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <button title="Edit Project" type="button"
-                                                class="tabledit-edit-button btn btn-info waves-effect waves-light">
+                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                 <span class="mdi mdi-printer"></span>
                                             </button>
                                         </div>
@@ -432,8 +280,8 @@
                                                 @csrf
                                                 @method('GET')
                                                 <button type="submit" title="Edit Project"
-                                                    class="tabledit-edit-button btn btn-primary waves-effect waves-light"
-                                                    style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
+                                                        class="tabledit-edit-button btn btn-primary waves-effect waves-light"
+                                                        style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
                                             </form>
@@ -446,7 +294,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button title="Delete Project" type="submit"
-                                                    class="tabledit-hapus-button btn btn-danger" value="">
+                                                        class="tabledit-hapus-button btn btn-danger" value="">
                                                     <span class="mdi mdi-trash-can-outline"></span>
                                                 </button>
                                             </form>
@@ -458,51 +306,51 @@
                                         <thead>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Tanggal Penawaran</p>
-                                                    <p class="details-text">{{ $penawaran->date }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Nomor MSG</p>
-                                                    <p class="details-text">{{ $penawaran->no_msg }}
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            {{-- <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Customer Contact Name</p>
-                                                    <p class="details-text">{{ $penawaran->customer }}</p>
-                                                </th>
-                                            </tr> --}}
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Email</p>
-                                                    <p class="details-text">{{ $penawaran->email }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">No. HP</p>
-                                                    <p class="details-text">{{ $penawaran->tel_fax }}</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Total</p>
-                                                    <p class="details-text">Rp. 150.000.000</p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <p class="title-text">Status</p>
-                                                    <p class="details-text">
-                                                        <span class="badge bg-warning">Waiting</span>
-                                                    </p>
-                                                </th>
-                                            </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Tanggal Penawaran</p>
+                                                <p class="details-text">{{ $penawaran->date }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Nomor MSG</p>
+                                                <p class="details-text">{{ $penawaran->no_msg }}
+                                                </p>
+                                            </th>
+                                        </tr>
+                                        {{-- <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Customer Contact Name</p>
+                                                <p class="details-text">{{ $penawaran->customer }}</p>
+                                            </th>
+                                        </tr> --}}
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Email</p>
+                                                <p class="details-text">{{ $penawaran->email }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">No. HP</p>
+                                                <p class="details-text">{{ $penawaran->tel_fax }}</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Total</p>
+                                                <p class="details-text">Rp. 150.000.000</p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                                <p class="title-text">Status</p>
+                                                <p class="details-text">
+                                                    <span class="badge bg-warning">Waiting</span>
+                                                </p>
+                                            </th>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -517,6 +365,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('pageScript')
@@ -524,11 +373,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#check6').on('click', function() {
+        $(document).ready(function () {
+            $('#check6').on('click', function () {
                 if ($(this).is(':checked')) {
                     $('#syarat-lain-row').show();
                     $('#addSyarat').show();
@@ -541,20 +391,16 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('#addSubLayanan').on('click', function() {
+        $(document).ready(function () {
+            $('#addSubLayanan').on('click', function () {
                 // Clone the existing row
                 var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
-
-                // Clear input values in the cloned row if needed
                 newRow.find('input, select').val('');
-
-                // Append the cloned row to the list
                 $('.sub-layanan-list').append(newRow);
             });
 
-            // Remove sub layanan row
-            $(document).on('click', '.removeRow', function() {
+
+            $(document).on('click', '.removeRow', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount > 1) {
                     $(this).closest('.row.mb-3').remove();
@@ -563,23 +409,51 @@
 
 
             // Handle modal close event
-            $('#layanan-modals').on('hidden.bs.modal', function() {
+            $('#layanan-modals').on('hidden.bs.modal', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount === 0) {
-                    // If no rows are left, add a default row
                     var newRow = $('.sub-layanan-list .row.mb-3').first().clone();
                     $('.sub-layanan-list').append(newRow);
                 }
             });
         });
     </script>
+
     <script type="text/javascript">
         function selectSub_layanan() {
             let value = $('#nama-layanan').val();
             let subLayanan = {
-                'Maintenance': ['Basic Maintenance', 'Full Maintenance', 'Additional Maintenance'],
-                'Refactoring': ['Refactoring 1', 'Refactoring 2', 'Refactoring 3'],
-                'Checking': ['Checking 1', 'Checking 2', 'Checking 3'],
+                'Maintenance_Trafo_Oil_Type': ['Insulation Resistance', 'Test Turn Ratio', 'BDV Test', 'Proteksi Cek', 'Torsi Cek', 'Visual Cek', 'Cleaning Bushing Trafo'],
+                'Maintenance_Trafo_Dry_Type': [
+                    'Insulation Resistance',
+                    'Test Turn Ratio',
+                    'Proteksi Cek',
+                    'Torsi Cek',
+                    'Visual Cek',
+                    'Cleaning Terminasi'
+                ],
+                'Oil_Test': [
+                    'BDV',
+                    'Disolved Gas Analysis',
+                    'Furan',
+                    'Water Content',
+                    'Colour',
+                    'Inter Facial Tension',
+                    'Sedimen & Sludge',
+                    'Acidity',
+                    'Flash Point',
+                    'Corrosif Sulfur',
+                    'Index Quality Number',
+                ],
+                'Electrical_Test': [
+                    'Test turn Ratio',
+                    'Insulation Resistance',
+                    'Winding Resistance',
+                    'Tan Delta',
+                    'SFRA',
+                    'Dirana',
+                    'Partial Discharge'
+                ]
             }
             if (value in subLayanan) {
                 let options = subLayanan[value].map(data => `<option value="${data}">${data}</option>`).join('');
@@ -589,24 +463,35 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('#check6').on('change', function() {
+        $(document).ready(function () {
+            let counter = 0;
+            $('#check6').on('change', function () {
                 if ($(this).is(':checked')) {
-                    $('#addSyarat').show(); // Show the "Add Syarat" button if checkbox is checked
+                    $('#addSyarat').show();
                 } else {
-                    $('#addSyarat').hide(); // Hide the button if checkbox is unchecked
+                    $('#addSyarat').hide();
                 }
             });
 
-            $('#addSyarat').on('click', function() {
-                var newSyaratRow = $('#syarat-lain-row').clone().removeAttr('id').show();
-                $('.syarat-lain-list').append(newSyaratRow);
+            $('#addSyarat').on('click', function () {
+                let newInput = `<div class="row my-1" id="syaratLainRow_${counter}">
+                                <div class="col-9 d-flex align-items-end">
+                                    <input type="text" name="syaratLainInput[]" class="form-control">
+                                </div>
+                                <div class="col-3 d-flex">
+                                    <button class="btn btn-danger removeSyarat" type="button" data-target="${counter}"><i class="fe-trash-2"></i></button>
+                                </div>
+                            </div>`;
+
+                $('.syarat-lain-list').append(newInput);
+                counter++;
             });
 
-            $(document).on('click', '.removeSyarat', function() {
+            $(document).on('click', '.removeSyarat', function () {
                 var rowCount = $('.syarat-lain-list .row').length;
                 if (rowCount > 1) {
-                    $(this).closest('.row').remove();
+                    let target = $(this).data('target');
+                    $(`#syaratLainRow_${target}`).remove();
                 }
             });
         });
@@ -614,8 +499,8 @@
 
     {{-- function hapus penawaran --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusPenawaran', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusPenawaran', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -638,8 +523,8 @@
 
     {{-- function hapus trafo --}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusTrafo', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusTrafo', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -664,7 +549,7 @@
                             data: {
                                 _token: "{{ csrf_token() }}",
                             },
-                            success: function(response) {
+                            success: function (response) {
                                 console.log('success');
                                 try {
                                     if (response.message) {
@@ -689,7 +574,7 @@
                                         error);
                                 }
                             },
-                            error: function(xhr, status, error) {
+                            error: function (xhr, status, error) {
                                 console.error(
                                     'Terjadi kesalahan saat menghapus data: ' +
                                     error);
@@ -702,34 +587,34 @@
         });
     </script>
 
-    {{-- function hapus layanan --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusLayanan', function() {
-                var id = $(this).val();
+    {{-- function hapus layanan--}}
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $(document).on('click', '.hapusLayanan', function () {--}}
+    {{--                var id = $(this).val();--}}
 
-                // Display a confirmation dialog
-                Swal.fire({
-                    title: "Anda yakin?",
-                    text: "Data tidak bisa dikembalikan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#f34e4e',
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'Cancel',
-                    // backrop: 'static',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    // silahkan tulis logika nya disini xixixixi
-                });
-            });
-        });
-    </script>
+    {{--                // Display a confirmation dialog--}}
+    {{--                Swal.fire({--}}
+    {{--                    title: "Anda yakin?",--}}
+    {{--                    text: "Data tidak bisa dikembalikan!",--}}
+    {{--                    icon: 'warning',--}}
+    {{--                    showCancelButton: true,--}}
+    {{--                    confirmButtonColor: '#f34e4e',--}}
+    {{--                    confirmButtonText: 'Yes, delete it!',--}}
+    {{--                    cancelButtonText: 'Cancel',--}}
+    {{--                    // backrop: 'static',--}}
+    {{--                    allowOutsideClick: false--}}
+    {{--                }).then((result) => {--}}
+    {{--                    // silahkan tulis logika nya disini xixixixi--}}
+    {{--                });--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    </script>--}}
 
-    {{-- function hapus layanan --}}
+    {{-- function hapus syarat--}}
     <script type="text/javascript">
-        $(document).ready(function() {
-            $(document).on('click', '.hapusSyarat', function() {
+        $(document).ready(function () {
+            $(document).on('click', '.hapusSyarat', function () {
                 var id = $(this).val();
 
                 // Display a confirmation dialog
@@ -745,6 +630,47 @@
                     allowOutsideClick: false
                 }).then((result) => {
                     // silahkan tulis logika nya disini xixixixi
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.syarat.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function (response) {
+                                console.log('success');
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
                 });
             });
         });
@@ -752,18 +678,18 @@
 
     {{-- Trafo edit --}}
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var form = document.getElementById('form-trafo');
             var inputTrafo = document.getElementById('input-trafo');
             // console.log(inputIdPenawaran);
 
-            $(document).on('click', '.trafoEdit', function() {
+            $(document).on('click', '.trafoEdit', function () {
                 var id = $(this).val(); // Menggunakan data-id yang baru
                 $.ajax({
                     type: "GET",
                     url: "{{ route('sistemPenawaran.trafo.show', '') }}" + "/" + id,
                     dataType: "json",
-                    success: function(response) {
+                    success: function (response) {
                         form.setAttribute('action',
                             '{{ route('sistemPenawaran.trafo.update') }}');
 
@@ -791,14 +717,14 @@
                         $("#no_seri").val(response.no_seri);
                         $("#tahun").val(response.tahun);
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert("Error: " + response.statusText);
                     }
                 });
             });
 
             // Delete value on trafo modal when its closed
-            $('#trafo-modals').on('hidden.bs.modal', function(e) {
+            $('#trafo-modals').on('hidden.bs.modal', function (e) {
                 var inputTrafo = document.getElementById('_method');
                 var inputTrafo = document.getElementById('id_trafo');
 
@@ -818,6 +744,7 @@
         const formLayanan = $('#formLayanan');
         $(document).ready(() => {
             formLayanan.parsley().reset();
+            formLayanan[0].reset();
         })
 
         function setStoreLayanan() {
@@ -828,11 +755,100 @@
             formLayanan.find('#id_layanan').remove();
         }
 
-        function setUpdatedLayanan(id) {
+        function setUpdate(id_penawaran, id_trafo, layanan) {
             formLayanan.parsley().reset();
-            {{-- formLayanan.attr('action', '{{ route('sistemPenawaran.layanan.update') }}'); --}}
+            formLayanan.attr('action', '{{ route('sistemPenawaran.penawaran.layanan.update') }}');
             formLayanan.attr('method', 'POST');
-            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PUT">');
+            formLayanan.append('<input type="hidden" name="_method" id="_method" value="PATCH">');
+
+            axios({
+                method: 'GET',
+                url: '{{ route('sistemPenawaran.penawaran.layanan.show') }}',
+                params: {
+                    penawaran: id_penawaran,
+                    trafo: id_trafo,
+                    layanan: layanan
+                }
+            }).then((response) => {
+                console.log(response);
+                formLayanan.parsley().reset();
+                formLayanan.find('#id_penawaran').val(response.data.data.id_penawaran);
+                formLayanan.find('#id_trafo').val(response.data.data.id_trafo);
+                console.log(response.data.data.dataLayanan[0].layanan);
+                formLayanan.find('#nama-layanan').val(response.data.data.layanan);
+                formLayanan.find('#nama-subLayanan').append('<option value="' + response.data.data.dataLayanan[0].sub_layanan + '" selected  >' + response.data.data.dataLayanan[0].sub_layanan + '</option>')
+                formLayanan.find('#qty').val(response.data.data.dataLayanan[0].qty);
+                formLayanan.find('#satuan').val(response.data.data.dataLayanan[0].satuan);
+                formLayanan.find('#harga').val(response.data.data.dataLayanan[0].price);
+                formLayanan.find('#id_subLayanan').val(response.data.data.dataLayanan[0].id);
+
+                formLayanan.find('#id_subLayananSL').val(response.data.data.dataLayanan[1].id);
+                formLayanan.find('#descriptionSL').val(response.data.data.dataLayanan[1].sub_layanan);
+                formLayanan.find('#qtySL').val(response.data.data.dataLayanan[1].qty);
+                formLayanan.find('#satuanSL').val(response.data.data.dataLayanan[1].satuan);
+                formLayanan.find('#hargaSL').val(response.data.data.dataLayanan[1].price);
+
+                for (let i = 2; i < response.data.data.dataLayanan.length; i++) {
+                    let newRow = $('.sub-layanan-list .row.mb-3').first().clone();
+                    newRow.find('#id_subLayananSL').val(response.data.data.dataLayanan[i].id);
+                    newRow.find('#descriptionSL').val(response.data.data.dataLayanan[i].sub_layanan);
+                    newRow.find('#qtySL').val(response.data.data.dataLayanan[i].qty);
+                    newRow.find('#satuanSL').val(response.data.data.dataLayanan[i].satuan);
+                    newRow.find('#hargaSL').val(response.data.data.dataLayanan[i].price);
+                    $('.sub-layanan-list').append(newRow);
+                }
+
+
+            }).catch((error) => {
+                console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                Swal.fire({
+                    title: "Gagal!",
+                    text: error.response.data.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((hasil) => {
+                    if (hasil.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+
+        function setDelete(id_penawaran, id_trafo, layanan) {
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data tidak bisa dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete('{{ route('sistemPenawaran.penawaran.layanan.destroy') }}', {
+                        params: {penawaran: id_penawaran, trafo: id_trafo, layanan: layanan}
+                    }).then((response) => {
+                        Swal.fire({
+                            title: response.data.message ? "Sukses!" : "Gagal!",
+                            text: response.data.message || response.data.error,
+                            icon: response.data.message ? 'success' : 'error',
+                            confirmButtonText: 'OK'
+                        }).then((hasil) => {
+                            if (hasil.isConfirmed) window.location.reload();
+                        });
+                    }).catch((error) => {
+                        Swal.fire({
+                            title: "Gagal!",
+                            text: error.response.data.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        })
+                            .then(hasil => {
+                                if (hasil.isConfirmed) window.location.reload();
+                            });
+                    });
+                }
+            });
         }
 
         formLayanan.submit((e) => {
@@ -840,17 +856,20 @@
             let data = [];
 
             data.push({
+                id: $('#id_subLayanan').val() ?? null,
                 subLayanan: $('#nama-subLayanan').val(),
                 qty: $('#qty').val(),
                 satuan: $('#satuan').val(),
                 harga: $('#harga').val()
             });
             $('.sub-layanan-list .row.mb-3').each((index, element) => {
+                let id_subLayanan = $(element).find('#id_subLayananSL').val() ?? null;
                 let subLayanan = $(element).find('#descriptionSL').val();
                 let harga = $(element).find('#hargaSL').val();
                 let qty = $(element).find('#qtySL').val();
                 let satuan = $(element).find('#satuanSL').val();
                 data.push({
+                    id: id_subLayanan,
                     subLayanan: subLayanan,
                     qty: qty,
                     satuan: satuan,
@@ -858,17 +877,21 @@
                 });
             });
 
+            dataForm = {
+                _token: "{{ csrf_token() }}",
+                id_trafo: $('#id_trafo').val(),
+                id_penawaran: $('#id_penawaran').val(),
+                layanan: $('#nama-layanan').val(),
+                subLayanan: data,
+            }
+            if ($('#_method').val() == 'PATCH') {
+                dataForm._method = $('#_method').val();
+            }
             if (formLayanan.parsley().validate()) {
                 axios({
                     method: formLayanan.attr('method'),
                     url: formLayanan.attr('action'),
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        id_trafo: $('#id_trafo').val(),
-                        id_penawaran: $('#id_penawaran').val(),
-                        layanan: $('#nama-layanan').val(),
-                        subLayanan: data,
-                    }
+                    data: dataForm
                 }).then((response) => {
                     console.log(response);
                     if (response.data.message) {
@@ -883,8 +906,7 @@
                             }
                         });
                     } else {
-                        console.error('Terjadi kesalahan: ' + response.data
-                            .error); // Tampilkan pesan kesalahan jika ada
+                        console.error('Terjadi kesalahan: ' + response.data.error); // Tampilkan pesan kesalahan jika ada
                     }
                 }).catch((error) => {
                     console.error('Terjadi kesalahan saat mengirim data: ' + error);
@@ -901,5 +923,7 @@
                 });
             }
         })
+
+
     </script>
 @endsection

@@ -20,6 +20,7 @@ use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
 use App\Http\Controllers\SistemPenawaran\TrafoController;
+use App\Http\Controllers\SistemPenawaran\SyaratController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -252,13 +253,15 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/create', [PenawaranController::class, 'create'])->name('sistemPenawaran.penawaran.create');
         Route::get('/detail/{id}', [PenawaranController::class, 'detail'])->name('sistemPenawaran.penawaran.detail');
         Route::post('/store', [PenawaranController::class, 'store'])->name('sistemPenawaran.penawaran.store');
+        Route::prefix('layanan')->group(function () {
+            Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
+            Route::get('/show', [LayananController::class, 'show'])->name('sistemPenawaran.penawaran.layanan.show');
+            Route::patch('/update', [LayananController::class, 'update'])->name('sistemPenawaran.penawaran.layanan.update');
+            Route::delete('/delete', [LayananController::class, 'destroy'])->name('sistemPenawaran.penawaran.layanan.destroy');
+        });
         Route::get('/edit/{id}', [PenawaranController::class, 'edit'])->name('sistemPenawaran.penawaran.edit');
         Route::delete('/delete/{id}', [PenawaranController::class, 'destroy'])->name('sistemPenawaran.penawaran.destroy');
         Route::put('/update/{id}', [PenawaranController::class, 'update'])->name('sistemPenawaran.penawaran.update');
-    });
-
-    Route::prefix('layanan')->group(function () {
-        Route::post('/store', [LayananController::class, 'store'])->name('sistemPenawaran.penawaran.layanan.store');
     });
 
     Route::prefix('approval')->group(function () {
@@ -276,6 +279,11 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/show/{id}', [TrafoController::class, 'show'])->name('sistemPenawaran.trafo.show');
         Route::put('/update', [TrafoController::class, 'update'])->name('sistemPenawaran.trafo.update');
         Route::delete('/destroy/{id}', [TrafoController::class, 'destroy'])->name('sistemPenawaran.trafo.destroy');
+    });
+
+    Route::prefix('syarat')->group(function () {
+        Route::post('/store', [SyaratController::class, 'store'])->name('sistemPenawaran.syarat.store');
+        Route::delete('/destroy/{id}', [SyaratController::class, 'destroy'])->name('sistemPenawaran.syarat.destroy');
     });
 });
 // end routes sistem administrasi penawaran

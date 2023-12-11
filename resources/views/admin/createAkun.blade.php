@@ -3,11 +3,13 @@
 {{-- headerscript section --}}
 @section('headerScript')
     <!-- Select2 CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
 
     <!-- dropzone file upload css -->
-    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/css/dropify.min.css') }}" rel="stylesheet"
+          type="text/css"/>
 @endsection
 
 {{-- content section --}}
@@ -18,134 +20,157 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{url('/admin/users')}}" class="parsley-examples" novalidate="" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="emailAddress" class="form-label">Email address<span
-                                        class="text-danger">*</span></label>
-                                <input type="email" name="email" parsley-trigger="change" required=""
-                                    placeholder="Enter email" class="form-control" id="emailAddress">
-                                @error('email')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="userName" class="form-label">First Name<span
-                                        class="text-danger">*</span></label>
-                                <input type="text" name="first_name" parsley-trigger="change" required=""
-                                    placeholder="Enter user name" class="form-control" id="userName">
-                                @error('first_name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="userName" class="form-label">Last Name<span
-                                        class="text-danger">*</span></label>
-                                <input type="text" name="last_name" parsley-trigger="change" required=""
-                                    placeholder="Enter user name" class="form-control" id="userName">
-                                @error('last_name')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="userName" class="form-label">Division<span
-                                        class="text-danger">*</span></label>
-                                <input type="text" name="division" parsley-trigger="change" required=""
-                                    placeholder="Enter user name" class="form-control" id="userName">
-                                @error('division')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="userName" class="form-label">Roles<span class="text-danger">*</span></label>
-                                <select id="select-roles" class="form-control select2-multiple" name="roles[]"
-                                    style="color: black; width: 100%">
-                                    @foreach($roles as $role)
-                                    <option value=" {{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('roles')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="userName" class="form-label">Tanda Tangan<span
-                                        class="text-danger">*</span></label>
-                                <input type="file" name="signature" parsley-trigger="change" required=""
-                                    class="form-control" data-plugins="dropify" data-height="150">
-                                @error('signature')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="pass1" class="form-label">Password<span class="text-danger">*</span></label>
-                                <div class="input-group input-group-merge">
-                                    <input id="pass1" type="password" placeholder="Password" required="" name="password"
-                                        class="form-control">
-                                    <div class="input-group-text" data-password="false">
-                                        <span class="password-eye"></span>
-                                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{url('/admin/users')}}" class="parsley-examples" novalidate="" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="emailAddress" class="form-label">Email address<span
+                                            class="text-danger">*</span></label>
+                                    <input type="email" name="email" parsley-trigger="change" required=""
+                                           placeholder="Enter email" class="form-control" id="emailAddress">
+                                    @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('password')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">First Name<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" name="first_name" parsley-trigger="change" required=""
+                                           placeholder="Enter user name" class="form-control" id="userName">
+                                    @error('first_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Last Name<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" name="last_name" parsley-trigger="change" required=""
+                                           placeholder="Enter user name" class="form-control" id="userName">
+                                    @error('last_name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Division<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" name="division" parsley-trigger="change" required=""
+                                           placeholder="Enter user name" class="form-control" id="userName">
+                                    @error('division')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Roles<span
+                                            class="text-danger">*</span></label>
+                                    <select id="select-roles" class="form-control select2-multiple" name="roles[]"
+                                            style="color: black; width: 100%">
+                                        @foreach($roles as $role)
+                                            <option value=" {{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('roles')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Tanda Tangan<span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" name="signature" parsley-trigger="change" required=""
+                                           class="form-control" data-plugins="dropify" data-height="150">
+                                    @error('signature')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pass1" class="form-label">Password<span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group input-group-merge">
+                                        <input id="pass1" type="password" placeholder="Password" required=""
+                                               name="password"
+                                               class="form-control">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
+                                    </div>
+                                    @error('password')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="pass1" class="form-label">Password Confirmation<span
-                                        class="text-danger">*</span></label>
-                                <div class="input-group input-group-merge">
-                                    <input id="pass1" type="password"
-                                        placeholder="Type your password again" required="" class="form-control"
-                                        name="password_confirmation">
-                                    <div class="input-group-text" data-password="false">
-                                        <span class="password-eye"></span>
+                                <div class="mb-3">
+                                    <label for="pass1" class="form-label">Password Confirmation<span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group input-group-merge">
+                                        <input id="pass1" type="password"
+                                               placeholder="Type your password again" required="" class="form-control"
+                                               name="password_confirmation">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
                                     </div>
+                                    @error('password_confirmation')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('password_confirmation')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="text-end">
-                                <a href="{{ route('users.index') }}">
-                                    <button type="button" class="btn btn-secondary waves-effect">Cancel</button>
-                                </a>
-                                <button class="btn btn-save waves-effect waves-light" type="submit">Submit</button>
-                            </div>
-                        </form>
+                                <div class="text-end">
+                                    <a href="{{ route('users.index') }}">
+                                        <button type="button" class="btn btn-secondary waves-effect">Cancel</button>
+                                    </a>
+                                    <button class="btn btn-save waves-effect waves-light" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+        @endsection
 
-{{-- pagescript section --}}
-@section('pageScript')
-    <!-- Include jQuery (Select2 requires it) -->
-    {{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
+        {{-- pagescript section --}}
+        @section('pageScript')
+            <!-- Include jQuery (Select2 requires it) -->
+            {{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
 
-    {{-- Plugins js for file upload-dropify dan dropzone --}}
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
-    <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
+            {{-- Plugins js for file upload-dropify dan dropzone --}}
+            <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropzone/min/dropzone.min.js') }}"></script>
+            <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/dropify/js/dropify.min.js') }}"></script>
+            <script src="{{ asset('templateAdmin/Admin/dist/assets/js/pages/form-fileuploads.init.js') }}"></script>
 
-    <!-- Include Select2 JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+            <!-- Include Select2 JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
-    <script>
-        $(document).ready(function() {
-            $('#select-roles').select2({
-                // placeholder: 'role',
-                width: 'resolve',
-                allowClear: true, // Option to clear selection
-                // theme: 'classic', // Use a different theme (change CSS classes)
-                multiple: true,
-            });
-        });
-    </script>
+            <script>
+                $(document).ready(function () {
+                    $('#select-roles').select2({
+                        // placeholder: 'role',
+                        width: 'resolve',
+                        allowClear: true, // Option to clear selection
+                        // theme: 'classic', // Use a different theme (change CSS classes)
+                        multiple: true,
+                    });
+                });
+
+                $('.btn-save').click(function (event) {
+                    event.preventDefault();
+                    var form = event.target.form;
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        html: "Email: " + form.email.value + "<br>" +
+                            "Password: " + form.password.value + "<br>",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#1abc9c',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, add it!'
+                    });
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                })
+
+            </script>
 @endsection

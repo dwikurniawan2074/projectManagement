@@ -259,6 +259,9 @@ class ProjectController extends Controller
 
     public function showWeekly($id){
         $project = Project::findOrFail($id);
+        $milestones = $project->milestones()->get();
+        $customer = $project->customer()->first();
+
         // $dompdf = new Dompdf();
 
 
@@ -275,7 +278,7 @@ class ProjectController extends Controller
 
         // Save PDFs to storage or public directory
         // return $dompdf->stream('print_preview.pdf');
-        return view('projects.weeklyProgress', compact('project'));
+        return view('projects.weeklyProgress', compact('project', 'milestones', 'customer'));
     }
 
     public function showDaily(){

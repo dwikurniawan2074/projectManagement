@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendMail;
+use App\Mail\SendPassword;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
@@ -13,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
 use Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -82,14 +84,16 @@ class UserController extends Controller
         foreach ($request->input('roles') as $role) {
             $user->hasroles()->attach($role);
         }
-        //send email
-//        $emailData = [
-//            'name' => $request->first_name,
-//            'password' => $request->password,
-//        ];
-//        Mail::to($request->email)->send(new SendPassword($emailData));
-
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
+        if (env('MAIL_FROM_ADDRESS')) {
+            $emailData = [
+                'name' => $request->first_name,
+                'password' => $request->password,
+            ];
+            Mail::to($request->email)->send(new SendPassword($emailData));
+        } else {
+            return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, namun email gagal dikirim');
+        }
+        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan, dan email berhasil dikirim ke ' . $request->email);
     }
 
     /**

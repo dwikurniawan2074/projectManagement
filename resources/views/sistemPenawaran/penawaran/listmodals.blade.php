@@ -110,9 +110,10 @@
                                 <select name="nama-layanan" id="nama-layanan" parsley-trigger="change"
                                         class="form-select" onchange="selectSub_layanan()">
                                     <option disabled selected="">Choose...</option>
-                                    <option value="Maintenance">Maintenance</option>
-                                    <option value="Refactoring">Refactoring</option>
-                                    <option value="Checking">Checking</option>
+                                    <option value="Maintenance_Trafo_Dry_Type">Maintenance Trafo Dry Type</option>
+                                    <option value="Maintenance_Trafo_Oil_Type">Maintenance Trafo Oil Type</option>
+                                    <option value="Oil_Test">Oil Test</option>
+                                    <option value="Electrical_Test">Electrical Test</option>
                                 </select>
                             </div>
 
@@ -144,8 +145,9 @@
                                     <label for="harga">Harga:</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                        <input type="number " id="harga" name="harga[]" class="form-control"
+                                        <input type="number" id="harga" name="harga[]" class="form-control"
                                                placeholder="Enter Price" autocomplete="off">
+                                        <input type="hidden" name="id_subLayanan" id="id_subLayanan">
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +170,8 @@
                                         <label for="description">Description:</label>
                                         <input type="text" id="descriptionSL" name="description[]" class="form-control"
                                                placeholder="Enter description" autocomplete="off">
+                                        <input type="hidden" name="id_subLayananSL" id="id_subLayananSL">
+
                                     </div>
                                     <div class="col-lg-2">
                                         <label for="qty">Qty:</label>
@@ -185,7 +189,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <label for="harga">Harga:</label>
-                                        <input type="text" id="hargaSL" name="harga[]" class="form-control"
+                                        <input type="number" id="hargaSL" name="harga[]" class="form-control"
                                                placeholder="Enter Price" autocomplete="off">
 
                                     </div>
@@ -216,7 +220,7 @@
 
 
     {{-- modals syarat ketentuan --}}
-    <form action="" class="parsley-examples" novalidate="" method="post"
+    <form action="{{ route('sistemPenawaran.syarat.store') }}" class="parsley-examples" novalidate="" method="post"
           enctype="multipart/form-data">
         @csrf
         <div id="syarat-modals" class="modal fade" role="dialog" aria-labelledby="myModalLabel"
@@ -235,34 +239,36 @@
                             {{-- form generate read only penawaran name --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Penawaran</label>
-                                <input type="text" name="penawaran" id="penawaran"
-                                       class="form-control" placeholder="256-001 PT ABC Tangerang" disabled readonly>
+                                <input type="text" name="id_penawaran" id="id_penawaran" value="{{ $penawaran['id'] }}"
+                                       hidden>
+                                <input type="text" class="form-control" placeholder="{{ $penawaran['project_name'] }}"
+                                       disabled readonly>
                             </div>
 
                             <label for="merk" class="form-label">Syarat dan Ketentuan</label>
 
                             <div class="syarat-ketentuan-list mb-1">
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check1">
+                                    <input class="form-check-input" type="checkbox" value="" id="check1" name="check1">
                                     <label class="form-check-label" for="check1">Harga belum termasuk PPN</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check2">
+                                    <input class="form-check-input" type="checkbox" value="" id="check2" name="check2">
                                     <label class="form-check-label" for="check2">Harga tidak berlaku selama libur hari
                                         raya keagamaan dan libur nasional</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check3">
+                                    <input class="form-check-input" type="checkbox" value="" id="check3" name="check3">
                                     <label class="form-check-label" for="check3">Harga belum termasuk PCR test bila
                                         diperlukan</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check4">
+                                    <input class="form-check-input" type="checkbox" value="" id="check4" name="check4">
                                     <label class="form-check-label" for="check4">Harga belum termasuk penggantian
                                         material/sparepart trafo</label>
                                 </div>
                                 <div class="form-check mb-2 form-check-danger">
-                                    <input class="form-check-input" type="checkbox" value="" id="check5">
+                                    <input class="form-check-input" type="checkbox" value="" id="check5" name="check5">
                                     <label class="form-check-label" for="check5">Harga belum termasuk alat bantu, alat
                                         berat dan helper jika diperlukan</label>
                                 </div>
@@ -275,7 +281,7 @@
                                         <div class="col-4 d-flex pe-4 justify-content-end">
                                             <button type="button" id="addSyarat" style="display: none;"
                                                     class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">
-                                                Add Syarat
+                                                Add Syarat Lain
                                             </button>
                                         </div>
                                     </div>
@@ -285,7 +291,7 @@
                             <div class="syarat-lain-list mb-2 ps-4">
                                 <div id="syarat-lain-row" class="row my-1" style="display: none;">
                                     <div class="col-9 d-flex align-items-end">
-                                        <input type="text" name="syaratLainInput" id="syaratLainInput"
+                                        <input type="text" name="syaratLainInput[]" id="syaratLainInput"
                                                class="form-control">
                                     </div>
                                     <div class="col-3 d-flex">
