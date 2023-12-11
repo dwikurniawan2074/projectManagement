@@ -39,10 +39,10 @@ class PenawaranController extends Controller
         return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan', 'syarat'));
     }
 
-    // public function form()
-    // {
-    //     return view('sistemPenawaran.penawaran.create');
-    // }
+    public function preview()
+    {
+        return view('sistemPenawaran.penawaran.pdf');
+    }
 
     public function create()
     {

@@ -11,12 +11,9 @@ class SyaratController extends Controller
 {
     public function store(Request $request){
 
-        // dd($request->all());
-        // Get the penawaran ID from the form
         $penawaranId = $request->input('id_penawaran');
         $syaratLainInput = $request->input('syaratLainInput', []);
 
-        // Array to hold checkbox values and labels
         $checkboxes = [
             'Harga belum termasuk PPN',
             'Harga tidak berlaku selama libur hari raya keagamaan dan libur nasional',
@@ -24,33 +21,27 @@ class SyaratController extends Controller
             'Harga belum termasuk penggantian material/sparepart trafo',
             'Harga belum termasuk alat bantu, alat berat dan helper jika diperlukan',
             'Syarat Lain'
-            // Add new checkbox labels here
         ];
 
 
-        // Loop through checkboxes
         foreach ($checkboxes as $key => $label) {
-            $checkboxName = 'check' . ($key + 1); // Assuming checkbox names follow the check1, check2, ... pattern
+            $checkboxName = 'check' . ($key + 1); 
 
-            // Check if the checkbox is checked
             if ($request->has($checkboxName)) {
-                // Create a new SyaratKetentuan record for the checked checkbox
                 $syaratKetentuan = new Syarat_Ketentuan();
-                $syaratKetentuan->id_penawaran = $penawaranId; // Assign the penawaran ID as the foreign key
-                $syaratKetentuan->deskripsi = $label; // Store checkbox label as 'syarat' field (adjust column name)
-                $syaratKetentuan->save(); // Save the record
+                $syaratKetentuan->id_penawaran = $penawaranId;
+                $syaratKetentuan->deskripsi = $label;
+                $syaratKetentuan->save();
             }
         }
 
         foreach ($syaratLainInput as $syaratLain) {
-            // Assuming you have a Model named 'Option' to store the data
             $syaratKetentuan = new Syarat_Ketentuan();
-            $syaratKetentuan->id_penawaran = $penawaranId; // Store the selected option in the 'name' column (adjust column name)
-            $syaratKetentuan->deskripsi = $syaratLain; // Store the selected option in the 'name' column (adjust column name)
+            $syaratKetentuan->id_penawaran = $penawaranId;
+            $syaratKetentuan->deskripsi = $syaratLain;
             $syaratKetentuan->save();
         }
 
-        // Redirect back or to a success page
         return redirect()->back()->with('success', 'Syarat dan Ketentuan berhasil disimpan.');
     }
 
@@ -58,7 +49,7 @@ class SyaratController extends Controller
         try {
             $syarat = Syarat_Ketentuan::findOrFail($id);
             $syarat->delete();
-            return response()->json(['message' => 'Syarat berhasil dihapus.']);
+            return response()->json(['message' => 'Syarat Ketentuan berhasil dihapus.']);
         } catch (Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat menghapus Syarat.'], 500);
         }
