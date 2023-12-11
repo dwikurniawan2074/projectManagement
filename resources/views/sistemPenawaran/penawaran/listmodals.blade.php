@@ -139,6 +139,7 @@
                                         <option value="liter" selected>Liter</option>
                                         <option value="pcs">Pcs</option>
                                         <option value="box">Box</option>
+                                        <option value="unit">Unit</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 pe-0">
