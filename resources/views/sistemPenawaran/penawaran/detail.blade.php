@@ -226,25 +226,25 @@
                                         </thead>
                                         <tbody>
                                         @if ($syarat->isEmpty())
-                                        <tr>
-                                            <td colspan="3" align="center">Belum ada Syarat Ketentuan</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="3" align="center">Belum ada Syarat Ketentuan</td>
+                                            </tr>
                                         @endif
 
                                         @php($index = 1)
-                                        @foreach ( $syarat as $srt)    
-                                        <tr>
-                                            <td width="80">{{ $index++ }}</td>
-                                            <td>{{ $srt['deskripsi'] }}</td>
-                                            <td class="text-center" width="160">
-                                                <div class="d-flex gap-1 justify-content-center">
-                                                    <button type="button" value="{{ $srt['id'] }}"
-                                                            class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ( $syarat as $srt)
+                                            <tr>
+                                                <td width="80">{{ $index++ }}</td>
+                                                <td>{{ $srt['deskripsi'] }}</td>
+                                                <td class="text-center" width="160">
+                                                    <div class="d-flex gap-1 justify-content-center">
+                                                        <button type="button" value="{{ $srt['id'] }}"
+                                                                class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -399,7 +399,7 @@
                 $('.sub-layanan-list').append(newRow);
             });
 
-            
+
             $(document).on('click', '.removeRow', function () {
                 var rowCount = $('.sub-layanan-list .row.mb-3').length;
                 if (rowCount > 1) {
@@ -418,14 +418,42 @@
             });
         });
     </script>
-    
+
     <script type="text/javascript">
         function selectSub_layanan() {
             let value = $('#nama-layanan').val();
             let subLayanan = {
-                'Maintenance': ['Basic Maintenance', 'Full Maintenance', 'Additional Maintenance'],
-                'Refactoring': ['Refactoring 1', 'Refactoring 2', 'Refactoring 3'],
-                'Checking': ['Checking 1', 'Checking 2', 'Checking 3'],
+                'Maintenance_Trafo_Oil_Type': ['Insulation Resistance', 'Test Turn Ratio', 'BDV Test', 'Proteksi Cek', 'Torsi Cek', 'Visual Cek', 'Cleaning Bushing Trafo'],
+                'Maintenance_Trafo_Dry_Type': [
+                    'Insulation Resistance',
+                    'Test Turn Ratio',
+                    'Proteksi Cek',
+                    'Torsi Cek',
+                    'Visual Cek',
+                    'Cleaning Terminasi'
+                ],
+                'Oil_Test': [
+                    'BDV',
+                    'Disolved Gas Analysis',
+                    'Furan',
+                    'Water Content',
+                    'Colour',
+                    'Inter Facial Tension',
+                    'Sedimen & Sludge',
+                    'Acidity',
+                    'Flash Point',
+                    'Corrosif Sulfur',
+                    'Index Quality Number',
+                ],
+                'Electrical_Test': [
+                    'Test turn Ratio',
+                    'Insulation Resistance',
+                    'Winding Resistance',
+                    'Tan Delta',
+                    'SFRA',
+                    'Dirana',
+                    'Partial Discharge'
+                ]
             }
             if (value in subLayanan) {
                 let options = subLayanan[value].map(data => `<option value="${data}">${data}</option>`).join('');
@@ -441,7 +469,7 @@
                 if ($(this).is(':checked')) {
                     $('#addSyarat').show();
                 } else {
-                    $('#addSyarat').hide(); 
+                    $('#addSyarat').hide();
                 }
             });
 

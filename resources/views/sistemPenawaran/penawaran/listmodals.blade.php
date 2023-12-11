@@ -110,9 +110,10 @@
                                 <select name="nama-layanan" id="nama-layanan" parsley-trigger="change"
                                         class="form-select" onchange="selectSub_layanan()">
                                     <option disabled selected="">Choose...</option>
-                                    <option value="Maintenance">Maintenance</option>
-                                    <option value="Refactoring">Refactoring</option>
-                                    <option value="Checking">Checking</option>
+                                    <option value="Maintenance_Trafo_Dry_Type">Maintenance Trafo Dry Type</option>
+                                    <option value="Maintenance_Trafo_Oil_Type">Maintenance Trafo Oil Type</option>
+                                    <option value="Oil_Test">Oil Test</option>
+                                    <option value="Electrical_Test">Electrical Test</option>
                                 </select>
                             </div>
 
@@ -238,8 +239,10 @@
                             {{-- form generate read only penawaran name --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Penawaran</label>
-                                <input type="text" name="id_penawaran" id="id_penawaran" value="{{ $penawaran['id'] }}" hidden>
-                                <input type="text" class="form-control" placeholder="{{ $penawaran['project_name'] }}" disabled readonly>
+                                <input type="text" name="id_penawaran" id="id_penawaran" value="{{ $penawaran['id'] }}"
+                                       hidden>
+                                <input type="text" class="form-control" placeholder="{{ $penawaran['project_name'] }}"
+                                       disabled readonly>
                             </div>
 
                             <label for="merk" class="form-label">Syarat dan Ketentuan</label>
