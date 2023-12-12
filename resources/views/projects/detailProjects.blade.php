@@ -757,7 +757,7 @@
                 labels: labels,
                 datasets: [{
                     data: [progress, notProgress],
-                    backgroundColor: ["#FE3E3E", "#F3F2F2"], // Customize segment colors
+                    backgroundColor: ["#35B8E0", "#F3F2F2"], // Customize segment colors
                 },],
             },
             options: {
