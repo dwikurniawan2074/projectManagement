@@ -21,6 +21,11 @@
             font-weight: 100;
         }
 
+        .pagination-nav nav {
+            width: 100%;
+            justify-content: space-around;
+        }
+
         #layanan-modals .modal-content {
             max-height: 700px;
             /* Adjust the height as needed */
@@ -268,10 +273,12 @@
                                     </div>
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Edit Project" type="button"
+                                            <a href="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id]) }}">
+                                                <button title="Edit Project" type="button" style="padding: 0.28rem 0.8rem;"
                                                     class="tabledit-edit-button btn btn-info waves-effect waves-light">
-                                                <span class="mdi mdi-printer"></span>
-                                            </button>
+                                                    <span class="mdi mdi-printer"></span>
+                                                </button>
+                                            </a>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <form
@@ -285,19 +292,12 @@
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
                                             </form>
-
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <form
-                                                action="{{ route('sistemPenawaran.penawaran.destroy', ['id' => $penawaran->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button title="Delete Project" type="submit"
-                                                        class="tabledit-hapus-button btn btn-danger" value="">
-                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                </button>
-                                            </form>
+                                            <button title="Delete Project" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                    class="tabledit-edit-button btn btn-danger hapusPenawaran" value="{{ $penawaran->id }}">
+                                                <span class="mdi mdi-trash-can-outline"></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -520,11 +520,52 @@
                     allowOutsideClick: false
                 }).then((result) => {
                     // silahkan tulis logika nya disini xixixixi
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function (response) {
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.href =
+                                                    "{{ route('sistemPenawaran.penawaran.index') }}";
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
                 });
             });
         });
     </script>
-
+    
     {{-- function hapus trafo --}}
     <script type="text/javascript">
         $(document).ready(function () {

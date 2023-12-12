@@ -297,31 +297,31 @@
                             <tr>
                                 <td width="100">To</td>
                                 <td width="15"> : </td>
-                                <td width="299">PT ABC Tangerang</td>
+                                <td width="299">{{ $penawaran['project_name'] }}</td>
                                 <td width="70" valign="top">Date</td>
                                 <td width="15" valign="top"> : </td>
-                                <td valign="top">17 Oktober 2023 </td>
+                                <td valign="top">{{ $penawaran['date'] }} </td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td> : </td>
-                                <td>testing@gmail.com</td>
+                                <td>{{ $penawaran['email'] }}</td>
                                 <td>MSG No.</td>
                                 <td> : </td>
-                                <td>1590/CS–TPP/VII/2023</td>
+                                <td>{{ $penawaran['no_msg'] }}</td>
                             </tr>
                             <tr>
                                 <td>Tel/Fax</td>
                                 <td> : </td>
-                                <td>616516816868</td>
+                                <td>{{ $penawaran['tel_fax'] }}</td>
                                 <td>Ref No.</td>
                                 <td> : </td>
-                                <td>-</td>
+                                <td>{{ isset($penawaran['no_ref']) ? $penawaran['no_ref'] : '-' }}</td>
                             </tr>
                             <tr>
                                 <td>attd</td>
                                 <td> : </td>
-                                <td>Bpk. User Testing</td>
+                                <td>{{ $penawaran['attd'] }}</td>
                                 <td>Pages</td>
                                 <td> : </td>
                                 <td>1/2</td>
@@ -329,7 +329,7 @@
                             <tr>
                                 <td>cc</td>
                                 <td> : </td>
-                                <td></td>
+                                <td>{{ isset($penawaran['cc']) ? $penawaran['cc'] : '-' }}</td>
                                 <td>Total</td>
                                 <td> : </td>
                                 <td>2</td>
@@ -339,7 +339,7 @@
                     
                     <div class="document-title-row">
                         <h4 class="document-title">PENAWARAN HARGA</h4>
-                        <h4 class="document-title"><b>PT ABC Tangerang - Kota Tangerang</b></h4>
+                        <h4 class="document-title"><b>{{ $penawaran['attd'] }} - {{ $penawaran['kota'] }}</b></h4>
                     </div>
                     <!-- <div class="title">Kartu Hasil Studi (KHS)</div> -->
                 </div>
@@ -360,27 +360,33 @@
                             <th>Total Price(Rp)</th>
                             <!--<th>Keterangan</th>-->
                         </tr>
-                        @for ($i=0; $i<5; $i++)
-                            
-                            <tr valign="top" class style="font-size:10pt">
-                                <td  align="center">{{ $i+1 }}</td>
-                                <td class="left-space"><strong>Trafindo 1x200 KVA SN : 131300647</strong></td>
+                        @php
+                            $prevTrafo = null;
+                        @endphp
+
+                        @foreach($layanan as $key => $layan)
+                        @if ($prevTrafo !== $layan->trafo->merk)
+                            <tr valign="top" style="font-size:10pt">
+                                <td  align="center">{{ $loop->index+1 }}</td>
+                                <td class="left-space"><strong>{{ $layan->trafo->merk }}</strong></td>
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <!--<td align="center"></td>-->
                             </tr>
+                            @php($prevTrafo = $layan->trafo->merk)
+                        @endif
                             <tr valign="top" style="font-size:10pt">
                                 <td></td>
-                                <td class="left-space">A. Penggantian oli</td>
+                                <td class="left-space">&nbsp;&nbsp;{{ $layan->layanan }}</td>
                                 <td></td>
                                 <td></td>
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <!--<td align="center"></td>-->
                             </tr>
-                            <tr valign="top" style="font-size:10pt">
+                            {{-- <tr valign="top" style="font-size:10pt">
                                 <td></td>
                                 <td class="left-space">&nbsp;&nbsp;&nbsp; Operating System</td>
                                 <td align="center">60</td>
@@ -388,8 +394,23 @@
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <!--<td align="center"></td>-->
-                            </tr>
-                        @endfor
+                            </tr> --}}
+                            {{-- @dd($tmp = $layan->layanan) --}}
+                            @php($uniqueSubLayanan = $layanan->where('id_trafo', $layan->trafo_id)
+                                    ->where('layanan', $layan->layanan)
+                                    ->unique('sub_layanan'))
+                            @foreach ($uniqueSubLayanan as $subLayanan)
+                                    <tr valign="top" style="font-size:10pt">
+                                        <td></td>
+                                        <td class="left-space">&nbsp;&nbsp;&nbsp; {{ $subLayanan->sub_layanan }}</td>
+                                        <td align="center"></td>
+                                        <td align="center">Liter</td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                        <!--<td align="center"></td>-->
+                                    </tr>
+                            @endforeach
+                        @endforeach
                         <tr>
                             <td align="end" colspan="5" style="padding-right: 20px;"><b>Total</b></td>
                             <td align="center" colspan="5">5.000.000</td>
@@ -400,56 +421,37 @@
                 <table class="tb_data " width="100%">
                     <tr>
                         <td width="200">Syarat dan Ketentuan :</td>
-                        <td>:</td>
-                        <td>- Harga belum termasuk PPN</td>
+                        <td width="10">:</td>
+                        @if (isset($syarat[0]))
+                        <td>- {{ $syarat[0]['deskripsi'] }}</td>
+                        @else
+                        <td></td>
+                        @endif
                     </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga tidak berlaku selama libur hari raya
-                            keagamaan dan hari libur nasional</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga belum termasuk PCR test bila diperlukan</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga belum termasuk penggantian material/
-                            sparepart trafo</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga belum termasuk alat bantu, alat berat
-                            dan helper jika diperlukan</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga belum termasuk penambahan selang
-                            purifikasi untuk jarak lebih dari 50 meter</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <td>- Harga belum termasuk modifikasi filter valve
-                            jika non standar</td>
-                    </tr>
-
+                    @php($syaratLength = count($syarat))
+                    @for ($i=1; $i<$syaratLength ; $i++)
+                        <tr>
+                            <td colspan="2"></td>
+                            <td>- {{ $syarat[$i]['deskripsi'] }}</td>
+                        </tr>
+                    @endfor
                 </table><br>
 
                 <table class="tb_data " width="100%">
                     <tr>
                         <td width="200">Syarat Pembayaran </td>
                         <td width="15" align="center">:</td>
-                        <td>Syarat Pembayaran</td>
+                        <td>{{ $penawaran['syarat_pembayaran'] }}</td>
                     </tr>
                     <tr>
                         <td width="200">Pelaksanaan Pekerjaan</td>
                         <td width="15" align="center">:</td>
-                        <td>Trafo offline, dibutuhkan daya 3phase 380 V 60 A</td>
+                        <td>{{ $penawaran['pelaksanaan_pekerjaan'] }}</td>
                     </tr>
                     <tr>
                         <td width="200">Jangka Waktu Penawaran </td>
                         <td width="15" align="center">:</td>
-                        <td>30 hari</td>
+                        <td>{{ $penawaran['jangka_waktu'] }}</td>
                     </tr>
 
                 </table> <br>
