@@ -54,6 +54,7 @@ class PenawaranController extends Controller
             'email' => 'required|email',
             'tel_fax' => 'required',
             'attd' => 'required',
+            'customer_contact' => 'required',
             'cc' => 'required',
             'date' => 'required|date',
             'no_msg' => 'required',
@@ -76,6 +77,7 @@ class PenawaranController extends Controller
         $penawaran->email = $request->input('email');
         $penawaran->tel_fax = $request->input('tel_fax');
         $penawaran->attd = $request->input('attd');
+        $penawaran->customer_contact = $request->input('customer_contact');
         $penawaran->cc = $request->input('cc');
         $penawaran->date = $request->input('date');
         $penawaran->no_msg = $request->input('no_msg');
@@ -109,6 +111,7 @@ class PenawaranController extends Controller
             'email' => 'required|email',
             'tel_fax' => 'required',
             'attd' => 'required',
+            'customer_contact' => 'required',
             'cc' => 'required',
             'date' => 'required|date',
             'no_msg' => 'required',

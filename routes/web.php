@@ -286,7 +286,7 @@ Route::prefix('sistemPenawaran')->group(function () {
 
     Route::prefix('syarat')->group(function () {
         Route::post('/store', [SyaratController::class, 'store'])->name('sistemPenawaran.syarat.store');
-        Route::delete('/destroy/{id}', [SyaratController::class, 'destroy'])->name('sistemPenawaran.syarat.destroy');
+        Route::delete('/delete/{id}', [SyaratController::class, 'destroy'])->name('sistemPenawaran.syarat.destroy');
     });
 });
 // end routes sistem administrasi penawaran

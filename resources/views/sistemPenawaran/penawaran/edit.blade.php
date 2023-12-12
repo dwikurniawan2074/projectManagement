@@ -79,12 +79,13 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            {{-- <div class="mb-3">
-                                                {{-- <label for="customer-contact" class="form-label">Customer Contact
+                                            <div class="mb-3">
+                                                <label for="customer-contact" class="form-label">Customer Contact
                                                     Name</label>
                                                 <input type="text" class="form-control" id="customer-contact"
-                                                    name="customer_contact" placeholder="Customer Contact">
-                                            </div> --}}
+                                                    name="customer_contact" placeholder="Customer Contact"
+                                                    value="{{ $penawaran->customer_contact }}">
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
@@ -242,7 +243,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <button type="submit">knt</button> --}}
+
                                         <div
                                             class="text-end
                                                                 mt-3">

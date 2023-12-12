@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('penawaran', function (Blueprint $table) {
             $table->string('project_name');
             $table->string('judul_pekerjaan');
+            $table->string('customer_contact');
         });
     }
 
@@ -25,6 +26,7 @@ return new class extends Migration
         Schema::table('penawaran', function (Blueprint $table) {
             $table->dropColumn('project_name');
             $table->dropColumn('judul_pekerjaan');
+            $table->dropColumn('customer_contact');
         });
     }
 };
