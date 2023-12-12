@@ -21,6 +21,11 @@
             font-weight: 100;
         }
 
+        .pagination-nav nav {
+            width: 100%;
+            justify-content: space-around;
+        }
+
         #layanan-modals .modal-content {
             max-height: 700px;
             /* Adjust the height as needed */
