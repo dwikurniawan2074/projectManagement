@@ -262,12 +262,13 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/edit/{id}', [PenawaranController::class, 'edit'])->name('sistemPenawaran.penawaran.edit');
         Route::delete('/delete/{id}', [PenawaranController::class, 'destroy'])->name('sistemPenawaran.penawaran.destroy');
         Route::put('/update/{id}', [PenawaranController::class, 'update'])->name('sistemPenawaran.penawaran.update');
+        Route::get('/preview/{id}', [PenawaranController::class, 'preview'])->name('sistemPenawaran.penawaran.preview');
+        Route::get('/document/{id}', [PenawaranController::class, 'document'])->name('sistemPenawaran.penawaran.document');
     });
 
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
         Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
-        Route::get('/document', [ApprovalController::class, 'document'])->name('sistemPenawaran.approval.document');
     });
 
     Route::prefix('mapping')->group(function () {

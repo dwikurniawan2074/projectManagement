@@ -39,11 +39,6 @@ class PenawaranController extends Controller
         return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan', 'syarat'));
     }
 
-    public function preview()
-    {
-        return view('sistemPenawaran.penawaran.pdf');
-    }
-
     public function create()
     {
         return view('sistemPenawaran.penawaran.create');
@@ -135,15 +130,73 @@ class PenawaranController extends Controller
         return redirect()->route('sistemPenawaran.penawaran.detail', ['id' => $id]);
     }
 
+
+    // Menghapus penawaran dari database
     public function destroy($id)
     {
-        $penawaran = Penawaran::find($id);
-        if (!$penawaran) {
-            return redirect()->route('sistemPenawaran.penawaran.index')->with('error', 'Penawaran tidak ditemukan.');
+        try {
+            $penawaran = Penawaran::findOrFail($id);
+            $penawaran->delete();
+            return response()->json(['message' => 'Penawaran berhasil dihapus.']);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat menghapus penawaran.'], 500);
         }
+    }
 
-        $penawaran->delete();
+    public function preview($id){
+        $penawaran = Penawaran::findOrFail($id);
+        return view('sistemPenawaran.approval.preview', compact('penawaran'));
+    }
 
-        return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Penawaran berhasil dihapus.');
+    public function document($id){
+
+        // $dompdf = new Dompdf();
+
+
+        // $weeklyPdf = view('projects.weeklyProgress')->render();
+        
+
+        // // Load HTML content into Dompdf
+        // $dompdf->loadHtml($weeklyPdf);
+        
+        // $dompdf->setPaper('A4', 'landscape'); // Set paper orientation
+        // $dompdf->render();
+
+        
+
+        // Save PDFs to storage or public directory
+        // return $dompdf->stream('print_preview.pdf');
+
+        // Create Dompdf instance
+        // $dompdf = new Dompdf();
+
+        // $penawaranPdf = view('sistemPenawaran.approval.pdf')->render();
+
+        // // Load HTML content
+        // $dompdf->loadHtml($penawaranPdf);
+
+        // // Set paper size and orientation (optional)
+        // $dompdf->setPaper('A4', 'portrait');
+
+        // // Render the HTML as PDF
+        // $dompdf->render();
+
+        // // Output the generated PDF (temporary file)
+        // $pdf = $dompdf->output();
+
+        // // Return response with PDF content
+        // return response($pdf, 200, [
+        //     'Content-Type' => 'application/pdf',
+        //     'Content-Disposition' => 'inline; filename="generated.pdf"'
+        // ]);
+
+        $penawaran = Penawaran::findOrFail($id)->first();
+        $syarat = Syarat_Ketentuan::where('id_penawaran', $id)->get();
+        $layanan = Layanan::with('trafo')->where('id_penawaran', $id)->get();
+        
+        
+
+
+        return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan'));
     }
 }
