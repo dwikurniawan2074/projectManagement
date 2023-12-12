@@ -34,7 +34,7 @@
                                         <thead>
                                             <tr class="text-center">
                                                 <th>#</th>
-                                                <th>No.Penawaran</th>
+                                                <th>No.MSG</th>
                                                 <th>Nama Customer</th>
                                                 <th>Project</th>
                                                 <th>Tanggal Penawaran</th>
@@ -42,27 +42,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @for ($i = 1; $i <= 5; $i++)
+                                            @foreach ($penawaran as $key => $pnw)
                                                 <tr class="text-center">
-                                                    <td>{{ $i }}</td>
-                                                    <td>0000/CS-TPP/X/2023</td>
-                                                    <td>PT ABC Tangerang </td>
-                                                    <td>Project 1</td>
-                                                    <td>2011/04/25</td>
+                                                    <td>{{ $loop->index+1 }}</td>
+                                                    <td>{{ $pnw['no_msg'] }}</td>
+                                                    <td>{{ $pnw['attd'] }} </td>
+                                                    <td>{{ $pnw['project_name'] }}</td>
+                                                    <td>{{ $pnw['date'] }}</td>
                                                     <td>
                                                         <div class="d-flex gap-1 justify-content-center">
-                                                            <a href="{{ route('sistemPenawaran.approval.preview') }}">
+                                                            <a href="{{ route('sistemPenawaran.penawaran.preview', ['id' => $pnw['id']]) }}">
                                                                 <button type="button"
                                                                     class="btn btn-success btn-xs waves-effect waves-light rounded-pill">Preview</button>
                                                             </a>
-                                                            <button type="button"
+                                                            <a href="{{ route('sistemPenawaran.penawaran.edit', ['id' => $pnw['id']]) }}">
+                                                                <button type="button"
                                                                 class="btn btn-primary btn-xs waves-effect waves-light rounded-pill">Edit</button>
-                                                            <button type="button"
-                                                                class="btn btn-danger btn-xs waves-effect waves-light rounded-pill">Delete</button>
+                                                            </a>
+                                                            <button type="button" value="{{ $pnw['id'] }}"
+                                                                class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusPenawaran">Delete</button>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            @endfor
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -238,6 +240,71 @@
                 processing: true,
                 responsive: false,
 
+            });
+        });
+    </script>
+
+    {{-- function hapus penawaran --}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', '.hapusPenawaran', function () {
+                var id = $(this).val();
+
+                // Display a confirmation dialog
+                Swal.fire({
+                    title: "Anda yakin?",
+                    text: "Data tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f34e4e',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel',
+                    backrop: 'static',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    // silahkan tulis logika nya disini xixixixi
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" + '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function (response) {
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.href =
+                                                    "{{ route('sistemPenawaran.approval.index') }}";
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
+                });
             });
         });
     </script>
