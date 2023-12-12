@@ -521,7 +521,7 @@
                         $('#datatable').DataTable().ajax.reload();
                         Swal.fire(
                             'Updated!',
-                            'Your file has been updated.',
+                            'Akun berhasil diupdate.',
                             'success'
                         )
                     }).catch(function (error) {

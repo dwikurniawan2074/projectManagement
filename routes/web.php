@@ -19,8 +19,8 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
-use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SistemPenawaran\SyaratController;
+use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -176,7 +176,8 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{material}', [OperationalMaterialController::class, 'destroy'])->name('operational.material.delete');
             Route::get('/show/{material}', [OperationalMaterialController::class, 'show'])->name('operational.material.show');
         });
-        Route::prefix('technician')->group(function () {
+
+        Route::prefix('technician')->middleware('hasRole:Admin')->group(function () {
             Route::patch('/{operational}', [OperationalController::class, 'detachTeam'])->name('operational.detach-team');
             Route::patch('/attach/{operational}', [OperationalController::class, 'attachTeam'])->name('operational.attach-team');
         });

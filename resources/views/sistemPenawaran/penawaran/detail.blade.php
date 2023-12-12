@@ -418,14 +418,9 @@
         function selectSub_layanan() {
             let value = $('#nama-layanan').val();
             let subLayanan = {
-                'Maintenance_Trafo_Oil_Type': ['Insulation Resistance', 'Test Turn Ratio', 'BDV Test', 'Proteksi Cek', 'Torsi Cek', 'Visual Cek', 'Cleaning Bushing Trafo'],
+                'Maintenance_Trafo_Oil_Type': ['Maintenance Trafo Oil Type'],
                 'Maintenance_Trafo_Dry_Type': [
-                    'Insulation Resistance',
-                    'Test Turn Ratio',
-                    'Proteksi Cek',
-                    'Torsi Cek',
-                    'Visual Cek',
-                    'Cleaning Terminasi'
+                    'Maintenance Trafo Dry Type',
                 ],
                 'Oil_Test': [
                     'BDV',
@@ -453,6 +448,11 @@
             if (value in subLayanan) {
                 let options = subLayanan[value].map(data => `<option value="${data}">${data}</option>`).join('');
                 $('#nama-subLayanan').html(options);
+            }
+            if (value === 'Maintenance_Trafo_Oil_Type' || value === 'Maintenance_Trafo_Dry_Type') {
+                $('#nama-subLayanan').attr('disabled', true);
+                $('#satuan').val('unit');
+                $('#satuan').attr('disabled', true);
             }
         }
     </script>
@@ -904,14 +904,17 @@
                 let harga = $(element).find('#hargaSL').val();
                 let qty = $(element).find('#qtySL').val();
                 let satuan = $(element).find('#satuanSL').val();
-                data.push({
-                    id: id_subLayanan,
-                    subLayanan: subLayanan,
-                    qty: qty,
-                    satuan: satuan,
-                    harga: harga
-                });
+                if (subLayanan !== '' && harga !== '' && qty !== '' && satuan !== '') {
+                    data.push({
+                        id: id_subLayanan,
+                        subLayanan: subLayanan,
+                        qty: qty,
+                        satuan: satuan,
+                        harga: harga
+                    });
+                }
             });
+
 
             dataForm = {
                 _token: "{{ csrf_token() }}",
