@@ -300,16 +300,10 @@
                                             </form>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <form
-                                                action="{{ route('sistemPenawaran.penawaran.destroy', ['id' => $penawaran->id]) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button title="Delete Project" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                    class="tabledit-edit-button btn btn-danger" value="">
-                                                    <span class="mdi mdi-trash-can-outline"></span>
-                                                </button>
-                                            </form>
+                                            <button title="Delete Project" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                class="tabledit-edit-button btn btn-danger hapusPenawaran" value="{{ $penawaran->id }}">
+                                                <span class="mdi mdi-trash-can-outline"></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
