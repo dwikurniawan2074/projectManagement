@@ -193,10 +193,29 @@ class PenawaranController extends Controller
         $penawaran = Penawaran::findOrFail($id)->first();
         $syarat = Syarat_Ketentuan::where('id_penawaran', $id)->get();
         $layanan = Layanan::with('trafo')->where('id_penawaran', $id)->get();
+
+        $oilTypeList = [
+            'Insulation resistance',
+            'Test Turn Ratio',
+            'BDV test',
+            'Proteksi cek',
+            'Torsi cek',
+            'Visual cek',
+            'Cleaning bushing trafo'
+        ];
+
+        $dryTypeList = [
+            'Insulation resistance',
+            'Test Turn Ratio',
+            'Proteksi cek',
+            'Torsi cek',
+            'Visual cek',
+            'Cleaning terminasi'
+        ];
         
         
 
 
-        return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan'));
+        return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan', 'oilTypeList', 'dryTypeList'));
     }
 }
