@@ -277,10 +277,6 @@
                                     </div>
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Edit Project" type="button"
-                                                class="tabledit-edit-button btn btn-info waves-effect waves-light">
-                                                <span class="mdi mdi-printer"></span>
-                                            </button>
                                             <a
                                                 href="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id]) }}">
                                                 <button title="Edit Project" type="button"
@@ -309,8 +305,8 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button title="Delete Project" type="submit"
-                                                    class="tabledit-hapus-button btn btn-danger" value="">
+                                                <button title="Delete Project" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                    class="tabledit-edit-button btn btn-danger" value="">
                                                     <span class="mdi mdi-trash-can-outline"></span>
                                                 </button>
                                             </form>

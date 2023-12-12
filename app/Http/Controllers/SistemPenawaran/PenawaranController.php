@@ -59,13 +59,13 @@ class PenawaranController extends Controller
             'date' => 'required|date',
             'no_msg' => 'required',
             'no_ref' => 'required',
-            'segmentasi_pasar' => 'required|in:1,2,3',
+            'segmentasi_pasar' => 'required|',
             'syarat_pembayaran' => 'required',
-            'jangka_waktu' => 'required|in:1,2,3',
+            'jangka_waktu' => 'required|',
             'pelaksanaan_pekerjaan' => 'required',
-            'negara' => 'required|in:in:1,2,3',
-            'provinsi' => 'required|in:1,2,3',
-            'kota' => 'required|in:1,2',
+            'negara' => 'required|',
+            'provinsi' => 'required|',
+            'kota' => 'required|',
             'alamat' => 'required',
         ]);
 
@@ -105,6 +105,7 @@ class PenawaranController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'project_name' => 'required',
             'judul_pekerjaan' => 'required',
@@ -116,21 +117,23 @@ class PenawaranController extends Controller
             'date' => 'required|date',
             'no_msg' => 'required',
             'no_ref' => 'required',
-            'segmentasi_pasar' => 'required|in:1,2,3',
+            'segmentasi_pasar' => 'required',
             'syarat_pembayaran' => 'required',
-            'jangka_waktu' => 'required|in:1,2,3',
+            'jangka_waktu' => 'required',
             'pelaksanaan_pekerjaan' => 'required',
-            'negara' => 'required|in:in:1,2,3',
-            'provinsi' => 'required|in:1,2,3',
-            'kota' => 'required|in:1,2',
+            'negara' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
             'alamat' => 'required',
         ]);
+
+        
 
         $penawaran = Penawaran::findOrFail($id);
         $penawaran->update($validatedData);
 
         // Redirect atau lakukan hal lain setelah update
-        return redirect()->route('sistemPenawaran.penawaran.detail', ['id' => $id]);
+        return redirect()->route('sistemPenawaran.penawaran.detail', ['id' => $id])->with('success', 'Data penawaran berhasil diedit');;
     }
 
 
