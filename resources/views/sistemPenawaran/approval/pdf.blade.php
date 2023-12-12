@@ -170,6 +170,8 @@
             padding: 0px 0px 0px 4px;
         }
 
+        
+
         @media print {
 
             .col-md-1,
@@ -235,7 +237,14 @@
                 width: 8.333333333333332%;
             }
 
+            /* .header-document{
+                position: fixed;
+                top: 0;
+                width: 100%;
+            } */
+
             .footer-document {
+                margin-top: 20mm;
                 position: fixed;
                 bottom: 0;
                 width: 100%;
@@ -289,6 +298,7 @@
                     </tr>
                 </tbody>
             </table>
+
             <div class="watermark">
                 <!-- <div class="bg">&nbsp;</div> -->
                 <div align="center">
@@ -362,9 +372,12 @@
                         </tr>
                         @php
                             $prevTrafo = null;
+                            $totalPrice= 0;
+                            $totalPricebyRow = [];
                         @endphp
 
                         @foreach($layanan as $key => $layan)
+
                         @if ($prevTrafo !== $layan->trafo->merk)
                             <tr valign="top" style="font-size:10pt">
                                 <td  align="center">{{ $loop->index+1 }}</td>
@@ -373,47 +386,65 @@
                                 <td align="center"></td>
                                 <td align="center"></td>
                                 <td align="center"></td>
-                                <!--<td align="center"></td>-->
                             </tr>
                             @php($prevTrafo = $layan->trafo->merk)
                         @endif
+
                             <tr valign="top" style="font-size:10pt">
                                 <td></td>
                                 <td class="left-space">&nbsp;&nbsp;{{ $layan->layanan }}</td>
-                                <td></td>
-                                <td></td>
-                                <td align="center"></td>
-                                <td align="center"></td>
-                                <!--<td align="center"></td>-->
+                                <td align="center">{{ $layan->qty }}</td>
+                                <td align="center">{{ $layan->satuan }}</td>
+                                <td align="center" class="rupiah">{{ $layan->price }}</td>
+                                @php($subtotal = $layan->price*$layan->qty )
+                                <td align="center" class="rupiah">{{ $subtotal }}</td>
+                                @php($totalPriceByRow[] = $subtotal)
                             </tr>
-                            {{-- <tr valign="top" style="font-size:10pt">
-                                <td></td>
-                                <td class="left-space">&nbsp;&nbsp;&nbsp; Operating System</td>
-                                <td align="center">60</td>
-                                <td align="center">Liter</td>
-                                <td align="center"></td>
-                                <td align="center"></td>
-                                <!--<td align="center"></td>-->
-                            </tr> --}}
-                            {{-- @dd($tmp = $layan->layanan) --}}
-                            @php($uniqueSubLayanan = $layanan->where('id_trafo', $layan->trafo_id)
-                                    ->where('layanan', $layan->layanan)
-                                    ->unique('sub_layanan'))
-                            @foreach ($uniqueSubLayanan as $subLayanan)
+
+                            @if ($layan->layanan == 'Maintenance_Trafo_Dry_Type')
+                                @foreach ($dryTypeList as $dry)
                                     <tr valign="top" style="font-size:10pt">
                                         <td></td>
-                                        <td class="left-space">&nbsp;&nbsp;&nbsp; {{ $subLayanan->sub_layanan }}</td>
-                                        <td align="center"></td>
-                                        <td align="center">Liter</td>
+                                        <td class="left-space">&nbsp;&nbsp;&nbsp;- {{ $dry }}</td>
                                         <td align="center"></td>
                                         <td align="center"></td>
-                                        <!--<td align="center"></td>-->
+                                        <td align="center"></td>
+                                        <td align="center"></td>
                                     </tr>
-                            @endforeach
+                                @endforeach
+                            @elseif ($layan->layanan == 'Maintenance_Trafo_Oil_Type')
+                                @foreach ($oilTypeList as $oil)
+                                    <tr valign="top" style="font-size:10pt">
+                                        <td></td>
+                                        <td class="left-space">&nbsp;&nbsp;&nbsp;- {{ $oil }}</td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @php($uniqueSubLayanan = $layanan->where('id_trafo', $layan->id_trafo)
+                                    ->where('layanan', $layan->layanan)
+                                    ->unique('sub_layanan'))
+
+                                @foreach ($uniqueSubLayanan as $subLayanan)
+                                    <tr valign="top" style="font-size:10pt">
+                                        <td></td>
+                                        <td class="left-space">&nbsp;&nbsp;&nbsp;- {{ $subLayanan->sub_layanan }}</td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                        <td align="center"></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            @php($totalPrice += $totalPriceByRow[$key])
+                            
                         @endforeach
                         <tr>
                             <td align="end" colspan="5" style="padding-right: 20px;"><b>Total</b></td>
-                            <td align="center" colspan="5">5.000.000</td>
+                            <td align="center" colspan="5" class="rupiah">{{ $totalPrice }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -509,42 +540,58 @@
                         <td colspan="3" style="padding-top: 10px;"><i>service@trafoindonesia.com // Purnomosidhi Darmawan // 0816 954 615 // After Sales Manager // purnomosidhi@trafoindonesia.com</i></td>
                     </tr>
                 </table>
-
-                <div class="footer-document" style="margin-top: 30px;">
-                    <table class="tb_data" width="100%">
-                        <tr>
-                            <td width="50">Factory I</td>
-                            <td width="15" align="center">:</td>
-                            <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang</td>
-                        </tr>
-                        <tr>
-                            <td width="50">Factory II</td>
-                            <td width="15" align="center">:</td>
-                            <td>Jl. Siliwangi, RT 06 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 19002-05, Fax: (62-21) 593 19001</td>
-                        </tr>
-                        <tr>
-                            <td width="50">Factory III</td>
-                            <td width align="center">:</td>
-                            <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 20276-78, Fax: (62-21) 593 20279</td>
-                        </tr>
-                        <tr>
-                            <td width="50">Factory IV</td>
-                            <td width="15" align="center">:</td>
-                            <td>Jl. Raya Siliwangi, RT 04/RW 001, Kel. Gombor, Kec. Periuk, Tangerang, Banten - Indonesia, Phone: (62-21) 590 1565, 5901560</td>
-                        </tr>
-                    </table>
-                </div>
             </div>
-            <div style="page-break-after:always"></div>
+
+            <div class="footer-document" style="margin-top: 30px;">
+                <table class="tb_data" width="100%">
+                    <tr>
+                        <td width="50">Factory I</td>
+                        <td width="15" align="center">:</td>
+                        <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang</td>
+                    </tr>
+                    <tr>
+                        <td width="50">Factory II</td>
+                        <td width="15" align="center">:</td>
+                        <td>Jl. Siliwangi, RT 06 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 19002-05, Fax: (62-21) 593 19001</td>
+                    </tr>
+                    <tr>
+                        <td width="50">Factory III</td>
+                        <td width align="center">:</td>
+                        <td>Jl. Siliwangi, RT 04 / 04 Kel. Alam Jaya, Kec. Jatiuwung - Tangerang, Phone: (62-21) 593 20276-78, Fax: (62-21) 593 20279</td>
+                    </tr>
+                    <tr>
+                        <td width="50">Factory IV</td>
+                        <td width="15" align="center">:</td>
+                        <td>Jl. Raya Siliwangi, RT 04/RW 001, Kel. Gombor, Kec. Periuk, Tangerang, Banten - Indonesia, Phone: (62-21) 590 1565, 5901560</td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
-
+    <script src="{{ asset('templateAdmin/Admin/dist/assets/libs/jquery/jquery.min.js') }}"></script>
     <!-- tambahan -->
-    <script src="/assets/v1/js/forrep.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        var list = "/siakad/repp_khsmahasiswa";
+    <script>
+        $(document).ready(function() {
+            function formatRupiahWithoutSymbol(number) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(number).replace("Rp", "");
+            }
+    
+            $('.rupiah').each(function() {
+                var angka = parseFloat($(this).text());
+                if (!isNaN(angka)) {
+                    var formatted = formatRupiahWithoutSymbol(angka);
+                    $(this).text(formatted);
+                }
+            });
+        });
     </script>
+    
 
 </body>
 
