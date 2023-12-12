@@ -20,9 +20,9 @@ class OperationalController extends Controller
     {
 
         if (session('role') == 'Technician') {
-            $operational = Operational::whereHas('team', function ($query) {
+            $salesOrder = Project::whereHas('operationals.team', function ($query) {
                 $query->where('user_id', auth()->user()->id);
-            })->get();
+            })->select('id', 'so')->get();
         } else {
             $salesOrder = Project::select('id', 'so')->get();
         }
@@ -174,7 +174,13 @@ class OperationalController extends Controller
      */
     public function getOperational($salesOrder): JsonResponse
     {
-        $operationals = Operational::select('id', 'spk_number')->where('project_id', $salesOrder)->get();
+        if (session('role') == 'Technician') {
+            $operationals = Operational::select('id', 'spk_number')->where('project_id', $salesOrder)->whereHas('team', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get();
+        } else {
+            $operationals = Operational::select('id', 'spk_number')->where('project_id', $salesOrder)->get();
+        }
         return response()->json($operationals);
     }
 
