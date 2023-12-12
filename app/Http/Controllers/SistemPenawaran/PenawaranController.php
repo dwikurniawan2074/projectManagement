@@ -34,7 +34,7 @@ class PenawaranController extends Controller
             ->with(['trafo' => function ($query) {
                 $query->select('id', 'no_seri', 'merk');
             }])
-            ->paginate(10);
+            ->paginate(5);
         $layanan->setCollection($layanan->groupBy(['trafo.no_seri', 'trafo.id', 'layanan']));
         return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan', 'syarat'));
     }
