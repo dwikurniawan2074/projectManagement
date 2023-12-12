@@ -74,26 +74,34 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h4 class="header-title mb-2">Sales Order Number</h4>
+                                {{--                                @dd($salesOrder)--}}
+                                @unless(count($salesOrder))
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="header-title mb-2">No Sales Order Available</h4>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="header-title mb-2">Sales Order Number</h4>
 
-                                        <select class="form-select" id="sales-order"
-                                                onchange="getOperationals(this.value)">
-                                            <option selected value="">Pilih Sales Order Number</option>
-                                            @foreach ($salesOrder as $item)
-                                                <option value="{{ $item->id }}"
-                                                        @isset($soNumber) @if ($soNumber==$item->so)
-                                                            selected
-                                                    @endif
-                                                    @endisset>
-                                                    {{ $item->so }}</option>
-                                            @endforeach
-                                        </select>
+                                            <select class="form-select" id="sales-order"
+                                                    onchange="getOperationals(this.value)">
+                                                <option selected value="">Pilih Sales Order Number</option>
+                                                @foreach ($salesOrder as $item)
+                                                    <option value="{{ $item->id }}"
+                                                            @isset($soNumber) @if ($soNumber==$item->so)
+                                                                selected
+                                                        @endif
+                                                        @endisset>
+                                                        {{ $item->so }}</option>
+                                                @endforeach
+                                            </select>
 
-                                    </div> <!-- end col -->
-                                </div> <!-- end row -->
-
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row -->
+                                @endunless
                             </div> <!-- end card-body-->
                         </div> <!-- end card -->
                     </div> <!-- end col -->
@@ -618,8 +626,8 @@
                             detailOperational(operational)
                         },
                         error: function (xhr, textStatus, errorThrown) {
-                            // Handle errors here if needed.
-                            console.log('Error occurred!');
+                            //swal based message that comes from controller
+                            swal.fire("Error!", xhr.responseJSON.message, "error");
                         }
                     });
                 }
@@ -764,7 +772,7 @@
                     modal.find('#updateExpense').attr("data-id", response.data[0].id)
                 })
                 .catch(function (error) {
-                    console.log('error');
+                    swal.fire('Error!', error.response.data.message, 'error')
                 })
         }
     </script>
@@ -866,7 +874,7 @@
                         $('#table-expenses').DataTable().ajax.reload();
                         modal.modal('hide');
                     }).catch(function (error) {
-                        swal.fire("Error!", "Please try again", "error");
+                        swal.fire('Error!', error.response.data.message, 'error')
                     })
                 }
             })
@@ -899,7 +907,7 @@
                         )
                         $('#table-expenses').DataTable().ajax.reload();
                     }).catch(function (error) {
-                        swal.fire("Error!", "Please try again", "error");
+                        swal.fire('Error!', error.response.data.message, 'error')
                     })
                 }
             })
@@ -954,7 +962,7 @@
                 $('#table-expenses').DataTable().ajax.reload();
                 modal.modal('hide');
             }).catch(function (error) {
-                swal.fire("Error!", "Please try again", "error");
+                swal.fire('Error!', error.response.data.message, 'error')
             })
         }
     </script>
@@ -1019,7 +1027,7 @@
                 );
                 detailOperational(operational)
             }).catch(function (error) {
-                swal.fire("Error!", "Please try again", "error");
+                swal.fire('Error!', error.response.data.message, 'error')
             });
         }
     </script>
@@ -1117,7 +1125,7 @@
                         )
                         $('#table-agendas').DataTable().ajax.reload();
                     }).catch(function (error) {
-                        swal.fire("Error!", "Please try again", "error");
+                        swal.fire('Error!', error.response.data.message, 'error')
                     })
                 }
             })
@@ -1169,7 +1177,7 @@
                     modal.modal('hide');
                 })
                 .catch(function (error) {
-                    swal.fire("Error!", "Please try again", "error");
+                    swal.fire('Error!', error.response.data.message, 'error')
                 });
         }
     </script>
@@ -1195,7 +1203,7 @@
                     modal.find('#updateAgenda').attr("data-id", response.data[0].id)
                 })
                 .catch(function (error) {
-                    console.log('Error');
+                    swal.fire('Error!', error.response.data.message, 'error')
                 })
         }
 
@@ -1229,7 +1237,7 @@
                             modal.modal('hide');
                         })
                         .catch(function (error) {
-                            swal.fire("Error!", "Please try again", "error");
+                            swal.fire('Error!', error.response.data.message, 'error')
                         })
                 }
             })
@@ -1271,7 +1279,7 @@
                 $('#table-material').DataTable().ajax.reload();
                 modal.modal('hide');
             } catch (error) {
-                swal.fire("Error!", "Please try again", "error");
+                swal.fire('Error!', error.response.data.message, 'error')
             }
         }
 
@@ -1304,7 +1312,7 @@
                         $('#table-material').DataTable().ajax.reload();
                         modal.modal('hide');
                     } catch (error) {
-                        console.log('error');
+                        swal.fire('Error!', error.response.data.message, 'error')
                     }
                 }
             });
@@ -1328,7 +1336,7 @@
                     modal.find('#updateMaterial').attr("data-id", response.data.id)
                 })
                 .catch(function (error) {
-                    console.log('error');
+                    swal.fire('Error!', error.response.data.message, 'error')
                 })
         }
 
@@ -1360,7 +1368,7 @@
                             $('#table-material').DataTable().ajax.reload();
                         }
                     } catch (error) {
-                        console.log('error');
+                        swal.fire('Error!', error.response.data.message, 'error')
                     }
                 }
             });

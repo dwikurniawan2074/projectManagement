@@ -133,7 +133,9 @@ class UserController extends Controller
             'signature' => $filepath ?? $user->signature,
         ]);
         if ($request->roles) {
-            $users->hasroles()->sync($request->roles);
+            $rolesArray = explode(',', $request->roles);
+            $rolesArray = array_map('intval', $rolesArray);
+            $users->hasroles()->sync($rolesArray);
         }
         return response()->json(['success' => 'User berhasil diupdate']);
     }

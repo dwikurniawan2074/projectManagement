@@ -21,6 +21,8 @@ class hasRole
                 return $next($request);
             }
         }
-        return redirect()->route('login');
+        return \response()->json([
+            'message' => 'You are not allowed to access this page'
+        ], 403);
     }
 }
