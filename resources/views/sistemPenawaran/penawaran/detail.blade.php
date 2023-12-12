@@ -453,6 +453,10 @@
                 $('#nama-subLayanan').attr('disabled', true);
                 $('#satuan').val('unit');
                 $('#satuan').attr('disabled', true);
+            } else {
+                $('#nama-subLayanan').attr('disabled', false);
+                $('#satuan').attr('disabled', false);
+                $('#satuan').val('liter');
             }
         }
     </script>
