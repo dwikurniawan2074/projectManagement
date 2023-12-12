@@ -24,7 +24,7 @@
                             {{-- form input merk trafo --}}
                             <div class="mb-3">
                                 <label for="merk" class="form-label">Merk<span
-                                        class="text-danger">*</span></label>a
+                                        class="text-danger">*</span></label>
                                 <input type="text" name="merk" id="merk" parsley-trigger="change"
                                        class="form-control" placeholder="Masukkan Merk" required>
                             </div>
@@ -139,6 +139,7 @@
                                         <option value="liter" selected>Liter</option>
                                         <option value="pcs">Pcs</option>
                                         <option value="box">Box</option>
+                                        <option value="unit">Unit</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-6 pe-0">

@@ -21,6 +21,11 @@
             font-weight: 100;
         }
 
+        .pagination-nav nav {
+            width: 100%;
+            justify-content: space-around;
+        }
+
         #layanan-modals .modal-content {
             max-height: 700px;
             /* Adjust the height as needed */
@@ -276,6 +281,14 @@
                                                 class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                 <span class="mdi mdi-printer"></span>
                                             </button>
+                                            <a
+                                                href="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id]) }}">
+                                                <button title="Edit Project" type="button"
+                                                    style="padding: 0.28rem 0.8rem;"
+                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
+                                                    <span class="mdi mdi-printer"></span>
+                                                </button>
+                                            </a>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <form
@@ -289,7 +302,6 @@
                                                     <span class="mdi mdi-pencil"></span>
                                                 </button>
                                             </form>
-
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <form
@@ -429,12 +441,7 @@
                     'Torsi Cek', 'Visual Cek', 'Cleaning Bushing Trafo'
                 ],
                 'Maintenance_Trafo_Dry_Type': [
-                    'Insulation Resistance',
-                    'Test Turn Ratio',
-                    'Proteksi Cek',
-                    'Torsi Cek',
-                    'Visual Cek',
-                    'Cleaning Terminasi'
+                    'Maintenance Trafo Dry Type',
                 ],
                 'Oil_Test': [
                     'BDV',
@@ -462,6 +469,15 @@
             if (value in subLayanan) {
                 let options = subLayanan[value].map(data => `<option value="${data}">${data}</option>`).join('');
                 $('#nama-subLayanan').html(options);
+            }
+            if (value === 'Maintenance_Trafo_Oil_Type' || value === 'Maintenance_Trafo_Dry_Type') {
+                $('#nama-subLayanan').attr('disabled', true);
+                $('#satuan').val('unit');
+                $('#satuan').attr('disabled', true);
+            } else {
+                $('#nama-subLayanan').attr('disabled', false);
+                $('#satuan').attr('disabled', false);
+                $('#satuan').val('liter');
             }
         }
     </script>
@@ -520,6 +536,48 @@
                     allowOutsideClick: false
                 }).then((result) => {
                     // silahkan tulis logika nya disini xixixixi
+                    if (result.isConfirmed) {
+                        // Silahkan isi logika nya sendiri xixixi
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" +
+                                '/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                            },
+                            success: function(response) {
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.href =
+                                                    "{{ route('sistemPenawaran.penawaran.index') }}";
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response
+                                            .error
+                                        ); // Tampilkan pesan kesalahan jika ada
+                                    }
+                                } catch (error) {
+                                    console.error(
+                                        'Terjadi kesalahan saat mengolah respons: ' +
+                                        error);
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(
+                                    'Terjadi kesalahan saat menghapus data: ' +
+                                    error);
+                            }
+                        });
+
+                    }
                 });
             });
         });
@@ -879,14 +937,17 @@
                 let harga = $(element).find('#hargaSL').val();
                 let qty = $(element).find('#qtySL').val();
                 let satuan = $(element).find('#satuanSL').val();
-                data.push({
-                    id: id_subLayanan,
-                    subLayanan: subLayanan,
-                    qty: qty,
-                    satuan: satuan,
-                    harga: harga
-                });
+                if (subLayanan !== '' && harga !== '' && qty !== '' && satuan !== '') {
+                    data.push({
+                        id: id_subLayanan,
+                        subLayanan: subLayanan,
+                        qty: qty,
+                        satuan: satuan,
+                        harga: harga
+                    });
+                }
             });
+
 
             dataForm = {
                 _token: "{{ csrf_token() }}",

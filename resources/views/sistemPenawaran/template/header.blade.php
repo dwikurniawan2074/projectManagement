@@ -124,10 +124,17 @@
             color: white !important;
         }
 
+        .tabledit-edit-button {
+            float: none;
+            color: white;
+            border-radius: 15px !important;
+        }
+
         .page-item.active .page-link {
             background-color: #FF3E3E !important;
             border: #FF3E3E;
         }
+        
 
 
         /* styling profile secrtion */

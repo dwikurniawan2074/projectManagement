@@ -156,9 +156,9 @@
                                                     <label for="provinsi" class="form-label">Provinsi</label>
                                                     <select class="form-select" name="provinsi">
                                                         <option value="">--Pilih Provinsi--</option>
-                                                        <option value="1">DKI Jakarta</option>
-                                                        <option value="2">Banten</option>
-                                                        <option value="3">Yogyakarta</option>
+                                                        <option value="DKI Jakarta">DKI Jakarta</option>
+                                                        <option value="Banten">Banten</option>
+                                                        <option value="Yogyakarta">Yogyakarta</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -167,8 +167,8 @@
                                                     <label for="kota" class="form-label">Kabupaten/Kota</label>
                                                     <select class="form-select" name="kota">
                                                         <option value="">--Pilih Kota/Kabupaten--</option>
-                                                        <option value="1">Kota Tangerang</option>
-                                                        <option value="2">Tangerang Selatan</option>
+                                                        <option value="Tangerang">Kota Tangerang</option>
+                                                        <option value="Tangerang Selatan">Tangerang Selatan</option>
                                                     </select>
                                                 </div>
                                             </div>

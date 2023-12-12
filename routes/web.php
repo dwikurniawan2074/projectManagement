@@ -19,8 +19,8 @@ use App\Http\Controllers\SistemPenawaran\ApprovalController;
 use App\Http\Controllers\SistemPenawaran\DashboardPenawaranController;
 use App\Http\Controllers\SistemPenawaran\MappingController;
 use App\Http\Controllers\SistemPenawaran\PenawaranController;
-use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SistemPenawaran\SyaratController;
+use App\Http\Controllers\SistemPenawaran\TrafoController;
 use App\Http\Controllers\SubMilestonesController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\TopController;
@@ -176,7 +176,8 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{material}', [OperationalMaterialController::class, 'destroy'])->name('operational.material.delete');
             Route::get('/show/{material}', [OperationalMaterialController::class, 'show'])->name('operational.material.show');
         });
-        Route::prefix('technician')->group(function () {
+
+        Route::prefix('technician')->middleware('hasRole:Admin')->group(function () {
             Route::patch('/{operational}', [OperationalController::class, 'detachTeam'])->name('operational.detach-team');
             Route::patch('/attach/{operational}', [OperationalController::class, 'attachTeam'])->name('operational.attach-team');
         });
@@ -262,12 +263,13 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::get('/edit/{id}', [PenawaranController::class, 'edit'])->name('sistemPenawaran.penawaran.edit');
         Route::delete('/delete/{id}', [PenawaranController::class, 'destroy'])->name('sistemPenawaran.penawaran.destroy');
         Route::put('/update/{id}', [PenawaranController::class, 'update'])->name('sistemPenawaran.penawaran.update');
+        Route::get('/preview/{id}', [PenawaranController::class, 'preview'])->name('sistemPenawaran.penawaran.preview');
+        Route::get('/document/{id}', [PenawaranController::class, 'document'])->name('sistemPenawaran.penawaran.document');
     });
 
     Route::prefix('approval')->group(function () {
         Route::get('/', [ApprovalController::class, 'index'])->name('sistemPenawaran.approval.index');
         Route::get('/preview', [ApprovalController::class, 'preview'])->name('sistemPenawaran.approval.preview');
-        Route::get('/document', [ApprovalController::class, 'document'])->name('sistemPenawaran.approval.document');
     });
 
     Route::prefix('mapping')->group(function () {
