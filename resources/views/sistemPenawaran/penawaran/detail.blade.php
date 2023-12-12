@@ -335,12 +335,12 @@
                                                     </p>
                                                 </th>
                                             </tr>
-                                            {{-- <tr>
-                                            <th scope="row">
-                                                <p class="title-text">Customer Contact Name</p>
-                                                <p class="details-text">{{ $penawaran->customer }}</p>
-                                            </th>
-                                        </tr> --}}
+                                            <tr>
+                                                <th scope="row">
+                                                    <p class="title-text">Customer Contact Name</p>
+                                                    <p class="details-text">{{ $penawaran->customer_contact }}</p>
+                                                </th>
+                                            </tr>
                                             <tr>
                                                 <th scope="row">
                                                     <p class="title-text">Email</p>
