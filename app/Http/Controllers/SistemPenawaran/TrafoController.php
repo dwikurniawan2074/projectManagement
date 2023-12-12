@@ -58,7 +58,7 @@ class TrafoController extends Controller
         // Mengupdate data milestone dengan data yang validasi
         $trafo->update($validated);
 
-        return redirect()->route('sistemPenawaran.penawaran.detail')->with('success', 'Data trafo berhasil diubah.');
+        return redirect()->route('sistemPenawaran.penawaran.detail', ['id' => $validated['id_penawaran']])->with('success', 'Data trafo berhasil diubah.');
     }
 
     // fungsi untuk menghapus document record
