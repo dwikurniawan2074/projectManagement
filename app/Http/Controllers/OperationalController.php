@@ -18,7 +18,14 @@ class OperationalController extends Controller
 {
     public function index()
     {
-        $salesOrder = Project::select('id', 'so')->get();
+
+        if (session('role') == 'Technician') {
+            $operational = Operational::whereHas('team', function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            })->get();
+        } else {
+            $salesOrder = Project::select('id', 'so')->get();
+        }
         return view('operational.index', compact('salesOrder'));
     }
 
