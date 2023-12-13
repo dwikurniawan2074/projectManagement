@@ -24,7 +24,12 @@ class DashboardController extends Controller
         $totalUser = User::count();
         $totalMilestones = Milestone::count();
         $totalSubMilestones = SubMilestone::count();
+        // $milestoneProgres = $subMilestonesQuery->whereIn('progress', ['Done', 'OnProgress', 'Planned'])->get()->countBy('progress');
+        $doneMilestones = Milestone::where('progress', 'done')->count();
+        $onProgressMilestones = Milestone::where('progress', 'On Progress')->count();
+        $plannedMilestones = Milestone::where('progress', 'planned')->count();
+        // dd($plannedMilestones);
 
-        return view('dashboard', compact('projects', 'totalProjects', 'totalUser', 'totalMilestones', 'totalSubMilestones'));
+        return view('dashboard', compact('projects', 'totalProjects', 'totalUser', 'totalMilestones', 'totalSubMilestones', 'doneMilestones', 'onProgressMilestones', 'plannedMilestones'));
     }
 }
