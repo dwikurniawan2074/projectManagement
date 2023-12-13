@@ -1215,6 +1215,7 @@
                         $("#description").val(response.description);
                         $("#due_date").val(response.due_date);
                         $("#progress").val(response.progress);
+                        $('#bobot').val(response.bobot)
                     },
                     error: function (response) {
                         alert("Error: " + response.statusText);
