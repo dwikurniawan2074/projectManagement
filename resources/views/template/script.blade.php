@@ -143,9 +143,13 @@
     <script>
         $(document).ready(function() {
             $('.persentasiAngka').each(function() {
-                var decimalNumber = parseFloat($(this).text());
-                var percentage = (decimalNumber * 100).toFixed(1) + "%";
-                $(this).text(percentage);
+                var decimalNumber = parseFloat($(this).text().replace(",", ".")); // Handle commas as decimals
+                if (!isNaN(decimalNumber)) { // Check if it's a valid number
+                    var percentage = (decimalNumber * 1).toFixed(0) + "%";
+                    $(this).text(percentage);
+                } else {
+                    console.log("Invalid input:", $(this).text());
+                }
             });
         });
     </script>
