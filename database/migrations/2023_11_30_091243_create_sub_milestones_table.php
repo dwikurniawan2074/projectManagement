@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('sub_milestones', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('milestone_id')->references('id')->on('milestones');
+            $table->foreignUuid('milestone_id')->references('id')->on('milestones')->cascadeOnDelete();
             $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
             $table->string('description')->nullable();
