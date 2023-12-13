@@ -29,7 +29,7 @@
 
             background-image: linear-gradient(rgba(81, 81, 81, 0.233),
             rgba(255, 0, 0, 0.45)),
-            url('{{ asset('images/background-login.jpg') }}');
+            url('{{ asset('images/background-page.jpg') }}');
             background-size: cover;
         }
 
