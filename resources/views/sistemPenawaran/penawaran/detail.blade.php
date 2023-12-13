@@ -241,16 +241,10 @@
                                                     <td>{{ $srt['deskripsi'] }}</td>
                                                     <td class="text-center" width="160">
                                                         <div class="d-flex gap-1 justify-content-center">
-                                                            <form
-                                                                action="{{ route('sistemPenawaran.syarat.destroy', $srt['id']) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
-                                                                    Delete
-                                                                </button>
-                                                            </form>
+                                                            <button type="submit" value="{{ $srt['id'] }}"
+                                                                class="btn btn-danger btn-xs waves-effect waves-light rounded-pill hapusSyarat">
+                                                                Delete
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>
