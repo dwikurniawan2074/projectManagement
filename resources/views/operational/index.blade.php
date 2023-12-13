@@ -74,7 +74,6 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                {{--                                @dd($salesOrder)--}}
                                 @unless(count($salesOrder))
                                     <div class="row">
                                         <div class="col-md-12">
@@ -562,7 +561,7 @@
                         if (operationalData.team.length == 0) {
                             $('#table-technician tbody').append(`
                                 <tr>
-                                    <td colspan="3" align="center">Belum ada Technician</td>
+                                    <td colspan="4" align="center">Belum ada Technician</td>
                                 </tr>
                             `);
                         } else {

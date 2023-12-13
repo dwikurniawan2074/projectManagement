@@ -23,8 +23,40 @@
                                         <i class="mdi mdi-book-check-outline fa-4x"></i>
                                     </div>
                                     <div class="col-8">
-                                        <h4 class="fw-bold">Total Projects</h4>
+                                        <h4 class="fw-bold">Projects Total</h4>
                                         <h2 class="fw-bold">{{ $totalProjects }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-center">
+                                        <i class="mdi mdi-check-network-outline fa-4x"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 class="fw-bold">Milestones Total</h4>
+                                        <h2 class="fw-bold">{{ $totalMilestones }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-center">
+                                        <i class="mdi mdi-book-check-outline fa-4x"></i>
+                                    </div>
+                                    <div class="col-8">
+                                        <h4 class="fw-bold">Sub Milestones </h4>
+                                        <h2 class="fw-bold">{{ $totalSubMilestones }}</h2>
                                     </div>
                                 </div>
                             </div>
