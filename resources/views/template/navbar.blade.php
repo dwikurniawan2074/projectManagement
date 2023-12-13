@@ -204,9 +204,14 @@
                 <li class="profile-section">
                     <div class=" user-box text-start">
                         <div class="row px-3">
-                            <div class="col-7">
+                            <div class="col-4 profile-photo-column">
+                                <img
+                                    src="{{ asset('images/user_default.jpg') }}"
+                                    alt="user-img" title="profile photo" class="rounded img-thumbnail avatar-md">
+                            </div>
+                            <div class="col-6 ps-1">
                                 <h5 class="mb-1">{{auth()->user()->first_name}}</h5>
-                                {{--                                <p class="text-muted left-user-info mb-0">{{auth()}}</p>--}}
+                                 <p class="text-muted left-user-info mb-0">{{ session('role') }}</p>
                             </div>
                             <div class="col-2 my-auto">
                                 <form method="POST" action="{{route('logout')}}">
