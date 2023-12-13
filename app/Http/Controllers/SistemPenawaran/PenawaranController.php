@@ -36,7 +36,18 @@ class PenawaranController extends Controller
             }])
             ->paginate(5);
         $layanan->setCollection($layanan->groupBy(['trafo.no_seri', 'trafo.id', 'layanan']));
-        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan', 'syarat'));
+        $layananList = Layanan::where('id_penawaran', $id)->get('price');
+        $total_Allprice = 0;
+
+        if ($layananList->isEmpty()) {
+            $total_Allprice = 0;
+        } else {
+            foreach ($layananList as $item) {
+                $total_Allprice += $item->price;
+            }
+        }
+        // dd($total_price);
+        return view('sistemPenawaran.penawaran.detail', compact('penawaran', 'trafo', 'formTrafoAction', 'data', 'layanan', 'syarat', 'total_Allprice'));
     }
 
     public function create()
@@ -127,7 +138,7 @@ class PenawaranController extends Controller
             'alamat' => 'required',
         ]);
 
-        
+
 
         $penawaran = Penawaran::findOrFail($id);
         $penawaran->update($validatedData);
@@ -149,26 +160,28 @@ class PenawaranController extends Controller
         }
     }
 
-    public function preview($id){
+    public function preview($id)
+    {
         $penawaran = Penawaran::findOrFail($id);
         return view('sistemPenawaran.approval.preview', compact('penawaran'));
     }
 
-    public function document($id){
+    public function document($id)
+    {
 
         // $dompdf = new Dompdf();
 
 
         // $weeklyPdf = view('projects.weeklyProgress')->render();
-        
+
 
         // // Load HTML content into Dompdf
         // $dompdf->loadHtml($weeklyPdf);
-        
+
         // $dompdf->setPaper('A4', 'landscape'); // Set paper orientation
         // $dompdf->render();
 
-        
+
 
         // Save PDFs to storage or public directory
         // return $dompdf->stream('print_preview.pdf');
@@ -218,8 +231,6 @@ class PenawaranController extends Controller
             'Visual cek',
             'Cleaning terminasi'
         ];
-        
-        
 
 
         return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan', 'oilTypeList', 'dryTypeList'));

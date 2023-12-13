@@ -342,7 +342,8 @@
                                             <tr>
                                                 <th scope="row">
                                                     <p class="title-text">Total</p>
-                                                    <p class="rupiah">{{ $total_price }}</p>
+                                                    <p class="rupiah">
+                                                        {{ $total_Allprice }}</p>
                                                 </th>
                                             </tr>
                                             <tr>
