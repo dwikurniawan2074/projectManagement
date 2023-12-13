@@ -285,7 +285,7 @@
                                                                              class="dataTables_wrapper dt-bootstrap5">
                                                                             <table
                                                                                 class="table table-striped table-hover dt-responsive table-hover table-responsive nowrap dataTable no-footer dtr-inline"
-                                                                                id="table-expenses">
+                                                                                id="table-expenses" style="text-align: center">
                                                                                 <thead>
                                                                                 <tr>
                                                                                     <th>#</th>
@@ -701,7 +701,15 @@
                     },
                     {
                         data: 'amount',
-                        name: 'amount'
+                        name: 'amount',
+                        render: function(data, type, row) {
+                            if (!isNaN(parseFloat(data))) {
+                                var formatRupiah = parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.');
+                                return 'Rp ' + formatRupiah;
+                            } else {
+                                return data;
+                            }
+                        }
                     },
                     {
                         data: 'id',
@@ -739,7 +747,7 @@
                                 `
                         }
                     }
-                ]
+                ],
             })
         }
     </script>
