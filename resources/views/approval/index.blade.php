@@ -27,6 +27,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+
+
                         <div class="card">
                             <div class="card-body">
                                 <div class="row table-title mb-3">
@@ -51,12 +53,14 @@
                                 </table>
                             </div>
                         </div>
+
+                        
                         <div class="card">
                             <div class="card-body">
                                 <div class="row table-title mb-3">
                                     <div class="col-sm-8">
 
-                                        <h4 class="mt-0">Approved</h4>
+                                        <h4 class="mt-0">Approved Data</h4>
                                     </div>
                                 </div>
                                 <table id="approved" class="table table-striped dt-responsive table-responsive nowrap">
