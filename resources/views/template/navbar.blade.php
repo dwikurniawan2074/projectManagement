@@ -171,12 +171,12 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('calendar/*') ? 'menuitem-active' : ''}}">
+                {{-- <li class="{{ Request::is('calendar/*') ? 'menuitem-active' : ''}}">
                     <a href="{{ url('calendar') }}">
                         <i class="mdi mdi-calendar-blank-outline"></i>
                         <span> Calendar </span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="{{ Request::is('customer/*') || Request::is('customerContact/*') ? 'menuitem-active' : ''}}">
                     <a href="{{ url('customer') }}">
