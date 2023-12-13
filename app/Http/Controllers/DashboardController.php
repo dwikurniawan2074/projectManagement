@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Milestone;
+use App\Models\SubMilestone;
 
 class DashboardController extends Controller
 {
@@ -20,7 +22,9 @@ class DashboardController extends Controller
         // Menghitung total proyek
         $totalProjects = Project::count();
         $totalUser = User::count();
+        $totalMilestones = Milestone::count();
+        $totalSubMilestones = SubMilestone::count();
 
-        return view('dashboard', compact('projects', 'totalProjects', 'totalUser'));
+        return view('dashboard', compact('projects', 'totalProjects', 'totalUser', 'totalMilestones', 'totalSubMilestones'));
     }
 }
