@@ -29,7 +29,7 @@
 
             background-image: linear-gradient(rgba(81, 81, 81, 0.233),
             rgba(255, 0, 0, 0.45)),
-            url('{{ asset('images/trafindo-workshop.png') }}');
+            url('{{ asset('images/background-login.jpg') }}');
             background-size: cover;
         }
 
@@ -100,9 +100,8 @@
 
                             <div class="row mt-3">
                                 <div class="col-12 text-center">
-                                    <p><a href="#" class="text-muted ms-1"><i
-                                                class="fa fa-lock me-1"></i>Forgot your password?</a></p>
-                                    <p class="text-muted">Don't have an account? <a
+                                    <p class="text-muted ms-1">Forgot your password?</p>
+                                    <p class="text-muted">Or Don't have an account? <a
                                             href="https://wa.me/628111260360" class="text-dark ms-1"
                                             target="_blank"><b>Contact Admin</b></a></p>
                                 </div> <!-- end col -->
