@@ -213,7 +213,7 @@
                                 <h5 class="mb-1">{{auth()->user()->first_name}}</h5>
                                  <p class="text-muted left-user-info mb-0">{{ session('role') }}</p>
                             </div>
-                            <div class="col-2 my-auto">
+                            <div class="col-2 my-auto text-end">
                                 <form method="POST" action="{{route('logout')}}">
                                     @csrf
                                     <button class="fe-log-out logout-font btn-logout" title="Logout System"
