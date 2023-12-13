@@ -197,8 +197,8 @@
                 data: [{{ $doneMilestones }}, {{ $onProgressMilestones }}, {{ $plannedMilestones }}],
                 backgroundColor: [
                     '#10c469',
-                    '#f9c851',
-                    '#3E8BFF'
+                    '#3E8BFF',
+                    '#f9c851'
                 ],
                 hoverOffset: 4
             }]
