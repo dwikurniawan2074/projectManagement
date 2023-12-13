@@ -91,6 +91,8 @@
                     </div>
                     <!-- /.modal -->
                 </div>
+            </div>
+        </div>
     </form>
 
     {{-- modals edit document record --}}
