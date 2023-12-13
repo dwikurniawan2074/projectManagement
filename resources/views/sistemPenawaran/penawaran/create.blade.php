@@ -145,9 +145,12 @@
                                                     <label for="negara" class="form-label">Negara</label>
                                                     <select class="form-select" name="negara">
                                                         <option value="">--Pilih Negara--</option>
-                                                        <option value="1">Malaysia</option>
-                                                        <option value="2">Singapura</option>
-                                                        <option value="3">Indonesia</option>
+                                                        <option value="Malaysia">Malaysia</option>
+                                                        <option value="Singapura">Singapura</option>
+                                                        <option value="Indonesia">Indonesia</option>
+                                                        <option value="Philipina">Philipina</option>
+                                                        <option value="Thailand">Thailand</option>
+                                                        <option value="Vietnam">Vietnam</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -156,8 +159,17 @@
                                                     <label for="provinsi" class="form-label">Provinsi</label>
                                                     <select class="form-select" name="provinsi">
                                                         <option value="">--Pilih Provinsi--</option>
+                                                        <option value="Aceh">Aceh</option>
+                                                        <option value="Sumatera Utara">Sumatera Utara</option>
+                                                        <option value="Sumatera Barat">Sumatera Barat</option>
+                                                        <option value="Bengkulu">Bengkulu</option>
+                                                        <option value="Riau">Bengkulu</option>
+                                                        <option value="Jambi">Jambi</option>
+                                                        <option value="Lampung">Lampung</option>
+                                                        <option value="Bangka Belitung">Bangka Belitung</option>
                                                         <option value="DKI Jakarta">DKI Jakarta</option>
-                                                        <option value="Banten">Banten</option>
+                                                        <option value="Jawa Barat">Jawa Barat</option>
+                                                        <option value="Jawa Tengah">Jawa Tengah</option>
                                                         <option value="Yogyakarta">Yogyakarta</option>
                                                     </select>
                                                 </div>
@@ -167,8 +179,17 @@
                                                     <label for="kota" class="form-label">Kabupaten/Kota</label>
                                                     <select class="form-select" name="kota">
                                                         <option value="">--Pilih Kota/Kabupaten--</option>
-                                                        <option value="Tangerang">Kota Tangerang</option>
-                                                        <option value="Tangerang Selatan">Tangerang Selatan</option>
+                                                        <option value="Banda Aceh">Banda Aceh</option>
+                                                        <option value="Medan">Medan</option>
+                                                        <option value="Bengkulu">Medan</option>
+                                                        <option value="Riau">Riau</option>
+                                                        <option value="Jambi">Jambi</option>
+                                                        <option value="Lampung">Lampung</option>
+                                                        <option value="Pangkal Pinang">Pangkal Pinang</option>
+                                                        <option value="Jakarta">Jakarta</option>
+                                                        <option value="Bandung">Bandung</option>
+                                                        <option value="Semarang">Semarang</option>
+                                                        <option value="Yogyakarta">Yogyakarta</option>
                                                     </select>
                                                 </div>
                                             </div>
