@@ -294,8 +294,10 @@
                                             </form>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Delete Project" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                class="tabledit-edit-button btn btn-danger hapusPenawaran" value="{{ $penawaran->id }}">
+                                            <button title="Delete Project" type="submit"
+                                                style="padding: 0.28rem 0.8rem;"
+                                                class="tabledit-edit-button btn btn-danger hapusPenawaran"
+                                                value="{{ $penawaran->id }}">
                                                 <span class="mdi mdi-trash-can-outline"></span>
                                             </button>
                                         </div>
@@ -340,7 +342,7 @@
                                             <tr>
                                                 <th scope="row">
                                                     <p class="title-text">Total</p>
-                                                    <p class="details-text">Rp. 150.000.000</p>
+                                                    <p class="rupiah">{{ $total_price }}</p>
                                                 </th>
                                             </tr>
                                             <tr>
