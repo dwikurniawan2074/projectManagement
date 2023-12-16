@@ -30,6 +30,7 @@ class Penawaran extends Model
         'provinsi',
         'kota',
         'alamat',
+        'status',
     ];
 
     public function trafo()

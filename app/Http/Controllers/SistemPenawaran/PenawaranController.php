@@ -103,8 +103,15 @@ class PenawaranController extends Controller
         $penawaran->provinsi = $request->input('provinsi');
         $penawaran->kota = $request->input('kota');
         $penawaran->alamat = $request->input('alamat');
+        $penawaran->status = "waiting";
 
-        $penawaran->save();
+        try {
+            $penawaran->save();
+        } catch (\Exception $e) {
+            // Log or dump the exception message for debugging
+            dd($e->getMessage());
+        }
+        
         // Redirect dengan pesan sukses
         return redirect()->route('sistemPenawaran.penawaran.index')->with('success', 'Project berhasil ditambahkan');
     }
@@ -118,7 +125,6 @@ class PenawaranController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $validatedData = $request->validate([
             'project_name' => 'required',
             'judul_pekerjaan' => 'required',
@@ -139,7 +145,7 @@ class PenawaranController extends Controller
             'kota' => 'required',
             'alamat' => 'required',
         ]);
-
+        $validatedData['status'] = 'waiting';
 
 
         $penawaran = Penawaran::findOrFail($id);
@@ -207,23 +213,15 @@ class PenawaranController extends Controller
 
 
         return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan', 'oilTypeList', 'dryTypeList'));
-        // $options = new Options();
-        // $options->set('isHtml5ParserEnabled', true); // Enable HTML5 parser
-        // $options->set('isRemoteEnabled', true); // Enable remote file access (if needed)
+        
+    }
 
-        // $dompdf = new Dompdf($options);
+    public function updateStatus($id){
+        $penawaran = Penawaran::findOrFail($id);
+        $penawaran->status = 'approved'; // Set the status attribute to 'approved'
+        $penawaran->save(); // Save the updated status
 
-        // $html = view('sistemPenawaran.approval.pdf', $data)->render();
-
-        // // Load HTML content into dompdf
-        // $dompdf->loadHtml($html);
-
-        // // (Optional) Set paper size and orientation
-        // $dompdf->setPaper('A4', 'portrait');
-
-        // // Render the PDF
-        // $dompdf->render();
-
-        // return $dompdf->stream('penawarn_document.pdf');
+        // You can return a response indicating success or perform other actions as needed
+        return response()->json(['message' => 'Penawaran Approved']);
     }
 }

@@ -265,6 +265,7 @@ Route::prefix('sistemPenawaran')->group(function () {
         Route::put('/update/{id}', [PenawaranController::class, 'update'])->name('sistemPenawaran.penawaran.update');
         Route::get('/preview/{id}', [PenawaranController::class, 'preview'])->name('sistemPenawaran.penawaran.preview');
         Route::get('/document/{id}', [PenawaranController::class, 'document'])->name('sistemPenawaran.penawaran.document');
+        Route::put('/updateStatus/{id}', [PenawaranController::class, 'updateStatus'])->name('sistemPenawaran.penawaran.updateStatus');
     });
 
     Route::prefix('approval')->group(function () {
