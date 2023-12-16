@@ -216,7 +216,7 @@
                                                 <label for="field-1" class="form-label">Note<span class="text-danger">*</span>
                                                 </label>
                                                 @if ($penawaran->status == 'rejected') 
-                                                    <textarea class="form-control" name="notes" id="notes" cols="30" rows="5" readonly disabled>Penawaran Masih Belum Oke</textarea>
+                                                    <textarea class="form-control" name="notes" id="notes" cols="30" rows="5" readonly disabled>{{ $penawaran->note }}</textarea>
                                                 @else
                                                     <textarea class="form-control" name="notes" id="notes" cols="30" rows="5"></textarea>
                                                 @endif
@@ -269,7 +269,54 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Show the "Rejected Notes" modal
-                    $('#notes-modal').modal('show');
+                    Swal.fire({
+                    title: 'Rejected Notes',
+                    input: 'textarea',
+                    inputLabel: 'Alasan Penolakan',
+                    inputPlaceholder: 'Masukkan alasan penolakan...',
+                    inputAttributes: {
+                        'aria-label': 'Masukkan alasan penolakan'
+                    },
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Reject',
+                    cancelButtonText: 'Cancel',
+                    preConfirm: (notes) => {
+                        // Set the status attribute to 'rejected' and store notes
+                        $.ajax({
+                            url: "{{ route('sistemPenawaran.penawaran.updateStatus', '') }}" + '/' + id,
+                            type: 'PUT', // Use PUT method for update
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                status: 'rejected',
+                                notes: notes // Send the rejected notes
+                            },
+                            success: function (response) {
+                                try {
+                                    if (response.message) {
+                                        Swal.fire({
+                                            title: "Sukses!",
+                                            text: response.message,
+                                            icon: 'success',
+                                            confirmButtonText: 'OK'
+                                        }).then((hasil) => {
+                                            if (hasil.isConfirmed) {
+                                                window.location.href = "{{ route('sistemPenawaran.approval.index') }}";
+                                            }
+                                        });
+                                    } else {
+                                        console.error('Terjadi kesalahan: ' + response.error);
+                                    }
+                                } catch (error) {
+                                    console.error('Terjadi kesalahan saat mengolah respons: ' + error);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Terjadi kesalahan saat mengirim data: ' + error);
+                            }
+                        });
+                    }
+                });
                 }
             });
         });

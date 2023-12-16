@@ -31,6 +31,7 @@ class Penawaran extends Model
         'kota',
         'alamat',
         'status',
+        'note',
     ];
 
     public function trafo()
