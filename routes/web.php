@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [CustomerContactController::class, 'edit'])->name('customerContact.edit');
         Route::post('/update', [CustomerContactController::class, 'update'])->name('customerContact.update');
         Route::delete('/delete/{id}', [CustomerContactController::class, 'destroy'])->name('customerContact.destroy');
-        Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerContacts'])->name('customerContact.get');
+        Route::get('/get-customer-contacts/{customer_id}', [CustomerContactController::class, 'getCustomerData'])->name('customerContact.get');
     });
     //Notification
     Route::post('marks-as-read/{notification}', [UserController::class, 'marksAsRead'])->name('markNotification');
