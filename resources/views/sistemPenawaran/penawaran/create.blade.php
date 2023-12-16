@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="no-rfq" class="form-label">No. RFQ<span
+                                                <label for="no-rfq" class="form-label">No.RFQ<span
                                                     class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="no-ref" name="no_ref"
                                                     placeholder="RFQ" parsley-trigger="change" required="">
@@ -111,10 +111,12 @@
                                             <div class="mb-3">
                                                 <label for="delivery-time" class="form-label">Delivery Time<span class="text-danger">*</span></label>
                                                 <select class="form-select" name="jangka_waktu">
-                                                    <option value="">--Pilih Delivery Time--</option>
-                                                    <option value="1">15 Hari</option>
-                                                    <option value="2">30 Hari</option>
-                                                    <option value="3">45 Hari</option>
+                                                    <option value="" disabled>--Pilih Delivery Time--</option>
+                                                    <option value="15 Hari">15 Hari</option>
+                                                    <option value="30 Hari">30 Hari</option>
+                                                    <option value="45 Hari">45 Hari</option>
+                                                    <option value="60 Hari">60 Hari</option>
+                                                    <option value="75 Hari">75 Hari</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -123,10 +125,10 @@
                                                 <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar<span
                                                     class="text-danger">*</span></label>
                                                 <select class="form-select" name="segmentasi_pasar">
-                                                    <option value="">--Pilih Segmentasi--</option>
-                                                    <option value="1">Pertambangan</option>
-                                                    <option value="2">Pertanian</option>
-                                                    <option value="3">Manufaktur</option>
+                                                    <option value="" disabled>--Pilih Segmentasi--</option>
+                                                    <option value="Pertambangan">Pertambangan</option>
+                                                    <option value="Pertanian">Pertanian</option>
+                                                    <option value="Manufaktur">Manufaktur</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -153,7 +155,7 @@
                                                 <div class="mb-3">
                                                     <label for="negara" class="form-label">Negara<span class="text-danger">*</span></label>
                                                     <select class="form-select" name="negara">
-                                                        <option value="">--Pilih Negara--</option>
+                                                        <option value="" disabled>--Pilih Negara--</option>
                                                         <option value="Malaysia">Malaysia</option>
                                                         <option value="Singapura">Singapura</option>
                                                         <option value="Indonesia">Indonesia</option>
@@ -168,7 +170,7 @@
                                                     <label for="provinsi" class="form-label">Provinsi<span
                                                         class="text-danger">*</span></label>
                                                     <select class="form-select" name="provinsi">
-                                                        <option value="">--Pilih Provinsi--</option>
+                                                        <option value="" disabled>--Pilih Provinsi--</option>
                                                         <option value="Aceh">Aceh</option>
                                                         <option value="Sumatera Utara">Sumatera Utara</option>
                                                         <option value="Sumatera Barat">Sumatera Barat</option>
@@ -189,9 +191,10 @@
                                                     <label for="kota" class="form-label">Kabupaten/Kota<span
                                                         class="text-danger">*</span></label>
                                                     <select class="form-select" name="kota">
-                                                        <option value="">--Pilih Kota/Kabupaten--</option>
+                                                        <option value="" disabled>--Pilih Kota/Kabupaten--</option>
                                                         <option value="Banda Aceh">Banda Aceh</option>
                                                         <option value="Medan">Medan</option>
+                                                        <option value="Padang">Padang</option>
                                                         <option value="Bengkulu">Medan</option>
                                                         <option value="Riau">Riau</option>
                                                         <option value="Jambi">Jambi</option>
