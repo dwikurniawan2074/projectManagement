@@ -170,10 +170,10 @@ class PenawaranController extends Controller
 
     public function document($id)
     {
-
-        $penawaran = Penawaran::findOrFail($id)->first();
+        $penawaran = Penawaran::where('id', $id)->first();
         $syarat = Syarat_Ketentuan::where('id_penawaran', $id)->get();
         $layanan = Layanan::with('trafo')->where('id_penawaran', $id)->get();
+
 
         $oilTypeList = [
             'Insulation resistance',
