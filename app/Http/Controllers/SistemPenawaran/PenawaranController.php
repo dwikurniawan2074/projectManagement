@@ -171,7 +171,28 @@ class PenawaranController extends Controller
     public function preview($id)
     {
         $penawaran = Penawaran::findOrFail($id);
-        return view('sistemPenawaran.approval.preview', compact('penawaran'));
+        $data = $id;
+        $trafo = Trafo::all();
+        $syarat = Syarat_Ketentuan::where('id_penawaran', $id)->get();
+        $layanan = Layanan::where('id_penawaran', $id)
+            ->with(['trafo' => function ($query) {
+                $query->select('id', 'no_seri', 'merk');
+            }])
+            ->paginate(5);
+        $layanan->setCollection($layanan->groupBy(['trafo.no_seri', 'trafo.id', 'layanan']));
+        $layananList = Layanan::where('id_penawaran', $id)->get('price');
+        $total_Allprice = 0;
+
+        if ($layananList->isEmpty()) {
+            $total_Allprice = 0;
+        } else {
+            foreach ($layananList as $item) {
+                $total_Allprice += $item->price;
+            }
+        }
+        // dd($total_price);
+        return view('sistemPenawaran.approval.preview', compact('penawaran', 'trafo', 'data', 'layanan', 'syarat', 'total_Allprice'));
+        // return view('sistemPenawaran.approval.preview', compact('penawaran'));
     }
 
     public function document($id)

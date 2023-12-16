@@ -122,6 +122,12 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">
+                                            <p class="title-text">Customer Contact Name</p>
+                                            <p class="details-text">{{ $penawaran->customer_contact }}</p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
                                             <p class="title-text">Email</p>
                                             <p class="details-text">{{ $penawaran->email }}</p>
                                         </th>
@@ -135,7 +141,8 @@
                                     <tr>
                                         <th scope="row">
                                             <p class="title-text">Total</p>
-                                            <p class="details-text">Rp. 150.000.000</p>
+                                            <p class="rupiah">
+                                                {{ $total_Allprice }}</p>
                                         </th>
                                     </tr>
                                     <tr>
