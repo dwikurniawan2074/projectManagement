@@ -13,22 +13,24 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('sistemPenawaran.penawaran.store') }}" method="POST">
+                                <form action="{{ route('sistemPenawaran.penawaran.store') }}" class="parsley-examples" novalidate="" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="project-name" class="form-label">Project Name</label>
+                                                <label for="project-name" class="form-label">Project Name<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="project-name"
-                                                    name="project_name" placeholder="Name">
+                                                    name="project_name" placeholder="Name" parsley-trigger="change" required="">
 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="judul-pekerjaan" class="form-label">Judul Pekerjaan</label>
+                                                <label for="judul-pekerjaan" class="form-label">Judul Pekerjaan<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="judul-pekerjaan"
-                                                    name="judul_pekerjaan" placeholder="Judul">
+                                                    name="judul_pekerjaan" placeholder="Judul" parsley-trigger="change" required="">
                                             </div>
                                         </div>
 
@@ -36,57 +38,63 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
+                                                <label for="email" class="form-label">Email<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="email" name="email"
-                                                    placeholder="Email">
+                                                    placeholder="Email" parsley-trigger="change" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="no-msg" class="form-label">CC</label>
+                                                <label for="no-msg" class="form-label">CC<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="cc" name="cc"
-                                                    placeholder="CC">
+                                                    placeholder="CC" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="no-rfq" class="form-label">MSG.</label>
+                                                <label for="no-rfq" class="form-label">No.MSG<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="no-msg" name="no_msg"
-                                                    placeholder="MSG">
+                                                    placeholder="MSG" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="no-rfq" class="form-label">No. RFQ</label>
+                                                <label for="no-rfq" class="form-label">No. RFQ<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="no-ref" name="no_ref"
-                                                    placeholder="RFQ">
+                                                    placeholder="RFQ" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="customer" class="form-label">Customer</label>
+                                                <label for="customer" class="form-label">Customer<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="customer" name="attd"
-                                                    placeholder="Customer">
+                                                    placeholder="Customer" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="customer-contact" class="form-label">Customer Contact
-                                                    Name</label>
+                                                    Name<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="customer-contact"
-                                                    name="customer_contact" placeholder="Customer Contact">
+                                                    name="customer_contact" placeholder="Customer Contact" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="no-hp" class="form-label">No. HP</label>
+                                                <label for="no-hp" class="form-label">No. HP<span
+                                                    class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="no-hp" name="tel_fax"
-                                                    placeholder="No. HP">
+                                                    placeholder="No. HP" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                     </div>
@@ -94,14 +102,14 @@
                                         <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="tanggal-penawaran" class="form-label">Tanggal
-                                                    Penawaran</label>
+                                                    Penawaran<span class="text-danger">*</span></label>
                                                 <input type="date" class="form-control datepicker" id="tanggal-penawaran"
-                                                    name="date">
+                                                    name="date" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="delivery-time" class="form-label">Delivery Time</label>
+                                                <label for="delivery-time" class="form-label">Delivery Time<span class="text-danger">*</span></label>
                                                 <select class="form-select" name="jangka_waktu">
                                                     <option value="">--Pilih Delivery Time--</option>
                                                     <option value="1">15 Hari</option>
@@ -112,7 +120,8 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-3">
-                                                <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar</label>
+                                                <label for="segmentasi-pasar" class="form-label">Segmentasi Pasar<span
+                                                    class="text-danger">*</span></label>
                                                 <select class="form-select" name="segmentasi_pasar">
                                                     <option value="">--Pilih Segmentasi--</option>
                                                     <option value="1">Pertambangan</option>
@@ -126,23 +135,23 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="pelaksanaan-pekerjaan" class="form-label">Pelaksanaan
-                                                    Pekerjaan</label>
-                                                <input type="text" class="form-control" id="pelaksanaan-pekerjaan"
+                                                    Pekerjaan<span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="pelaksanaan-pekerjaan" parsley-trigger="change" required=""
                                                     name="pelaksanaan_pekerjaan" placeholder="Pelaksanaan Pekerjaan">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="syarat-pembayaran" class="form-label">Syarat
-                                                    Pembayaran</label>
+                                                    Pembayaran<span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="syarat-pembayaran"
-                                                    name="syarat_pembayaran" placeholder="Syarat Pembayaran">
+                                                    name="syarat_pembayaran" placeholder="Syarat Pembayaran" parsley-trigger="change" required="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="negara" class="form-label">Negara</label>
+                                                    <label for="negara" class="form-label">Negara<span class="text-danger">*</span></label>
                                                     <select class="form-select" name="negara">
                                                         <option value="">--Pilih Negara--</option>
                                                         <option value="Malaysia">Malaysia</option>
@@ -156,7 +165,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="provinsi" class="form-label">Provinsi</label>
+                                                    <label for="provinsi" class="form-label">Provinsi<span
+                                                        class="text-danger">*</span></label>
                                                     <select class="form-select" name="provinsi">
                                                         <option value="">--Pilih Provinsi--</option>
                                                         <option value="Aceh">Aceh</option>
@@ -176,7 +186,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
-                                                    <label for="kota" class="form-label">Kabupaten/Kota</label>
+                                                    <label for="kota" class="form-label">Kabupaten/Kota<span
+                                                        class="text-danger">*</span></label>
                                                     <select class="form-select" name="kota">
                                                         <option value="">--Pilih Kota/Kabupaten--</option>
                                                         <option value="Banda Aceh">Banda Aceh</option>
@@ -197,8 +208,10 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="">
-                                                    <label for="alamat" class="form-label">Alamat</label>
-                                                    <textarea rows="5" class="form-control" id="alamat" placeholder="Alamat" name="alamat"></textarea>
+                                                    <label for="alamat" class="form-label">Alamat<span
+                                                        class="text-danger">*</span></label>
+                                                    <textarea rows="5" class="form-control" id="alamat" 
+                                                    placeholder="Alamat" name="alamat" parsley-trigger="change" required=""></textarea>
                                                 </div>
                                             </div>
                                         </div>
