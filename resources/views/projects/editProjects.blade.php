@@ -37,9 +37,11 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="" method="post" class="parsley-examples" id="formProject"
+                                <form action="{{route('projects.update',$id)}}" method="post" class="parsley-examples"
+                                      id="formProject"
                                       novalidate="">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
