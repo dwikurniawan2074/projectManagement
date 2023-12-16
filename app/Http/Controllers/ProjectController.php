@@ -7,10 +7,11 @@ use App\Models\Project;
 use App\Models\User;
 use App\Notifications\projectNotification;
 use Exception;
-// use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
+
+// use Dompdf\Dompdf;
 
 class ProjectController extends Controller
 {
@@ -207,34 +208,82 @@ class ProjectController extends Controller
         }
         $customers = Customer::all();
         $project = Project::findOrFail($id);
-        return view('projects.editProjects', compact('usersByRole', 'customers', 'project'));
+        return view('projects.editProjects', compact('usersByRole', 'customers', 'project', 'id'));
     }
 
     // Mengupdate project ke dalam database
     public function update(Request $request, $id)
     {
-        // Validasi data input dari form
-        $validatedData = $request->validate([
-            'po' => 'string',
-            'customer_id' => 'string',
-            'label' => 'string',
-            'location' => 'string',
-            'project_manager' => 'string',
-            'sales_executive' => 'string',
-            'start_date' => 'date',
-            'end_date' => 'date|after:start_date',
-            'preliminary_cost' => 'numeric',
-            'po_amount' => 'numeric',
-            'expense_budget' => 'nullable|numeric',
-            'so' => 'nullable|string',
-            'memo' => 'nullable|required_without_all:so|string'
+        // Validasi input dari form
+        $request->validate([
+            'label' => 'required',
+            'customers' => 'required',
+            'customers-name' => 'required',
+            'project_manager' => 'required',
+            'sales_executive' => 'required',
+            'location' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'preliminary_cost' => 'required|numeric',
+            'po_amount' => 'required|numeric',
+            'expense_budget' => 'required|numeric',
+            'so-1' => 'nullable|string',
+            'so-2' => 'nullable|string',
+            'so-3' => 'nullable|string',
+            'memo-1' => 'nullable|required_without_all:so-1,so-2,so-3|string',
+            'memo-2' => 'nullable|required_without_all:so-1,so-2,so-3|string',
+            'memo-3' => 'nullable|required_without_all:so-1,so-2,so-3|string',
+            'memo-4' => 'nullable|required_without_all:so-1,so-2,so-3|string',
+            'memo-5' => 'nullable|required_without_all:so-1,so-2,so-3|string',
+        ], [
+            'end_date.after' => 'Tanggal akhir harus setelah tanggal awal.',
+            'so-1.required_if' => 'SO Number harus diisi jika salah satu so-2 atau so-3 diisi.',
+            'so-2.required_if' => 'SO Number harus diisi jika salah satu so-1 atau so-3 diisi.',
+            'so-3.required_if' => 'SO Number harus diisi jika salah satu so-1 atau so-2 diisi.',
+            'memo-1.required' => 'Memo harus diisi jika SO Number tidak diisi.',
         ]);
 
-        // Update data di dalam database
-        $project = Project::findOrFail($id);
-        $project->update($validatedData);
 
-        return redirect('/projects/projects')->with('success', 'Project berhasil diperbarui.');
+        // Menggabungkan kolom PO, Memo, dan SO menjadi satu nilai
+        $po = $request->input('po-1') . '/' . $request->input('po-2');
+        $so = $request->filled('so-1') ? $request->input('so-1') . "/" . $request->input('so-2') . "/" . $request->input('so-3') : "Nomor SO Belum diisi";
+        $memo = $request->input('memo-1') . "/" . $request->input('memo-2') . "/" . $request->input('memo-3') . "/" . $request->input('memo-4') . "/" . $request->input('memo-5');
+
+
+        // Simpan data ke dalam database
+        $project = Project::findOrFail($id);
+        $project->label = $request->input('label');
+        $project->customer_id = $request->input('customers'); // Menggunakan ID pelanggan yang ada atau yang baru dibuat
+        $project->customer_contact_id = $request->input('customers-name'); // Menggunakan ID kontak pelanggan yang ada atau yang baru dibuat
+        $project->project_manager = $request->input('project_manager');
+        $project->sales_executive = $request->input('sales_executive');
+        $project->location = $request->input('location');
+        $project->start_date = $request->input('start_date');
+        $project->end_date = $request->input('end_date');
+        $project->preliminary_cost = $request->input('preliminary_cost');
+        $project->po = $po;
+        $project->memo = $memo;
+        $project->so = $so;
+        $project->po_amount = $request->input('po_amount');
+        $project->expense_budget = $request->input('expense_budget');
+        $project->save();
+
+        if ($so === "Nomor SO Belum diisi") {
+            //Notification
+            $projectID = $project->id;
+            $label = $project->label;
+            $name = auth()->user()->first_name;
+            $users = User::Role(['Project Manager', 'Sales Executive'])->get();
+            Notification::send($users, new projectNotification(
+                'SO project ' . '""' . $label . '""' . ' perlu diisi',
+                $name,
+                'warning',
+                route('projects.show', $projectID)
+            ));
+        }
+
+        // Redirect dengan pesan sukses
+        return redirect('projects')->with('success', 'Project berhasil diupdate');
     }
 
     public function getProjects()
@@ -257,7 +306,8 @@ class ProjectController extends Controller
         }
     }
 
-    public function showWeekly($id){
+    public function showWeekly($id)
+    {
         $project = Project::findOrFail($id);
         $milestones = $project->milestones()->get();
         $customer = $project->customer()->first();
@@ -266,22 +316,22 @@ class ProjectController extends Controller
 
 
         // $weeklyPdf = view('projects.weeklyProgress')->render();
-        
+
 
         // // Load HTML content into Dompdf
         // $dompdf->loadHtml($weeklyPdf);
-        
+
         // $dompdf->setPaper('A4', 'landscape'); // Set paper orientation
         // $dompdf->render();
 
-        
 
         // Save PDFs to storage or public directory
         // return $dompdf->stream('print_preview.pdf');
         return view('projects.weeklyProgress', compact('project', 'milestones', 'customer'));
     }
 
-    public function showDaily(){
+    public function showDaily()
+    {
         return view('projects.dailyProgress');
     }
 }
