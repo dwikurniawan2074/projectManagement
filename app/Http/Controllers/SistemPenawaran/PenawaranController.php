@@ -125,7 +125,6 @@ class PenawaranController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $validatedData = $request->validate([
             'project_name' => 'required',
             'judul_pekerjaan' => 'required',
@@ -146,7 +145,7 @@ class PenawaranController extends Controller
             'kota' => 'required',
             'alamat' => 'required',
         ]);
-
+        $validatedData['status'] = 'waiting';
 
 
         $penawaran = Penawaran::findOrFail($id);
