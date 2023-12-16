@@ -47,7 +47,9 @@
                     <div class="card">
                         <div class="card-body" style="padding: 0.7rem;">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="{{ asset('contoh.pdf') }}" style="width:100%; height:700px; border-radius: 5px;"></iframe>
+                                {{-- @dd($penawaran->id) --}}
+                                <iframe class="embed-responsive-item" src="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id] ) }}" 
+                                    style="width:100%; height:700px; border-radius: 5px;" sandbox="allow-same-origin allow-scripts"></iframe>
                             </div>
                         </div>
                     </div>
@@ -68,6 +70,16 @@
                                 </div>
                                 <div class="col-5 text-end">
                                     <div class="btn-group btn-group-sm" style="float: none;">
+                                        <div class="btn-group btn-group-sm" style="float: none;">
+                                            <a
+                                                href="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id]) }}">
+                                                <button title="Preview Penawaran" type="button"
+                                                    style="padding: 0.28rem 0.8rem;"
+                                                    class="tabledit-edit-button btn btn-info waves-effect waves-light">
+                                                    <span class="mdi mdi-printer"></span>
+                                                </button>
+                                            </a>
+                                        </div>
                                         <form
                                             action="{{ route('sistemPenawaran.penawaran.edit', ['id' => $penawaran->id]) }}"
                                             method="POST">
@@ -130,34 +142,103 @@
                                         <th scope="row">
                                             <p class="title-text">Status</p>
                                             <p class="details-text">
-                                                <span class="badge bg-warning">Waiting</span>
+                                                @if ($penawaran->status == 'waiting')
+                                                    <span class="badge bg-warning">Waiting</span>
+                                                @elseif ($penawaran->status == 'approved')
+                                                    <span class="badge bg-success">Approved</span>
+                                                @elseif ($penawaran->status == 'rejected')
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                @endif
                                             </p>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th scope="row" class="text-center">
-                                            <div class="btn-group btn-group-sm me-3" style="float: none;">
-                                                <button title="Approve Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                        class="tabledit-edit-button btn btn-success hapusPenawaran" >
-                                                    Approve
-                                                    <span class="mdi mdi-check-all"></span>
-                                                </button>
-                                            </div>
-                                            <div class="btn-group btn-group-sm" style="float: none;">
-                                                <button title="Reject Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                        class="tabledit-edit-button btn btn-danger hapusPenawaran" >
-                                                    Reject
-                                                    <span class="mdi mdi-close-thick"></span>
-                                                </button>
-                                            </div>
-                                        </th>
-                                    </tr>
+                                    @if ($penawaran->status != 'approved')
+                                        @if ($penawaran->status == 'rejected')
+
+                                            <tr>
+                                                <th scope="row" class="text-center">
+                                                    <div class="btn-group btn-group-sm me-3" style="float: none;">
+                                                        <button title="Approve Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                                class="tabledit-edit-button btn btn-danger" 
+                                                                data-bs-toggle="modal" data-bs-target="#notes-modal">
+                                                            <span class="mdi mdi-notes"></span>
+                                                            See Rejected Notes
+                                                        </button>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <th scope="row" class="text-center">
+                                                    <div class="btn-group btn-group-sm me-3" style="float: none;">
+                                                        <button title="Approve Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                                class="tabledit-edit-button btn btn-success approvePenawaran" >
+                                                            Approve
+                                                            <span class="mdi mdi-check-all"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn-group btn-group-sm" style="float: none;">
+                                                        <button title="Reject Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                                class="tabledit-edit-button btn btn-danger rejectPenawaran" >
+                                                            Reject
+                                                            <span class="mdi mdi-close-thick"></span>
+                                                        </button>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        @endif
+                                    @endif
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                {{-- modals rejected notes --}}
+                <form class="expensesForm" data-parsley-validate>
+                    <div id="notes-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                        style="overflow:hidden;">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Rejected Notes</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="row">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3 text-start">
+                                                <label for="field-1" class="form-label">Note<span class="text-danger">*</span>
+                                                </label>
+                                                @if ($penawaran->status == 'rejected') 
+                                                    <textarea class="form-control" name="notes" id="notes" cols="30" rows="5" readonly disabled>Penawaran Masih Belum Oke</textarea>
+                                                @else
+                                                    <textarea class="form-control" name="notes" id="notes" cols="30" rows="5"></textarea>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        @if ($penawaran->status != 'rejected')
+                                            <button type="submit" class="btn btn-danger waves-effect waves-light" id="expenseButton">
+                                                Send
+                                            </button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -168,20 +249,47 @@
 {{-- pagescript section --}}
 @section('pageScript')
 
-{{-- function hapus penawaran --}}
+{{-- function reject penawaran --}}
 <script type="text/javascript">
     $(document).ready(function () {
-        $(document).on('click', '.hapusPenawaran', function () {
+        $(document).on('click', '.rejectPenawaran', function () {
             var id = $(this).val();
 
             // Display a confirmation dialog
             Swal.fire({
-                title: "Anda yakin?",
-                text: "Data tidak bisa dikembalikan!",
+                title: "Anda yakin",
+                text: "Ingin reject penawaran ini?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#f34e4e',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: 'Ya, Reject!',
+                cancelButtonText: 'Cancel',
+                backrop: 'static',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show the "Rejected Notes" modal
+                    $('#notes-modal').modal('show');
+                }
+            });
+        });
+    });
+</script>
+
+{{-- function approve penawaran --}}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('click', '.approvePenawaran', function () {
+            var id = $(this).val();
+
+            // Display a confirmation dialog
+            Swal.fire({
+                title: "Anda yakin",
+                text: "Ingin approve penawaran ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#f34e4e',
+                confirmButtonText: 'Ya, Approve!',
                 cancelButtonText: 'Cancel',
                 backrop: 'static',
                 allowOutsideClick: false
@@ -190,7 +298,7 @@
                 if (result.isConfirmed) {
                     // Silahkan isi logika nya sendiri xixixi
                     $.ajax({
-                        url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" + '/' + id,
+                        // url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" + '/' + id,
                         type: 'DELETE',
                         data: {
                             _token: "{{ csrf_token() }}",
@@ -206,7 +314,7 @@
                                     }).then((hasil) => {
                                         if (hasil.isConfirmed) {
                                             window.location.href =
-                                                "{{ route('sistemPenawaran.penawaran.index') }}";
+                                                "{{ route('sistemPenawaran.approval.index') }}";
                                         }
                                     });
                                 } else {

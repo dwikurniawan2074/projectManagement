@@ -10,13 +10,13 @@ use Dompdf\Dompdf;
 class ApprovalController extends Controller
 {
     public function index(){
-        $penawaran = Penawaran::all();
-        return view('sistemPenawaran.approval.index', compact('penawaran'));
+        $penawaranApproved = Penawaran::where('status', 'approved')->get();
+        $penawaranWaiting = Penawaran::where('status', 'waiting')->get();
+        $penawaranRejected = Penawaran::where('status', 'rejected')->get();
+        return view('sistemPenawaran.approval.index', compact('penawaranApproved', 'penawaranWaiting', 'penawaranRejected'));
     }
 
     public function preview(){
         return view('sistemPenawaran.approval.preview');
     }
-
-    
 }

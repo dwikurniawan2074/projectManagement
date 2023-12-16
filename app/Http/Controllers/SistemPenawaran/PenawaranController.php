@@ -8,6 +8,8 @@ use App\Models\Penawaran;
 use App\Models\Trafo;
 use App\Models\Syarat_Ketentuan;
 use Illuminate\Http\Request;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class PenawaranController extends Controller
 {
@@ -168,50 +170,10 @@ class PenawaranController extends Controller
 
     public function document($id)
     {
-
-        // $dompdf = new Dompdf();
-
-
-        // $weeklyPdf = view('projects.weeklyProgress')->render();
-
-
-        // // Load HTML content into Dompdf
-        // $dompdf->loadHtml($weeklyPdf);
-
-        // $dompdf->setPaper('A4', 'landscape'); // Set paper orientation
-        // $dompdf->render();
-
-
-
-        // Save PDFs to storage or public directory
-        // return $dompdf->stream('print_preview.pdf');
-
-        // Create Dompdf instance
-        // $dompdf = new Dompdf();
-
-        // $penawaranPdf = view('sistemPenawaran.approval.pdf')->render();
-
-        // // Load HTML content
-        // $dompdf->loadHtml($penawaranPdf);
-
-        // // Set paper size and orientation (optional)
-        // $dompdf->setPaper('A4', 'portrait');
-
-        // // Render the HTML as PDF
-        // $dompdf->render();
-
-        // // Output the generated PDF (temporary file)
-        // $pdf = $dompdf->output();
-
-        // // Return response with PDF content
-        // return response($pdf, 200, [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'inline; filename="generated.pdf"'
-        // ]);
-
-        $penawaran = Penawaran::findOrFail($id)->first();
+        $penawaran = Penawaran::where('id', $id)->first();
         $syarat = Syarat_Ketentuan::where('id_penawaran', $id)->get();
         $layanan = Layanan::with('trafo')->where('id_penawaran', $id)->get();
+
 
         $oilTypeList = [
             'Insulation resistance',
@@ -232,7 +194,36 @@ class PenawaranController extends Controller
             'Cleaning terminasi'
         ];
 
+        $data = [
+            'title' => 'Sample PDF Document',
+            'penawaran' => $penawaran,
+            'syarat' => $syarat,
+            'layanan' => $layanan,
+            'oilTypeList' => $oilTypeList,
+            'dryTypeList' => $dryTypeList,
+        ];
+
+        
+
 
         return view('sistemPenawaran.approval.pdf', compact('penawaran', 'syarat', 'layanan', 'oilTypeList', 'dryTypeList'));
+        // $options = new Options();
+        // $options->set('isHtml5ParserEnabled', true); // Enable HTML5 parser
+        // $options->set('isRemoteEnabled', true); // Enable remote file access (if needed)
+
+        // $dompdf = new Dompdf($options);
+
+        // $html = view('sistemPenawaran.approval.pdf', $data)->render();
+
+        // // Load HTML content into dompdf
+        // $dompdf->loadHtml($html);
+
+        // // (Optional) Set paper size and orientation
+        // $dompdf->setPaper('A4', 'portrait');
+
+        // // Render the PDF
+        // $dompdf->render();
+
+        // return $dompdf->stream('penawarn_document.pdf');
     }
 }

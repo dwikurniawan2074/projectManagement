@@ -272,8 +272,8 @@
                                     <div class="col-5 text-end">
                                         <div class="btn-group btn-group-sm" style="float: none;">
                                             <a
-                                                href="{{ route('sistemPenawaran.penawaran.document', ['id' => $penawaran->id]) }}">
-                                                <button title="Edit Project" type="button"
+                                                href="{{ route('sistemPenawaran.penawaran.preview', ['id' => $penawaran->id]) }}">
+                                                <button title="Preview Penawaran" type="button"
                                                     style="padding: 0.28rem 0.8rem;"
                                                     class="tabledit-edit-button btn btn-info waves-effect waves-light">
                                                     <span class="mdi mdi-printer"></span>
@@ -286,7 +286,7 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('GET')
-                                                <button type="submit" title="Edit Project"
+                                                <button type="submit" title="Edit Penawaran"
                                                     class="tabledit-edit-button btn btn-primary waves-effect waves-light"
                                                     style="background-color: #3E8BFF; padding: 0.28rem 0.8rem;">
                                                     <span class="mdi mdi-pencil"></span>
@@ -294,7 +294,7 @@
                                             </form>
                                         </div>
                                         <div class="btn-group btn-group-sm" style="float: none;">
-                                            <button title="Delete Project" type="submit"
+                                            <button title="Delete Penawaran" type="submit"
                                                 style="padding: 0.28rem 0.8rem;"
                                                 class="tabledit-edit-button btn btn-danger hapusPenawaran"
                                                 value="{{ $penawaran->id }}">
@@ -350,10 +350,32 @@
                                                 <th scope="row">
                                                     <p class="title-text">Status</p>
                                                     <p class="details-text">
-                                                        <span class="badge bg-warning">Waiting</span>
+                                                        @if ($penawaran->status == 'waiting')
+                                                            <span class="badge bg-warning">Waiting</span>
+                                                        @elseif ($penawaran->status == 'approved')
+                                                            <span class="badge bg-success">Approved</span>
+                                                        @elseif ($penawaran->status == 'rejected')
+                                                            <span class="badge bg-danger">Rejected</span>
+                                                        @endif
                                                     </p>
                                                 </th>
                                             </tr>
+                                            @if ($penawaran->status != 'approved')
+                                                @if ($penawaran->status == 'rejected')
+                                                    <tr>
+                                                        <th scope="row" class="text-center">
+                                                            <div class="btn-group btn-group-sm me-3" style="float: none;">
+                                                                <button title="Approve Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
+                                                                        class="tabledit-edit-button btn btn-danger" 
+                                                                        data-bs-toggle="modal" data-bs-target="#notes-modal">
+                                                                    <span class="mdi mdi-notes"></span>
+                                                                    See Rejected Notes
+                                                                </button>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                @endif
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
