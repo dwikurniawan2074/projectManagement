@@ -172,14 +172,14 @@
                                                 <th scope="row" class="text-center">
                                                     <div class="btn-group btn-group-sm me-3" style="float: none;">
                                                         <button title="Approve Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                                class="tabledit-edit-button btn btn-success approvePenawaran" >
+                                                                class="tabledit-edit-button btn btn-success approvePenawaran" value="{{ $penawaran->id }}">
                                                             Approve
                                                             <span class="mdi mdi-check-all"></span>
                                                         </button>
                                                     </div>
                                                     <div class="btn-group btn-group-sm" style="float: none;">
                                                         <button title="Reject Penawaran" type="submit" style="padding: 0.28rem 0.8rem;"
-                                                                class="tabledit-edit-button btn btn-danger rejectPenawaran" >
+                                                                class="tabledit-edit-button btn btn-danger rejectPenawaran" value="{{ $penawaran->id }}">
                                                             Reject
                                                             <span class="mdi mdi-close-thick"></span>
                                                         </button>
@@ -294,14 +294,15 @@
                 backrop: 'static',
                 allowOutsideClick: false
             }).then((result) => {
-                // silahkan tulis logika nya disini xixixixi
                 if (result.isConfirmed) {
-                    // Silahkan isi logika nya sendiri xixixi
+                    // Update status to 'approved' via AJAX
                     $.ajax({
-                        // url: "{{ route('sistemPenawaran.penawaran.destroy', '') }}" + '/' + id,
-                        type: 'DELETE',
+                        url: "{{ route('sistemPenawaran.penawaran.updateStatus', '') }}" + '/' + id,
+                        type: 'POST', // Use PUT method for update
                         data: {
                             _token: "{{ csrf_token() }}",
+                            _method: 'PUT', // Set the method to PUT
+                            status: 'approved'
                         },
                         success: function (response) {
                             try {
@@ -313,31 +314,24 @@
                                         confirmButtonText: 'OK'
                                     }).then((hasil) => {
                                         if (hasil.isConfirmed) {
-                                            window.location.href =
-                                                "{{ route('sistemPenawaran.approval.index') }}";
+                                            window.location.href = "{{ route('sistemPenawaran.approval.index') }}";
                                         }
                                     });
                                 } else {
-                                    console.error('Terjadi kesalahan: ' + response
-                                        .error
-                                    ); // Tampilkan pesan kesalahan jika ada
+                                    console.error('Terjadi kesalahan: ' + response.error);
                                 }
                             } catch (error) {
-                                console.error(
-                                    'Terjadi kesalahan saat mengolah respons: ' +
-                                    error);
+                                console.error('Terjadi kesalahan saat mengolah respons: ' + error);
                             }
                         },
                         error: function (xhr, status, error) {
-                            console.error(
-                                'Terjadi kesalahan saat menghapus data: ' +
-                                error);
+                            console.error('Terjadi kesalahan saat mengirim data: ' + error);
                         }
                     });
-
                 }
             });
         });
     });
+
 </script>
 @endsection
