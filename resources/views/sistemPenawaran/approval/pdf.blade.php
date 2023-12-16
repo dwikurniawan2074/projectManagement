@@ -256,7 +256,7 @@
 </head>
 
 <body style cz-shortcut-listen="true">
-
+    
     <div align="center">
         <div style="width:800px">
             <table class="header-document" style="width: 800px;">
@@ -501,9 +501,12 @@
                         </tr>
 
                         <tr rowspan="4">
-                            <!-- <td>&nbsp;</td>  -->
-                            <td style="padding: 5px 0px;"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Wonho-Signature.svg/1024px-Wonho-Signature.svg.png"
-                                    style="width:180px; height:90px; float: left; margin-right: 150px; " </td>
+                            @if ($penawaran['status'] == 'approved')
+                                <td style="padding: 5px 0px;"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Wonho-Signature.svg/1024px-Wonho-Signature.svg.png"
+                                    style="width:180px; height:90px; float: left; margin-right: 150px; "> </td>
+                            @else      
+                                <td style="padding: 5px 0px; width:180px; height:90px; float: left; margin-right: 150px;"></td>
+                            @endif
                         </tr>
 
                         <tr>
@@ -592,6 +595,13 @@
         });
     </script>
     
+    @if (Request::url() == Request::is('sistemPenawaran/penawaran/document*'))
+        <script>
+            window.onload = function() {
+                window.print();
+            };
+        </script>
+    @endif
 
 </body>
 
