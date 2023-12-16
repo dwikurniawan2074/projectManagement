@@ -216,12 +216,26 @@ class PenawaranController extends Controller
         
     }
 
-    public function updateStatus($id){
+    public function updateStatus(Request $request, $id){
         $penawaran = Penawaran::findOrFail($id);
-        $penawaran->status = 'approved'; // Set the status attribute to 'approved'
-        $penawaran->save(); // Save the updated status
+
+        // Update status to 'approved' or 'rejected'
+        if ($request->has('status')) {
+            $penawaran->status = $request->input('status');
+        }
+
+        // Store rejection notes if provided
+        if ($request->has('notes')) {
+            $penawaran->note = $request->input('notes');
+        }
+
+        $penawaran->save(); // Save the updated status and notes
 
         // You can return a response indicating success or perform other actions as needed
-        return response()->json(['message' => 'Penawaran Approved']);
+        if ($penawaran->status === 'approved') {
+            return response()->json(['message' => 'Penawaran Approved']);
+        } elseif ($penawaran->status === 'rejected') {
+            return response()->json(['message' => 'Penawaran Rejected']);
+        }
     }
 }
