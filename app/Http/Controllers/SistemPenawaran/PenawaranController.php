@@ -8,7 +8,7 @@ use App\Models\Penawaran;
 use App\Models\Trafo;
 use App\Models\Syarat_Ketentuan;
 use Illuminate\Http\Request;
-use Dompdf\Dompdf;
+// use Dompdf\Dompdf;
 use Dompdf\Options;
 
 class PenawaranController extends Controller
