@@ -4,69 +4,69 @@
 {{-- headerscript section --}}
 @section('headerScript')
 <!-- third party css -->
-<link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<link
-    href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css') }}"
-    rel="stylesheet" type="text/css" />
-<!-- third party css end -->
+    <link href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('templateAdmin/Admin/dist/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <!-- third party css end -->
 
-<!-- leaflet css -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<!-- leaflet css -->
+    <!-- leaflet css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- leaflet css -->
 
-<!-- page styling -->
-<style>
-    #map {
-        height: 410px;
-    }
-
-    #leaflet-container {
-        padding: 0.8rem 0.8rem;
-    }
-
-    .card,
-    #map {
-        border-radius: 10px;
-    }
-
-    .details-text {
-        margin-bottom: unset;
-    }
-
-    .title-text {
-        margin-bottom: unset;
-        font-weight: 100;
-    }
-
-    @media screen and (max-width: 768px) {
-        .container-fluid>.row {
-            display: flex;
-            flex-direction: column;
+    <!-- page styling -->
+    <style>
+        #map {
+            height: 410px;
         }
 
-        .right-column {
-            width: 100%;
-            order: 1;
+        #leaflet-container {
+            padding: 0.8rem 0.8rem;
         }
 
-        .left-column {
-            width: 100%;
-            order: 2;
+        .card,
+        #map {
+            border-radius: 10px;
         }
-    }
-</style>
-<!-- page styling -->
+
+        .details-text {
+            margin-bottom: unset;
+        }
+
+        .title-text {
+            margin-bottom: unset;
+            font-weight: 100;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container-fluid>.row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .right-column {
+                width: 100%;
+                order: 1;
+            }
+
+            .left-column {
+                width: 100%;
+                order: 2;
+            }
+        }
+    </style>
+    <!-- page styling -->
 @endsection
 
 
@@ -151,16 +151,16 @@
 
 
                                     <tbody>
-                                        @for($i=1; $i<=20; $i++) 
+                                        @foreach($penawaran as $pnw) 
                                             <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>0000/CS-TPP/X/2023</td>
-                                                <td>PT ABC Tangerang</td>
-                                                <td>Teguh Aryadi</td>
-                                                <td>Project 1</td>
-                                                <td>Tangerang-Banten</td>
+                                                <td>1</td>
+                                                <td>{{ $pnw['no_msg'] }}</td>
+                                                <td>{{ $pnw['customer_contact'] }}</td>
+                                                <td>{{ $pnw['tel_fax'] }}</td>
+                                                <td>{{ $pnw['project_name'] }}</td>
+                                                <td>{{ $pnw['provinsi'] }}-{{ $pnw['kota'] }}</td>
                                             </tr>
-                                            @endfor
+                                        @endforeach
                                     </tbody>
                                 </table>
                             
